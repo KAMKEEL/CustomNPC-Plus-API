@@ -16,7 +16,7 @@ public interface IAnimal<T extends EntityAnimal> extends IEntityLiving<T> {
     boolean isBreedingItem(IItemStack itemStack);
 
     /**
-     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig.
+     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig
      */
     boolean interact(IPlayer player);
 
