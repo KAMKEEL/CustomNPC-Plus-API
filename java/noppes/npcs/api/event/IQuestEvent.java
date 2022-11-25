@@ -1,13 +1,10 @@
 package noppes.npcs.api.event;
 
 import cpw.mods.fml.common.eventhandler.Cancelable;
-import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.handler.data.IQuest;
 import noppes.npcs.api.item.IItemStack;
 
-public interface IQuestEvent extends ICustomNPCsEvent {
-
-    IPlayer getPlayer();
+public interface IQuestEvent extends IPlayerEvent {
 
     IQuest getQuest();
 

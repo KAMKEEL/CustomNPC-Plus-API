@@ -5,9 +5,7 @@ import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.gui.ICustomGui;
 import noppes.npcs.api.item.IItemStack;
 
-public interface ICustomGuiEvent extends ICustomNPCsEvent {
-
-    IPlayer getPlayer();
+public interface ICustomGuiEvent extends IPlayerEvent {
 
     ICustomGui getGui();
 
