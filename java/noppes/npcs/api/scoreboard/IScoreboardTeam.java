@@ -1,5 +1,7 @@
 package noppes.npcs.api.scoreboard;
 
+import noppes.npcs.api.entity.IPlayer;
+
 public interface IScoreboardTeam {
     String getName();
 
@@ -9,7 +11,11 @@ public interface IScoreboardTeam {
 
     void addPlayer(String player);
 
+    void addPlayer(IPlayer player);
+
     void removePlayer(String player);
+
+    void removePlayer(IPlayer player);
 
     String[] getPlayers();
 

@@ -1,5 +1,7 @@
 package noppes.npcs.api.scoreboard;
 
+import noppes.npcs.api.entity.IPlayer;
+
 public interface IScoreboard {
     IScoreboardObjective[] getObjectives();
 
@@ -12,12 +14,20 @@ public interface IScoreboard {
     IScoreboardObjective addObjective(String objective, String criteria);
 
     void setPlayerScore(String player, String objective, int score, String datatag);
+
+    void setPlayerScore(IPlayer player, String objective, int score, String datatag);
     
     int getPlayerScore(String player, String objective, String datatag);
 
+    int getPlayerScore(IPlayer player, String objective, String datatag);
+
     boolean hasPlayerObjective(String player, String objective, String datatag);
 
+    boolean hasPlayerObjective(IPlayer player, String objective, String datatag);
+
     void deletePlayerScore(String player, String objective, String datatag);
+
+    void deletePlayerScore(IPlayer player, String objective, String datatag);
 
     IScoreboardTeam[] getTeams();
 
