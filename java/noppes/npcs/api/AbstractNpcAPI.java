@@ -193,6 +193,8 @@ public abstract class AbstractNpcAPI {
 
     public abstract String[] getPlayerNames();
 
+    public abstract IItemStack createItemFromNBT(INbt nbt);
+
     public abstract IItemStack createItem(String id, int damage, int size);
 
     public abstract void playSoundAtEntity(IEntity<?> entity, String sound, float volume, float pitch);
