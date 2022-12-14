@@ -6,6 +6,7 @@
 package noppes.npcs.api;
 
 import java.io.File;
+import java.util.HashMap;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.EventBus;
@@ -37,6 +38,12 @@ public abstract class AbstractNpcAPI {
 
     public AbstractNpcAPI() {
     }
+
+    public abstract void addGlobalObject(String key, Object obj);
+
+    public abstract void removeGlobalObject(String key);
+
+    public abstract HashMap<String,Object> getEngineObjects();
 
     public abstract long sizeOfObject(Object obj);
 
