@@ -43,6 +43,8 @@ public abstract class AbstractNpcAPI {
 
     public abstract void removeGlobalObject(String key);
 
+    public abstract boolean hasGlobalObject(String key);
+
     public abstract HashMap<String,Object> getEngineObjects();
 
     public abstract long sizeOfObject(Object obj);
