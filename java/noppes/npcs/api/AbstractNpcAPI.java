@@ -39,6 +39,10 @@ public abstract class AbstractNpcAPI {
     public AbstractNpcAPI() {
     }
 
+    public abstract void registerICommand(ICommand command);
+
+    public abstract ICommand getICommand(String commandName, int priorityLevel);
+
     public abstract void addGlobalObject(String key, Object obj);
 
     public abstract void removeGlobalObject(String key);
