@@ -285,4 +285,8 @@ public abstract class AbstractNpcAPI {
      * @return A new ISkinOverlay object initialized with the given texture.
      */
     public abstract ISkinOverlay createSkinOverlay(String texture);
+
+    public abstract String millisToTime(long millis);
+
+    public abstract String ticksToTime(long ticks);
 }

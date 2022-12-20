@@ -21,4 +21,8 @@ public interface IPlayerQuestData {
     IQuest[] getActiveQuests();
 
     IQuest[] getFinishedQuests();
+
+    long getLastCompletedTime(int id);
+
+    void setLastCompletedTime(int id,long time);
 }

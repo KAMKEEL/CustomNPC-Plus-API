@@ -45,5 +45,11 @@ public interface IQuest {
 
     boolean getIsRepeatable();
 
+    long getTimeUntilRepeat(IPlayer player);
+
+    void setRepeatType(int type);
+
+    int getRepeatType();
+
     IQuestInterface getQuestInterface();
 }
