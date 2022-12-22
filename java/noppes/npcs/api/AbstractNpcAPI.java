@@ -238,6 +238,8 @@ public abstract class AbstractNpcAPI {
 
     public abstract void playSound(int id, ISound sound);
 
+    public abstract void playSound(ISound sound);
+
     public abstract void stopSound(int id);
 
     public abstract void pauseSounds();

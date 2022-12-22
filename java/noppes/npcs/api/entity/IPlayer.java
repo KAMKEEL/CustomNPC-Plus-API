@@ -231,6 +231,8 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T> 
 
     void playSound(int id, ISound sound);
 
+    void playSound(ISound sound);
+
     void stopSound(int id);
 
     void pauseSounds();
