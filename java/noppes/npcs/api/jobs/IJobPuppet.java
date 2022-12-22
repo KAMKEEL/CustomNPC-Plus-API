@@ -2,6 +2,26 @@ package noppes.npcs.api.jobs;
 
 public interface IJobPuppet extends IJob {
 
+    void setAnimated(boolean animated);
+
+    boolean isAnimated();
+
+    void setAnimRate(float animRate);
+
+    float getAnimRate();
+
+    void doWhileStanding(boolean whileStanding);
+
+    boolean doWhileStanding();
+
+    void doWhileAttacking(boolean whileAttacking);
+
+    boolean doWhileAttacking();
+
+    void doWhileMoving(boolean whileMoving);
+
+    boolean doWhileMoving();
+
     int getRotationX(int part);
 
     int getRotationY(int part);
