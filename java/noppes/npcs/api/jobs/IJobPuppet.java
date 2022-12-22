@@ -4,6 +4,10 @@ public interface IJobPuppet extends IJob {
 
     void setAnimated(boolean animated);
 
+    boolean anglesLimited();
+
+    void setAnglesLimited(boolean limit);
+
     boolean isAnimated();
 
     void setAnimRate(float animRate);
@@ -28,11 +32,27 @@ public interface IJobPuppet extends IJob {
 
     int getRotationZ(int part);
 
+    void setRotation(int part, int rotationX, int rotationY, int rotationZ);
+
     void setRotationX(int part, int rotation);
 
     void setRotationY(int part, int rotation);
 
     void setRotationZ(int part, int rotation);
+
+    int getOffsetX(int part);
+
+    int getOffsetY(int part);
+
+    int getOffsetZ(int part);
+
+    void setOffset(int part, int offsetX, int offsetY, int offsetZ);
+
+    void setOffsetX(int part, int offset);
+
+    void setOffsetY(int part, int offset);
+
+    void setOffsetZ(int part, int offset);
 
     boolean isEnabled(int part);
 
