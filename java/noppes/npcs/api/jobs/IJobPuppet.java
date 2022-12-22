@@ -4,9 +4,9 @@ public interface IJobPuppet extends IJob {
 
     void setAnimated(boolean animated);
 
-    boolean anglesLimited();
+    boolean fullAngles();
 
-    void setAnglesLimited(boolean limit);
+    void setFullAngles(boolean limit);
 
     boolean isAnimated();
 
