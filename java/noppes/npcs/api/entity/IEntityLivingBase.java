@@ -1,6 +1,7 @@
 package noppes.npcs.api.entity;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import noppes.npcs.api.IBlock;
 import noppes.npcs.api.IDamageSource;
 import noppes.npcs.api.IPos;
@@ -27,6 +28,25 @@ public interface IEntityLivingBase<T extends EntityLivingBase> extends IEntity<T
      * @return Entity's max health
      */
     double getMaxHealth();
+
+    double getFollowRange();
+
+    double getKnockbackResistance();
+
+    double getSpeed();
+
+    double getMeleeStrength();
+
+    void setMaxHealth(double health);
+
+    void setFollowRange(double range);
+
+    void setKnockbackResistance(double knockbackResistance);
+
+    void setSpeed(double speed);
+
+    void setMeleeStrength(double attackDamage);
+
     /**
      * @return Whether or not this entity is attacking something
      */

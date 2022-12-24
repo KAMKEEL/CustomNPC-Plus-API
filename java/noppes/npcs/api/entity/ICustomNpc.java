@@ -541,12 +541,12 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
     /**
      * @return The melee strength
      */
-    float getMeleeStrength();
+    double getMeleeStrength();
 
     /**
      * @param strength The melee strength
      */
-    void setMeleeStrength(float strength);
+    void setMeleeStrength(double strength);
 
     /**
      * @return The melee speed
@@ -733,12 +733,12 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
     /**
      * @param resistance Knockback resistance (0-2) default is 1
      */
-    void setKnockbackResistance(float resistance);
+    void setKnockbackResistance(double resistance);
 
     /**
      * @return Returns Knockback Resistance
      */
-    float getKnockbackResistance();
+    double getKnockbackResistance();
 
     /**
      * @param type Retaliation type. 0:normal, 1:panic, 2:retreat, 3:nothing
@@ -789,9 +789,9 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
 
     boolean isFlyHeightLimited(boolean limit);
 
-    void setSpeed(int speed);
+    void setSpeed(double speed);
 
-    int getSpeed();
+    double getSpeed();
 
     void setSkinType(byte type);
 
