@@ -51,4 +51,6 @@ public interface IEntityLiving<T extends EntityLiving> extends IEntityLivingBase
      IEntity getLeashedTo();
 
      void setLeashedTo(IEntity entity, boolean sendPacket);
+
+     boolean canBeSteered();
 }

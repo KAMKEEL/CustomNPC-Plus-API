@@ -1,7 +1,6 @@
 package noppes.npcs.api.entity;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import noppes.npcs.api.IBlock;
 import noppes.npcs.api.IDamageSource;
 import noppes.npcs.api.IPos;
@@ -61,6 +60,16 @@ public interface IEntityLivingBase<T extends EntityLivingBase> extends IEntity<T
      * @return The entity which this entity is attacking
      */
     IEntityLivingBase getAttackTarget();
+
+    int getAttackTargetTime();
+
+    void setLastAttacker(IEntity p_130011_1_);
+
+    IEntity getLastAttacker();
+
+    int getLastAttackerTime();
+
+    boolean canBreatheUnderwater();
 
     int getType();
 

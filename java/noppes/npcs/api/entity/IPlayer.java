@@ -306,4 +306,8 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T> 
     void closeOverlay(int id);
 
     IOverlayHandler getOverlays();
+
+    void setConqueredEnd(boolean conqueredEnd);
+
+    boolean conqueredEnd();
 }

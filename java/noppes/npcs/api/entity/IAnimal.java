@@ -20,6 +20,10 @@ public interface IAnimal<T extends EntityAnimal> extends IEntityLiving<T> {
      */
     boolean interact(IPlayer player);
 
+    void setFollowPlayer(IPlayer player);
+
+    IPlayer followingPlayer();
+
     boolean isInLove();
 
     void resetInLove();
