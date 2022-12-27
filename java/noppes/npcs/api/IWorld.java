@@ -339,6 +339,8 @@ public interface IWorld {
      */
     void clearTempData();
 
+    String[] getTempDataKeys();
+
     /**
      * @param key The key of the data to be returned
      * @return Returns the stored data
@@ -367,6 +369,8 @@ public interface IWorld {
      * Remove all stored data
      */
     void clearStoredData();
+
+    String[] getStoredDataKeys();
 
     /**
      * @param x Position x

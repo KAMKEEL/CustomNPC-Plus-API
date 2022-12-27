@@ -175,6 +175,8 @@ public interface IEntity<T extends Entity> {
      */
     void clearTempData();
 
+    String[] getTempDataKeys();
+
     /**
      * @param key The key of the data to be returned
      * @return Returns the stored data
@@ -203,6 +205,8 @@ public interface IEntity<T extends Entity> {
      * Remove all stored data
      */
     void clearStoredData();
+
+    String[] getStoredDataKeys();
 
     /**
      * @return The age of this entity in ticks
