@@ -169,5 +169,7 @@ public interface IPos {
      */
     double distanceTo(IPos pos);
 
+    double distanceTo(double x, double y, double z);
+
     BlockPos getMCPos();
 }
