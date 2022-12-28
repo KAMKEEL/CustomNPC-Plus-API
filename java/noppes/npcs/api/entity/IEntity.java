@@ -324,6 +324,18 @@ public interface IEntity<T extends Entity> {
 
     boolean hasCollided();
 
+    boolean hasCollidedVertically();
+
+    boolean hasCollidedHorizontally();
+
+    boolean capturesDrops();
+
+    void setCapturesDrops(boolean capture);
+
+    void setCapturedDrops(IEntity<?>[] capturedDrops);
+
+    IEntity<?>[] getCapturedDrops();
+
     /**
      * @since 1.7.10c
      * @return Returns whether or not this entity is sneaking
