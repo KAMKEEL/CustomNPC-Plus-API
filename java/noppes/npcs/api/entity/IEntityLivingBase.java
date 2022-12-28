@@ -176,6 +176,20 @@ public interface IEntityLivingBase<T extends EntityLivingBase> extends IEntity<T
      */
     void setArmor(int slot, IItemStack item);
 
+    boolean isChild();
+
+    void renderBrokenItemStack(IItemStack itemStack);
+
+    boolean isOnLadder();
+
+    int getTotalArmorValue();
+
+    int getArrowCountInEntity();
+
+    void setArrowCountInEntity(int count);
+
+    void dismountEntity(IEntity entity);
+
     void setAIMoveSpeed(float speed);
 
     float getAIMoveSpeed();
