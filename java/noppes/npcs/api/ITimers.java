@@ -6,6 +6,9 @@
 package noppes.npcs.api;
 
 public interface ITimers {
+
+    int[] timerIds();
+
     /**
      * Adds a timer to the NPC or player with the given attributes. If this function is used and there is already a
      * timer with the given ID, an exception will be thrown.
