@@ -296,6 +296,8 @@ public interface IEntity<T extends Entity> {
      */
     void setRotation(float rotation);
 
+    void setRotation(float rotationYaw, float rotationPitch);
+
     /**
      * @return Current rotation of the npc
      */

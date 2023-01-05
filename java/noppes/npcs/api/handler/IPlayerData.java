@@ -25,7 +25,5 @@ public interface IPlayerData {
 
     IPlayerMailData getMailData();
 
-    IPlayerModelData getModelData();
-
     void save();
 }
