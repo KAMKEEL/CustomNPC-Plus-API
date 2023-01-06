@@ -6,15 +6,15 @@ public interface IPlayerModelData {
 
     void setEnabled(boolean enabled);
 
-    boolean getEnabled();
+    boolean enabled();
 
     void setAnimated(boolean animated);
 
-    boolean fullAngles();
+    boolean isAnimated();
 
     void setFullAngles(boolean limit);
 
-    boolean isAnimated();
+    boolean fullAngles();
 
     void setAnimRate(float animRate);
 
@@ -34,7 +34,7 @@ public interface IPlayerModelData {
 
     void setRotation(int rotationX, int rotationY, int rotationZ);
 
-    void setEnabledRotation(boolean enabledX, boolean enabledY, boolean enabledZ);
+    void setRotationEnabled(boolean enabledX, boolean enabledY, boolean enabledZ);
 
     void setRotationX(int rotationX);
 
