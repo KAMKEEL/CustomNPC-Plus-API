@@ -26,33 +26,33 @@ public interface IJobPuppet extends IJob {
 
     boolean doWhileMoving();
 
-    int getRotationX(int part);
+    void setRotation(int part, float rotationX, float rotationY, float rotationZ);
 
-    int getRotationY(int part);
+    void setRotationX(int part, float rotation);
 
-    int getRotationZ(int part);
+    void setRotationY(int part, float rotation);
 
-    void setRotation(int part, int rotationX, int rotationY, int rotationZ);
+    void setRotationZ(int part, float rotation);
 
-    void setRotationX(int part, int rotation);
+    float getRotationX(int part);
 
-    void setRotationY(int part, int rotation);
+    float getRotationY(int part);
 
-    void setRotationZ(int part, int rotation);
+    float getRotationZ(int part);
 
-    int getOffsetX(int part);
+    void setOffset(int part, float offsetX, float offsetY, float offsetZ);
 
-    int getOffsetY(int part);
+    void setOffsetX(int part, float offset);
 
-    int getOffsetZ(int part);
+    void setOffsetY(int part, float offset);
 
-    void setOffset(int part, int offsetX, int offsetY, int offsetZ);
+    void setOffsetZ(int part, float offset);
 
-    void setOffsetX(int part, int offset);
+    float getOffsetX(int part);
 
-    void setOffsetY(int part, int offset);
+    float getOffsetY(int part);
 
-    void setOffsetZ(int part, int offset);
+    float getOffsetZ(int part);
 
     boolean isEnabled(int part);
 
