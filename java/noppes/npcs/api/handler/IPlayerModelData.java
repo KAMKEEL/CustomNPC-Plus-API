@@ -12,6 +12,10 @@ public interface IPlayerModelData {
 
     boolean isAnimated();
 
+    void setInterpolated(boolean interpolate);
+
+    boolean isInterpolated();
+
     void setFullAngles(boolean limit);
 
     boolean fullAngles();
