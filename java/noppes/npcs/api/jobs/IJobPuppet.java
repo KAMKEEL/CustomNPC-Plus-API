@@ -4,11 +4,15 @@ public interface IJobPuppet extends IJob {
 
     void setAnimated(boolean animated);
 
-    boolean fullAngles();
+    boolean isAnimated();
+
+    void setInterpolated(boolean interpolate);
+
+    boolean isInterpolated();
 
     void setFullAngles(boolean limit);
 
-    boolean isAnimated();
+    boolean fullAngles();
 
     void setAnimRate(float animRate);
 
