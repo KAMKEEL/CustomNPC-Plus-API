@@ -47,6 +47,16 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
     int getRotationType();
 
     /**
+     * @param movingType The moving type of the npc. 0 = standing, 1 = wandering, 2 = moving path
+     */
+    public void setMovingType(int movingType);
+
+    /**
+     * @return The moving type of the npc. 0 = standing, 1 = wandering, 2 = moving path
+     */
+    public int getMovingType();
+
+    /**
      * @param name The name of the npc
      */
     void setName(String name);
