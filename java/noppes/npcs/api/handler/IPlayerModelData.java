@@ -16,6 +16,8 @@ public interface IPlayerModelData {
 
     void setAnimRate(float animRate);
 
+    void allEnabled(boolean enabled);
+
     void allAnimated(boolean animated);
 
     void allInterpolated(boolean interpolate);
