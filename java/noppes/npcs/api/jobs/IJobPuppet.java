@@ -6,6 +6,8 @@ public interface IJobPuppet extends IJob {
 
     IModelPart getPart(int part);
 
+    void allEnabled(boolean enabled);
+
     void allAnimated(boolean animated);
 
     void allInterpolated(boolean interpolate);
