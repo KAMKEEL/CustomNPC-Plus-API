@@ -15,4 +15,12 @@ public interface IPlayerModelData {
     void setFullAngles(boolean fullAngles);
 
     void setAnimRate(float animRate);
+
+    void allAnimated(boolean animated);
+
+    void allInterpolated(boolean interpolate);
+
+    void allFullAngles(boolean fullAngles);
+
+    void allAnimRate(float animRate);
 }
