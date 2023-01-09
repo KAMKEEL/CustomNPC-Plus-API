@@ -6,13 +6,13 @@ public interface IJobPuppet extends IJob {
 
     IModelPart getPart(int part);
 
-    void setAnimated(boolean animated);
+    void allAnimated(boolean animated);
 
-    void setInterpolated(boolean interpolate);
+    void allInterpolated(boolean interpolate);
 
-    void setFullAngles(boolean fullAngles);
+    void allFullAngles(boolean fullAngles);
 
-    void setAnimRate(float animRate);
+    void allAnimRate(float animRate);
 
     void doWhileStanding(boolean whileStanding);
 
