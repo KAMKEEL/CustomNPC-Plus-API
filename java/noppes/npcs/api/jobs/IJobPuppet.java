@@ -1,22 +1,18 @@
 package noppes.npcs.api.jobs;
 
+import noppes.npcs.api.handler.data.IModelPart;
+
 public interface IJobPuppet extends IJob {
+
+    IModelPart getPart(int part);
 
     void setAnimated(boolean animated);
 
-    boolean isAnimated();
-
     void setInterpolated(boolean interpolate);
 
-    boolean isInterpolated();
-
-    void setFullAngles(boolean limit);
-
-    boolean fullAngles();
+    void setFullAngles(boolean fullAngles);
 
     void setAnimRate(float animRate);
-
-    float getAnimRate();
 
     void doWhileStanding(boolean whileStanding);
 
@@ -30,35 +26,27 @@ public interface IJobPuppet extends IJob {
 
     boolean doWhileMoving();
 
-    void setRotation(int part, float rotationX, float rotationY, float rotationZ);
-
+    @Deprecated
     void setRotationX(int part, float rotation);
 
+    @Deprecated
     void setRotationY(int part, float rotation);
 
+    @Deprecated
     void setRotationZ(int part, float rotation);
 
+    @Deprecated
     float getRotationX(int part);
 
+    @Deprecated
     float getRotationY(int part);
 
+    @Deprecated
     float getRotationZ(int part);
 
-    void setOffset(int part, float offsetX, float offsetY, float offsetZ);
-
-    void setOffsetX(int part, float offset);
-
-    void setOffsetY(int part, float offset);
-
-    void setOffsetZ(int part, float offset);
-
-    float getOffsetX(int part);
-
-    float getOffsetY(int part);
-
-    float getOffsetZ(int part);
-
+    @Deprecated
     boolean isEnabled(int part);
 
+    @Deprecated
     void setEnabled(int part, boolean bo);
 }
