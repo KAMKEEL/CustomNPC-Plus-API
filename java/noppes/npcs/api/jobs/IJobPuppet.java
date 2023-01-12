@@ -4,6 +4,10 @@ import noppes.npcs.api.handler.data.IModelPart;
 
 public interface IJobPuppet extends IJob {
 
+    void setEnabled(boolean enabled);
+
+    boolean enabled();
+
     IModelPart getPart(int part);
 
     void allEnabled(boolean enabled);

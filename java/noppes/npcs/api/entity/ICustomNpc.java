@@ -12,6 +12,7 @@ import noppes.npcs.api.handler.IOverlayHandler;
 import noppes.npcs.api.handler.data.IFaction;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.jobs.IJob;
+import noppes.npcs.api.jobs.IJobPuppet;
 import noppes.npcs.api.roles.IRole;
 
 public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
@@ -207,6 +208,8 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
      * Basically completely resets the npc. This will also call the Init script
      */
     void reset();
+
+    IJobPuppet getModelData();
 
     /**
      * @return Returns the npcs current role
