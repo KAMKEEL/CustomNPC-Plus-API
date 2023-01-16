@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import noppes.npcs.api.*;
 import noppes.npcs.api.handler.IOverlayHandler;
 import noppes.npcs.api.handler.IPlayerData;
+import noppes.npcs.api.handler.data.IAnimationData;
 import noppes.npcs.api.handler.data.IDialog;
 import noppes.npcs.api.handler.data.IQuest;
 import noppes.npcs.api.gui.ICustomGui;
@@ -306,6 +307,8 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T> 
     void closeOverlay(int id);
 
     IOverlayHandler getOverlays();
+
+    IAnimationData getAnimationData();
 
     void setConqueredEnd(boolean conqueredEnd);
 

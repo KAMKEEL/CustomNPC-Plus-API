@@ -9,10 +9,10 @@ import net.minecraft.entity.EntityCreature;
 import noppes.npcs.api.IPos;
 import noppes.npcs.api.ITimers;
 import noppes.npcs.api.handler.IOverlayHandler;
+import noppes.npcs.api.handler.data.IAnimationData;
 import noppes.npcs.api.handler.data.IFaction;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.jobs.IJob;
-import noppes.npcs.api.jobs.IJobPuppet;
 import noppes.npcs.api.roles.IRole;
 
 public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
@@ -209,7 +209,7 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
      */
     void reset();
 
-    IJobPuppet getModelData();
+    IAnimationData getAnimationData();
 
     /**
      * @return Returns the npcs current role
