@@ -10,13 +10,13 @@ public interface IFramePart{
 
     IFramePart setPart(int partId);
 
-    int[] getRotations();
+    float[] getRotations();
 
-    IFramePart setRotations(int[] rotation);
+    IFramePart setRotations(float[] rotation);
 
-    int[] getPivots();
+    float[] getPivots();
 
-    IFramePart setPivots(int[] pivot);
+    IFramePart setPivots(float[] pivot);
 
     boolean isCustomized();
 

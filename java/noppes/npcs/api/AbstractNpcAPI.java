@@ -303,13 +303,13 @@ public abstract class AbstractNpcAPI {
 
     public abstract IFramePart createPart(String name);
 
-    public abstract IFramePart createPart(String name, int[] rotation, int[] pivot);
+    public abstract IFramePart createPart(String name, float[] rotation, float[] pivot);
 
-    public abstract IFramePart createPart(String name, int[] rotation, int[] pivot, float speed, byte smooth);
+    public abstract IFramePart createPart(String name, float[] rotation, float[] pivot, float speed, byte smooth);
 
     public abstract IFramePart createPart(int partId);
 
-    public abstract IFramePart createPart(int partId, int[] rotation, int[] pivot);
+    public abstract IFramePart createPart(int partId, float[] rotation, float[] pivot);
 
-    public abstract IFramePart createPart(int partId, int[] rotation, int[] pivot, float speed, byte smooth);
+    public abstract IFramePart createPart(int partId, float[] rotation, float[] pivot, float speed, byte smooth);
 }
