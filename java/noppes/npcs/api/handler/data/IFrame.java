@@ -27,4 +27,8 @@ public interface IFrame {
     byte smoothType();
 
     IFrame setSmooth(byte smooth);
+
+    IFrame useRenderTicks(boolean renderTicks);
+
+    boolean useRenderTicks();
 }
