@@ -22,49 +22,49 @@ public interface ICustomGui {
 
     List<IItemSlot> getSlots();
 
-    void setSize(int var1, int var2);
+    void setSize(int width, int height);
 
-    void setDoesPauseGame(boolean var1);
+    void setDoesPauseGame(boolean pauseGame);
 
-    void setBackgroundTexture(String var1);
+    void setBackgroundTexture(String resourceLocation);
 
-    IButton addButton(int var1, String var2, int var3, int var4);
+    IButton addButton(int id, String text, int x, int y);
 
-    IButton addButton(int var1, String var2, int var3, int var4, int var5, int var6);
+    IButton addButton(int id, String text, int x, int y, int width, int height);
 
-    IButton addTexturedButton(int var1, String var2, int var3, int var4, int var5, int var6, String var7);
+    IButton addTexturedButton(int id, String text, int x, int y, int width, int height, String texture);
 
-    IButton addTexturedButton(int var1, String var2, int var3, int var4, int var5, int var6, String var7, int var8, int var9);
+    IButton addTexturedButton(int id, String text, int x, int y, int width, int height, String texture, int textureX, int textureY);
 
-    ILabel addLabel(int var1, String var2, int var3, int var4, int var5, int var6);
+    ILabel addLabel(int id, String text, int x, int y, int width, int height);
 
-    ILabel addLabel(int var1, String var2, int var3, int var4, int var5, int var6, int var7);
+    ILabel addLabel(int id, String text, int x, int y, int width, int height, int color);
 
-    ITextField addTextField(int var1, int var2, int var3, int var4, int var5);
+    ITextField addTextField(int id, int x, int y, int width, int height);
 
-    ITexturedRect addTexturedRect(int var1, String var2, int var3, int var4, int var5, int var6);
+    ITexturedRect addTexturedRect(int id, String texture, int x, int y, int width, int height);
 
-    ITexturedRect addTexturedRect(int var1, String var2, int var3, int var4, int var5, int var6, int var7, int var8);
+    ITexturedRect addTexturedRect(int id, String texture, int x, int y, int width, int height, int textureX, int textureY);
 
-    IScroll addScroll(int var1, int var2, int var3, int var4, int var5, String[] var6);
+    IScroll addScroll(int id, int x, int y, int width, int height, String[] list);
 
     ILine addLine(int id, int x1, int y1, int x2, int y2, int color, int thickness);
 
     ILine addLine(int id, int x1, int y1, int x2, int y2);
 
-    IItemSlot addItemSlot(int var1, int var2);
+    IItemSlot addItemSlot(int x, int y);
 
-    IItemSlot addItemSlot(int var1, int var2, IItemStack var3);
+    IItemSlot addItemSlot(int x, int y, IItemStack itemStack);
 
-    void showPlayerInventory(int var1, int var2);
+    void showPlayerInventory(int x, int y);
 
-    ICustomGuiComponent getComponent(int var1);
+    ICustomGuiComponent getComponent(int id);
 
-    void removeComponent(int var1);
+    void removeComponent(int id);
 
-    void updateComponent(ICustomGuiComponent var1);
+    void updateComponent(ICustomGuiComponent component);
 
-    void update(IPlayer var1);
+    void update(IPlayer player);
 
     boolean getShowPlayerInv();
 
