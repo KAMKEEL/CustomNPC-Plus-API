@@ -10,9 +10,9 @@ public interface ITextField extends ICustomGuiComponent {
 
     int getHeight();
 
-    ITextField setSize(int var1, int var2);
+    ITextField setSize(int width, int height);
 
     String getText();
 
-    ITextField setText(String var1);
+    ITextField setText(String text);
 }

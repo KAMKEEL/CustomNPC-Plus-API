@@ -13,7 +13,7 @@ public interface IItemSlot extends ICustomGuiComponent {
 
     IItemStack getStack();
 
-    IItemSlot setStack(IItemStack var1);
+    IItemSlot setStack(IItemStack itemStack);
 
     Slot getMCSlot();
 }

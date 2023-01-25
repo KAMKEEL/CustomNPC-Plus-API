@@ -10,17 +10,17 @@ public interface IScroll extends ICustomGuiComponent {
 
     int getHeight();
 
-    IScroll setSize(int var1, int var2);
+    IScroll setSize(int width, int height);
 
     String[] getList();
 
-    IScroll setList(String[] var1);
+    IScroll setList(String[] textList);
 
     int getDefaultSelection();
 
-    IScroll setDefaultSelection(int var1);
+    IScroll setDefaultSelection(int defaultSelection);
 
     boolean isMultiSelect();
 
-    IScroll setMultiSelect(boolean var1);
+    IScroll setMultiSelect(boolean selectMultiple);
 }

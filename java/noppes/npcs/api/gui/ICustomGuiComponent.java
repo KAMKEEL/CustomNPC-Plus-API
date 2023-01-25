@@ -10,21 +10,21 @@ import net.minecraft.nbt.NBTTagCompound;
 public interface ICustomGuiComponent {
     int getID();
 
-    ICustomGuiComponent setID(int var1);
+    ICustomGuiComponent setID(int id);
 
     int getPosX();
 
     int getPosY();
 
-    ICustomGuiComponent setPos(int var1, int var2);
+    ICustomGuiComponent setPos(int x, int y);
 
     boolean hasHoverText();
 
     String[] getHoverText();
 
-    ICustomGuiComponent setHoverText(String var1);
+    ICustomGuiComponent setHoverText(String hoverText);
 
-    ICustomGuiComponent setHoverText(String[] var1);
+    ICustomGuiComponent setHoverText(String[] hoverTextLines);
 
     int getColor();
 

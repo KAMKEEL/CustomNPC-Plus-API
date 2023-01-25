@@ -10,21 +10,21 @@ public interface IButton extends ICustomGuiComponent {
 
     int getHeight();
 
-    IButton setSize(int var1, int var2);
+    IButton setSize(int width, int height);
 
     String getLabel();
 
-    IButton setLabel(String var1);
+    IButton setLabel(String text);
 
     String getTexture();
 
     boolean hasTexture();
 
-    IButton setTexture(String var1);
+    IButton setTexture(String texture);
 
     int getTextureX();
 
     int getTextureY();
 
-    IButton setTextureOffset(int var1, int var2);
+    IButton setTextureOffset(int textureX, int textureY);
 }
