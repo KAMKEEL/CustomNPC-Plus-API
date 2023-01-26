@@ -45,4 +45,8 @@ public interface IAnimation {
     IAnimation doWhileAttacking(boolean whileAttacking);
 
     boolean doWhileAttacking();
+
+    IAnimation setLoop(int loopAtFrame);
+
+    int loop();
 }
