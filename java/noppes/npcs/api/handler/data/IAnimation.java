@@ -16,8 +16,6 @@ public interface IAnimation {
 
     IAnimation removeFrame(IFrame frame);
 
-    int getId();
-
     IAnimation setName(String name);
 
     String getName();
@@ -49,4 +47,6 @@ public interface IAnimation {
     IAnimation setLoop(int loopAtFrame);
 
     int loop();
+
+    IAnimation save();
 }

@@ -84,6 +84,8 @@ public abstract class AbstractNpcAPI {
 
     public abstract ITransportHandler getLocations();
 
+    public abstract IAnimationHandler getAnimations();
+
     public abstract String[] getAllBiomeNames();
 
     public abstract ICustomNpc<?> createNPC(IWorld var1);
@@ -295,9 +297,9 @@ public abstract class AbstractNpcAPI {
 
     public abstract String ticksToTime(long ticks);
 
-    public abstract IAnimation createAnimation(int id, String name);
+    public abstract IAnimation createAnimation(String name);
 
-    public abstract IAnimation createAnimation(int id, String name, float speed, byte smooth);
+    public abstract IAnimation createAnimation(String name, float speed, byte smooth);
 
     public abstract IFrame createFrame(int duration);
 
