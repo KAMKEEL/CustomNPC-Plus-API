@@ -180,10 +180,18 @@ public interface IParticle {
      * @param scaleRateStart The amount of ticks the particle is around for before its colors begin interpolating between scale1 and scale2.
      */
     void setScale(float scale1, float scale2, float scaleRate, int scaleRateStart);
-    float getScale1();
-    float getScale2();
-    float getScaleRate();
-    int getScaleRateStart();
+
+    void setScaleX(float scale1, float scale2, float scaleRate, int scaleRateStart);
+    float getScaleX1();
+    float getScaleX2();
+    float getScaleXRate();
+    int getScaleXRateStart();
+
+    void setScaleY(float scale1, float scale2, float scaleRate, int scaleRateStart);
+    float getScaleY1();
+    float getScaleY2();
+    float getScaleYRate();
+    int getScaleYRateStart();
 
     /**
      * Enables rotation about the X axis.
