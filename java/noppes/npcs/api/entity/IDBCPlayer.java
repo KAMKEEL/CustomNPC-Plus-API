@@ -94,4 +94,10 @@ public interface IDBCPlayer extends IPlayer {
     int getPowerType();
 
     int getKillCount(String type);
+
+    String getFusionString();
+
+    double getMaxMeleeDamage();
+
+    double getMeleeDamage();
 }
