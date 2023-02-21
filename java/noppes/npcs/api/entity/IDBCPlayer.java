@@ -97,7 +97,5 @@ public interface IDBCPlayer extends IPlayer {
 
     String getFusionString();
 
-    double getMaxMeleeDamage();
-
-    double getMeleeDamage();
+    double getMaxMeleeStrength();
 }
