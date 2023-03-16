@@ -107,6 +107,8 @@ public interface INpcEvent extends ICustomNPCsEvent {
     @Cancelable
     interface TargetLostEvent extends INpcEvent {
         IEntityLivingBase getTarget();
+
+        IEntityLivingBase getNewTarget();
     }
 
     @Cancelable
