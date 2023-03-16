@@ -128,6 +128,8 @@ public interface IEntity<T extends Entity> {
 
     int getDimension();
 
+    void setDimension(int dimensionId);
+
     /**
      * @param range The search range for entities around this entity
      * @return Array of entities within range
