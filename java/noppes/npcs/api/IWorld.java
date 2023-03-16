@@ -206,6 +206,14 @@ public interface IWorld {
     void removeBlock(int x, int y, int z);
     void removeBlock(IPos pos);
 
+    boolean isPlaceCancelled(int posX, int posY, int posZ);
+
+    boolean isPlaceCancelled(IPos pos);
+
+    boolean isBreakCancelled(int posX, int posY, int posZ);
+
+    boolean isBreakCancelled(IPos pos);
+
     IPos rayCastPos(double[] startPos, double[] lookVector, int maxDistance, boolean stopOnBlock, boolean stopOnLiquid, boolean stopOnCollision);
 
     IPos rayCastPos(double[] startPos, double[] lookVector, int maxDistance);
