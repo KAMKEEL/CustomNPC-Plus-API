@@ -2,6 +2,30 @@ package noppes.npcs.api.entity.data;
 
 public interface IModelData {
 
+    void headWear(byte config);
+
+    byte headWear();
+
+    void bodyWear(byte config);
+
+    byte bodyWear();
+
+    void rightArmWear(byte config);
+
+    byte rightArmWear();
+
+    void leftArmWear(byte config);
+
+    byte leftArmWear();
+
+    void rightLegWear(byte config);
+
+    byte rightLegWear();
+
+    void leftLegWear(byte config);
+
+    byte leftLegWear();
+
     /**
      * Hide Body Parts
      * part: [0: Head, 1: Body, 2: Arms, 3: Legs]
