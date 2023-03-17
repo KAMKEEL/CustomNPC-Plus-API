@@ -8,6 +8,7 @@ package noppes.npcs.api.entity;
 import net.minecraft.entity.EntityCreature;
 import noppes.npcs.api.IPos;
 import noppes.npcs.api.ITimers;
+import noppes.npcs.api.entity.data.IModelData;
 import noppes.npcs.api.handler.IOverlayHandler;
 import noppes.npcs.api.handler.data.IAnimationData;
 import noppes.npcs.api.handler.data.IFaction;
@@ -703,12 +704,18 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
      */
     void executeCommand(String command);
 
+    IModelData getModelData();
+
+    @Deprecated
     void setHeadScale(float x, float y, float z);
 
+    @Deprecated
     void setBodyScale(float x, float y, float z);
 
+    @Deprecated
     void setArmsScale(float x, float y, float z);
 
+    @Deprecated
     void setLegsScale(float x, float y, float z);
 
     /**
