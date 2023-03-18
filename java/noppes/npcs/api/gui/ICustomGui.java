@@ -26,7 +26,11 @@ public interface ICustomGui {
 
     void setDoesPauseGame(boolean pauseGame);
 
+    boolean doesPauseGame();
+
     void setBackgroundTexture(String resourceLocation);
+
+    String getBackgroundTexture();
 
     IButton addButton(int id, String text, int x, int y);
 
@@ -52,15 +56,15 @@ public interface ICustomGui {
 
     ILine addLine(int id, int x1, int y1, int x2, int y2);
 
+    IItemSlot addItemSlot(int id, int x, int y);
+
+    IItemSlot addItemSlot(int id, int x, int y, IItemStack itemStack);
+
     @Deprecated
     IItemSlot addItemSlot(int x, int y);
 
     @Deprecated
     IItemSlot addItemSlot(int x, int y, IItemStack itemStack);
-
-    IItemSlot addItemSlot(int id, int x, int y);
-
-    IItemSlot addItemSlot(int id, int x, int y, IItemStack itemStack);
 
     void showPlayerInventory(int x, int y);
 
