@@ -52,9 +52,15 @@ public interface ICustomGui {
 
     ILine addLine(int id, int x1, int y1, int x2, int y2);
 
+    @Deprecated
     IItemSlot addItemSlot(int x, int y);
 
+    @Deprecated
     IItemSlot addItemSlot(int x, int y, IItemStack itemStack);
+
+    IItemSlot addItemSlot(int id, int x, int y);
+
+    IItemSlot addItemSlot(int id, int x, int y, IItemStack itemStack);
 
     void showPlayerInventory(int x, int y);
 
