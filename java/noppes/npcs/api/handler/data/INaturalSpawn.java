@@ -13,6 +13,8 @@ public interface INaturalSpawn {
 
     IEntity getEntity(IWorld world, int slot);
 
+    Integer[] getSlots();
+
     void setWeight(int weight);
 
     int getWeight();
