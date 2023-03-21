@@ -5,11 +5,6 @@
 
 package noppes.npcs.api.handler.data;
 
-import noppes.npcs.api.entity.ICustomNpc;
-import noppes.npcs.api.entity.IPlayer;
-
-import java.util.UUID;
-
 public interface ITag {
     String getUuid();
 
