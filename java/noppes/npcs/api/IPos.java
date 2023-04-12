@@ -138,7 +138,9 @@ public interface IPos {
      *
      * @return The normalized vector of this block position.
      */
-    double[] normalize();
+    IPos normalize();
+
+    double[] normalizeDouble();
 
     /**
      * Offsets the block by 1 block in the given direction and returns the resulting IPos object
