@@ -69,6 +69,10 @@ public interface IDBCPlayer extends IPlayer {
     void setForm2(byte form2);
     byte getForm2();
 
+    double getFormMastery(String formTree, byte form);
+    void setFormMastery(String formTree, byte form, double value);
+    void addFormMastery(String formTree, byte form, double value);
+
     void setPowerPoints(int points);
     int getPowerPoints();
 
