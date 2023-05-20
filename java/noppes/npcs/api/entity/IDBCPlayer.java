@@ -69,9 +69,13 @@ public interface IDBCPlayer extends IPlayer {
     void setForm2(byte form2);
     byte getForm2();
 
-    double getFormMastery(boolean racialForm, byte form);
-    void setFormMastery(boolean racialForm, byte form, double value);
-    void addFormMastery(boolean racialForm, byte form, double value);
+    double getRacialFormMastery(byte form);
+    void setRacialFormMastery(byte form, double value);
+    void addRacialFormMastery(byte form, double value);
+
+    double getOtherFormMastery(String formName);
+    void setOtherFormMastery(String formName, double value);
+    void addOtherFormMastery(String formName, double value);
 
     void setPowerPoints(int points);
     int getPowerPoints();
