@@ -87,12 +87,16 @@ public interface IEntityLivingBase<T extends EntityLivingBase> extends IEntity<T
      */
     IPos getLookVector();
 
+    IBlock getLookingAtBlock(int maxDistance, boolean stopOnBlock, boolean stopOnLiquid, boolean stopOnCollision);
+
     /**
      *
      * @param maxDistance The max distance to perform checks before stopping
      * @return The first block found by following along the entity's look vector.
      */
     IBlock getLookingAtBlock(int maxDistance);
+
+    IPos getLookingAtPos(int maxDistance, boolean stopOnBlock, boolean stopOnLiquid, boolean stopOnCollision);
 
     /**
      * Returns an IPos object corresponding to the final obstructed point following along the
