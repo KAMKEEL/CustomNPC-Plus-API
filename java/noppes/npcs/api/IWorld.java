@@ -246,6 +246,8 @@ public interface IWorld {
 
     IEntity[] rayCastEntities(double[] startPos, double[] lookVector, int maxDistance, double offset, double range, boolean stopOnBlock, boolean stopOnLiquid, boolean stopOnCollision);
 
+    public IEntity[] rayCastEntities(IEntity[] ignoreEntities, double[] startPos, double[] lookVector, int maxDistance, double offset, double range, boolean stopOnBlock, boolean stopOnLiquid, boolean stopOnCollision);
+
     IEntity[] rayCastEntities(IPos startPos, IPos lookVector, int maxDistance, double offset, double range, boolean stopOnBlock, boolean stopOnLiquid, boolean stopOnCollision);
 
     IEntity[] rayCastEntities(double[] startPos, double[] lookVector, int maxDistance, double offset, double range);
