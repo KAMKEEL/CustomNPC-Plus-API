@@ -131,6 +131,8 @@ public interface IItemStack {
      */
     ItemStack getMCItemStack();
 
+    int itemHash();
+
     NBTTagCompound getMCNbt();
 
     void setMCNbt(NBTTagCompound compound);
