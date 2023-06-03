@@ -124,6 +124,8 @@ public abstract class AbstractNpcAPI {
 
     public abstract IPos getIPos(float x, float y, float z);
 
+    public abstract IPos getIPos(long serializedPos);
+
     /**
      * Forms a box with corners as the input IPos parameters, and returns all
      * points inside the box as a list of IPos vectors.
