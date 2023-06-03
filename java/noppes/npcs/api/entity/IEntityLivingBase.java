@@ -23,6 +23,10 @@ public interface IEntityLivingBase<T extends EntityLivingBase> extends IEntity<T
 
     void hurt(float damage, IDamageSource damageSource);
 
+    void setMaxHurtTime(int time);
+
+    int setMaxHurtTime();
+
     /**
      * @return Entity's max health
      */
