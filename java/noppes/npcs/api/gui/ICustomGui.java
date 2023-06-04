@@ -20,6 +20,8 @@ public interface ICustomGui {
 
     List<ICustomGuiComponent> getComponents();
 
+    void clear();
+
     List<IItemSlot> getSlots();
 
     void setSize(int width, int height);
