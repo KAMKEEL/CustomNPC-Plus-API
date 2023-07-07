@@ -8,11 +8,18 @@ package noppes.npcs.api;
 import net.minecraft.util.math.BlockPos;
 
 public interface IPos {
+
     int getX();
 
     int getY();
 
     int getZ();
+
+    double getXD();
+
+    double getYD();
+
+    double getZD();
 
     /**
      * Shifts the IPos up by 1 block and returns the new object.
@@ -25,7 +32,7 @@ public interface IPos {
      * @param n The number of blocks to move the position up by.
      * @return The new IPos object.
      */
-    IPos up(int n);
+    IPos up(double n);
 
     /**
      * Shifts the IPos down by 1 block and returns the new object.
@@ -38,7 +45,7 @@ public interface IPos {
      * @param n The number of blocks to move the position down by.
      * @return The new IPos object.
      */
-    IPos down(int n);
+    IPos down(double n);
 
     /**
      * Shifts the IPos north by 1 block and returns the new object.
@@ -51,7 +58,7 @@ public interface IPos {
      * @param n The number of blocks to move the position north by.
      * @return The new IPos object.
      */
-    IPos north(int n);
+    IPos north(double n);
 
     /**
      * Shifts the IPos east by 1 block and returns the new object.
@@ -64,7 +71,7 @@ public interface IPos {
      * @param n The number of blocks to move the position east by.
      * @return The new IPos object.
      */
-    IPos east(int n);
+    IPos east(double n);
 
     /**
      * Shifts the IPos south by 1 block and returns the new object.
@@ -77,7 +84,7 @@ public interface IPos {
      * @param n The number of blocks to move the position south by.
      * @return The new IPos object.
      */
-    IPos south(int n);
+    IPos south(double n);
 
     /**
      * Shifts the IPos west by 1 block and returns the new object.
@@ -90,7 +97,7 @@ public interface IPos {
      * @param n The number of blocks to move the position west by.
      * @return The new IPos object.
      */
-    IPos west(int n);
+    IPos west(double n);
 
     /**
      * Adds the IPos' coordinates by each of the parameters given.
@@ -100,7 +107,7 @@ public interface IPos {
      * @param z Z coordinate amount to be added
      * @return The resulting IPos from the addition.
      */
-    IPos add(int x, int y, int z);
+    IPos add(double x, double y, double z);
 
     /**
      * Directly adds the coordinates of two IPos objects and returns the resulting IPos sum.
@@ -120,7 +127,7 @@ public interface IPos {
      * @param z Z coordinate amount to be subtracted
      * @return The resulting IPos from the subtraction.
      */
-    IPos subtract(int x, int y, int z);
+    IPos subtract(double x, double y, double z);
 
     /**
      * Directly subtracts the coordinates of two IPos objects and returns the resulting IPos difference.
@@ -152,13 +159,13 @@ public interface IPos {
      * Offsets the block by n blocks in the given direction and returns the resulting IPos object
      *
      */
-    IPos offset(int direction, int n);
+    IPos offset(int direction, double n);
 
-    IPos crossProduct(int x, int y, int z);
+    IPos crossProduct(double x, double y, double z);
 
     IPos crossProduct(IPos pos);
 
-    IPos divide(float scalar);
+    IPos divide(double scalar);
 
     long toLong();
 

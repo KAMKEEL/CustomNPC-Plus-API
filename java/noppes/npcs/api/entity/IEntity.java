@@ -315,7 +315,7 @@ public interface IEntity<T extends Entity> {
      */
     void knockback(int power, float direction);
 
-    void knockback(int xpower, int ypower, int zpower, float direction);
+    void knockback(double xpower, double ypower, double zpower, float direction);
     void knockback(IPos pos, float direction);
 
     void setImmune(int ticks);
