@@ -25,6 +25,9 @@ public interface IDBCPlayer extends IPlayer {
     void setBody(int body);
     int getBody();
 
+    void setHP(int hp);
+    int getHP();
+
     void setStamina(int stamina);
     int getStamina();
 
