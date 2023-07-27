@@ -13,4 +13,6 @@ public interface IDialogCategory {
     String getName();
 
     IDialog create();
+
+    int getId();
 }

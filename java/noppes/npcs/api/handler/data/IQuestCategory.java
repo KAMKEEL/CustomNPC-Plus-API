@@ -13,4 +13,6 @@ public interface IQuestCategory {
     String getName();
 
     IQuest create();
+
+    int getId();
 }
