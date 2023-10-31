@@ -52,4 +52,16 @@ public interface IQuest {
     int getRepeatType();
 
     IQuestInterface getQuestInterface();
+
+    public boolean isAllowParty();
+
+    public void setAllowParty(boolean allowParty);
+
+    public byte getPartyRequirements();
+
+    public void setPartyRequirements(byte partyRequirements);
+
+    public byte getRewardControl();
+
+    public void setRewardControl(byte rewardControl);
 }
