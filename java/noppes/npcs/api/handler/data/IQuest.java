@@ -64,4 +64,8 @@ public interface IQuest {
     public byte getRewardControl();
 
     public void setRewardControl(byte rewardControl);
+
+    public int getMaxPartySize();
+
+    public void setMaxPartySize(int newSize);
 }
