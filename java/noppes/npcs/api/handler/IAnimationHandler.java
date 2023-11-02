@@ -7,9 +7,13 @@ public interface IAnimationHandler {
 
     void delete(String name);
 
+    void delete(int id);
+
     boolean has(String name);
 
     IAnimation get(String name);
+
+    IAnimation get(int id);
 
     IAnimation[] getAnimations();
 }

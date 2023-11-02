@@ -49,4 +49,11 @@ public interface IAnimation {
     int loop();
 
     IAnimation save();
+
+    int getID();
+
+    /**
+     * Do not use this unless you know what you are changing. Dangerous to change.
+     */
+    void setID(int id);
 }
