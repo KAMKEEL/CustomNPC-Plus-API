@@ -11,6 +11,7 @@ import noppes.npcs.api.ITimers;
 import noppes.npcs.api.entity.data.IModelData;
 import noppes.npcs.api.handler.IOverlayHandler;
 import noppes.npcs.api.handler.data.IAnimationData;
+import noppes.npcs.api.handler.data.IDialog;
 import noppes.npcs.api.handler.data.IFaction;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.jobs.IJob;
@@ -199,6 +200,14 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
      * @param message The message the npc will say
      */
     void say(IPlayer player, String message);
+
+    IDialog getDialog(int slot);
+
+    int getDialogId(int slot);
+
+    void setDialog(int slot, IDialog dialog);
+
+    void setDialog(int slot, int dialogId);
 
     /**
      * Kill the npc, doesnt't despawn it
