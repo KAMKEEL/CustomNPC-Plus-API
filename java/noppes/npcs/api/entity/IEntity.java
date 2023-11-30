@@ -370,4 +370,6 @@ public interface IEntity<T extends Entity> {
     void storeAsClone(int tab, String name);
 
     IWorld getWorld();
+
+    void updateEntity();
 }
