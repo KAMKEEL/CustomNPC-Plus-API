@@ -13,6 +13,7 @@ import noppes.npcs.api.handler.IOverlayHandler;
 import noppes.npcs.api.handler.data.IAnimationData;
 import noppes.npcs.api.handler.data.IDialog;
 import noppes.npcs.api.handler.data.IFaction;
+import noppes.npcs.api.handler.data.ILines;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.jobs.IJob;
 import noppes.npcs.api.roles.IRole;
@@ -208,6 +209,16 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
     void setDialog(int slot, IDialog dialog);
 
     void setDialog(int slot, int dialogId);
+
+    ILines getInteractLines();
+
+    ILines getWorldLines();
+
+    ILines getAttackLines();
+
+    ILines getKilledLines();
+
+    ILines getKillLines();
 
     /**
      * Kill the npc, doesnt't despawn it
