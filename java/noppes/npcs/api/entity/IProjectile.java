@@ -40,6 +40,10 @@ public interface IProjectile {
      */
     public void setHeading(float yaw, float pitch);
 
+
+    public IEntity getThrower();
+
+
     /**
      * For scripters to enable projectile events in their current scripting container
      */
