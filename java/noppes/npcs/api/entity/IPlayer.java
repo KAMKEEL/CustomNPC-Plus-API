@@ -313,4 +313,6 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T> 
     void setConqueredEnd(boolean conqueredEnd);
 
     boolean conqueredEnd();
+
+    public IScreenSize getScreenSize();
 }
