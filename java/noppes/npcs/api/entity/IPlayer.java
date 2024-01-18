@@ -251,7 +251,7 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T> 
     boolean interactWith(IEntity entity);
 
     /**
-     * @param achievement The achievement id. For a complete list see http://minecraft.gamepedia.com/Achievements
+     * @param achievement The achievement id. For a complete list see http://minecraft.wiki/w/Achievements
      * @return Returns whether or not the player has this achievement
      */
     boolean hasAchievement(String achievement);

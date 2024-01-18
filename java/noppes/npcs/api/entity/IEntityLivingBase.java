@@ -137,7 +137,7 @@ public interface IEntityLivingBase<T extends EntityLivingBase> extends IEntity<T
     void swingHand();
 
     /**
-     * Works the same as the <a href="http://minecraft.gamepedia.com/Commands#effect">/effect command</a>
+     * Works the same as the <a href="http://minecraft.wiki/w/Commands#effect">/effect command</a>
      * @param effect
      * @param duration The duration in seconds
      * @param strength The amplifier of the potion effect
