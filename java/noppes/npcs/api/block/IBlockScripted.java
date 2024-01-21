@@ -73,9 +73,8 @@ public interface IBlockScripted extends IBlock {
      * Setting NpcUseOpCommands to true in the CustomNPCs.cfg should allow the npc to run op commands, be warned this could be a major security risk, use at own risk <br>
      * For permission plugins the commands are run under uuid:c9c843f8-4cb1-4c82-aa61-e264291b7bd6 and name:[customnpcs]
      * @param command The command to be executed
-     * @return Returns the commands output
      */
-    String executeCommand(String command);
+    void executeCommand(String command);
 
     boolean getIsPassible();
 
@@ -94,4 +93,16 @@ public interface IBlockScripted extends IBlock {
     float getResistance();
 
     void setResistance(float resistance);
+
+    ITextPlane getTextPlane();
+
+    ITextPlane getTextPlane2();
+
+    ITextPlane getTextPlane3();
+
+    ITextPlane getTextPlane4();
+
+    ITextPlane getTextPlane5();
+
+    ITextPlane getTextPlane6();
 }
