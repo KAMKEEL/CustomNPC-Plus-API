@@ -35,7 +35,7 @@ public interface ICustomNPCsEvent {
 
         void setReplyMessage(String message);
 
-        int getId();
+        String getId();
 
         String[] getArgs();
     }
