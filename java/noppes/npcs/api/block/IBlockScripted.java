@@ -105,4 +105,28 @@ public interface IBlockScripted extends IBlock {
     ITextPlane getTextPlane5();
 
     ITextPlane getTextPlane6();
+
+    void setStoredData(String key, Object value);
+
+    Object getStoredData(String key);
+
+    void removeStoredData(String key);
+
+    boolean hasStoredData(String key);
+
+    void clearStoredData();
+
+    String[] getStoredDataKeys();
+
+    void removeTempData(String key);
+
+    void setTempData(String key, Object value);
+
+    boolean hasTempData(String key);
+
+    Object getTempData(String key);
+
+    void clearTempData();
+
+    String[] getTempDataKeys();
 }
