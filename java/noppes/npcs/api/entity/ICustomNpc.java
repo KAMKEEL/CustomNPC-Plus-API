@@ -454,6 +454,38 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
 
     /**
      *
+     * @return Returns the name of the NPC's combat policy.
+     */
+    String getCombatPolicyName();
+
+    /**
+     *
+     * @param policy Changes the combat policy of the NPC.
+     *                0 - Flip
+     *                1 - Brute
+     *                2 - Stubborn
+     *
+     */
+    void setCombatPolicy(int policy);
+
+    /**
+     *
+     * @return Returns the ombat policy of the NPC.
+     *                0 - Flip
+     *                1 - Brute
+     *                2 - Stubborn
+     *
+     */
+    int getCombatPolicy();
+
+    /**
+     *
+     * @param policy Sets the NPC's tactical variant by name.
+     */
+    void setCombatPolicy(String policy);
+
+    /**
+     *
      * @param tacticalRadius Sets the radius in which the tactical variant is affected, if any. Effective for all tactical variants except Rush and None.
      */
     void setTacticalRadius(int tacticalRadius);
