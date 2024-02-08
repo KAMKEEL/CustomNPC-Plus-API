@@ -59,13 +59,13 @@ public interface IQuest {
 
 
     /**
-     * @return  0:Leader, 1:All, 2:Enrolled, 3:Valid
+     * @return  0:Leader, 1:All, 2:Valid
      */
     public int getPartyRequirements();
 
 
     /**
-     * @param partyRequirements 0:Leader, 1:All, 2:Enrolled, 3:Valid
+     * @param partyRequirements 0:Leader, 1:All, 2:Valid
      */
     public void setPartyRequirements(int partyRequirements);
 
