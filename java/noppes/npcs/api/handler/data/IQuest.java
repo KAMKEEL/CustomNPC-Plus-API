@@ -57,13 +57,37 @@ public interface IQuest {
 
     public void setAllowParty(boolean allowParty);
 
-    public byte getPartyRequirements();
 
-    public void setPartyRequirements(byte partyRequirements);
+    /**
+     * @return  0:Leader, 1:All, 2:Enrolled, 3:Valid
+     */
+    public int getPartyRequirements();
 
-    public byte getRewardControl();
 
-    public void setRewardControl(byte rewardControl);
+    /**
+     * @param partyRequirements 0:Leader, 1:All, 2:Enrolled, 3:Valid
+     */
+    public void setPartyRequirements(int partyRequirements);
+
+    /**
+     * @return  0:Leader, 1:All, 2:Enrolled, 3:Completer
+     */
+    public int getRewardControl();
+
+    /**
+     * @param rewardControl 0:Leader, 1:All, 2:Enrolled, 3:Completer
+     */
+    public void setRewardControl(int rewardControl);
+
+    /**
+     * @return  0:Leader, 1:All, 2:Enrolled, 3:Completer
+     */
+    public int getCompleteFor();
+
+    /**
+     * @param completeFor 0:Leader, 1:All, 2:Enrolled, 3:Completer
+     */
+    public void setCompleteFor(int completeFor);
 
     public int getMaxPartySize();
 
