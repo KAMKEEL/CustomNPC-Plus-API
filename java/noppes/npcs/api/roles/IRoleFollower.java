@@ -61,4 +61,37 @@ public interface IRoleFollower extends IRole {
      * @param disabled Set the gui to be disabled or not
      */
     void setGuiDisabled(boolean disabled);
+
+
+    /**
+     * @param index Index of Rate [0 - 2]
+     * @param amount Amount hired for
+     */
+    public void setRate(int index, int amount);
+
+    /**
+     * @param index Index of Rate [0 - 2]
+     * @return amount fired for
+     */
+    public int getRate(int index);
+
+    /**
+     * @param dialogHire New dialog hire string
+     */
+    public void setDialogHire(String dialogHire);
+
+    /**
+     * @return dialog hire string
+     */
+    public String getDialogHire();
+
+    /**
+     * @param dialogFarewell New dialog farewell string
+     */
+    public void setDialogFarewell(String dialogFarewell);
+
+    /**
+     * @return dialog farewell string
+     */
+    public String getDialogFarewell();
 }
