@@ -625,6 +625,36 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
     void setMeleeSpeed(int speed);
 
     /**
+     * @return The melee range
+     */
+    public int getMeleeRange();
+
+    /**
+     * @param range The melee range
+     */
+    public void setMeleeRange(int range);
+
+    /**
+     * @return The knockback strength
+     */
+    public int getKnockback();
+
+    /**
+     * @param knockback The melee range
+     */
+    public void setKnockback(int knockback);
+
+    /**
+     * @return The aggro range
+     */
+    public int getAggroRange();
+
+    /**
+     * @param aggroRange The new aggro range
+     */
+    public void setAggroRange(int aggroRange);
+
+    /**
      * @return The ranged strength
      */
     float getRangedStrength();
