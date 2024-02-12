@@ -57,6 +57,10 @@ public interface INpcEvent extends ICustomNPCsEvent {
         float getDamage();
     }
 
+    interface SwingEvent extends INpcEvent {
+        IItemStack getItemStack();
+    }
+
     interface KilledEntityEvent {
         IEntityLivingBase getEntity();
     }
