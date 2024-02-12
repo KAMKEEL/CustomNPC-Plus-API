@@ -635,6 +635,16 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
     public void setMeleeRange(int range);
 
     /**
+     * @return The swing warmup time in ticks
+     */
+    public int getSwingWarmup();
+
+    /**
+     * @param ticks The amount of time before damage to swing arm
+     */
+    public void setSwingWarmup(int ticks);
+
+    /**
      * @return The knockback strength
      */
     public int getKnockback();
