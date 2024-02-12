@@ -145,10 +145,28 @@ public abstract class AbstractNpcAPI {
 
     public abstract IItemStack getIItemStack(ItemStack var1);
 
+    /**
+     * @return A single IWorld from Loaded IWorlds
+     */
     public abstract IWorld getIWorld(World var1);
 
+    /**
+     * @return A single IWorld from Loaded IWorlds
+     */
     public abstract IWorld getIWorld(int var1);
 
+    /**
+     * This will forcefully load the dimension if it is not loaded
+     * Forge sometimes automatically, unloads the End when all players
+     * are no longer present.
+     *
+     * @return A single IWorld from Loaded/Unloaded IWorlds
+     */
+    public abstract IWorld getIWorldLoad(int var1);
+
+    /**
+     * @return The list of all LOADED IWorlds
+     */
     public abstract IWorld[] getIWorlds();
 
     public abstract IDamageSource getIDamageSource(DamageSource var1);
