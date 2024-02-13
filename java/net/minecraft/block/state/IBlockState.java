@@ -5,7 +5,7 @@ import java.util.Collection;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 
-/** This code is owned by Minecrafdt */
+/** This code is owned by Minecraft */
 
 public interface IBlockState
 {
