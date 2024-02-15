@@ -5,9 +5,6 @@
 
 package noppes.npcs.api;
 
-import java.io.File;
-import java.util.HashMap;
-
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.EventBus;
 import net.minecraft.entity.Entity;
@@ -31,6 +28,9 @@ import noppes.npcs.api.handler.data.IFramePart;
 import noppes.npcs.api.handler.data.ISound;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.overlay.ICustomOverlay;
+
+import java.io.File;
+import java.util.HashMap;
 
 /**
  * This object stores functions available to all scripting handlers through the "API" keyword.

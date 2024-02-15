@@ -6,8 +6,8 @@
 package noppes.npcs.api.gui;
 
 import net.minecraft.nbt.NBTTagCompound;
-import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.entity.IPlayer;
+import noppes.npcs.api.item.IItemStack;
 
 import java.util.List;
 

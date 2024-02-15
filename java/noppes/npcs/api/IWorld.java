@@ -1,11 +1,11 @@
 package noppes.npcs.api;
 
 import net.minecraft.world.WorldServer;
-import noppes.npcs.api.scoreboard.IScoreboard;
 import noppes.npcs.api.entity.IEntity;
 import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.handler.data.ISound;
 import noppes.npcs.api.item.IItemStack;
+import noppes.npcs.api.scoreboard.IScoreboard;
 
 public interface IWorld {
     /**

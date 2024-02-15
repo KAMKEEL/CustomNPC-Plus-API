@@ -1,20 +1,17 @@
 package net.minecraft.util.math;
 
-import java.util.Iterator;
-import java.util.List;
-
-import javax.annotation.concurrent.Immutable;
-
+import com.google.common.collect.AbstractIterator;
+import com.google.common.collect.Lists;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3i;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.google.common.collect.AbstractIterator;
-import com.google.common.collect.Lists;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
+import javax.annotation.concurrent.Immutable;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Pasted in from 1.9, with the Vec3d constructor removed
