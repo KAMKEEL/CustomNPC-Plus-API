@@ -42,6 +42,15 @@ public interface IItemEvent extends ICustomNPCsEvent {
     }
 
     @Cancelable
+    interface RightClickEvent extends IItemEvent {
+        int getType();
+
+        Object getTarget();
+
+        IPlayer getPlayer();
+    }
+
+    @Cancelable
     interface AttackEvent extends IItemEvent {
         int getType();
 
