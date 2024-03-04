@@ -15,4 +15,6 @@ public interface IQuestObjective {
     boolean isCompleted();
 
     String getText();
+
+    String getAdditionalText();
 }
