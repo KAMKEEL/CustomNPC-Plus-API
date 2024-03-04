@@ -16,31 +16,40 @@ public interface IPartyOptions {
      */
     public int getPartyRequirements();
 
-
     /**
      * @param partyRequirements 0:Leader, 1:All, 2:Valid
      */
     public void setPartyRequirements(int partyRequirements);
 
     /**
-     * @return  0:Leader, 1:All, 2:Enrolled, 3:Completer
+     * @return  0:Leader, 1:All, 2:Enrolled, 3:Valid
      */
     public int getRewardControl();
 
     /**
-     * @param rewardControl 0:Leader, 1:All, 2:Enrolled, 3:Completer
+     * @param rewardControl 0:Leader, 1:All, 2:Enrolled, 3:Valid
      */
     public void setRewardControl(int rewardControl);
 
     /**
-     * @return  0:Leader, 1:All, 2:Enrolled, 3:Completer
+     * @return  0:Leader, 1:All, 2:Enrolled, 3:Valid
      */
     public int getCompleteFor();
 
     /**
-     * @param completeFor 0:Leader, 1:All, 2:Enrolled, 3:Completer
+     * @param completeFor 0:Leader, 1:All, 2:Enrolled, 3:Valid
      */
     public void setCompleteFor(int completeFor);
+
+    /**
+     * @return  0:Leader, 1:All, 2:Enrolled, 3:Valid
+     */
+    int getExecuteCommandFor();
+
+    /**
+     * @param commandFor 0:Leader, 1:All, 2:Enrolled, 3:Valid
+     */
+    void setExecuteCommandFor(int commandFor);
 
     /**
      * @return 0:Shard, 1:All, 2:Leader
