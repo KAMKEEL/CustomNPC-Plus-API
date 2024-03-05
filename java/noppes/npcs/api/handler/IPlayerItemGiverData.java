@@ -9,6 +9,4 @@ public interface IPlayerItemGiverData {
     void setTime(IJobItemGiver jobItemGiver, long day);
 
     boolean hasInteractedBefore(IJobItemGiver jobItemGiver);
-
-    IJobItemGiver[] getItemGivers();
 }
