@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package noppes.npcs.api.entity;
 
 import net.minecraft.entity.Entity;
@@ -13,13 +8,13 @@ import noppes.npcs.api.IWorld;
 import noppes.npcs.api.item.IItemStack;
 
 public interface IEntity<T extends Entity> {
-    
+
     void spawnParticle(IParticle entityParticle);
 
     int getEntityId();
 
     String getUniqueID();
-    
+
     double getYOffset();
 
     /**
@@ -99,7 +94,7 @@ public interface IEntity<T extends Entity> {
     IPos getMotion();
 
     boolean isAirborne();
-    
+
     /**
      * @return The block x position
      */
