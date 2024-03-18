@@ -1,6 +1,7 @@
 package noppes.npcs.api.handler.data;
 
 import noppes.npcs.api.entity.IPlayer;
+
 import java.util.List;
 
 public interface IParty {
