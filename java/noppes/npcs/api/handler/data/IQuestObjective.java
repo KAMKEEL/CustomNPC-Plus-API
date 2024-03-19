@@ -1,6 +1,14 @@
 package noppes.npcs.api.handler.data;
 
 public interface IQuestObjective {
+
+    /**
+     * If this function is used on a player within a party and the
+     * quest objective type is set to ALL. The return progress will be
+     * set to 0 for handling multiple players.
+     *
+     * @return progress of objective
+     */
     int getProgress();
 
     /**
