@@ -252,9 +252,15 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
     void setRightItem(IItemStack item);
 
     /**
+     * Was an old type
      * @return The item held in the left hand
      */
     IItemStack getLefttItem();
+
+    /**
+     * @return The item held in the left hand
+     */
+    IItemStack getLeftItem();
 
     /**
      * @param item Item to be held in the left hand
