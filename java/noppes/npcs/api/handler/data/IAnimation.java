@@ -2,6 +2,8 @@ package noppes.npcs.api.handler.data;
 
 public interface IAnimation {
 
+    IAnimationData getParent();
+
     IFrame currentFrame();
 
     IFrame[] getFrames();

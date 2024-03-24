@@ -13,7 +13,7 @@ import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.jobs.IJob;
 import noppes.npcs.api.roles.IRole;
 
-public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
+public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, IAnimatable {
     /**
      * @return Returns the current npcs size 1-30
      */
