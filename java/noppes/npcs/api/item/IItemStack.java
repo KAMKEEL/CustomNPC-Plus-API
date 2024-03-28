@@ -92,6 +92,10 @@ public interface IItemStack {
 
     boolean hasAttribute(String name);
 
+    IItemStack copy();
+
+    int getMaxItemDamage();
+
     /**
      * @since 1.7.10d
      * @return Returns whether this item is a book
