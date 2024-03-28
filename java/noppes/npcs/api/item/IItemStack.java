@@ -136,4 +136,8 @@ public interface IItemStack {
     NBTTagCompound getMCNbt();
 
     void setMCNbt(NBTTagCompound compound);
+
+    public boolean compare(IItemStack item, boolean ignoreNBT);
+
+    boolean compare(IItemStack item, boolean ignoreDamage, boolean ignoreNBT);
 }
