@@ -92,6 +92,10 @@ public interface IItemStack {
 
     boolean hasAttribute(String name);
 
+    IItemStack copy();
+
+    int getMaxItemDamage();
+
     /**
      * @since 1.7.10d
      * @return Returns whether this item is a book
@@ -136,4 +140,8 @@ public interface IItemStack {
     NBTTagCompound getMCNbt();
 
     void setMCNbt(NBTTagCompound compound);
+
+    public boolean compare(IItemStack item, boolean ignoreNBT);
+
+    boolean compare(IItemStack item, boolean ignoreDamage, boolean ignoreNBT);
 }

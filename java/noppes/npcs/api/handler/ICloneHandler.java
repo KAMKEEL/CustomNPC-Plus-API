@@ -16,6 +16,8 @@ public interface ICloneHandler {
 
     IEntity get(int tab, String name, IWorld world);
 
+    boolean has(int tab, String name);
+
     void set(int tab, String name, IEntity entity);
 
     void remove(int tab, String name);

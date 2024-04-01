@@ -436,4 +436,6 @@ public interface IWorld {
      * @return The ID of this world's dimension. 0 for overworld, 1 for End, -1 for Nether, etc.
      */
     int getDimensionID();
+
+    void broadcast(String message);
 }

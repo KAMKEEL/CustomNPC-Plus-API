@@ -58,6 +58,11 @@ public interface INpcEvent extends ICustomNPCsEvent {
     }
 
     interface SwingEvent extends INpcEvent {
+
+        /**
+         * Can be null
+         * @return Returns the swung item
+         */
         IItemStack getItemStack();
     }
 
