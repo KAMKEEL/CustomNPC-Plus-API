@@ -76,9 +76,19 @@ public interface IBlockScripted extends IBlock {
      */
     void executeCommand(String command);
 
+    /**
+     * TYPO VERSION
+     */
     boolean getIsPassible();
 
+    /**
+     * TYPO VERSION
+     */
     void setIsPassible(boolean bo);
+
+    boolean getIsPassable();
+
+    void setIsPassable(boolean bo);
 
     /**
      * @return Harvesting hardness (-1 makes it unharvestable)
