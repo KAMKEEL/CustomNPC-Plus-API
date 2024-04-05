@@ -10,6 +10,8 @@ public interface IAnimationData {
 
     boolean isActive();
 
+    boolean isClientAnimating();
+
     void setEnabled(boolean enabled);
 
     boolean enabled();
