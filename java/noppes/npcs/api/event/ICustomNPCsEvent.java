@@ -3,6 +3,7 @@ package noppes.npcs.api.event;
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import noppes.npcs.api.IPos;
 import noppes.npcs.api.IWorld;
+import noppes.npcs.api.entity.IEntityLivingBase;
 import noppes.npcs.api.handler.data.INaturalSpawn;
 
 public interface ICustomNPCsEvent {
@@ -11,6 +12,9 @@ public interface ICustomNPCsEvent {
 
     @Cancelable
     interface CNPCNaturalSpawnEvent extends ICustomNPCsEvent {
+
+        IEntityLivingBase<?> getEntity();
+
         INaturalSpawn getNaturalSpawn();
 
         void setAttemptPosition(IPos attemptPosition);
