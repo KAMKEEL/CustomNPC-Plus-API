@@ -13,8 +13,14 @@ public interface IDialogEvent extends IPlayerEvent {
 
     @Cancelable
     interface DialogOption extends IDialogEvent {
+
+        int getOptionId();
+
+        void setOptionId(int optionId);
     }
 
     interface DialogClosed extends IDialogEvent {
+
+        int getOptionId();
     }
 }
