@@ -58,4 +58,6 @@ public interface IAnimation {
      * Do not use this unless you know what you are changing. Dangerous to change.
      */
     void setID(int id);
+
+    long getTotalTime();
 }
