@@ -16,10 +16,6 @@ public interface IFrame {
 
     IFrame setDuration(int duration);
 
-    int tickDuration();
-
-    IFrame setTickDuration(int tickDuration);
-
     boolean isCustomized();
 
     IFrame setCustomized(boolean customized);
@@ -31,4 +27,8 @@ public interface IFrame {
     byte smoothType();
 
     IFrame setSmooth(byte smooth);
+
+    IFrame useRenderTicks(boolean renderTicks);
+
+    boolean useRenderTicks();
 }

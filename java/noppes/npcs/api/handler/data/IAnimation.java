@@ -20,10 +20,6 @@ public interface IAnimation {
 
     String getName();
 
-    int tickDuration();
-
-    IAnimation setTickDuration(int tickDuration);
-
     IAnimation setSpeed(float speed);
 
     float getSpeed();
@@ -31,6 +27,10 @@ public interface IAnimation {
     IAnimation setSmooth(byte smooth);
 
     byte isSmooth();
+
+    IAnimation useRenderTicks(boolean renderTicks);
+
+    boolean useRenderTicks();
 
     IAnimation doWhileStanding(boolean whileStanding);
 
