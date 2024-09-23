@@ -19,6 +19,4 @@ public interface IAnimationData {
     void setAnimation(IAnimation animation);
 
     IAnimation getAnimation();
-
-    long getAnimatingTime();
 }
