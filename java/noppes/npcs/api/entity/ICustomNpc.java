@@ -890,19 +890,19 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T> {
 
     void setFlySpeed(double flySpeed);
 
-    double getFlySpeed();
+    double getFlySpeed(double unused);
 
     void setFlyGravity(double flyGravity);
 
-    double getFlyGravity();
+    double getFlyGravity(double unused);
 
     void setFlyHeightLimit(int flyHeightLimit);
 
-    int getFlyHeightLimit();
+    int getFlyHeightLimit(int unused);
 
     void limitFlyHeight(boolean limit);
 
-    boolean isFlyHeightLimited();
+    boolean isFlyHeightLimited(boolean unused);
 
     void setSpeed(double speed);
 
