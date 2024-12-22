@@ -37,6 +37,68 @@ public abstract class AbstractNpcAPI {
     public AbstractNpcAPI() {
     }
 
+    /**
+     * @param key Get temp data for this key
+     * @return Returns the stored temp data
+     */
+    public abstract Object getTempData(String key);
+
+    /**
+     * Tempdata gets cleared when the server restarts. All worlds share the same temp data.
+     * @param key The key for the data stored
+     * @param value The data stored
+     */
+    public abstract void setTempData(String key, Object value);
+
+    /**
+     * @param key The key thats going to be tested against the temp data
+     * @return Whether or not temp data containes the key
+     */
+    public abstract boolean hasTempData(String key);
+
+    /**
+     * @param key The key for the temp data to be removed
+     */
+    public abstract void removeTempData(String key);
+
+    /**
+     * Removes all tempdata
+     */
+    public abstract void clearTempData();
+
+    public abstract String[] getTempDataKeys();
+
+    /**
+     * @param key The key of the data to be returned
+     * @return Returns the stored data
+     */
+    public abstract Object getStoredData(String key);
+
+    /**
+     * Stored data persists through world restart. Unlike tempdata only Strings and Numbers can be saved
+     * @param key The key for the data stored
+     * @param value The data stored. This data can be either a Number or a String. Other data is not stored
+     */
+    public abstract void setStoredData(String key, Object value);
+
+    /**
+     * @param key The key of the data to be checked
+     * @return Returns whether or not the stored data contains the key
+     */
+    public abstract boolean hasStoredData(String key);
+
+    /**
+     * @param key The key of the data to be removed
+     */
+    public abstract void removeStoredData(String key);
+
+    /**
+     * Remove all stored data
+     */
+    public abstract void clearStoredData();
+
+    public abstract String[] getStoredDataKeys();
+
     public abstract void registerICommand(ICommand command);
 
     public abstract ICommand getICommand(String commandName, int priorityLevel);

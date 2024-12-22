@@ -320,64 +320,37 @@ public interface IWorld {
     @Deprecated
     IParticle createEntityParticle(String directory);
 
-    /**
-     * @param key Get temp data for this key
-     * @return Returns the stored temp data
-     */
+    @Deprecated
     Object getTempData(String key);
 
-    /**
-     * Tempdata gets cleared when the server restarts. All worlds share the same temp data.
-     * @param key The key for the data stored
-     * @param value The data stored
-     */
+    @Deprecated
     void setTempData(String key, Object value);
 
-    /**
-     * @param key The key thats going to be tested against the temp data
-     * @return Whether or not temp data containes the key
-     */
+    @Deprecated
     boolean hasTempData(String key);
 
-    /**
-     * @param key The key for the temp data to be removed
-     */
+    @Deprecated
     void removeTempData(String key);
 
-    /**
-     * Removes all tempdata
-     */
+    @Deprecated
     void clearTempData();
 
+    @Deprecated
     String[] getTempDataKeys();
 
-    /**
-     * @param key The key of the data to be returned
-     * @return Returns the stored data
-     */
+    @Deprecated
     Object getStoredData(String key);
 
-    /**
-     * Stored data persists through world restart. Unlike tempdata only Strings and Numbers can be saved
-     * @param key The key for the data stored
-     * @param value The data stored. This data can be either a Number or a String. Other data is not stored
-     */
+    @Deprecated
     void setStoredData(String key, Object value);
 
-    /**
-     * @param key The key of the data to be checked
-     * @return Returns whether or not the stored data contains the key
-     */
+    @Deprecated
     boolean hasStoredData(String key);
 
-    /**
-     * @param key The key of the data to be removed
-     */
+    @Deprecated
     void removeStoredData(String key);
 
-    /**
-     * Remove all stored data
-     */
+    @Deprecated
     void clearStoredData();
 
     String[] getStoredDataKeys();
