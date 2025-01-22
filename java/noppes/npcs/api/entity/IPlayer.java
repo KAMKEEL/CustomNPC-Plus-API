@@ -13,7 +13,7 @@ import noppes.npcs.api.handler.data.ISound;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.overlay.ICustomOverlay;
 
-public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T> {
+public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>, IAnimatable {
     /**
      * @return Returns the displayed name of the player
      */

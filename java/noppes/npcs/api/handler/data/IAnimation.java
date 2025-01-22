@@ -2,6 +2,8 @@ package noppes.npcs.api.handler.data;
 
 public interface IAnimation {
 
+    IAnimationData getParent();
+
     IFrame currentFrame();
 
     IFrame[] getFrames();
@@ -20,6 +22,10 @@ public interface IAnimation {
 
     String getName();
 
+    int tickDuration();
+
+    IAnimation setTickDuration(int tickDuration);
+
     IAnimation setSpeed(float speed);
 
     float getSpeed();
@@ -27,10 +33,6 @@ public interface IAnimation {
     IAnimation setSmooth(byte smooth);
 
     byte isSmooth();
-
-    IAnimation useRenderTicks(boolean renderTicks);
-
-    boolean useRenderTicks();
 
     IAnimation doWhileStanding(boolean whileStanding);
 
@@ -56,4 +58,6 @@ public interface IAnimation {
      * Do not use this unless you know what you are changing. Dangerous to change.
      */
     void setID(int id);
+
+    long getTotalTime();
 }
