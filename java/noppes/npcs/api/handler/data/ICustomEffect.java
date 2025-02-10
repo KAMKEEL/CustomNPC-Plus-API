@@ -6,8 +6,6 @@ public interface ICustomEffect {
 
     String getName();
 
-    boolean isCustom();
-
     void setMenuName(String name);
 
     String getMenuName();

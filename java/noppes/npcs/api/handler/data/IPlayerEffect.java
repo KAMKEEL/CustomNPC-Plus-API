@@ -22,5 +22,5 @@ public interface IPlayerEffect {
 
     int getIndex();
 
-    void setIndex();
+    void setIndex(int index);
 }
