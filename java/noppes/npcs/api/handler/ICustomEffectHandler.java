@@ -3,7 +3,7 @@ package noppes.npcs.api.handler;
 import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.handler.data.ICustomEffect;
 
-public interface IStatusEffectHandler {
+public interface ICustomEffectHandler {
 
     ICustomEffect createEffect(String name);
 
