@@ -3,7 +3,7 @@ package noppes.npcs.api.handler.data;
 import noppes.npcs.api.entity.IAnimatable;
 
 public interface IAnimationData {
-
+    
     IAnimatable getEntity();
 
     void updateClient();
