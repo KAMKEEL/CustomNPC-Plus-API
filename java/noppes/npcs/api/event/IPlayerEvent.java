@@ -7,6 +7,7 @@ import noppes.npcs.api.IDamageSource;
 import noppes.npcs.api.entity.IEntity;
 import noppes.npcs.api.entity.IEntityLivingBase;
 import noppes.npcs.api.entity.IPlayer;
+import noppes.npcs.api.handler.data.IPlayerEffect;
 import noppes.npcs.api.item.IItemStack;
 
 public interface IPlayerEvent extends ICustomNPCsEvent {
@@ -267,5 +268,30 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
     }
 
     interface RangedChargeEvent extends IPlayerEvent {
+    }
+
+    interface EffectEvent extends IPlayerEvent {
+
+        IPlayerEffect getEffect();
+
+        interface Added extends EffectEvent {
+
+        }
+        interface Ticked extends EffectEvent {
+
+        }
+        interface Removed extends EffectEvent {
+
+            /**
+             * @return If the effect timer has ticked down to 0.
+             */
+            boolean hasTimerRunOut();
+
+            /**
+             * @return If the effect was removed on death.
+             */
+            boolean causedByDeath();
+        }
+
     }
 }
