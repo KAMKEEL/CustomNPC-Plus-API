@@ -16,10 +16,6 @@ public interface IFrame {
 
     IFrame setDuration(int duration);
 
-    int tickDuration();
-
-    IFrame setTickDuration(int tickDuration);
-
     boolean isCustomized();
 
     IFrame setCustomized(boolean customized);

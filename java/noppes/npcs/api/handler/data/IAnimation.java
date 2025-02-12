@@ -22,10 +22,6 @@ public interface IAnimation {
 
     String getName();
 
-    int tickDuration();
-
-    IAnimation setTickDuration(int tickDuration);
-
     IAnimation setSpeed(float speed);
 
     float getSpeed();
