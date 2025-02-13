@@ -95,37 +95,37 @@ public interface IItemCustom extends IItemStack {
      * Checks if the durability bar should be shown for the scripted item.
      * @return True if the durability bar should be shown, false otherwise
      */
-    boolean getDurabilityShow();
+    Boolean getDurabilityShow();
 
     /**
      * Sets whether the durability bar should be shown for the scripted item.
      * @param durabilityShow True if the durability bar should be shown, false otherwise
      */
-    void setDurabilityShow(boolean durabilityShow);
+    void setDurabilityShow(Boolean durabilityShow);
 
     /**
      * Gets the color of the durability bar for the scripted item.
      * @return The durability bar color
      */
-    int getDurabilityColor();
+    Integer getDurabilityColor();
 
     /**
      * Sets the color of the durability bar for the scripted item.
      * @param durabilityColor The durability bar color
      */
-    void setDurabilityColor(int durabilityColor);
+    void setDurabilityColor(Integer durabilityColor);
 
     /**
      * Gets the color of the scripted item.
      * @return The item color
      */
-    int getColor();
+    Integer getColor();
 
     /**
      * Sets the color of the scripted item.
      * @param color The item color
      */
-    void setColor(int color);
+    void setColor(Integer color);
 
     /**
      * Gets the maximum item use duration for the scripted item.
@@ -169,7 +169,7 @@ public interface IItemCustom extends IItemStack {
      * @param rotationY The Y-axis rotation
      * @param rotationZ The Z-axis rotation
      */
-    void setRotation(float rotationX, float rotationY, float rotationZ);
+    void setRotation(Float rotationX, Float rotationY, Float rotationZ);
 
     /**
      * Sets the rotation rate values for the scripted item. Spinning Speed
@@ -177,7 +177,7 @@ public interface IItemCustom extends IItemStack {
      * @param rotationYRate The Y-axis rotation rate
      * @param rotationZRate The Z-axis rotation rate
      */
-    void setRotationRate(float rotationXRate, float rotationYRate, float rotationZRate);
+    void setRotationRate(Float rotationXRate, Float rotationYRate, Float rotationZRate);
 
     /**
      * Sets the scale values for the scripted item.
@@ -185,7 +185,7 @@ public interface IItemCustom extends IItemStack {
      * @param scaleY The Y-axis scale
      * @param scaleZ The Z-axis scale
      */
-    void setScale(float scaleX, float scaleY, float scaleZ);
+    void setScale(Float scaleX, Float scaleY, Float scaleZ);
 
     /**
      * Sets the translation values for the scripted item.
@@ -193,77 +193,77 @@ public interface IItemCustom extends IItemStack {
      * @param translateY The Y-axis translation
      * @param translateZ The Z-axis translation
      */
-    void setTranslate(float translateX, float translateY, float translateZ);
+    void setTranslate(Float translateX, Float translateY, Float translateZ);
 
     /**
      * Gets the X-axis rotation for the scripted item.
      * @return The X-axis rotation
      */
-    float getRotationX();
+    Float getRotationX();
 
     /**
      * Gets the Y-axis rotation for the scripted item.
      * @return The Y-axis rotation
      */
-    float getRotationY();
+    Float getRotationY();
 
     /**
      * Gets the Z-axis rotation for the scripted item.
      * @return The Z-axis rotation
      */
-    float getRotationZ();
+    Float getRotationZ();
 
     /**
      * Gets the X-axis rotation rate for the scripted item.
      * @return The X-axis rotation rate
      */
-    float getRotationXRate();
+    Float getRotationXRate();
 
     /**
      * Gets the Y-axis rotation rate for the scripted item.
      * @return The Y-axis rotation rate
      */
-    float getRotationYRate();
+    Float getRotationYRate();
 
     /**
      * Gets the Z-axis rotation rate for the scripted item.
      * @return The Z-axis rotation rate
      */
-    float getRotationZRate();
+    Float getRotationZRate();
 
     /**
      * Gets the X-axis scale for the scripted item.
      * @return The X-axis scale
      */
-    float getScaleX();
+    Float getScaleX();
 
     /**
      * Gets the Y-axis scale for the scripted item.
      * @return The Y-axis scale
      */
-    float getScaleY();
+    Float getScaleY();
 
     /**
      * Gets the Z-axis scale for the scripted item.
      * @return The Z-axis scale
      */
-    float getScaleZ();
+    Float getScaleZ();
 
     /**
      * Gets the X-axis translation for the scripted item.
      * @return The X-axis translation
      */
-    float getTranslateX();
+    Float getTranslateX();
 
     /**
      * Gets the Y-axis translation for the scripted item.
      * @return The Y-axis translation
      */
-    float getTranslateY();
+    Float getTranslateY();
 
     /**
      * Gets the Z-axis translation for the scripted item.
      * @return The Z-axis translation
      */
-    float getTranslateZ();
+    Float getTranslateZ();
 }
