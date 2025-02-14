@@ -1,6 +1,10 @@
 package noppes.npcs.api.item;
 
+import noppes.npcs.controllers.data.INpcScriptHandler;
+
 public interface IItemCustomizable extends IItemStack {
+
+    INpcScriptHandler getScriptHandler();
 
     int getMaxStackSize();
 
