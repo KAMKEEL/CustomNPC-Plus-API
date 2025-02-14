@@ -3,11 +3,11 @@ package noppes.npcs.api.event;
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import noppes.npcs.api.entity.IEntity;
 import noppes.npcs.api.entity.IPlayer;
-import noppes.npcs.api.item.IItemCustom;
+import noppes.npcs.api.item.IItemCustomizable;
 
 public interface IItemEvent extends ICustomNPCsEvent {
 
-    IItemCustom getItem();
+    IItemCustomizable getItem();
 
     interface InitEvent extends IItemEvent {
     }
