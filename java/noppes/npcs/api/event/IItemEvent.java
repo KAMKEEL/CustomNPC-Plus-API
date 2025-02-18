@@ -4,6 +4,7 @@ import cpw.mods.fml.common.eventhandler.Cancelable;
 import noppes.npcs.api.entity.IEntity;
 import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.item.IItemCustomizable;
+import noppes.npcs.api.item.IItemStack;
 
 public interface IItemEvent extends ICustomNPCsEvent {
 
@@ -84,6 +85,22 @@ public interface IItemEvent extends ICustomNPCsEvent {
     }
 
     // onBreakEvent if Durability Expires or Consumed
+    interface BreakItem extends IItemEvent {
+
+        IItemStack getBrokenStack();
+
+        IPlayer getPlayer();
+    }
 
     // onRepairEvent
+    interface RepairItem extends IItemEvent {
+
+        IItemStack getLeft();
+
+        IItemStack getRight();
+
+        IItemStack getOutput();
+
+        float getAnvilBreakChance();
+    }
 }
