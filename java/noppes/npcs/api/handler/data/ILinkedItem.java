@@ -1,6 +1,10 @@
 package noppes.npcs.api.handler.data;
 
+import noppes.npcs.api.item.IItemStack;
+
 public interface ILinkedItem {
+
+    IItemStack createStack();
 
     int getId();
 

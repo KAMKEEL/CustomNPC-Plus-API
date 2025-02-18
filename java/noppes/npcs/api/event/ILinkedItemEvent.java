@@ -3,8 +3,13 @@ package noppes.npcs.api.event;
 public interface ILinkedItemEvent extends IItemEvent {
 
     // Version Change Event
+    interface VersionChangeEvent extends IItemEvent {
 
-    // onBreakEvent if Durability Expires or Consumed
+        int getVersion();
 
-    // onRepairEvent
+        int getPreviousVersion();
+    }
+
+    interface BuildEvent extends IItemEvent {
+    }
 }

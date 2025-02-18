@@ -82,4 +82,8 @@ public interface IItemEvent extends ICustomNPCsEvent {
 
         int getDuration();
     }
+
+    // onBreakEvent if Durability Expires or Consumed
+
+    // onRepairEvent
 }
