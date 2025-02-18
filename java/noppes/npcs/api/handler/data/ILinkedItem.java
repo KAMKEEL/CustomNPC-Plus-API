@@ -4,6 +4,8 @@ import noppes.npcs.api.item.IItemStack;
 
 public interface ILinkedItem {
 
+    ILinkedItem save();
+
     IItemStack createStack();
 
     int getId();
