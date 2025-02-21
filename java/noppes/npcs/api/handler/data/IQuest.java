@@ -50,9 +50,7 @@ public interface IQuest {
 
     IPartyOptions getPartyOptions();
 
-    boolean isProfileShared();
-
-    void setProfileShared(boolean value);
+    IProfileOptions getProfileOptions();
 
     long getCustomCooldown();
 
