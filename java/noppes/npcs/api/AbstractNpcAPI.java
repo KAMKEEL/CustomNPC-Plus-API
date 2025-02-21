@@ -139,6 +139,10 @@ public abstract class AbstractNpcAPI {
 
     public abstract INaturalSpawnsHandler getNaturalSpawns();
 
+    public abstract IProfileHandler getProfileHandler();
+
+    public abstract ICustomEffectHandler getCustomEffectHandler();
+
     public abstract ITransportHandler getLocations();
 
     public abstract IAnimationHandler getAnimations();
