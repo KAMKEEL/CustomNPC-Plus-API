@@ -49,4 +49,12 @@ public interface IQuest {
     IQuestInterface getQuestInterface();
 
     IPartyOptions getPartyOptions();
+
+    boolean isProfileShared();
+
+    void setProfileShared(boolean value);
+
+    long getCustomCooldown();
+
+    void setCustomCooldown(long newCooldown);
 }
