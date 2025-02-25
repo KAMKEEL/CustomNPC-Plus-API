@@ -143,6 +143,8 @@ public abstract class AbstractNpcAPI {
 
     public abstract ICustomEffectHandler getCustomEffectHandler();
 
+    public abstract IPartyHandler getPartyHandler();
+
     public abstract ITransportHandler getLocations();
 
     public abstract IAnimationHandler getAnimations();
