@@ -1,6 +1,7 @@
 package noppes.npcs.api.entity;
 
 import net.minecraft.entity.EntityCreature;
+import noppes.npcs.api.IActionManager;
 import noppes.npcs.api.IPos;
 import noppes.npcs.api.ITimers;
 import noppes.npcs.api.entity.data.IModelData;
@@ -933,4 +934,10 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
     void updateClient();
 
     void updateAI();
+
+    /**
+     *
+     * @return the action manager responsible for scheduling actions to the NPC's AI
+     */
+    IActionManager getActionManager();
 }
