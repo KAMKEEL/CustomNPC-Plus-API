@@ -1,10 +1,10 @@
 package noppes.npcs.api.entity;
 
 import net.minecraft.entity.EntityCreature;
-import noppes.npcs.api.IActionManager;
 import noppes.npcs.api.IPos;
 import noppes.npcs.api.ITimers;
 import noppes.npcs.api.entity.data.IModelData;
+import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.api.handler.IOverlayHandler;
 import noppes.npcs.api.handler.data.IAnimationData;
 import noppes.npcs.api.handler.data.IDialog;
