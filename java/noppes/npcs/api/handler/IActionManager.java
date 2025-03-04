@@ -19,7 +19,7 @@ public interface IActionManager {
      * @param action          the consumer defining the action's behavior.
      * @return a new IAction instance.
      */
-    IAction createAction(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
+    IAction create(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
 
     /**
      * Starts the action manager, enabling the processing of scheduled actions.
@@ -36,7 +36,7 @@ public interface IActionManager {
      *
      * @param action the action to be scheduled.
      */
-    void addScheduledAction(IAction action);
+    void scheduleAction(IAction action);
 
     /**
      * Creates and schedules an action with the given parameters.
@@ -46,7 +46,7 @@ public interface IActionManager {
      * @param startAfterTicks the delay in ticks before the action starts.
      * @param action          the consumer defining the action's behavior.
      */
-    void addScheduledAction(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
+    void scheduleAction(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
 
     /**
      * Inserts an action into the action queue at the specified index.
@@ -54,15 +54,8 @@ public interface IActionManager {
      * @param index  the position in the queue where the action should be added.
      * @param action the action to insert.
      */
-    void addScheduledActionAt(int index, IAction action);
+    void scheduleActionAt(int index, IAction action);
 
-    /**
-     * Schedules an action to be executed immediately after the specified action.
-     *
-     * @param after      the action after which the new action should run.
-     * @param toSchedule the action to schedule.
-     */
-    void scheduleActionAfter(IAction after, IAction toSchedule);
 
     /**
      * Retrieves the index of the specified action in the action queue.
@@ -70,7 +63,7 @@ public interface IActionManager {
      * @param action the action whose index is to be determined.
      * @return the index of the action in the queue, or -1 if not found.
      */
-    int getActionIndex(IAction action);
+    int getIndex(IAction action);
 
     /**
      * Gets the current action (the one at the head of the queue).
