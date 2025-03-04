@@ -37,10 +37,8 @@ public interface IAction {
 
     /**
      * Marks the action as completed or not.
-     *
-     * @param done true to mark the action as done, false otherwise.
      */
-    void setDone(boolean done);
+    void markDone();
 
     /**
      * Checks if the action has been marked as completed.
@@ -97,10 +95,21 @@ public interface IAction {
      */
     IAction create(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
 
+    IAction getNext();
+
+    IAction getPrevious();
+
     /**
      * Schedules another action to be executed immediately after this action.
      *
-     * @param action the action to schedule after this one.
+     * @param after the action to schedule after this one.
      */
-    void scheduleAfter(IAction action);
+    void scheduleAfter(IAction after);
+
+    /**
+     * Schedules an action to be executed before current action, which pauses current until before finishes.
+     *
+     * @param before the action to schedule before this one.
+     */
+    void scheduleBefore(IAction before);
 }
