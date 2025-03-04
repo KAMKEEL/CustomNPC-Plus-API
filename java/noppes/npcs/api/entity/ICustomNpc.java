@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityCreature;
 import noppes.npcs.api.IPos;
 import noppes.npcs.api.ITimers;
 import noppes.npcs.api.entity.data.IModelData;
+import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.api.handler.IOverlayHandler;
 import noppes.npcs.api.handler.data.IAnimationData;
 import noppes.npcs.api.handler.data.IDialog;
@@ -13,924 +14,1471 @@ import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.jobs.IJob;
 import noppes.npcs.api.roles.IRole;
 
+/**
+ * Represents a customizable NPC with a wide variety of properties such as appearance,
+ * behavior, combat, loot, and more. This interface extends living entity and animation
+ * capabilities and defines methods for adjusting almost every aspect of an NPC.
+ *
+ * @param <T> the underlying EntityCreature type.
+ */
 public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, IAnimatable {
+
     /**
-     * @return Returns the current npcs size 1-30
+     * Returns the current NPC's size (scale factor) within the range 1–30.
+     *
+     * @return the NPC's size.
      */
     int getSize();
 
     /**
-     * @param size The size of the npc (1-30) default is 5
+     * Sets the NPC's size (scale factor).
+     *
+     * @param size the size of the NPC (range 1–30, default is 5).
      */
     void setSize(int size);
 
     /**
-     * @return Returns the current npcs modelType of the NPC
+     * Returns the NPC's model type.
+     *
+     * @return the model type.
      */
     int getModelType();
 
     /**
-     * @param modelType The modelType of the NPC. 0: Steve, 1: Steve64, 2: Alex
+     * Sets the NPC's model type.
+     *
+     * @param modelType the model type (0: Steve, 1: Steve64, 2: Alex).
      */
     void setModelType(int modelType);
 
     /**
-     * @return The npcs name
+     * Returns the NPC's name.
+     *
+     * @return the NPC's name.
      */
     String getName();
 
+    /**
+     * Sets the NPC's rotation (yaw).
+     *
+     * @param rotation the new rotation angle in degrees.
+     */
     void setRotation(float rotation);
 
+    /**
+     * Sets the NPC's rotation type.
+     *
+     * @param rotationType the rotation type (implementation-specific).
+     */
     void setRotationType(int rotationType);
 
+    /**
+     * Returns the NPC's rotation type.
+     *
+     * @return the rotation type.
+     */
     int getRotationType();
 
     /**
-     * @param movingType The moving type of the npc. 0 = standing, 1 = wandering, 2 = moving path
+     * Sets the moving type of the NPC.
+     *
+     * @param movingType the moving type (0: standing, 1: wandering, 2: moving path).
      */
-    public void setMovingType(int movingType);
+    void setMovingType(int movingType);
 
     /**
-     * @return The moving type of the npc. 0 = standing, 1 = wandering, 2 = moving path
+     * Returns the moving type of the NPC.
+     *
+     * @return the moving type (0: standing, 1: wandering, 2: moving path).
      */
-    public int getMovingType();
+    int getMovingType();
 
     /**
-     * @param name The name of the npc
+     * Sets the NPC's name.
+     *
+     * @param name the new name.
      */
     void setName(String name);
 
     /**
-     * @since 1.7.10
-     * @return The npcs title
+     * Returns the NPC's title.
+     *
+     * @return the NPC's title.
      */
     String getTitle();
 
     /**
-     * @since 1.7.10
-     * @param title The title of the npc
+     * Sets the NPC's title.
+     *
+     * @param title the new title.
      */
     void setTitle(String title);
 
     /**
-     * @return The npcs texture
+     * Returns the NPC's texture path.
+     *
+     * @return the texture path.
      */
     String getTexture();
 
     /**
-     * @param texture The texture of the npc
+     * Sets the NPC's texture.
+     *
+     * @param texture the new texture path.
      */
     void setTexture(String texture);
 
+    /**
+     * Returns the NPC's home position.
+     *
+     * @return the home position as an IPos.
+     */
     IPos getHome();
 
     /**
-     * @return Home position x
+     * Returns the home position X coordinate.
+     *
+     * @return the home X coordinate.
      */
     int getHomeX();
 
     /**
-     * @param x The home x position
+     * Sets the home position X coordinate.
+     *
+     * @param x the new home X coordinate.
      */
     void setHomeX(int x);
 
     /**
-     * @return Home position x
+     * Returns the home position Y coordinate.
+     *
+     * @return the home Y coordinate.
      */
     int getHomeY();
 
     /**
-     * @param y The home y position
+     * Sets the home position Y coordinate.
+     *
+     * @param y the new home Y coordinate.
      */
     void setHomeY(int y);
 
     /**
-     * @return Home position x
+     * Returns the home position Z coordinate.
+     *
+     * @return the home Z coordinate.
      */
     int getHomeZ();
 
     /**
-     * @param z The home x position
+     * Sets the home position Z coordinate.
+     *
+     * @param z the new home Z coordinate.
      */
     void setHomeZ(int z);
 
     /**
-     * @param x The home x position
-     * @param y The home y position
-     * @param z The home z position
+     * Sets the home position using individual coordinates.
+     *
+     * @param x the home X coordinate.
+     * @param y the home Y coordinate.
+     * @param z the home Z coordinate.
      */
     void setHome(int x, int y, int z);
 
+    /**
+     * Sets the home position using an IPos instance.
+     *
+     * @param pos the new home position.
+     */
     void setHome(IPos pos);
 
     /**
-     * @param health New max health
+     * Sets the NPC's maximum health.
+     *
+     * @param health the new maximum health.
      */
     void setMaxHealth(double health);
 
     /**
-     * @param bo Whether or not the npc will try to return to his home position
+     * Sets whether the NPC should return to its home position.
+     *
+     * @param bo true to enable returning home, false otherwise.
      */
     void setReturnToHome(boolean bo);
 
     /**
-     * @return Whether or not the npc returns home
+     * Returns whether the NPC is set to return home.
+     *
+     * @return true if the NPC returns home, false otherwise.
      */
     boolean getReturnToHome();
 
     /**
-     * @return The faction of the npc
+     * Returns the faction associated with the NPC.
+     *
+     * @return the NPC's faction.
      */
     IFaction getFaction();
 
     /**
-     * @param id The id of the new faction
+     * Sets the NPC's faction by its ID.
+     *
+     * @param id the faction ID.
      */
     void setFaction(int id);
 
     /**
+     * Sets whether the NPC will attack members of other factions.
      *
-     * @param attackOtherFactions True if you want the NPC to attack other factions, false otherwise.
+     * @param attackOtherFactions true to attack, false otherwise.
      */
     void setAttackFactions(boolean attackOtherFactions);
 
     /**
+     * Returns whether the NPC attacks other factions.
      *
-     * @return Returns true if the NPC attacks other factions, false otherwise.
+     * @return true if it attacks, false otherwise.
      */
     boolean getAttackFactions();
 
     /**
+     * Sets whether the NPC should defend members of its faction.
      *
-     * @param defendFaction True if the NPC should defend faction members, false otherwise.
+     * @param defendFaction true to defend, false otherwise.
      */
     void setDefendFaction(boolean defendFaction);
 
     /**
+     * Returns whether the NPC defends its faction.
      *
-     * @return Returns true if the NPC should defend faction members, false otherwise.
+     * @return true if it defends, false otherwise.
      */
     boolean getDefendFaction();
 
+    /**
+     * Returns the entity type of the NPC.
+     *
+     * @return the NPC's type.
+     */
     int getType();
 
+    /**
+     * Checks if the NPC is of the given type.
+     *
+     * @param type the type to check.
+     * @return true if the NPC matches the specified type; otherwise, defers to the parent.
+     */
     boolean typeOf(int type);
 
     /**
-     * @param target The targeted npc
-     * @param item The item you want to shoot
-     * @param accuracy Accuracy of the shot (0-100)
+     * Instructs the NPC to shoot an item at a target.
+     *
+     * @param target   the target entity.
+     * @param item     the item to shoot.
+     * @param accuracy the accuracy of the shot (0–100).
      */
     void shootItem(IEntityLivingBase target, IItemStack item, int accuracy);
 
+    /**
+     * Sets whether projectiles fired by the NPC should ignore terrain collisions.
+     *
+     * @param b true if projectiles keep terrain, false otherwise.
+     */
     void setProjectilesKeepTerrain(boolean b);
 
+    /**
+     * Returns whether projectiles fired by the NPC ignore terrain collisions.
+     *
+     * @return true if they ignore terrain, false otherwise.
+     */
     boolean getProjectilesKeepTerrain();
 
     /**
-     * @param message The message the npc will say
+     * Makes the NPC broadcast a message.
+     *
+     * @param message the message to say.
      */
     void say(String message);
 
     /**
-     * @param message The message the npc will say
+     * Makes the NPC send a message to a specific player.
+     *
+     * @param player  the target player.
+     * @param message the message to say.
      */
     void say(IPlayer player, String message);
 
+    /**
+     * Retrieves the dialog from the specified slot.
+     *
+     * @param slot the dialog slot.
+     * @return the dialog instance.
+     */
     IDialog getDialog(int slot);
 
+    /**
+     * Returns the dialog ID in the specified slot.
+     *
+     * @param slot the dialog slot.
+     * @return the dialog ID, or -1 if none exists.
+     */
     int getDialogId(int slot);
 
+    /**
+     * Sets the dialog for the specified slot.
+     *
+     * @param slot   the dialog slot.
+     * @param dialog the dialog instance.
+     */
     void setDialog(int slot, IDialog dialog);
 
+    /**
+     * Sets the dialog for the specified slot by its ID.
+     *
+     * @param slot     the dialog slot.
+     * @param dialogId the dialog ID.
+     */
     void setDialog(int slot, int dialogId);
 
+    /**
+     * Returns the lines used for NPC interaction.
+     *
+     * @return the interact lines.
+     */
     ILines getInteractLines();
 
+    /**
+     * Returns the lines displayed in the world.
+     *
+     * @return the world lines.
+     */
     ILines getWorldLines();
 
+    /**
+     * Returns the lines spoken when the NPC attacks.
+     *
+     * @return the attack lines.
+     */
     ILines getAttackLines();
 
+    /**
+     * Returns the lines spoken when the NPC is killed.
+     *
+     * @return the killed lines.
+     */
     ILines getKilledLines();
 
+    /**
+     * Returns the lines spoken when the NPC kills another entity.
+     *
+     * @return the kill lines.
+     */
     ILines getKillLines();
 
     /**
-     * Kill the npc, doesnt't despawn it
+     * Kills the NPC without despawning it.
      */
     void kill();
 
     /**
-     * Basically completely resets the npc. This will also call the Init script
+     * Resets the NPC to its initial state and triggers the initialization script.
      */
     void reset();
 
+    /**
+     * Returns the NPC's animation data.
+     *
+     * @return the animation data.
+     */
     IAnimationData getAnimationData();
 
     /**
-     * @return Returns the npcs current role
+     * Returns the NPC's current role.
+     *
+     * @return the role instance.
      */
     IRole getRole();
 
+    /**
+     * Sets the NPC's role by its ID.
+     *
+     * @param role the role ID.
+     */
     void setRole(int role);
 
     /**
-     * @return Returns the npcs current job
+     * Returns the NPC's current job.
+     *
+     * @return the job instance.
      */
     IJob getJob();
 
+    /**
+     * Sets the NPC's job by its ID.
+     *
+     * @param job the job ID.
+     */
     void setJob(int job);
 
     /**
-     * @return The item held in the right hand
+     * Returns the item held in the NPC's right hand.
+     *
+     * @return the right-hand item.
      */
     IItemStack getRightItem();
 
     /**
-     * @param item Item to be held in the right hand
+     * Sets the item held in the NPC's right hand.
+     *
+     * @param item the new item.
      */
     void setRightItem(IItemStack item);
 
     /**
-     * Was an old type
-     * @return The item held in the left hand
+     * (Deprecated) Returns the item held in the NPC's left hand.
+     *
+     * @return the left-hand item.
      */
+    @Deprecated
     IItemStack getLefttItem();
 
     /**
-     * @return The item held in the left hand
+     * Returns the item held in the NPC's left hand.
+     *
+     * @return the left-hand item.
      */
     IItemStack getLeftItem();
 
     /**
-     * @param item Item to be held in the left hand
+     * Sets the item held in the NPC's left hand.
+     *
+     * @param item the new item.
      */
     void setLeftItem(IItemStack item);
 
     /**
-     * @return Returns the projectile the npc uses
+     * Returns the projectile item used by the NPC.
+     *
+     * @return the projectile item.
      */
     IItemStack getProjectileItem();
 
     /**
-     * @param item Item to be used as projectile
+     * Sets the projectile item for the NPC.
+     *
+     * @param item the new projectile item.
      */
     void setProjectileItem(IItemStack item);
 
     /**
+     * Checks if the NPC can aim while shooting.
      *
-     * @return Returns true if the NPC can aim while shooting.
+     * @return true if aiming while shooting is enabled, false otherwise.
      */
     boolean canAimWhileShooting();
 
     /**
+     * Sets whether the NPC can aim while shooting.
      *
-     * @param aimWhileShooting Set to true if you want the NPC to aim while shooting, false otherwise.
+     * @param aimWhileShooting true to enable aiming, false to disable.
      */
     void aimWhileShooting(boolean aimWhileShooting);
 
+    /**
+     * Sets the minimum delay (in ticks) between projectiles.
+     *
+     * @param minDelay the minimum delay.
+     */
     void setMinProjectileDelay(int minDelay);
+
+    /**
+     * Returns the minimum projectile delay.
+     *
+     * @return the minimum delay in ticks.
+     */
     int getMinProjectileDelay();
 
+    /**
+     * Sets the maximum delay (in ticks) between projectiles.
+     *
+     * @param maxDelay the maximum delay.
+     */
     void setMaxProjectileDelay(int maxDelay);
+
+    /**
+     * Returns the maximum projectile delay.
+     *
+     * @return the maximum delay in ticks.
+     */
     int getMaxProjectileDelay();
 
+    /**
+     * Sets the range for ranged attacks.
+     *
+     * @param rangedRange the ranged attack range.
+     */
     void setRangedRange(int rangedRange);
+
+    /**
+     * Returns the range for ranged attacks.
+     *
+     * @return the ranged attack range.
+     */
     int getRangedRange();
 
+    /**
+     * Sets the fire rate for ranged attacks.
+     *
+     * @param rate the fire rate in ticks.
+     */
     void setFireRate(int rate);
+
+    /**
+     * Returns the fire rate for ranged attacks.
+     *
+     * @return the fire rate.
+     */
     int getFireRate();
 
+    /**
+     * Sets the number of shots in a burst.
+     *
+     * @param burstCount the burst count.
+     */
     void setBurstCount(int burstCount);
+
+    /**
+     * Returns the number of shots in a burst.
+     *
+     * @return the burst count.
+     */
     int getBurstCount();
 
+    /**
+     * Sets the number of shots fired.
+     *
+     * @param shotCount the shot count.
+     */
     void setShotCount(int shotCount);
+
+    /**
+     * Returns the number of shots fired.
+     *
+     * @return the shot count.
+     */
     int getShotCount();
 
+    /**
+     * Sets the shooting accuracy.
+     *
+     * @param accuracy the accuracy (0–100).
+     */
     void setAccuracy(int accuracy);
+
+    /**
+     * Returns the shooting accuracy.
+     *
+     * @return the accuracy value.
+     */
     int getAccuracy();
 
     /**
+     * Returns the sound directory played when a projectile is fired.
      *
-     * @return The directory of the sound that plays when a projectile is shot
+     * @return the fire sound directory.
      */
     String getFireSound();
 
     /**
+     * Sets the sound directory for projectile firing.
      *
-     * @param fireSound The new directory of the sound that plays when a projectile is shot
+     * @param fireSound the new fire sound directory.
      */
     void setFireSound(String fireSound);
 
     /**
-     * @param slot The armor slot to return. 0:head, 1:body, 2:legs, 3:boots
-     * @return Returns the worn armor in slot
+     * Returns the armor item in the specified slot.
+     *
+     * @param slot the armor slot (0: head, 1: body, 2: legs, 3: boots).
+     * @return the armor item.
      */
     IItemStack getArmor(int slot);
 
     /**
-     * @param slot The armor slot to set. 0:head, 1:body, 2:legs, 3:boots
-     * @param item Item to be set as armor
+     * Sets the armor item in the specified slot.
+     *
+     * @param slot the armor slot (0: head, 1: body, 2: legs, 3: boots).
+     * @param item the armor item.
      */
     void setArmor(int slot, IItemStack item);
 
     /**
+     * Returns the loot item from the NPC's drop list for the given slot.
      *
-     * @param slot The slot from the NPC's drop list to return (0-8)
-     * @return The item in the NPC's drop list slot
+     * @param slot the loot slot (0–8).
+     * @return the loot item.
      */
     IItemStack getLootItem(int slot);
 
     /**
+     * Sets the loot item in the NPC's drop list for the given slot.
      *
-     * @param slot The slot from the NPC's drop list to change
-     * @param item The item the drop list slot will be changed to
+     * @param slot the loot slot (0–8).
+     * @param item the new loot item.
      */
     void setLootItem(int slot, IItemStack item);
 
     /**
+     * Returns the chance for the loot item in the specified slot to drop.
      *
-     * @param slot The slot from the NPC's drop list to return (0-8)
-     * @return The chance of dropping the item in this slot. Returns 100 if the slot is not found.
+     * @param slot the loot slot (0–8).
+     * @return the drop chance (default 100 if not set).
      */
     double getLootChance(int slot);
 
     /**
+     * Sets the drop chance for the loot item in the specified slot.
      *
-     * @param slot The slot from the NPC's drop list to change
-     * @param chance The new chance of dropping the item in this slot
+     * @param slot   the loot slot (0–8).
+     * @param chance the new drop chance.
      */
     void setLootChance(int slot, double chance);
 
     /**
+     * Returns the NPC's loot mode.
      *
-     * @return The NPC's loot mode. 0 = Normal, 1 = Auto Pickup
+     * @return the loot mode (0: Normal, 1: Auto Pickup).
      */
     int getLootMode();
 
     /**
+     * Sets the NPC's loot mode.
      *
-     * @param lootMode The NPC's loot mode. 0 = Normal, 1 = Auto Pickup
+     * @param lootMode the loot mode (0: Normal, 1: Auto Pickup).
      */
     void setLootMode(int lootMode);
 
     /**
+     * Sets the minimum XP dropped by the NPC.
      *
-     * @param lootXP The new minimum XP gained from killing the NPC. If greater than the max XP, it will be set to it.
+     * @param lootXP the minimum loot XP.
      */
     void setMinLootXP(int lootXP);
 
     /**
+     * Sets the maximum XP dropped by the NPC.
      *
-     * @param lootXP The new maximum XP gained from killing the NPC. If less than the min XP, it will be set to it.
+     * @param lootXP the maximum loot XP.
      */
     void setMaxLootXP(int lootXP);
 
     /**
+     * Returns the minimum XP dropped by the NPC.
      *
-     * @return The minimum XP gained from killing the NPC.
+     * @return the minimum loot XP.
      */
     int getMinLootXP();
 
     /**
+     * Returns the maximum XP dropped by the NPC.
      *
-     * @return The maximum XP gained from killing the NPC.
+     * @return the maximum loot XP.
      */
     int getMaxLootXP();
 
+    /**
+     * Returns whether the NPC can drown.
+     *
+     * @return true if the NPC can drown, false otherwise.
+     */
     boolean getCanDrown();
 
     /**
+     * Sets the drowning behavior of the NPC.
      *
-     * @param type 0 - Never drowns, 1 - Drowns in water, 2 - Drowns in air (without water)
+     * @param type 0: Never drowns, 1: Drowns in water, 2: Drowns in air (without water).
      */
     void setDrowningType(int type);
 
+    /**
+     * Returns whether the NPC can breathe.
+     *
+     * @return true if the NPC can breathe, false otherwise.
+     */
     boolean canBreathe();
 
     /**
-     * @param type The AnimationType
+     * Sets the NPC's animation type.
+     *
+     * @param type the animation type.
      */
     void setAnimation(int type);
 
     /**
+     * Sets the NPC's tactical variant.
      *
-     * @param variant Changes the tactical variant of the NPC.
-     *                0 - Rush
-     *                1 - Dodge
-     *                2 - Surround
-     *                3 - Hit N Run
-     *                4 - Ambush
-     *                5 - Stalk
-     *                6 - None
-     *
+     * @param variant the tactical variant (0: Rush, 1: Dodge, 2: Surround, 3: Hit N Run, 4: Ambush, 5: Stalk, 6: None).
      */
     void setTacticalVariant(int variant);
 
     /**
+     * Returns the NPC's tactical variant.
      *
-     * @return Returns the tactical variant of the NPC.
-     *                0 - Rush
-     *                1 - Dodge
-     *                2 - Surround
-     *                3 - Hit N Run
-     *                4 - Ambush
-     *                5 - Stalk
-     *                6 - None
-     *
+     * @return the tactical variant as an integer.
      */
     int getTacticalVariant();
 
     /**
+     * Sets the NPC's tactical variant by its name.
      *
-     * @param variant Sets the NPC's tactical variant by name.
+     * @param variant the name of the tactical variant.
      */
     void setTacticalVariant(String variant);
 
     /**
+     * Returns the name of the NPC's tactical variant.
      *
-     * @return Returns the name of the NPc's tactical variant.
+     * @return the tactical variant name.
      */
     String getTacticalVariantName();
 
     /**
+     * Returns the name of the NPC's combat policy.
      *
-     * @return Returns the name of the NPC's combat policy.
+     * @return the combat policy name.
      */
     String getCombatPolicyName();
 
     /**
+     * Sets the NPC's combat policy.
      *
-     * @param policy Changes the combat policy of the NPC.
-     *                0 - Flip
-     *                1 - Brute
-     *                2 - Stubborn
-     *                4 - Tactical
-     *
+     * @param policy the combat policy (0: Flip, 1: Brute, 2: Stubborn, 4: Tactical).
      */
     void setCombatPolicy(int policy);
 
     /**
+     * Returns the NPC's combat policy.
      *
-     * @return Returns the ombat policy of the NPC.
-     *                0 - Flip
-     *                1 - Brute
-     *                2 - Stubborn
-     *                3 - Tactical
-     *
+     * @return the combat policy as an integer.
      */
     int getCombatPolicy();
 
     /**
+     * Sets the NPC's combat policy by name.
      *
-     * @param policy Sets the NPC's tactical variant by name.
+     * @param policy the combat policy name.
      */
     void setCombatPolicy(String policy);
 
     /**
+     * Sets the tactical radius affecting NPC behavior.
      *
-     * @param tacticalRadius Sets the radius in which the tactical variant is affected, if any. Effective for all tactical variants except Rush and None.
+     * @param tacticalRadius the tactical radius.
      */
     void setTacticalRadius(int tacticalRadius);
 
     /**
+     * Returns the tactical radius affecting NPC behavior.
      *
-     * @return Gets the radius in which the tactical variant is affected, if any. Effective for all tactical variants except Rush and None.
+     * @return the tactical radius.
      */
     int getTacticalRadius();
 
     /**
+     * Sets whether the NPC ignores cobwebs.
      *
-     * @param ignore True if the NPC goes through cobwebs
+     * @param ignore true to ignore cobwebs, false otherwise.
      */
     void setIgnoreCobweb(boolean ignore);
 
     /**
+     * Returns whether the NPC ignores cobwebs.
      *
-     * @return True if the NPC goes through cobwebs
+     * @return true if cobwebs are ignored, false otherwise.
      */
     boolean getIgnoreCobweb();
 
     /**
+     * Sets the NPC's behavior when encountering an enemy.
      *
-     * @return Changes what the NPC does when it finds an enemy based on the integer given.
-     *          0 - Retaliate
-     *          1 - Panic
-     *          2 - Retreat
-     *          3 - Nothing
+     * @param onAttack 0: Retaliate, 1: Panic, 2: Retreat, 3: Nothing.
      */
     void setOnFoundEnemy(int onAttack);
 
     /**
+     * Returns the NPC's behavior when encountering an enemy.
      *
-     * @return Returns an integer representing what the NPC does when it finds an enemy.
-     *          0 - Retaliate
-     *          1 - Panic
-     *          2 - Retreat
-     *          3 - Nothing
+     * @return an integer representing the behavior (0: Retaliate, 1: Panic, 2: Retreat, 3: Nothing).
      */
     int onFoundEnemy();
 
     /**
+     * Sets the condition under which the NPC seeks shelter.
      *
-     * @param shelterFrom An integer representing what conditions the NPC seeks shelter under.
-     *          0 - Darkenss
-     *          1 - Sunlight
-     *          2 - Disabled
+     * @param shelterFrom 0: Darkness, 1: Sunlight, 2: Disabled.
      */
     void setShelterFrom(int shelterFrom);
 
     /**
+     * Returns the condition under which the NPC seeks shelter.
      *
-     * @return Returns an integer representing what conditions the NPC seeks shelter under.
-     *          0 - Darkenss
-     *          1 - Sunlight
-     *          2 - Disabled
+     * @return an integer representing the shelter condition (0: Darkness, 1: Sunlight, 2: Disabled).
      */
     int getShelterFrom();
 
     /**
+     * Returns whether the NPC has a living animation.
      *
-     * @return Whether the NPC has a living animation
+     * @return true if living animation is enabled, false otherwise.
      */
     boolean hasLivingAnimation();
 
     /**
+     * Sets whether the NPC has a living animation.
      *
-     * @param livingAnimation True if you want the NPC to have a living animation, false otherwise
+     * @param livingAnimation true to enable living animation, false to disable.
      */
     void setLivingAnimation(boolean livingAnimation);
 
     /**
-     * @param type The visibility type of the npc, 0:visible, 1:invisible, 2:semi-visible
+     * Sets the visibility type of the NPC.
+     *
+     * @param type the visibility type (0: visible, 1: invisible, 2: semi-visible).
      */
     void setVisibleType(int type);
 
     /**
-     * @return The visibility type of the npc, 0:visible, 1:invisible, 2:semi-visible
+     * Returns the visibility type of the NPC.
+     *
+     * @return the visibility type.
      */
     int getVisibleType();
 
     /**
+     * Sets whether the NPC is visible to a specific player.
      *
-     * @param player The player this NPC becomes visible/invisible to
-     * @param visible True if you want the NPC to be invisible to the player, false otherwise
+     * @param player  the player.
+     * @param visible true if the NPC should be visible, false if invisible.
      */
     void setVisibleTo(IPlayer player, boolean visible);
 
     /**
+     * Checks if the NPC is visible to a specific player.
      *
-     * @param player The player this NPC is visible/invisible to
-     * @return False if the NPC has been toggled to be invisible to this player, true otherwise.
-     * If setVisibleTo(player,visible) was not called to make this NPC invisible to the player at any point
-     * in the NPC's life, this function will return true regardless of the value of isVisible().
+     * @param player the player.
+     * @return true if the NPC is visible, false otherwise.
      */
     boolean isVisibleTo(IPlayer player);
 
     /**
-     * @param type The visibility type of the name, 0:visible, 1:invisible, 2:when-attacking
+     * Sets the visibility type of the NPC's name.
+     *
+     * @param type the visibility type (0: visible, 1: invisible, 2: when attacking).
      */
     void setShowName(int type);
 
     /**
-     * @return Returns the visibility type of the name, 0:visible, 1:invisible, 2:when-attacking
+     * Returns the visibility type of the NPC's name.
+     *
+     * @return the name visibility type.
      */
     int getShowName();
 
     /**
-     * @return Returns the visiblity of the boss bar, 0:invisible, 1:visible, 2:when-attacking
+     * Returns the visibility type of the NPC's boss bar.
+     *
+     * @return the boss bar visibility (0: invisible, 1: visible, 2: when attacking).
      */
     int getShowBossBar();
 
     /**
-     * @param type The visibility type of the boss bar, 0:invisible, 1:visible, 2:when-attacking
+     * Sets the visibility type of the NPC's boss bar.
+     *
+     * @param type the boss bar visibility (0: invisible, 1: visible, 2: when attacking).
      */
     void setShowBossBar(int type);
 
     /**
-     * @return The melee strength
+     * Returns the melee strength of the NPC.
+     *
+     * @return the melee strength.
      */
     double getMeleeStrength();
 
     /**
-     * @param strength The melee strength
+     * Sets the melee strength of the NPC.
+     *
+     * @param strength the new melee strength.
      */
     void setMeleeStrength(double strength);
 
     /**
-     * @return The melee speed
+     * Returns the melee speed of the NPC.
+     *
+     * @return the melee speed.
      */
     int getMeleeSpeed();
 
     /**
-     * @param speed The melee speed
+     * Sets the melee speed of the NPC.
+     *
+     * @param speed the new melee speed.
      */
     void setMeleeSpeed(int speed);
 
     /**
-     * @return The melee range
+     * Returns the melee range of the NPC.
+     *
+     * @return the melee range.
      */
-    public int getMeleeRange();
+    int getMeleeRange();
 
     /**
-     * @param range The melee range
+     * Sets the melee range of the NPC.
+     *
+     * @param range the new melee range.
      */
-    public void setMeleeRange(int range);
+    void setMeleeRange(int range);
 
     /**
-     * @return The swing warmup time in ticks
+     * Returns the swing warmup time (in ticks) before melee damage is applied.
+     *
+     * @return the swing warmup time.
      */
-    public int getSwingWarmup();
+    int getSwingWarmup();
 
     /**
-     * @param ticks The amount of time before damage to swing arm
+     * Sets the swing warmup time (in ticks) before melee damage is applied.
+     *
+     * @param ticks the warmup time.
      */
-    public void setSwingWarmup(int ticks);
+    void setSwingWarmup(int ticks);
 
     /**
-     * @return The knockback strength
+     * Returns the knockback strength of the NPC.
+     *
+     * @return the knockback strength.
      */
-    public int getKnockback();
+    int getKnockback();
 
     /**
-     * @param knockback The melee range
+     * Sets the knockback strength of the NPC.
+     *
+     * @param knockback the new knockback strength.
      */
-    public void setKnockback(int knockback);
+    void setKnockback(int knockback);
 
     /**
-     * @return The aggro range
+     * Returns the aggro range of the NPC.
+     *
+     * @return the aggro range.
      */
-    public int getAggroRange();
+    int getAggroRange();
 
     /**
-     * @param aggroRange The new aggro range
+     * Sets the aggro range of the NPC.
+     *
+     * @param aggroRange the new aggro range.
      */
-    public void setAggroRange(int aggroRange);
+    void setAggroRange(int aggroRange);
 
     /**
-     * @return The ranged strength
+     * Returns the ranged attack strength of the NPC.
+     *
+     * @return the ranged strength.
      */
     float getRangedStrength();
 
     /**
-     * @param strength The ranged strength
+     * Sets the ranged attack strength of the NPC.
+     *
+     * @param strength the new ranged strength.
      */
     void setRangedStrength(float strength);
 
     /**
-     * @return The ranged speed
+     * Returns the ranged attack speed of the NPC.
+     *
+     * @return the ranged speed.
      */
     int getRangedSpeed();
 
     /**
-     * @param speed The ranged speed
+     * Sets the ranged attack speed of the NPC.
+     *
+     * @param speed the new ranged speed.
      */
     void setRangedSpeed(int speed);
 
     /**
-     * @return The ranged burst count
+     * Returns the number of projectiles in a ranged burst attack.
+     *
+     * @return the burst count.
      */
     int getRangedBurst();
 
     /**
-     * @param count The ranged burst count
+     * Sets the number of projectiles in a ranged burst attack.
+     *
+     * @param count the new burst count.
      */
     void setRangedBurst(int count);
 
     /**
+     * Returns the number of ticks before the NPC respawns.
      *
-     * @return The amount of ticks before this entity respawns
+     * @return the respawn time.
      */
     int getRespawnTime();
 
     /**
+     * Sets the number of ticks before the NPC respawns.
      *
-     * @param time The new amount of ticks before this entity respawns
+     * @param time the respawn time.
      */
     void setRespawnTime(int time);
 
     /**
+     * Returns the NPC's respawn cycle.
      *
-     * @return Respawn: 0 - Yes (Always), 1 - Day, 2 - Night, 3 - No (Dies permanently)
+     * @return the respawn cycle (0: Always, 1: Day, 2: Night, 3: No respawn).
      */
     int getRespawnCycle();
 
     /**
+     * Sets the NPC's respawn cycle.
      *
-     * @param cycle Sets when the NPC respawns. Respawn: 0 - Yes (Always), 1 - Day, 2 - Night, 3 - No (Dies permanently)
+     * @param cycle the respawn cycle (0: Always, 1: Day, 2: Night, 3: No respawn).
      */
     void setRespawnCycle(int cycle);
 
     /**
+     * Returns whether the NPC's body is hidden upon death.
      *
-     * @return Whether the NPC is hidden when it dies
+     * @return true if the body is hidden, false otherwise.
      */
     boolean getHideKilledBody();
 
     /**
+     * Sets whether the NPC's body should be hidden upon death.
      *
-     * @param hide True if the NPC is hidden when it dies. False otherwise.
+     * @param hide true to hide the body, false otherwise.
      */
     void hideKilledBody(boolean hide);
 
     /**
+     * Returns whether the NPC naturally despawns.
      *
-     * @return Returns true if the NPC naturally despawns.
+     * @return true if it naturally despawns, false otherwise.
      */
     boolean naturallyDespawns();
 
     /**
+     * Sets whether the NPC should naturally despawn.
      *
-     * @param canDespawn True if the NPC should naturally despawn. False otherwise.
+     * @param canDespawn true to allow natural despawning, false otherwise.
      */
     void setNaturallyDespawns(boolean canDespawn);
 
     /**
-     * @return true if this npc was spawned by a player using soulstone
+     * Returns whether the NPC was spawned using a soul stone.
+     *
+     * @return true if spawned from a soul stone, false otherwise.
      */
     boolean spawnedFromSoulStone();
 
     /**
-     * @return the name of the player who spawned this npc using soulstone. null if not spawned by soulstone
+     * Returns the name of the player who spawned this NPC using a soul stone.
+     *
+     * @return the player's name, or null if not spawned by soul stone.
      */
     String getSoulStonePlayerName();
 
     /**
-     * @return true if npc was spawned by soul stone. becomes false after the init function is called.
+     * Returns whether the NPC has been initialized after a soul stone spawn.
+     *
+     * @return true if initialized, false otherwise.
      */
     boolean isSoulStoneInit();
 
     /**
-     * @return does this npc refuse to be taken by soul stone
+     * Returns whether the NPC refuses to be captured by a soul stone.
+     *
+     * @return true if it refuses, false otherwise.
      */
     boolean getRefuseSoulStone();
 
     /**
-     * @param refuse set if this npc refuses to be taken by soul stone
+     * Sets whether the NPC refuses to be captured by a soul stone.
+     *
+     * @param refuse true to refuse, false to allow.
      */
     void setRefuseSoulStone(boolean refuse);
 
     /**
-     * requires SoulStoneFriendlyNPCs in config to be true
-     * -1 by default
-     * if -1, the minimum points are the faction's friendly points
-     * @return the minimum faction points needed to soulstone this npc
+     * Returns the minimum faction points required to capture the NPC with a soul stone.
+     *
+     * @return the minimum points (default -1 means use the faction's friendly points).
      */
     int getMinPointsToSoulStone();
 
     /**
-     * requires SoulStoneFriendlyNPCs in config to be true
-     * -1 by default
-     * if -1, the minimum points are the faction's friendly points
-     * @param points the minimum faction points needed to soulstone this npc
+     * Sets the minimum faction points required to capture the NPC with a soul stone.
+     *
+     * @param points the minimum faction points.
      */
     void setMinPointsToSoulStone(int points);
 
     /**
-     * @param player The player to give the item to
-     * @param item The item given to the player
+     * Gives an item to the specified player.
+     *
+     * @param player the recipient.
+     * @param item   the item to give.
      */
     void giveItem(IPlayer player, IItemStack item);
 
-
     /**
-     * On servers the enable-command-block option in the server.properties needs to be set to true
-     * @param command The command to be executed
+     * Executes a command as the NPC.
+     * <p>
+     * Note: On servers the enable-command-block option must be set to true.
+     * </p>
+     *
+     * @param command the command to execute.
      */
     void executeCommand(String command);
 
+    /**
+     * Returns the model data associated with the NPC.
+     *
+     * @return the model data, or null if not available.
+     */
     IModelData getModelData();
 
+    /**
+     * (Deprecated) Sets the head scale of the NPC.
+     *
+     * @param x scale factor along the X-axis.
+     * @param y scale factor along the Y-axis.
+     * @param z scale factor along the Z-axis.
+     */
     @Deprecated
     void setHeadScale(float x, float y, float z);
 
+    /**
+     * (Deprecated) Sets the body scale of the NPC.
+     *
+     * @param x scale factor along the X-axis.
+     * @param y scale factor along the Y-axis.
+     * @param z scale factor along the Z-axis.
+     */
     @Deprecated
     void setBodyScale(float x, float y, float z);
 
+    /**
+     * (Deprecated) Sets the arms scale of the NPC.
+     *
+     * @param x scale factor along the X-axis.
+     * @param y scale factor along the Y-axis.
+     * @param z scale factor along the Z-axis.
+     */
     @Deprecated
     void setArmsScale(float x, float y, float z);
 
+    /**
+     * (Deprecated) Sets the legs scale of the NPC.
+     *
+     * @param x scale factor along the X-axis.
+     * @param y scale factor along the Y-axis.
+     * @param z scale factor along the Z-axis.
+     */
     @Deprecated
     void setLegsScale(float x, float y, float z);
 
     /**
-     * @since 1.7.10c
-     * @param resistance Explosion resistance (0-2) default is 1
+     * Sets the NPC's explosion resistance.
+     *
+     * @param resistance the resistance (0–2, default is 1).
      */
     void setExplosionResistance(float resistance);
 
     /**
-     * @since 1.7.10c
-     * @return Returns Explosion Resistance
+     * Returns the NPC's explosion resistance.
+     *
+     * @return the explosion resistance.
      */
     float getExplosionResistance();
 
     /**
-     * @param resistance Melee resistance (0-2) default is 1
+     * Sets the NPC's melee resistance.
+     *
+     * @param resistance the resistance (0–2, default is 1).
      */
     void setMeleeResistance(float resistance);
 
     /**
-     * @return Returns Melee Resistance
+     * Returns the NPC's melee resistance.
+     *
+     * @return the melee resistance.
      */
     float getMeleeResistance();
 
     /**
-     * @param resistance Arrow resistance (0-2) default is 1
+     * Sets the NPC's arrow resistance.
+     *
+     * @param resistance the resistance (0–2, default is 1).
      */
     void setArrowResistance(float resistance);
 
     /**
-     * @return Returns Arrow Resistance
+     * Returns the NPC's arrow resistance.
+     *
+     * @return the arrow resistance.
      */
     float getArrowResistance();
 
     /**
-     * @param resistance Knockback resistance (0-2) default is 1
+     * Sets the NPC's knockback resistance.
+     *
+     * @param resistance the resistance (0–2, default is 1).
      */
     void setKnockbackResistance(double resistance);
 
     /**
-     * @return Returns Knockback Resistance
+     * Returns the NPC's knockback resistance.
+     *
+     * @return the knockback resistance.
      */
     double getKnockbackResistance();
 
     /**
-     * @param type Retaliation type. 0:normal, 1:panic, 2:retreat, 3:nothing
+     * Sets the NPC's retaliation type.
+     *
+     * @param type the retaliation type (0: normal, 1: panic, 2: retreat, 3: nothing).
      */
     void setRetaliateType(int type);
 
     /**
-     * @return Returns the combat health regen per second
+     * Returns the NPC's combat health regeneration per second.
+     *
+     * @return the combat regen rate.
      */
     float getCombatRegen();
 
     /**
-     * @param regen The combat health regen per second
+     * Sets the NPC's combat health regeneration per second.
+     *
+     * @param regen the combat regen rate.
      */
     void setCombatRegen(float regen);
 
     /**
-     * @return Returns the health regen per second when not in combat
+     * Returns the NPC's health regeneration per second when not in combat.
+     *
+     * @return the health regen rate.
      */
     float getHealthRegen();
 
     /**
-     * @param regen The health regen per second when not in combat
+     * Sets the NPC's health regeneration per second when not in combat.
+     *
+     * @param regen the health regen rate.
      */
     void setHealthRegen(float regen);
 
+    /**
+     * Returns the age of the NPC in ticks.
+     *
+     * @return the age.
+     */
     long getAge();
 
+    /**
+     * Returns the timers associated with the NPC.
+     *
+     * @return the timers.
+     */
     ITimers getTimers();
 
+    /**
+     * Sets the NPC's flying ability.
+     *
+     * @param fly 1 to enable flying, 0 to disable.
+     */
     void setFly(int fly);
 
+    /**
+     * Returns whether the NPC can fly.
+     *
+     * @return true if flying is enabled, false otherwise.
+     */
     boolean canFly();
 
+    /**
+     * Sets the NPC's flying speed.
+     *
+     * @param flySpeed the fly speed.
+     */
     void setFlySpeed(double flySpeed);
 
+    /**
+     * Returns the NPC's flying speed.
+     *
+     * @param unused unused parameter.
+     * @return the fly speed.
+     */
     double getFlySpeed(double unused);
 
+    /**
+     * Sets the gravity effect on the NPC while flying.
+     *
+     * @param flyGravity the fly gravity (0.0–1.0).
+     */
     void setFlyGravity(double flyGravity);
 
+    /**
+     * Returns the gravity effect on the NPC while flying.
+     *
+     * @param unused unused parameter.
+     * @return the fly gravity.
+     */
     double getFlyGravity(double unused);
 
+    /**
+     * Sets the maximum flying height for the NPC.
+     *
+     * @param flyHeightLimit the height limit.
+     */
     void setFlyHeightLimit(int flyHeightLimit);
 
+    /**
+     * Returns the maximum flying height for the NPC.
+     *
+     * @param unused unused parameter.
+     * @return the fly height limit.
+     */
     int getFlyHeightLimit(int unused);
 
+    /**
+     * Enables or disables flying height limitation.
+     *
+     * @param limit true to enable limitation, false to disable.
+     */
     void limitFlyHeight(boolean limit);
 
+    /**
+     * Checks if flying height is limited.
+     *
+     * @param unused unused parameter.
+     * @return true if limited, false otherwise.
+     */
     boolean isFlyHeightLimited(boolean unused);
 
+    /**
+     * Sets the NPC's walking speed.
+     *
+     * @param speed the walking speed.
+     */
     void setSpeed(double speed);
 
+    /**
+     * Returns the NPC's walking speed.
+     *
+     * @return the walking speed.
+     */
     double getSpeed();
 
+    /**
+     * Sets the NPC's skin type.
+     *
+     * @param type the skin type.
+     */
     void setSkinType(byte type);
 
+    /**
+     * Returns the NPC's skin type.
+     *
+     * @return the skin type.
+     */
     byte getSkinType();
 
+    /**
+     * Sets the NPC's skin URL.
+     *
+     * @param url the skin URL.
+     */
     void setSkinUrl(String url);
 
+    /**
+     * Returns the NPC's skin URL.
+     *
+     * @return the skin URL.
+     */
     String getSkinUrl();
 
+    /**
+     * Sets the NPC's cloak texture.
+     *
+     * @param cloakTexture the cloak texture.
+     */
     void setCloakTexture(String cloakTexture);
 
+    /**
+     * Returns the NPC's cloak texture.
+     *
+     * @return the cloak texture.
+     */
     String getCloakTexture();
 
+    /**
+     * Adds an overlay texture to the NPC.
+     *
+     * @param overlayTexture the overlay texture.
+     */
     void setOverlayTexture(String overlayTexture);
 
+    /**
+     * Returns the first overlay texture of the NPC.
+     *
+     * @return the overlay texture, or an empty string if none.
+     */
     String getOverlayTexture();
 
+    /**
+     * Returns the NPC's overlay handler.
+     *
+     * @return the overlay handler.
+     */
     IOverlayHandler getOverlays();
 
+    /**
+     * Sets the NPC's collision type.
+     *
+     * @param type the collision type.
+     */
     void setCollisionType(int type);
 
+    /**
+     * Returns the NPC's collision type.
+     *
+     * @return the collision type.
+     */
     int getCollisionType();
 
+    /**
+     * Updates the client with the latest NPC state.
+     */
     void updateClient();
 
+    /**
+     * Updates the NPC's AI tasks.
+     */
     void updateAI();
+
+    /**
+     * Returns the action manager used for scheduling NPC actions.
+     *
+     * @return the action manager.
+     */
+    IActionManager getActionManager();
 }
