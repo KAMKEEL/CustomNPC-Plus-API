@@ -2,50 +2,89 @@ package noppes.npcs.api.entity;
 
 import noppes.npcs.api.item.IItemStack;
 
+/**
+ * Represents a projectile entity.
+ * Provides methods to access and modify the projectile's item, gravity, accuracy, heading,
+ * and to enable scripting events.
+ */
 public interface IProjectile {
 
-    public IItemStack getItem();
-
-    public void setItem(IItemStack item);
+    /**
+     * Returns the item associated with the projectile (e.g. arrow, fireball).
+     *
+     * @return the item as an IItemStack.
+     */
+    IItemStack getItem();
 
     /**
-     * @return Returns whether the arrow flies in a straight line or not
+     * Sets the item for the projectile.
+     *
+     * @param item the item to set.
      */
-    public boolean getHasGravity();
+    void setItem(IItemStack item);
 
     /**
-     * @param bo Whether the arrow flies in a straight line or not
+     * @return true if the projectile is affected by gravity; false if it flies straight.
      */
-    public void setHasGravity(boolean bo);
-
-    public int getAccuracy();
-
-    public void setAccuracy(int accuracy);
+    boolean getHasGravity();
 
     /**
-     * Entity where the projectile heads towards
-     * The position for the projectile needs to have been set for this
+     * Sets whether the projectile is affected by gravity.
+     *
+     * @param bo true to enable gravity; false otherwise.
      */
-    public void setHeading(IEntity entity);
+    void setHasGravity(boolean bo);
 
     /**
-     * Position where the projectile heads towards.
-     * The position for the projectile needs to have been set for this
+     * Returns the accuracy value for the projectile.
+     *
+     * @return the accuracy.
      */
-    public void setHeading(double x, double y, double z);
+    int getAccuracy();
 
     /**
-     * @param yaw Rotation yaw
-     * @param pitch Rotation pitch
+     * Sets the accuracy value for the projectile.
+     *
+     * @param accuracy the accuracy value.
      */
-    public void setHeading(float yaw, float pitch);
-
-
-    public IEntity getThrower();
-
+    void setAccuracy(int accuracy);
 
     /**
-     * For scripters to enable projectile events in their current scripting container
+     * Sets the heading (target destination) for the projectile based on the target entity.
+     * The projectile's position should already be set.
+     *
+     * @param entity the target entity.
      */
-    public void enableEvents();
+    void setHeading(IEntity entity);
+
+    /**
+     * Sets the heading for the projectile to the specified coordinates.
+     * The projectile's position should already be set.
+     *
+     * @param x the target x coordinate.
+     * @param y the target y coordinate.
+     * @param z the target z coordinate.
+     */
+    void setHeading(double x, double y, double z);
+
+    /**
+     * Sets the heading using yaw and pitch values.
+     *
+     * @param yaw   the yaw angle.
+     * @param pitch the pitch angle.
+     */
+    void setHeading(float yaw, float pitch);
+
+    /**
+     * Returns the thrower (the entity that launched the projectile).
+     *
+     * @return the thrower as an IEntity.
+     */
+    IEntity getThrower();
+
+    /**
+     * Enables projectile events for the current scripting container.
+     * Must be called during a script.
+     **/
+    void enableEvents();
 }

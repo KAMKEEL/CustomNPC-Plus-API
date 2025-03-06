@@ -1,96 +1,167 @@
 package noppes.npcs.api.entity;
 
 import net.minecraft.entity.passive.EntityTameable;
+import noppes.npcs.api.item.IItemStack;
 
+/**
+ * Represents a Pixelmon (a tameable creature) with additional attributes
+ * such as shiny state, level, IV/EV values, nature, moves, and more.
+ *
+ * @param <T> The underlying Minecraft EntityTameable type.
+ */
 public interface IPixelmon<T extends EntityTameable> extends IAnimal<T> {
+
+    /**
+     * @return true if the Pixelmon is shiny.
+     */
     boolean getIsShiny();
 
+    /**
+     * Sets whether the Pixelmon is shiny.
+     *
+     * @param bo true for shiny.
+     */
     void setIsShiny(boolean bo);
 
+    /**
+     * @return The Pixelmon's level.
+     */
     int getLevel();
 
+    /**
+     * Sets the Pixelmon's level.
+     *
+     * @param level the new level.
+     */
     void setLevel(int level);
 
     /**
-     * @param type 0:HP, 1:Attack, 2:Defense, 3:SpAttack, 4:SpDefense, 5:Speed
+     * Gets the Individual Value (IV) for the specified stat.
+     * @param type 0: HP, 1: Attack, 2: Defense, 3: SpAttack, 4: SpDefense, 5: Speed
+     * @return the IV value, or -1 if invalid.
      */
     int getIV(int type);
 
-
     /**
-     * @param type 0:HP, 1:Attack, 2:Defense, 3:SpAttack, 4:SpDefense, 5:Speed
+     * Sets the Individual Value (IV) for the specified stat.
+     *
+     * @param type  0: HP, 1: Attack, 2: Defense, 3: SpAttack, 4: SpDefense, 5: Speed
+     * @param value the new IV value.
      */
     void setIV(int type, int value);
 
     /**
-     * @param type 0:HP, 1:Attack, 2:Defense, 3:SpAttack, 4:SpDefense, 5:Speed
+     * Gets the Effort Value (EV) for the specified stat.
+     *
+     * @param type 0: HP, 1: Attack, 2: Defense, 3: SpAttack, 4: SpDefense, 5: Speed
+     * @return the EV value, or -1 if invalid.
      */
     int getEV(int type);
 
-
     /**
-     * @param type 0:HP, 1:Attack, 2:Defense, 3:SpAttack, 4:SpDefense, 5:Speed
+     * Sets the Effort Value (EV) for the specified stat.
+     *
+     * @param type  0: HP, 1: Attack, 2: Defense, 3: SpAttack, 4: SpDefense, 5: Speed
+     * @param value the new EV value.
      */
     void setEV(int type, int value);
 
     /**
-     * @param type 0:HP, 1:Attack, 2:Defense, 3:SpAttack, 4:SpDefense, 5:Speed
+     * Gets the calculated stat for the specified stat type.
+     *
+     * @param type 0: HP, 1: Attack, 2: Defense, 3: SpAttack, 4: SpDefense, 5: Speed
+     * @return the stat value, or -1 if invalid.
      */
     int getStat(int type);
 
-
     /**
-     * @param type 0:HP, 1:Attack, 2:Defense, 3:SpAttack, 4:SpDefense, 5:Speed
+     * Sets the calculated stat for the specified stat type.
+     *
+     * @param type  0: HP, 1: Attack, 2: Defense, 3: SpAttack, 4: SpDefense, 5: Speed
+     * @param value the new stat value.
      */
     void setStat(int type, int value);
 
     /**
-     * @return type 0:Pygmy, 1:Runt, 2:Small, 3:Normal, 4:Huge, 5:Giant, 6:Enormous, 7:Ginormous, 8:Microscopic
+     * @return The Pixelmon's size type (0: Pygmy, 1: Runt, 2: Small, 3: Normal, 4: Huge, 5: Giant,
+     *         6: Enormous, 7: Ginormous, 8: Microscopic).
      */
     int getSize();
 
     /**
-     * @param type 0:Pygmy, 1:Runt, 2:Small, 3:Normal, 4:Huge, 5:Giant, 6:Enormous, 7:Ginormous, 8:Microscopic
+     * Sets the Pixelmon's size type.
+     *
+     * @param type the size type.
      */
     void setSize(int type);
 
     /**
-     * @return 0-255
+     * @return The Pixelmon's happiness (0-255).
      */
     int getHapiness();
 
     /**
-     * @param value 0-255
+     * Sets the Pixelmon's happiness.
+     *
+     * @param value a value between 0 and 255.
      */
     void setHapiness(int value);
 
     /**
-     * @return 0:Hardy, 1:Serious, 2:Docile, 3:Bashful, 4:Quirky, 5:Lonely, 6:Brave, 7:Adamant, 8:Naughty, 9:Bold, 10:Relaxed, 11:Impish, 12:Lax, 13:Timid, 14:Hasty, 15:Jolly, 16:Naive, 17:Modest, 18:Mild, 19:Quiet, 20:Rash, 21:Calm, 22:Gentle, 23:Sassy, 24:Careful
+     * @return The Pixelmon's nature as an integer (see nature definitions).
      */
     int getNature();
 
     /**
-     * @param type 0:Hardy, 1:Serious, 2:Docile, 3:Bashful, 4:Quirky, 5:Lonely, 6:Brave, 7:Adamant, 8:Naughty, 9:Bold, 10:Relaxed, 11:Impish, 12:Lax, 13:Timid, 14:Hasty, 15:Jolly, 16:Naive, 17:Modest, 18:Mild, 19:Quiet, 20:Rash, 21:Calm, 22:Gentle, 23:Sassy, 24:Careful
+     * Sets the Pixelmon's nature.
+     *
+     * @param type the nature value.
      */
     void setNature(int type);
 
     /**
-     * @return -1:Uncaught, 0:Pokeball, 1:GreatBall, 2:UltraBall, 3:MasterBall, 4:LevelBall, 5:MoonBall, 6:FriendBall, 7:LoveBall, 8:SafariBall, 9:HeavyBall, 10:FastBall, 11:RepeatBall, 12:TimerBall, 13:NestBall, 14:NetBall, 15:DiveBall, 16:LuxuryBall, 17:HealBall, 18:DuskBall, 19:PremierBall, 20:SportBall, 21:QuickBall, 22:ParkBall, 23:LureBall, 24:CherishBall, 25:GSBall
+     * @return The type of Poké Ball in which the Pixelmon is contained
+     *         (-1: Uncaught, 0: Pokéball, 1: Great Ball, etc.).
      */
     int getPokeball();
 
     /**
-     * @param type -1:Uncaught, 0:Pokeball, 1:GreatBall, 2:UltraBall, 3:MasterBall, 4:LevelBall, 5:MoonBall, 6:FriendBall, 7:LoveBall, 8:SafariBall, 9:HeavyBall, 10:FastBall, 11:RepeatBall, 12:TimerBall, 13:NestBall, 14:NetBall, 15:DiveBall, 16:LuxuryBall, 17:HealBall, 18:DuskBall, 19:PremierBall, 20:SportBall, 21:QuickBall, 22:ParkBall, 23:LureBall, 24:CherishBall, 25:GSBall
+     * Sets the type of Poké Ball for this Pixelmon.
+     *
+     * @param type -1 for Uncaught, 0 for Pokéball, etc.
      */
     void setPokeball(int type);
 
+    /**
+     * @return The Pixelmon's nickname.
+     */
     String getNickname();
 
+    /**
+     * @return true if the Pixelmon has a nickname.
+     */
     boolean hasNickname();
 
+    /**
+     * Sets the Pixelmon's nickname.
+     *
+     * @param name the new nickname.
+     */
     void setNickname(String name);
 
+    /**
+     * Returns the name of the move in the specified slot.
+     *
+     * @param slot the move slot.
+     * @return the move name.
+     */
     String getMove(int slot);
 
+    /**
+     * Sets the move in the specified slot.
+     *
+     * @param slot the move slot.
+     * @param move the move name.
+     */
     void setMove(int slot, String move);
 }

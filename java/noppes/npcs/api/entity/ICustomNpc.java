@@ -1479,5 +1479,10 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
      */
     IActionManager getActionManager();
 
+    /**
+     * Returns the Magic Data of an NPC
+     *
+     * @return Magic data
+     */
     IMagicData getMagicData();
 }

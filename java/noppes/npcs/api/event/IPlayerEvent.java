@@ -8,6 +8,7 @@ import noppes.npcs.api.entity.IEntity;
 import noppes.npcs.api.entity.IEntityLivingBase;
 import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.handler.data.IPlayerEffect;
+import noppes.npcs.api.handler.data.IProfile;
 import noppes.npcs.api.item.IItemStack;
 
 public interface IPlayerEvent extends ICustomNPCsEvent {
@@ -293,5 +294,24 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
             boolean causedByDeath();
         }
 
+    }
+
+    @Cancelable
+    interface ProfileEvent extends IPlayerEvent {
+
+        IProfile getProfile();
+        int getSlot();
+
+        interface Changed extends ProfileEvent {
+            int getPrevSlot();
+        }
+
+        interface Create extends ProfileEvent {
+
+        }
+
+        interface Removed extends ProfileEvent {
+
+        }
     }
 }
