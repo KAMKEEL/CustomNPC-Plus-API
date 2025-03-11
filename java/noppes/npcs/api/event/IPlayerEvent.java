@@ -299,19 +299,33 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
     @Cancelable
     interface ProfileEvent extends IPlayerEvent {
 
+        /**
+         * @return IProfile Object of the Operation
+         */
         IProfile getProfile();
+
+        /**
+         * @return Slot ID in question
+         */
         int getSlot();
 
+        /**
+         * @return returns true if it occurs after the operation (not cancellable)
+         */
+        boolean isPost();
+
+        @Cancelable
         interface Changed extends ProfileEvent {
+            /**
+             * @return The previous slot before the switch
+             */
             int getPrevSlot();
         }
 
-        interface Create extends ProfileEvent {
+        @Cancelable
+        interface Create extends ProfileEvent {}
 
-        }
-
-        interface Removed extends ProfileEvent {
-
-        }
+        @Cancelable
+        interface Removed extends ProfileEvent {}
     }
 }
