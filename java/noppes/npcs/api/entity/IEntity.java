@@ -7,364 +7,596 @@ import noppes.npcs.api.IPos;
 import noppes.npcs.api.IWorld;
 import noppes.npcs.api.item.IItemStack;
 
+/**
+ * Represents a generic entity in the world.
+ * Provides methods to access or modify the entity's position, motion, temporary and persistent data,
+ * and to perform various actions (such as spawning particles, dropping items, or changing dimensions).
+ *
+ * @param <T> The underlying Minecraft entity type.
+ */
 public interface IEntity<T extends Entity> {
 
+    /**
+     * Spawns the given particle effect associated with this entity.
+     *
+     * @param entityParticle The particle effect to spawn.
+     */
     void spawnParticle(IParticle entityParticle);
 
+    /**
+     * Returns the unique entity ID.
+     *
+     * @return the entity ID.
+     */
     int getEntityId();
 
+    /**
+     * Returns the unique UUID string of the entity.
+     *
+     * @return the unique ID.
+     */
     String getUniqueID();
 
+    /**
+     * Returns the vertical offset for rendering.
+     *
+     * @return the Y offset.
+     */
     double getYOffset();
 
     /**
-     * @return The entities width
+     * @return The entity's width.
      */
     double getWidth();
 
     /**
-     * @return The entities height
+     * @return The entity's height.
      */
     double getHeight();
 
     /**
-     * @return The entities x position
+     * @return The entity's x position.
      */
     double getX();
 
     /**
-     * @param x The entities x position
+     * Sets the entity's x position.
+     *
+     * @param x the new x position.
      */
     void setX(double x);
 
     /**
-     * @return The entities y position
+     * @return The entity's y position.
      */
     double getY();
 
     /**
-     * @param y The entities y position
+     * Sets the entity's y position.
+     *
+     * @param y the new y position.
      */
     void setY(double y);
 
     /**
-     * @return The entities x position
+     * @return The entity's z position.
      */
     double getZ();
 
     /**
-     * @param z The entities x position
+     * Sets the entity's z position.
+     *
+     * @param z the new z position.
      */
     void setZ(double z);
 
     /**
-     * @return The entities z motion
+     * @return The entity's x motion.
      */
     double getMotionX();
 
     /**
-     * @param x The entities x motion
+     * Sets the entity's x motion.
+     *
+     * @param x the new x motion.
      */
     void setMotionX(double x);
 
     /**
-     * @return The entities x motion
+     * @return The entity's y motion.
      */
     double getMotionY();
 
     /**
-     * @param y The entities y motion
+     * Sets the entity's y motion.
+     *
+     * @param y the new y motion.
      */
     void setMotionY(double y);
 
     /**
-     * @return The entities y motion
+     * @return The entity's z motion.
      */
     double getMotionZ();
 
     /**
-     * @param z The entities z motion
+     * Sets the entity's z motion.
+     *
+     * @param z the new z motion.
      */
     void setMotionZ(double z);
 
+    /**
+     * Convenience method to set the entity's motion in all three axes.
+     *
+     * @param x the x motion.
+     * @param y the y motion.
+     * @param z the z motion.
+     */
     void setMotion(double x, double y, double z);
 
+    /**
+     * Sets the entity's motion based on the given position.
+     *
+     * @param pos the position containing motion components.
+     */
     void setMotion(IPos pos);
 
+    /**
+     * Returns the entity's current motion as an IPos object.
+     *
+     * @return the motion vector.
+     */
     IPos getMotion();
 
+    /**
+     * @return Whether the entity is airborne.
+     */
     boolean isAirborne();
 
     /**
-     * @return The block x position
+     * @return The block (integer) x position.
      */
     int getBlockX();
 
     /**
-     * @return The block y position
+     * @return The block (integer) y position.
      */
     int getBlockY();
 
     /**
-     * @return The block z position
+     * @return The block (integer) z position.
      */
     int getBlockZ();
 
     /**
-     * @param x The x position
-     * @param y The y position
-     * @param z The z position
+     * Sets the entity's position to the specified coordinates.
+     *
+     * @param x the x coordinate.
+     * @param y the y coordinate.
+     * @param z the z coordinate.
      */
     void setPosition(double x, double y, double z);
 
+    /**
+     * Sets the entity's position using an IPos object.
+     *
+     * @param pos the position object.
+     */
     void setPosition(IPos pos);
 
+    /**
+     * Returns the entity's current position as an IPos object.
+     *
+     * @return the position.
+     */
     IPos getPosition();
 
+    /**
+     * @return The dimension ID the entity is in.
+     */
     int getDimension();
 
+    /**
+     * Moves the entity to the specified dimension.
+     *
+     * @param dimensionId the dimension ID.
+     */
     void setDimension(int dimensionId);
 
     /**
-     * @param range The search range for entities around this entity
-     * @return Array of entities within range
+     * Returns an array of entities within the specified range.
+     *
+     * @param range the search range.
+     * @return an array of surrounding entities.
      */
     IEntity[] getSurroundingEntities(int range);
 
     /**
-     * @param range The search range for entities around this entity
-     * @param type The EntityType you want to find
-     * @return Array of entities within range
+     * Returns an array of entities of a specified type within the given range.
+     *
+     * @param range the search range.
+     * @param type  the EntityType to find.
+     * @return an array of surrounding entities.
      */
     IEntity[] getSurroundingEntities(int range, int type);
 
     /**
-     * @return Whether the entity is alive or not
+     * @return Whether the entity is alive.
      */
     boolean isAlive();
 
     /**
-     * @param key Get temp data for this key
-     * @return Returns the stored temp data
+     * Returns temporary data stored under the given key.
+     *
+     * @param key the key.
+     * @return the temporary data.
      */
     Object getTempData(String key);
 
     /**
-     * Tempdata gets cleared when the entity gets unloaded or the world restarts
-     * @param key The key for the data stored
-     * @param value The data stored
+     * Stores temporary data that is cleared when the entity is unloaded.
+     *
+     * @param key   the key.
+     * @param value the value.
      */
     void setTempData(String key, Object value);
 
     /**
-     * @param key The key thats going to be tested against the temp data
-     * @return Whether or not temp data containes the key
+     * Checks if temporary data for the given key exists.
+     *
+     * @param key the key.
+     * @return true if it exists; false otherwise.
      */
     boolean hasTempData(String key);
 
     /**
-     * @param key The key for the temp data to be removed
+     * Removes the temporary data for the given key.
+     *
+     * @param key the key.
      */
     void removeTempData(String key);
 
     /**
-     * Remove all tempdata
+     * Clears all temporary data.
      */
     void clearTempData();
 
+    /**
+     * Returns an array of keys for temporary data.
+     *
+     * @return the keys.
+     */
     String[] getTempDataKeys();
 
     /**
-     * @param key The key of the data to be returned
-     * @return Returns the stored data
+     * Returns stored (persistent) data for the given key.
+     *
+     * @param key the key.
+     * @return the stored data.
      */
     Object getStoredData(String key);
 
     /**
-     * Stored data persists through world restart. Unlike tempdata only Strings and Numbers can be saved
-     * @param key The key for the data stored
-     * @param value The data stored. This data can be either a Number or a String. Other data is not stored
+     * Stores persistent data under the given key.
+     * Only Numbers and Strings are supported.
+     *
+     * @param key   the key.
+     * @param value the value.
      */
     void setStoredData(String key, Object value);
 
     /**
-     * @param key The key of the data to be checked
-     * @return Returns whether or not the stored data contains the key
+     * Checks if stored data for the given key exists.
+     *
+     * @param key the key.
+     * @return true if it exists; false otherwise.
      */
     boolean hasStoredData(String key);
 
     /**
-     * @param key The key of the data to be removed
+     * Removes the stored data for the given key.
+     *
+     * @param key the key.
      */
     void removeStoredData(String key);
 
     /**
-     * Remove all stored data
+     * Clears all stored data.
      */
     void clearStoredData();
 
+    /**
+     * Returns an array of keys for stored data.
+     *
+     * @return the keys.
+     */
     String[] getStoredDataKeys();
 
     /**
-     * @return The age of this entity in ticks
+     * @return The age of the entity in ticks.
      */
     long getAge();
 
     /**
-     * Despawns this entity. Removes it permanently
+     * Permanently despawns the entity.
      */
     void despawn();
 
     /**
-     * @return Return whether or not this entity is standing in water
+     * @return Whether the entity is standing in water.
      */
     boolean inWater();
 
     /**
-     * @return Return whether or not this entity is standing in lava
+     * @return Whether the entity is standing in lava.
      */
     boolean inLava();
 
     /**
-     * @return Return whether or not this entity is standing in fire
+     * @return Whether the entity is standing in fire.
      */
     boolean inFire();
 
     /**
-     * @return Return whether or not this entity is on fire
+     * @return Whether the entity is on fire.
      */
     boolean isBurning();
 
     /**
-     * @param ticks Amount of world ticks this entity will burn. 20 ticks equals 1 second
+     * Sets the entity on fire for the given number of ticks (20 ticks = 1 second).
+     *
+     * @param ticks the burn duration.
      */
     void setBurning(int ticks);
 
     /**
-     * Removes fire from this entity
+     * Extinguishes any fire on the entity.
      */
     void extinguish();
 
     /**
-     * @return Name as which it's registered in minecraft
+     * @return The entity type name as registered in Minecraft.
      */
     String getTypeName();
 
     /**
-     * @param item Item to be dropped
+     * Causes the entity to drop the given item.
+     *
+     * @param item the item to drop.
      */
     void dropItem(IItemStack item);
 
     /**
-     * @return Return the rider
+     * @return The entity riding this entity.
      */
     IEntity getRider();
 
     /**
-     * @param entity The entity to ride this entity
+     * Sets the given entity as the rider of this entity.
+     *
+     * @param entity the rider.
      */
     void setRider(IEntity entity);
 
     /**
-     * @return Return the entity, this entity is riding
+     * @return The entity this entity is riding.
      */
     IEntity getMount();
 
     /**
-     * @param entity The entity this entity will mount
+     * Sets the entity to be mounted by this entity.
+     *
+     * @param entity the mount.
      */
     void setMount(IEntity entity);
 
     /**
-     * @see noppes.npcs.scripted.constants.EntityType
-     * @return Returns the EntityType of this entity
+     * Returns the EntityType as defined in the scripting constants.
+     *
+     * @return the EntityType.
      */
     int getType();
 
     /**
-     * @since 1.7.10c
-     * @param type @EntityType to check
-     * @return Returns whether the entity is type of the given @EntityType
+     * Checks whether the entity is of the specified EntityType.
+     *
+     * @param type the type to check.
+     * @return true if the entity is of that type; false otherwise.
      */
     boolean typeOf(int type);
 
     /**
-     * @param rotation The rotation to be set (0-360)
+     * Sets the entity's rotation (yaw) in degrees (0-360).
+     *
+     * @param rotation the rotation angle.
      */
     void setRotation(float rotation);
 
+    /**
+     * Sets both the rotation (yaw) and pitch of the entity.
+     *
+     * @param rotationYaw   the yaw angle.
+     * @param rotationPitch the pitch angle.
+     */
     void setRotation(float rotationYaw, float rotationPitch);
 
     /**
-     * @return Current rotation of the npc
+     * @return The current rotation (yaw) of the entity.
      */
     float getRotation();
 
-    public void setPitch(float pitch);
-
-    public float getPitch();
+    /**
+     * Sets the entity's pitch.
+     *
+     * @param pitch the pitch angle.
+     */
+    void setPitch(float pitch);
 
     /**
-     * @param power How strong the knockback is
-     * @param direction The direction in which he flies back (0-360). Usually based on getRotation()
+     * Returns the entity's pitch.
+     *
+     * @return the pitch angle.
+     */
+    float getPitch();
+
+    /**
+     * Applies a knockback effect to the entity.
+     *
+     * @param power     the strength of the knockback.
+     * @param direction the direction in degrees (usually based on getRotation()).
      */
     void knockback(int power, float direction);
 
+    /**
+     * Applies knockback using individual power components.
+     *
+     * @param xpower    the x-axis power.
+     * @param ypower    the y-axis power.
+     * @param zpower    the z-axis power.
+     * @param direction the direction in degrees.
+     */
     void knockback(double xpower, double ypower, double zpower, float direction);
+
+    /**
+     * Applies knockback using a position vector.
+     *
+     * @param pos       the position vector.
+     * @param direction the direction in degrees.
+     */
     void knockback(IPos pos, float direction);
 
+    /**
+     * Sets the entity's immunity time (hurt resistance).
+     *
+     * @param ticks the number of ticks.
+     */
     void setImmune(int ticks);
 
-    public void setInvisible(boolean invisible);
+    /**
+     * Sets the entity's invisibility.
+     *
+     * @param invisible true to make invisible.
+     */
+    void setInvisible(boolean invisible);
 
-    public void setSneaking(boolean sneaking);
+    /**
+     * Sets whether the entity is sneaking.
+     *
+     * @param sneaking true to enable sneaking.
+     */
+    void setSneaking(boolean sneaking);
 
-    public void setSprinting(boolean sprinting);
+    /**
+     * Sets whether the entity is sprinting.
+     *
+     * @param sprinting true to enable sprinting.
+     */
+    void setSprinting(boolean sprinting);
 
+    /**
+     * @return Whether the entity has collided with something.
+     */
     boolean hasCollided();
 
+    /**
+     * @return Whether the entity has collided vertically.
+     */
     boolean hasCollidedVertically();
 
+    /**
+     * @return Whether the entity has collided horizontally.
+     */
     boolean hasCollidedHorizontally();
 
+    /**
+     * @return Whether the entity is capturing drops.
+     */
     boolean capturesDrops();
 
+    /**
+     * Sets whether the entity captures drops.
+     *
+     * @param capture true to capture drops.
+     */
     void setCapturesDrops(boolean capture);
 
+    /**
+     * Sets the captured drops for this entity.
+     *
+     * @param capturedDrops an array of captured drops.
+     */
     void setCapturedDrops(IEntity<?>[] capturedDrops);
 
+    /**
+     * Returns the captured drops.
+     *
+     * @return an array of captured drops.
+     */
     IEntity<?>[] getCapturedDrops();
 
     /**
+     * @return Whether the entity is sneaking.
      * @since 1.7.10c
-     * @return Returns whether or not this entity is sneaking
      */
     boolean isSneaking();
 
     /**
+     * @return Whether the entity is sprinting.
      * @since 1.7.10c
-     * @return Returns whether or not this entity is sprinting
      */
     boolean isSprinting();
 
     /**
-     * @since 1.7.10c
-     * Expert users only
-     * @return Returns minecrafts entity
+     * Expert users only.
+     *
+     * @return The underlying Minecraft entity.
      */
     T getMCEntity();
 
-    public INbt getNbt();
+    /**
+     * Returns the entity's NBT data.
+     *
+     * @return the NBT data.
+     */
+    INbt getNbt();
 
-    public INbt getAllNbt();
+    /**
+     * Returns all NBT data for the entity.
+     *
+     * @return the complete NBT data.
+     */
+    INbt getAllNbt();
 
-    public void setNbt(INbt nbt);
+    /**
+     * Applies the given NBT data to the entity.
+     *
+     * @param nbt the NBT data.
+     */
+    void setNbt(INbt nbt);
 
+    /**
+     * Returns optional NBT data if available.
+     *
+     * @return the optional NBT data, or null if none.
+     */
     INbt getNbtOptional();
 
+    /**
+     * Stores the entity as a clone with the given tab and name.
+     *
+     * @param tab  the tab index.
+     * @param name the name for the clone.
+     */
     void storeAsClone(int tab, String name);
 
+    /**
+     * @return The world this entity exists in.
+     */
     IWorld getWorld();
 
+    /**
+     * Updates the entity's state.
+     */
     void updateEntity();
 }

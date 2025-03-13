@@ -6,17 +6,17 @@ import noppes.npcs.api.item.IItemStack;
 public interface IRoleTrader extends IRole {
 
     /**
-     * @param slot Slot number 0-17
-     * @param currency Currency item
+     * @param slot      Slot number 0-17
+     * @param currency  Currency item
      * @param currency2 Currency item number two
-     * @param sold Item to be sold by this npc
+     * @param sold      Item to be sold by this npc
      */
     void setSellOption(int slot, IItemStack currency, IItemStack currency2, IItemStack sold);
 
     /**
-     * @param slot Slot number 0-17
+     * @param slot     Slot number 0-17
      * @param currency Currency item
-     * @param sold Item to be sold by this npc
+     * @param sold     Item to be sold by this npc
      */
     void setSellOption(int slot, IItemStack currency, IItemStack sold);
 
@@ -67,12 +67,14 @@ public interface IRoleTrader extends IRole {
 
     /**
      * sets the purchase num for that slot to 0
+     *
      * @param slot
      */
     void resetPurchaseNum(int slot);
 
     /**
      * sets the purchase num for that slot and player to 0
+     *
      * @param slot
      * @param player
      */
@@ -93,12 +95,14 @@ public interface IRoleTrader extends IRole {
 
     /**
      * prevent an item from being sold on that slot
+     *
      * @param slot
      */
     void disableSlot(int slot);
 
     /**
      * disables the slot for this player
+     *
      * @param slot
      * @param player
      */
@@ -106,12 +110,14 @@ public interface IRoleTrader extends IRole {
 
     /**
      * allow an item to be sold on that slot
+     *
      * @param slot
      */
     void enableSlot(int slot);
 
     /**
      * enables the slot for this player
+     *
      * @param slot
      * @param player
      */

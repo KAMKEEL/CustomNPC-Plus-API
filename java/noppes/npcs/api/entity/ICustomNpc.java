@@ -6,10 +6,7 @@ import noppes.npcs.api.ITimers;
 import noppes.npcs.api.entity.data.IModelData;
 import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.api.handler.IOverlayHandler;
-import noppes.npcs.api.handler.data.IAnimationData;
-import noppes.npcs.api.handler.data.IDialog;
-import noppes.npcs.api.handler.data.IFaction;
-import noppes.npcs.api.handler.data.ILines;
+import noppes.npcs.api.handler.data.*;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.jobs.IJob;
 import noppes.npcs.api.roles.IRole;
@@ -940,4 +937,11 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
      * @return the action manager responsible for scheduling actions to the NPC's AI
      */
     IActionManager getActionManager();
+
+    /**
+     * Returns the Magic Data of an NPC
+     *
+     * @return Magic data
+     */
+    IMagicData getMagicData();
 }

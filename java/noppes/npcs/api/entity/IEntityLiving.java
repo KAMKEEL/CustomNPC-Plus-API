@@ -2,50 +2,155 @@ package noppes.npcs.api.entity;
 
 import net.minecraft.entity.EntityLiving;
 
+/**
+ * Represents a living entity (mob, NPC, etc.) that extends the base living functionality.
+ * Provides additional methods for navigation, sound, custom name, leashing, and more.
+ *
+ * @param <T> The underlying Minecraft EntityLiving type.
+ */
 public interface IEntityLiving<T extends EntityLiving> extends IEntityLivingBase<T> {
+
+    /**
+     * Checks if the entity is currently navigating (pathfinding).
+     *
+     * @return true if navigating; false otherwise.
+     */
     boolean isNavigating();
 
+    /**
+     * Clears the current navigation path.
+     */
     void clearNavigation();
 
-    void navigateTo(double var1, double var3, double var5, double var7);
+    /**
+     * Commands the entity to navigate toward the specified destination.
+     *
+     * @param x     Destination x coordinate.
+     * @param y     Destination y coordinate.
+     * @param z     Destination z coordinate.
+     * @param speed Movement speed (0.7 is default).
+     */
+    void navigateTo(double x, double y, double z, double speed);
 
+    /**
+     * Returns the underlying Minecraft entity.
+     *
+     * @return the Minecraft entity.
+     */
     T getMCEntity();
 
-     void playLivingSound();
+    /**
+     * Plays the entity's living sound.
+     */
+    void playLivingSound();
 
-     void spawnExplosionParticle();
+    /**
+     * Spawns explosion particles for this entity.
+     */
+    void spawnExplosionParticle();
 
-     void setMoveForward(float speed);
+    /**
+     * Sets the forward movement speed for the entity.
+     *
+     * @param speed the forward speed.
+     */
+    void setMoveForward(float speed);
 
-     void faceEntity(IEntity entity, float pitch, float yaw);
+    /**
+     * Rotates the entity to face the given entity.
+     *
+     * @param entity the target entity.
+     * @param pitch  the pitch angle.
+     * @param yaw    the yaw angle.
+     */
+    void faceEntity(IEntity entity, float pitch, float yaw);
 
-     boolean canPickUpLoot();
+    /**
+     * @return Whether the entity can pick up loot.
+     */
+    boolean canPickUpLoot();
 
-     void setCanPickUpLoot(boolean pickUp);
+    /**
+     * Sets whether the entity can pick up loot.
+     *
+     * @param pickUp true to allow picking up loot.
+     */
+    void setCanPickUpLoot(boolean pickUp);
 
-     boolean isPersistent();
+    /**
+     * @return Whether the entity is persistent (won't despawn).
+     */
+    boolean isPersistent();
 
-     void enablePersistence();
+    /**
+     * Enables persistence so that the entity does not despawn.
+     */
+    void enablePersistence();
 
-     void setCustomNameTag(String text);
+    /**
+     * Sets a custom name tag for the entity.
+     *
+     * @param text the custom name.
+     */
+    void setCustomNameTag(String text);
 
-     String getCustomNameTag();
+    /**
+     * Returns the entity's custom name tag.
+     *
+     * @return the custom name.
+     */
+    String getCustomNameTag();
 
-     boolean hasCustomNameTag();
+    /**
+     * @return Whether the entity has a custom name tag.
+     */
+    boolean hasCustomNameTag();
 
-     void setAlwaysRenderNameTag(boolean alwaysRender);
+    /**
+     * Sets whether the entity's name tag is always rendered.
+     *
+     * @param alwaysRender true to always render the name tag.
+     */
+    void setAlwaysRenderNameTag(boolean alwaysRender);
 
-     boolean getAlwaysRenderNameTag();
+    /**
+     * @return Whether the name tag is always rendered.
+     */
+    boolean getAlwaysRenderNameTag();
 
-     void clearLeashed(boolean sendPacket, boolean dropLeash);
+    /**
+     * Clears the entity's leash.
+     *
+     * @param sendPacket whether to send a packet update.
+     * @param dropLeash  whether to drop the leash item.
+     */
+    void clearLeashed(boolean sendPacket, boolean dropLeash);
 
-     boolean allowLeashing();
+    /**
+     * @return Whether the entity allows leashing.
+     */
+    boolean allowLeashing();
 
-     boolean getLeashed();
+    /**
+     * @return Whether the entity is currently leashed.
+     */
+    boolean getLeashed();
 
-     IEntity getLeashedTo();
+    /**
+     * @return The entity to which this entity is leashed.
+     */
+    IEntity getLeashedTo();
 
-     void setLeashedTo(IEntity entity, boolean sendPacket);
+    /**
+     * Leashes this entity to the specified entity.
+     *
+     * @param entity     the entity to leash to.
+     * @param sendPacket whether to send a packet update.
+     */
+    void setLeashedTo(IEntity entity, boolean sendPacket);
 
-     boolean canBeSteered();
+    /**
+     * @return Whether the entity can be steered.
+     */
+    boolean canBeSteered();
 }

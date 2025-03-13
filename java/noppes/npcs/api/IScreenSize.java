@@ -2,11 +2,11 @@ package noppes.npcs.api;
 
 public interface IScreenSize {
 
-    public int getWidth();
+    int getWidth();
 
-    public int getHeight();
+    int getHeight();
 
-    public int getWidthPercent(double percent);
+    int getWidthPercent(double percent);
 
-    public int getHeightPercent(double percent);
+    int getHeightPercent(double percent);
 }

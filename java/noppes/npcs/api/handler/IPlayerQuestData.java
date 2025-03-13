@@ -16,7 +16,7 @@ public interface IPlayerQuestData {
 
     boolean hasFinishedQuest(int id);
 
-    public boolean hasActiveQuest(int id);
+    boolean hasActiveQuest(int id);
 
     IQuest[] getActiveQuests();
 
@@ -24,5 +24,5 @@ public interface IPlayerQuestData {
 
     long getLastCompletedTime(int id);
 
-    void setLastCompletedTime(int id,long time);
+    void setLastCompletedTime(int id, long time);
 }

@@ -4,7 +4,6 @@ import net.minecraft.tileentity.TileEntity;
 
 public interface ITileEntity {
     /**
-     *
      * @return An integer representing the metadata of this block. Blocks with different states will
      * return different values. For example, each stage of growth for a wheat crop will return a different value, each
      * orientation of a stair block will return a different value, etc.
@@ -12,7 +11,6 @@ public interface ITileEntity {
     int getBlockMetadata();
 
     /**
-     *
      * @return The world this tile entity is in.
      */
     IWorld getWorld();
@@ -20,7 +18,6 @@ public interface ITileEntity {
     void setWorld(IWorld world);
 
     /**
-     *
      * @return An obfuscated MC tile entity object.
      */
     TileEntity getMCTileEntity();
@@ -36,6 +33,7 @@ public interface ITileEntity {
      * @return The distance of this tile entity from the point given by the x, y, and z parameters.
      */
     double getDistanceFrom(double x, double y, double z);
+
     double getDistanceFrom(IPos pos);
 
     /**
@@ -44,7 +42,6 @@ public interface ITileEntity {
     IBlock getBlockType();
 
     /**
-     *
      * @return True if the tile entity is invalid, false otherwise.
      */
     boolean isInvalid();

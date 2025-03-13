@@ -6,205 +6,434 @@ import noppes.npcs.api.IDamageSource;
 import noppes.npcs.api.IPos;
 import noppes.npcs.api.item.IItemStack;
 
+/**
+ * Represents a living entity (mob, NPC, etc.) with additional methods to manage health,
+ * damage, targeting, vision, potion effects, equipment, and various attributes.
+ * <p>
+ * This interface extends {@link IEntity} and provides functionality specific to living entities.
+ *
+ * @param <T> the underlying Minecraft EntityLivingBase type.
+ */
 public interface IEntityLivingBase<T extends EntityLivingBase> extends IEntity<T> {
+
     /**
-     * @return The entity's current health
+     * Returns the entity's current health.
+     *
+     * @return the health value.
      */
     float getHealth();
 
     /**
-     * @param health The new health of this entity
+     * Sets the entity's health to the specified value.
+     *
+     * @param health the new health value.
      */
     void setHealth(float health);
 
+    /**
+     * Applies damage to this entity using a generic damage source.
+     *
+     * @param damage the damage amount.
+     */
     void hurt(float damage);
 
+    /**
+     * Applies damage to this entity with the given source entity.
+     *
+     * @param damage the damage amount.
+     * @param source the source entity.
+     */
     void hurt(float damage, IEntity source);
 
+    /**
+     * Applies damage to this entity using a custom damage source.
+     *
+     * @param damage       the damage amount.
+     * @param damageSource the damage source.
+     */
     void hurt(float damage, IDamageSource damageSource);
 
+    /**
+     * Sets the maximum hurt time (hurt resistance time) for this entity.
+     *
+     * @param time the time in ticks.
+     */
     void setMaxHurtTime(int time);
 
+    /**
+     * Returns the maximum hurt time (hurt resistance time) for this entity.
+     *
+     * @return the time in ticks.
+     */
     int setMaxHurtTime();
 
     /**
-     * @return Entity's max health
+     * Returns the entity's maximum health.
+     *
+     * @return the maximum health.
      */
     double getMaxHealth();
 
+    /**
+     * Returns the follow range attribute of the entity.
+     *
+     * @return the follow range.
+     */
     double getFollowRange();
 
+    /**
+     * Returns the knockback resistance of the entity.
+     *
+     * @return the knockback resistance.
+     */
     double getKnockbackResistance();
 
+    /**
+     * Returns the movement speed of the entity.
+     *
+     * @return the speed.
+     */
     double getSpeed();
 
+    /**
+     * Returns the melee strength (attack damage) of the entity.
+     *
+     * @return the melee strength.
+     */
     double getMeleeStrength();
 
+    /**
+     * Sets the entity's maximum health.
+     *
+     * @param health the new maximum health.
+     */
     void setMaxHealth(double health);
 
+    /**
+     * Sets the follow range of the entity.
+     *
+     * @param range the new follow range.
+     */
     void setFollowRange(double range);
 
+    /**
+     * Sets the knockback resistance of the entity.
+     *
+     * @param knockbackResistance the new knockback resistance.
+     */
     void setKnockbackResistance(double knockbackResistance);
 
+    /**
+     * Sets the movement speed of the entity.
+     *
+     * @param speed the new movement speed.
+     */
     void setSpeed(double speed);
 
+    /**
+     * Sets the melee strength (attack damage) of the entity.
+     *
+     * @param attackDamage the new attack damage.
+     */
     void setMeleeStrength(double attackDamage);
 
     /**
-     * @return Whether or not this entity is attacking something
+     * @return true if this entity is currently attacking a target; false otherwise.
      */
     boolean isAttacking();
 
     /**
-     * @param living Entity which this entity will attack
+     * Sets the attack target for this entity.
+     *
+     * @param living the target entity.
      */
     void setAttackTarget(IEntityLivingBase living);
 
     /**
-     * @return The entity which this entity is attacking
+     * Returns the current attack target.
+     *
+     * @return the target entity.
      */
     IEntityLivingBase getAttackTarget();
 
+    /**
+     * Returns the time (in ticks) for which the current attack target has been active.
+     *
+     * @return the attack target time.
+     */
     int getAttackTargetTime();
 
+    /**
+     * Sets the last attacker for this entity.
+     *
+     * @param p_130011_1_ the last attacker.
+     */
     void setLastAttacker(IEntity p_130011_1_);
 
+    /**
+     * Returns the last attacker of this entity.
+     *
+     * @return the last attacker.
+     */
     IEntity getLastAttacker();
 
+    /**
+     * Returns the time (in ticks) since the entity was last attacked.
+     *
+     * @return the last attacker time.
+     */
     int getLastAttackerTime();
 
+    /**
+     * Checks whether the entity can breathe underwater.
+     *
+     * @return true if it can breathe underwater; false otherwise.
+     */
     boolean canBreatheUnderwater();
 
+    /**
+     * Returns the EntityType (as defined in scripting constants) for this entity.
+     *
+     * @return the entity type.
+     */
     int getType();
 
+    /**
+     * Checks if this entity is of the specified type.
+     *
+     * @param type the type to check.
+     * @return true if this entity is of that type; false otherwise.
+     */
     boolean typeOf(int type);
 
     /**
-     * @param entity Entity to check
-     * @return Whether or not this entity can see the given entity
-     */
-    boolean canSeeEntity(IEntity entity);
-
-    /**
+     * Returns the look vector of this entity as an IPos object.
      *
-     * @return Returns the look vector of this entity as an IPos object.
+     * @return the look vector.
      */
     IPos getLookVector();
 
+    /**
+     * Returns the block that the entity is looking at, with detailed stopping conditions.
+     *
+     * @param maxDistance     the maximum distance to check.
+     * @param stopOnBlock     whether to stop on any block.
+     * @param stopOnLiquid    whether to stop on liquids.
+     * @param stopOnCollision whether to stop on collisions.
+     * @return the block being looked at.
+     */
     IBlock getLookingAtBlock(int maxDistance, boolean stopOnBlock, boolean stopOnLiquid, boolean stopOnCollision);
 
     /**
+     * Returns the first block found by following the entity's look vector,
+     * using default parameters (stop on block).
      *
-     * @param maxDistance The max distance to perform checks before stopping
-     * @return The first block found by following along the entity's look vector.
+     * @param maxDistance the maximum distance to check.
+     * @return the block being looked at.
      */
     IBlock getLookingAtBlock(int maxDistance);
 
+    /**
+     * Returns the position (IPos) corresponding to the final obstructed point along the entity's look vector,
+     * with detailed stopping conditions.
+     *
+     * @param maxDistance     the maximum distance to check.
+     * @param stopOnBlock     whether to stop on blocks.
+     * @param stopOnLiquid    whether to stop on liquids.
+     * @param stopOnCollision whether to stop on collisions.
+     * @return the obstructed position, or the final position if unobstructed.
+     */
     IPos getLookingAtPos(int maxDistance, boolean stopOnBlock, boolean stopOnLiquid, boolean stopOnCollision);
 
     /**
-     * Returns an IPos object corresponding to the final obstructed point following along the
-     * entity's look vector. If no obstructions are found (entity is looking in a straight path of
-     * air with no blocks in the way), the final position is returned.
+     * Returns the position (IPos) corresponding to the final obstructed point along the entity's look vector,
+     * using default parameters (stop on block).
      *
-     * @param maxDistance The max distance to perform checks before stopping
-     * @return The position the entity is looking at.
+     * @param maxDistance the maximum distance to check.
+     * @return the position being looked at.
      */
     IPos getLookingAtPos(int maxDistance);
 
     /**
+     * Returns an array of entities intersecting with the entity's look vector.
+     * Entities are sorted first by proximity along the vector, then by closeness to the vector.
      *
-     * @param maxDistance The max distance to perform checks before stopping
-     * @param range The radius to check for surrounding entities at every point on the vector
-     * @return A list of entities, sorted first by closest to the entity along the look vector, then by which
-     *         entities are closest to the vector.
+     * @param ignoreEntities  an array of entities to ignore.
+     * @param maxDistance     the maximum distance to check.
+     * @param offset          the offset along the vector.
+     * @param range           the search radius around the vector.
+     * @param stopOnBlock     whether to stop on blocks.
+     * @param stopOnLiquid    whether to stop on liquids.
+     * @param stopOnCollision whether to stop on collisions.
+     * @return an array of entities.
      */
     IEntity[] getLookingAtEntities(IEntity[] ignoreEntities, int maxDistance, double offset, double range, boolean stopOnBlock, boolean stopOnLiquid, boolean stopOnCollision);
 
+    /**
+     * Returns an array of entities intersecting with the entity's look vector with detailed stop conditions.
+     *
+     * @param maxDistance     the maximum distance.
+     * @param offset          the offset.
+     * @param range           the search radius.
+     * @param stopOnBlock     whether to stop on blocks.
+     * @param stopOnLiquid    whether to stop on liquids.
+     * @param stopOnCollision whether to stop on collisions.
+     * @return an array of entities.
+     */
     IEntity[] getLookingAtEntities(int maxDistance, double offset, double range, boolean stopOnBlock, boolean stopOnLiquid, boolean stopOnCollision);
 
+    /**
+     * Returns an array of entities intersecting with the entity's look vector using default stop conditions.
+     *
+     * @param maxDistance the maximum distance.
+     * @param offset      the offset.
+     * @param range       the search radius.
+     * @return an array of entities.
+     */
     IEntity[] getLookingAtEntities(int maxDistance, double offset, double range);
 
     /**
-     * Expert use only
-     * @return Returns the minecraft entity object
+     * Expert use only.
+     * Returns the underlying Minecraft EntityLivingBase object.
+     *
+     * @return the Minecraft entity.
      */
     T getMCEntity();
 
     /**
-     * Makes the entity swing its hand
+     * Makes the entity swing its hand.
      */
     void swingHand();
 
     /**
-     * Works the same as the <a href="http://minecraft.wiki/w/Commands#effect">/effect command</a>
-     * @param effect
-     * @param duration The duration in seconds
-     * @param strength The amplifier of the potion effect
-     * @param hideParticles Whether or not you want to hide potion particles
+     * Applies a potion effect to the entity.
+     * Works similarly to the /effect command.
+     *
+     * @param effect        the potion effect ID.
+     * @param duration      the duration in seconds.
+     * @param strength      the amplifier of the effect.
+     * @param hideParticles whether to hide potion particles.
      */
     void addPotionEffect(int effect, int duration, int strength, boolean hideParticles);
 
     /**
-     * Clears all potion effects
+     * Clears all active potion effects from the entity.
      */
     void clearPotionEffects();
 
     /**
-     * @since 1.7.10c
-     * @param effect Potion effect to check
-     * @return Returns -1 if its not active. Otherwise returns the strenght of the potion
+     * Returns the amplifier of the specified potion effect.
+     * If the effect is not active, returns -1.
+     *
+     * @param effect the potion effect ID.
+     * @return the amplifier, or -1 if not active.
      */
     int getPotionEffect(int effect);
 
     /**
-     * Note not all Living Entities support this
-     * @since 1.7.10c
-     * @return The item the entity is holding
+     * Returns the item the entity is currently holding.
+     * Note that not all living entities support this.
+     *
+     * @return the held item.
      */
     IItemStack getHeldItem();
 
     /**
-     * Note not all Living Entities support this
-     * @since 1.7.10c
-     * @param item The item to be set
+     * Sets the item the entity is holding.
+     * Note that not all living entities support this.
+     *
+     * @param item the item to set.
      */
     void setHeldItem(IItemStack item);
 
     /**
-     * Note not all Living Entities support this
-     * @param slot Slot of what armor piece to get, 0:boots, 1:pants, 2:body, 3:head
-     * @return The item in the given slot
+     * Returns the armor piece in the given slot.
+     * Slots: 0 - boots, 1 - pants, 2 - body, 3 - head.
+     *
+     * @param slot the armor slot.
+     * @return the armor item.
      */
     IItemStack getArmor(int slot);
 
     /**
-     * Note not all Living Entities support this
-     * @since 1.7.10c
-     * @param slot Slot of what armor piece to set, 0:boots, 1:pants, 2:body, 3:head
-     * @param item Item to be set
+     * Sets the armor piece in the given slot.
+     * Slots: 0 - boots, 1 - pants, 2 - body, 3 - head.
+     *
+     * @param slot the armor slot.
+     * @param item the item to set.
      */
     void setArmor(int slot, IItemStack item);
 
+    /**
+     * @return true if this entity is a child.
+     */
     boolean isChild();
 
+    /**
+     * Renders a broken item stack effect for the given item.
+     *
+     * @param itemStack the item stack.
+     */
     void renderBrokenItemStack(IItemStack itemStack);
 
+    /**
+     * @return true if the entity is on a ladder.
+     */
     boolean isOnLadder();
 
+    /**
+     * Returns the total armor value of the entity.
+     *
+     * @return the armor value.
+     */
     int getTotalArmorValue();
 
+    /**
+     * Returns the number of arrows currently embedded in the entity.
+     *
+     * @return the arrow count.
+     */
     int getArrowCountInEntity();
 
+    /**
+     * Sets the number of arrows embedded in the entity.
+     *
+     * @param count the new arrow count.
+     */
     void setArrowCountInEntity(int count);
 
+    /**
+     * Dismounts the specified entity from this entity.
+     *
+     * @param entity the entity to dismount.
+     */
     void dismountEntity(IEntity entity);
 
+    /**
+     * Sets the AI move speed for the entity.
+     *
+     * @param speed the speed value.
+     */
     void setAIMoveSpeed(float speed);
 
+    /**
+     * Returns the AI move speed of the entity.
+     *
+     * @return the speed.
+     */
     float getAIMoveSpeed();
 
+    /**
+     * Sets the absorption (extra health) amount.
+     *
+     * @param amount the absorption amount.
+     */
     void setAbsorptionAmount(float amount);
 
+    /**
+     * Returns the absorption (extra health) amount.
+     *
+     * @return the absorption amount.
+     */
     float getAbsorptionAmount();
 }

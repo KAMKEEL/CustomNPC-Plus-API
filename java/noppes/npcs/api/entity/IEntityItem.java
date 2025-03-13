@@ -3,54 +3,89 @@ package noppes.npcs.api.entity;
 import net.minecraft.entity.item.EntityItem;
 import noppes.npcs.api.item.IItemStack;
 
+/**
+ * Represents an item entity in the world.
+ * Provides methods to manage pickup delay, age, ownership, and the contained item.
+ *
+ * @param <T> The underlying Minecraft EntityItem type.
+ */
 public interface IEntityItem<T extends EntityItem> extends IEntity<T> {
 
     /**
-     * @return The owner of the item, only the owner can pick the item up
+     * Returns the owner name of the item.
+     * Only the owner can pick the item up (unless the age is very low).
+     *
+     * @return the owner's name.
      */
-    public String getOwner();
+    String getOwner();
 
     /**
-     * @param name The owner of the item, only the owner can pick up the item
-     * (note that the item can also be picked up if the lifetime - age is equal or smaller than 200)
+     * Sets the owner name of the item.
+     *
+     * @param name the owner's name.
      */
-    public void setOwner(String name);
-
-    public String getThrower();
-
-    public void setThrower(String name);
+    void setOwner(String name);
 
     /**
-     * @return Ticks remaining before it can be picked up (32767 is infinite)
+     * Returns the thrower (entity that threw the item).
+     *
+     * @return the thrower's name.
      */
-    public int getPickupDelay();
+    String getThrower();
 
     /**
-     * @param delay Delay before the item can be picked up (32767 is infinite delay)
+     * Sets the thrower (entity that threw the item).
+     *
+     * @param name the thrower's name.
      */
-    public void setPickupDelay(int delay);
+    void setThrower(String name);
 
     /**
-     * @return Returns the age of the item
+     * @return Ticks remaining before the item can be picked up.
+     * (32767 indicates an infinite delay.)
      */
-    public long getAge();
+    int getPickupDelay();
 
     /**
-     * @param age Age of the item (-32767 is infinite age)
+     * Sets the delay before the item can be picked up.
+     *
+     * @param delay the pickup delay in ticks (32767 for infinite delay).
      */
-    public void setAge(long age);
+    void setPickupDelay(int delay);
 
     /**
-     * @return When the age reaches this the item despawns
+     * @return The age of the item in ticks.
      */
-    public int getLifeSpawn();
+    long getAge();
 
     /**
-     * @param age Age at which the item despawns
+     * Sets the age of the item.
+     *
+     * @param age the new age (−32767 indicates infinite age).
      */
-    public void setLifeSpawn(int age);
+    void setAge(long age);
 
-    public IItemStack getItem();
+    /**
+     * @return The lifespan threshold; when the age reaches this, the item despawns.
+     */
+    int getLifeSpawn();
 
-    public void setItem(IItemStack item);
+    /**
+     * Sets the age threshold at which the item will despawn.
+     *
+     * @param age the lifespan in ticks.
+     */
+    void setLifeSpawn(int age);
+
+    /**
+     * @return The item contained in this entity.
+     */
+    IItemStack getItem();
+
+    /**
+     * Sets the item contained in this entity.
+     *
+     * @param item the item to set.
+     */
+    void setItem(IItemStack item);
 }

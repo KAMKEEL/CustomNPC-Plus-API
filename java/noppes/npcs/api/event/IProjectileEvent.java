@@ -6,16 +6,19 @@ import noppes.npcs.api.entity.IProjectile;
 
 public interface IProjectileEvent extends ICustomNPCsEvent {
 
-    public IProjectile getProjectile();
-    public IEntity getSource();
+    IProjectile getProjectile();
+
+    IEntity getSource();
 
     interface UpdateEvent extends IProjectileEvent {
     }
 
     interface ImpactEvent extends IProjectileEvent {
-        public int getType();
-        public IEntity getEntity();
-        public IBlock getBlock();
+        int getType();
+
+        IEntity getEntity();
+
+        IBlock getBlock();
     }
 
 }

@@ -8,6 +8,7 @@ import noppes.npcs.api.entity.IEntity;
 import noppes.npcs.api.entity.IEntityLivingBase;
 import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.handler.data.IPlayerEffect;
+import noppes.npcs.api.handler.data.IProfile;
 import noppes.npcs.api.item.IItemStack;
 
 public interface IPlayerEvent extends ICustomNPCsEvent {
@@ -252,7 +253,7 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
     }
 
     interface FillBucketEvent extends IPlayerEvent {
-        IItemStack getCurrent() ;
+        IItemStack getCurrent();
 
         IItemStack getFilled();
     }
@@ -277,9 +278,11 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
         interface Added extends EffectEvent {
 
         }
+
         interface Ticked extends EffectEvent {
 
         }
+
         interface Removed extends EffectEvent {
 
             /**
@@ -293,5 +296,40 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
             boolean causedByDeath();
         }
 
+    }
+
+    @Cancelable
+    interface ProfileEvent extends IPlayerEvent {
+
+        /**
+         * @return IProfile Object of the Operation
+         */
+        IProfile getProfile();
+
+        /**
+         * @return Slot ID in question
+         */
+        int getSlot();
+
+        /**
+         * @return returns true if it occurs after the operation (not cancellable)
+         */
+        boolean isPost();
+
+        @Cancelable
+        interface Changed extends ProfileEvent {
+            /**
+             * @return The previous slot before the switch
+             */
+            int getPrevSlot();
+        }
+
+        @Cancelable
+        interface Create extends ProfileEvent {
+        }
+
+        @Cancelable
+        interface Removed extends ProfileEvent {
+        }
     }
 }

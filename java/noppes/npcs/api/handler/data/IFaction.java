@@ -34,6 +34,10 @@ public interface IFaction {
 
     void setIsHidden(boolean hidden);
 
+    boolean isPassive();
+
+    void setIsPassive(boolean passive);
+
     boolean attackedByMobs();
 
     void setAttackedByMobs(boolean attacked);

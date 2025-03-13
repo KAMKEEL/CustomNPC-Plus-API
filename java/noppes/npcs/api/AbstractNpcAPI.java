@@ -29,7 +29,6 @@ import java.util.HashMap;
 
 /**
  * This object stores functions available to all scripting handlers through the "API" keyword.
- *
  */
 public abstract class AbstractNpcAPI {
     private static AbstractNpcAPI instance = null;
@@ -45,7 +44,8 @@ public abstract class AbstractNpcAPI {
 
     /**
      * Tempdata gets cleared when the server restarts. All worlds share the same temp data.
-     * @param key The key for the data stored
+     *
+     * @param key   The key for the data stored
      * @param value The data stored
      */
     public abstract void setTempData(String key, Object value);
@@ -76,7 +76,8 @@ public abstract class AbstractNpcAPI {
 
     /**
      * Stored data persists through world restart. Unlike tempdata only Strings and Numbers can be saved
-     * @param key The key for the data stored
+     *
+     * @param key   The key for the data stored
      * @param value The data stored. This data can be either a Number or a String. Other data is not stored
      */
     public abstract void setStoredData(String key, Object value);
@@ -109,7 +110,7 @@ public abstract class AbstractNpcAPI {
 
     public abstract boolean hasGlobalObject(String key);
 
-    public abstract HashMap<String,Object> getEngineObjects();
+    public abstract HashMap<String, Object> getEngineObjects();
 
     public abstract long sizeOfObject(Object obj);
 
@@ -143,6 +144,8 @@ public abstract class AbstractNpcAPI {
 
     public abstract ICustomEffectHandler getCustomEffectHandler();
 
+    public abstract IMagicHandler getMagicHandler();
+
     public abstract IPartyHandler getPartyHandler();
 
     public abstract ITransportHandler getLocations();
@@ -154,7 +157,6 @@ public abstract class AbstractNpcAPI {
     public abstract ICustomNpc<?> createNPC(IWorld var1);
 
     /**
-     *
      * Spawns a new NPC in the world at the given coordinates and returns an ICustomNpc object of it.
      */
     public abstract ICustomNpc<?> spawnNPC(IWorld var1, int var2, int var3, int var4);
@@ -193,8 +195,8 @@ public abstract class AbstractNpcAPI {
      * Forms a box with corners as the input IPos parameters, and returns all
      * points inside the box as a list of IPos vectors.
      *
-     * @param from The starting IPos vector, first corner of the box.
-     * @param to The ending IPos vector, opposite corner of the box.
+     * @param from           The starting IPos vector, first corner of the box.
+     * @param to             The ending IPos vector, opposite corner of the box.
      * @param sortByDistance Sorts the list by distance from the "from" IPos parameter.
      * @return The list of all IPos vectors inside the box.
      */
@@ -254,7 +256,7 @@ public abstract class AbstractNpcAPI {
         } else {
             try {
                 Class<?> c = Class.forName("noppes.npcs.scripted.NpcAPI");
-                instance = (AbstractNpcAPI) c.getMethod("Instance").invoke((Object) null);
+                instance = (AbstractNpcAPI) c.getMethod("Instance").invoke(null);
             } catch (Exception var1) {
                 var1.printStackTrace();
             }
@@ -279,7 +281,7 @@ public abstract class AbstractNpcAPI {
      *                   7: Aztec
      *                   8: CustomNPCs Classic
      *                   9: Spanish
-     * @param gender The gender of the name:
+     * @param gender     The gender of the name:
      *                   0: Random
      *                   1: Male
      *                   2: Female
@@ -303,7 +305,6 @@ public abstract class AbstractNpcAPI {
     public abstract void playSoundToNearExcept(IPlayer<?> player, String sound, float volume, float pitch);
 
     /**
-     *
      * @return Returns the server's Message of The Day.
      */
     public abstract String getMOTD();
@@ -314,7 +315,6 @@ public abstract class AbstractNpcAPI {
     public abstract void setMOTD(String motd);
 
     /**
-     *
      * @return A new IParticle object initialized with the given texture.
      */
     public abstract IParticle createParticle(String directory);
@@ -337,7 +337,6 @@ public abstract class AbstractNpcAPI {
     public abstract void stopSounds();
 
     /**
-     *
      * @return The uptime of the server in MC ticks.
      */
     public abstract int getServerTime();
@@ -355,23 +354,20 @@ public abstract class AbstractNpcAPI {
     public abstract void enableGlobalNPCScripts(boolean enable);
 
     /**
-     *
-     * @param id The id of the custom GUI.
-     * @param width The width of the GUI in pixels.
-     * @param height The height of the GUI in pixels.
+     * @param id        The id of the custom GUI.
+     * @param width     The width of the GUI in pixels.
+     * @param height    The height of the GUI in pixels.
      * @param pauseGame Whether the GUI pauses the game or not.
      * @return A new ICustomGui object with the given attributes.
      */
     public abstract ICustomGui createCustomGui(int id, int width, int height, boolean pauseGame);
 
     /**
-     *
-     * @return  A new ICustomOverlay overlay object with the given ID.
+     * @return A new ICustomOverlay overlay object with the given ID.
      */
     public abstract ICustomOverlay createCustomOverlay(int id);
 
     /**
-     *
      * @return A new ISkinOverlay object initialized with the given texture.
      */
     public abstract ISkinOverlay createSkinOverlay(String texture);
