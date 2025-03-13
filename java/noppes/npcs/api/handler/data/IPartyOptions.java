@@ -3,46 +3,46 @@ package noppes.npcs.api.handler.data;
 public interface IPartyOptions {
 
 
-    public boolean isAllowParty();
+    boolean isAllowParty();
 
-    public void setAllowParty(boolean allowParty);
+    void setAllowParty(boolean allowParty);
 
-    public boolean isOnlyParty();
+    boolean isOnlyParty();
 
-    public void setOnlyParty(boolean onlyParty);
+    void setOnlyParty(boolean onlyParty);
 
     /**
-     * @return  0:Leader, 1:All, 2:Valid
+     * @return 0:Leader, 1:All, 2:Valid
      */
-    public int getPartyRequirements();
+    int getPartyRequirements();
 
     /**
      * @param partyRequirements 0:Leader, 1:All, 2:Valid
      */
-    public void setPartyRequirements(int partyRequirements);
+    void setPartyRequirements(int partyRequirements);
 
     /**
-     * @return  0:Leader, 1:All, 2:Enrolled, 3:Valid
+     * @return 0:Leader, 1:All, 2:Enrolled, 3:Valid
      */
-    public int getRewardControl();
+    int getRewardControl();
 
     /**
      * @param rewardControl 0:Leader, 1:All, 2:Enrolled, 3:Valid
      */
-    public void setRewardControl(int rewardControl);
+    void setRewardControl(int rewardControl);
 
     /**
-     * @return  0:Leader, 1:All, 2:Enrolled, 3:Valid
+     * @return 0:Leader, 1:All, 2:Enrolled, 3:Valid
      */
-    public int getCompleteFor();
+    int getCompleteFor();
 
     /**
      * @param completeFor 0:Leader, 1:All, 2:Enrolled, 3:Valid
      */
-    public void setCompleteFor(int completeFor);
+    void setCompleteFor(int completeFor);
 
     /**
-     * @return  0:Leader, 1:All, 2:Enrolled, 3:Valid
+     * @return 0:Leader, 1:All, 2:Enrolled, 3:Valid
      */
     int getExecuteCommandFor();
 
@@ -54,19 +54,19 @@ public interface IPartyOptions {
     /**
      * @return 0:Shard, 1:All, 2:Leader
      */
-    public int getObjectiveRequirement();
+    int getObjectiveRequirement();
 
     /**
      * @param requirement 0:Shard, 1:All, 2:Leader
      */
-    public void setObjectiveRequirement(int requirement);
+    void setObjectiveRequirement(int requirement);
 
-    public int getMinPartySize();
+    int getMinPartySize();
 
-    public void setMinPartySize(int newSize);
+    void setMinPartySize(int newSize);
 
 
-    public int getMaxPartySize();
+    int getMaxPartySize();
 
-    public void setMaxPartySize(int newSize);
+    void setMaxPartySize(int newSize);
 }

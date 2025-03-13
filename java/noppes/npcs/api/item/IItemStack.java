@@ -50,7 +50,7 @@ public interface IItemStack {
     void setItemDamage(int value);
 
     /**
-     * @param key The key of this NBTTag
+     * @param key   The key of this NBTTag
      * @param value The value to be stored. Can be a Number or String
      */
     void setTag(String key, Object value);
@@ -72,9 +72,9 @@ public interface IItemStack {
     boolean isEnchanted();
 
     /**
-     * @since 1.7.10d
      * @param id The enchantment id
      * @return
+     * @since 1.7.10d
      */
     boolean hasEnchant(int id);
 
@@ -97,26 +97,26 @@ public interface IItemStack {
     int getMaxItemDamage();
 
     /**
-     * @since 1.7.10d
      * @return Returns whether this item is a book
+     * @since 1.7.10d
      */
     boolean isWrittenBook();
 
     /**
-     * @since 1.7.10d
      * @return Returns the books title
+     * @since 1.7.10d
      */
     String getBookTitle();
 
     /**
-     * @since 1.7.10d
      * @return Returns the books author
+     * @since 1.7.10d
      */
     String getBookAuthor();
 
     /**
-     * @since 1.7.10d
      * @return If the item is a book, returns a string array with book pages
+     * @since 1.7.10d
      */
     String[] getBookText();
 
@@ -131,6 +131,7 @@ public interface IItemStack {
 
     /**
      * No support is given for this method. Dont use if you dont know what you are doing.
+     *
      * @return Minecraft ItemStack
      */
     ItemStack getMCItemStack();
@@ -141,7 +142,7 @@ public interface IItemStack {
 
     void setMCNbt(NBTTagCompound compound);
 
-    public boolean compare(IItemStack item, boolean ignoreNBT);
+    boolean compare(IItemStack item, boolean ignoreNBT);
 
     boolean compare(IItemStack item, boolean ignoreDamage, boolean ignoreNBT);
 }
