@@ -6,13 +6,13 @@ import net.minecraft.nbt.NBTTagCompound;
  * A scripted data representation of an MC NBTTagCompound object. Using these functions modifies the compound tag
  * associated with this object. Any changes made to the compound tag are made directly to its "tagMap" attribute,
  * minimizing the impact of setting/getting NBT data with this object on performance.
- * <p>
+ *
  * Compound tags, unlike list tags, can contain multiple types of NBT tag types. Compound tags can even
  * contain compound tags inside them, and if that compound tag is accessed, an object like this one will also be returned!
- * <p>
+ *
  * Every tag inside a compound tag has a -unique- "key". If you try to put another tag of the same key inside the
  * compound tag, it will replace the previous tag.
- * <p>
+ *
  * The types and their type as an integer are as follows:
  * 1: Byte
  * 2: Short
@@ -25,6 +25,7 @@ import net.minecraft.nbt.NBTTagCompound;
  * 9: Tag list
  * 10: Compound
  * 11: Integer array
+ *
  */
 public interface INbt {
     /**
@@ -93,7 +94,7 @@ public interface INbt {
     /**
      * Adds a new tag list to the compound tag with the given key.
      *
-     * @param key   The key for the list tag
+     * @param key The key for the list tag
      * @param value The list of objects to be in the list. The type of the first element in this list becomes the tag
      *              list's type, and if later objects are not of this type, they will not be added.
      */
@@ -104,21 +105,25 @@ public interface INbt {
     void setCompound(String key, INbt value);
 
     /**
+     *
      * @return A list of all the compound tag's keys.
      */
     String[] getKeys();
 
     /**
+     *
      * @return The type of the tag with the input key as an integer.
      */
     int getType(String key);
 
     /**
+     *
      * @return An obfuscated MC NBTTagCompound object.
      */
     NBTTagCompound getMCNBT();
 
     /**
+     *
      * @return A curly-bracket formatted JSON string of all the compound tag.
      */
     String toJsonString();

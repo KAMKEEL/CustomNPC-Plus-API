@@ -24,9 +24,9 @@ public interface IMagicData {
     boolean isEmpty();
 
     /**
-     * @param id     The ID of the Magic
+     * @param id The ID of the Magic
      * @param damage The bonus damage for the Magic
-     * @param split  The split of the Magic
+     * @param split The split of the Magic
      */
     void addMagic(int id, float damage, float split);
 

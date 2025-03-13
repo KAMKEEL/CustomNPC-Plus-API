@@ -7,10 +7,8 @@ public interface IJobHealer extends IJob {
     void heal(IEntityLivingBase entity, float amount);
 
     void setRange(int range);
-
     int getRange();
 
     void setSpeed(int speed);
-
     int getSpeed();
 }

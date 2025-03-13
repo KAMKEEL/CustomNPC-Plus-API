@@ -19,8 +19,7 @@ public interface IPartyEvent {
     }
 
     @Cancelable
-    interface PartyQuestTurnedInEvent extends IPartyEvent {
-    }
+    interface PartyQuestTurnedInEvent extends IPartyEvent { }
 
     @Cancelable
     interface PartyInviteEvent extends IPartyEvent {

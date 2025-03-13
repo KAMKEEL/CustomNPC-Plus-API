@@ -17,7 +17,7 @@ public interface INpcEvent extends ICustomNPCsEvent {
         int getId();
     }
 
-    interface CollideEvent extends INpcEvent {
+    interface CollideEvent extends INpcEvent{
         IEntity getEntity();
     }
 
@@ -61,7 +61,6 @@ public interface INpcEvent extends ICustomNPCsEvent {
 
         /**
          * Can be null
-         *
          * @return Returns the swung item
          */
         IItemStack getItemStack();

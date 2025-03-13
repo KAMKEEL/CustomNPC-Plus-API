@@ -3,7 +3,6 @@ package noppes.npcs.api.gui;
 import net.minecraft.nbt.NBTTagCompound;
 import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.item.IItemStack;
-
 import java.util.List;
 
 /**
@@ -91,10 +90,10 @@ public interface ICustomGui {
     /**
      * Adds a button to the GUI.
      *
-     * @param id   the component ID.
-     * @param text the button label.
-     * @param x    the x position.
-     * @param y    the y position.
+     * @param id    the component ID.
+     * @param text  the button label.
+     * @param x     the x position.
+     * @param y     the y position.
      * @return the created button.
      */
     IButton addButton(int id, String text, int x, int y);

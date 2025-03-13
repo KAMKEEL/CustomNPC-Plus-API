@@ -7,11 +7,9 @@ import noppes.npcs.api.entity.IEntity;
 public interface ICloneHandler {
 
     IEntity spawn(double x, double y, double z, int tab, String name, IWorld world, boolean ignoreProtection);
-
     IEntity spawn(IPos pos, int tab, String name, IWorld world, boolean ignoreProtection);
 
     IEntity spawn(double x, double y, double z, int tab, String name, IWorld world);
-
     IEntity spawn(IPos pos, int tab, String name, IWorld world);
 
     IEntity[] getTab(int tab, IWorld world);

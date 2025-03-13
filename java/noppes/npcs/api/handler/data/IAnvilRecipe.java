@@ -20,8 +20,7 @@ public interface IAnvilRecipe {
 
     /**
      * Checks whether the provided item and repair material match this recipe.
-     *
-     * @param itemToRepair   the damaged item
+     * @param itemToRepair the damaged item
      * @param repairMaterial the material used to repair
      * @return true if the items match the recipe requirements
      */
@@ -29,7 +28,6 @@ public interface IAnvilRecipe {
 
     /**
      * Returns the repaired item based on the input damaged item.
-     *
      * @param itemToRepair the input damaged item
      * @return a copy with reduced damage
      */

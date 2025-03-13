@@ -18,10 +18,12 @@ public interface IPos {
 
     /**
      * Shifts the IPos up by 1 block and returns the new object.
+     *
      */
     IPos up();
 
     /**
+     *
      * @param n The number of blocks to move the position up by.
      * @return The new IPos object.
      */
@@ -29,10 +31,12 @@ public interface IPos {
 
     /**
      * Shifts the IPos down by 1 block and returns the new object.
+     *
      */
     IPos down();
 
     /**
+     *
      * @param n The number of blocks to move the position down by.
      * @return The new IPos object.
      */
@@ -40,10 +44,12 @@ public interface IPos {
 
     /**
      * Shifts the IPos north by 1 block and returns the new object.
+     *
      */
     IPos north();
 
     /**
+     *
      * @param n The number of blocks to move the position north by.
      * @return The new IPos object.
      */
@@ -51,10 +57,12 @@ public interface IPos {
 
     /**
      * Shifts the IPos east by 1 block and returns the new object.
+     *
      */
     IPos east();
 
     /**
+     *
      * @param n The number of blocks to move the position east by.
      * @return The new IPos object.
      */
@@ -62,10 +70,12 @@ public interface IPos {
 
     /**
      * Shifts the IPos south by 1 block and returns the new object.
+     *
      */
     IPos south();
 
     /**
+     *
      * @param n The number of blocks to move the position south by.
      * @return The new IPos object.
      */
@@ -73,10 +83,12 @@ public interface IPos {
 
     /**
      * Shifts the IPos west by 1 block and returns the new object.
+     *
      */
     IPos west();
 
     /**
+     *
      * @param n The number of blocks to move the position west by.
      * @return The new IPos object.
      */
@@ -125,6 +137,7 @@ public interface IPos {
     /**
      * Returns a normalized vector of this block's position, calculated by:
      *
+     *
      * @return The normalized vector of this block position.
      */
     IPos normalize();
@@ -133,11 +146,13 @@ public interface IPos {
 
     /**
      * Offsets the block by 1 block in the given direction and returns the resulting IPos object
+     *
      */
     IPos offset(int direction);
 
     /**
      * Offsets the block by n blocks in the given direction and returns the resulting IPos object
+     *
      */
     IPos offset(int direction, double n);
 
@@ -152,6 +167,7 @@ public interface IPos {
     IPos fromLong(long serialized);
 
     /**
+     *
      * @param pos The IPos object to calculate the distance to
      * @return The distance between this IPos object and the other.
      */

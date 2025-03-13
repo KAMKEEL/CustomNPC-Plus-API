@@ -1,6 +1,7 @@
 package noppes.npcs.api.entity;
 
 import net.minecraft.entity.passive.EntityVillager;
+import noppes.npcs.api.entity.IEntityLivingBase;
 
 /**
  * Represents a villager entity with additional trading-related methods.

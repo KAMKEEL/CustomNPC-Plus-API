@@ -1,6 +1,6 @@
 package noppes.npcs.api.handler.data;
 
-public interface IFramePart {
+public interface IFramePart{
 
     String getName();
 

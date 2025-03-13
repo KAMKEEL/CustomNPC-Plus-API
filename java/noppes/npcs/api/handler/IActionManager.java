@@ -1,7 +1,6 @@
 package noppes.npcs.api.handler;
 
 import noppes.npcs.api.handler.data.IAction;
-
 import java.util.Queue;
 import java.util.function.Consumer;
 

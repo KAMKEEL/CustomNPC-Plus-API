@@ -18,28 +18,24 @@ public interface IParty {
 
     /**
      * Set a quest to the party (this does not validate use validateQuest())
-     *
      * @param quest Quest Object
      */
     void setQuest(IQuest quest);
 
     /**
      * Get the Quest for the Party, can be null
-     *
      * @return quest
      */
     IQuest getQuest();
 
     /**
      * Get the Quest ID for Party | -1 if no quest
-     *
      * @return quest id
      */
     int getCurrentQuestID();
 
     /**
      * Get the Quest Name for Party | BLANK if no quest
-     *
      * @return quest name
      */
     String getCurrentQuestName();
@@ -72,14 +68,12 @@ public interface IParty {
 
     /**
      * Check if Player is in Party with IPlayer
-     *
      * @return true/false if player is in party
      */
     boolean hasPlayer(IPlayer player);
 
     /**
      * Check if Player is in Party with Player Name
-     *
      * @return true/false if player is in party
      */
     boolean hasPlayer(String playerName);
@@ -96,7 +90,7 @@ public interface IParty {
 
 
     /**
-     * @param questID            ID for the Quest to Verify
+     * @param questID ID for the Quest to Verify
      * @param sendLeaderMessages IF true will send ERROR message to Party Leader on why the quest could not be set
      * @return true/false if the party CAN have the quest set
      */

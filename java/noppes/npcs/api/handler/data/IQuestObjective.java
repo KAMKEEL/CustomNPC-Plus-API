@@ -28,7 +28,7 @@ public interface IQuestObjective {
      * have a party
      *
      * @param playerName Name of Player
-     * @param progress   Progress Amount
+     * @param progress Progress Amount
      */
     void setPlayerProgress(String playerName, int progress);
 

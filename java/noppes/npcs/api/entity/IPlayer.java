@@ -312,8 +312,8 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
     void setMode(int type);
 
     /**
-     * @return Returns an IItemStack array of size 36 representing the player's inventory.
      * @since 1.7.10d
+     * @return Returns an IItemStack array of size 36 representing the player's inventory.
      */
     IItemStack[] getInventory();
 
@@ -326,11 +326,11 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
     int inventoryItemCount(IItemStack item, boolean ignoreNBT, boolean ignoreDamage);
 
     /**
+     * @since 1.7.10c
      * @param id     The item's name.
      * @param damage The damage value.
      * @param amount How many items will be removed.
      * @return True if the items were removed successfully, false if the amount exceeds what the player has or the item doesn't exist.
-     * @since 1.7.10c
      */
     boolean removeItem(String id, int damage, int amount);
 
@@ -352,19 +352,19 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
     int removeAllItems(IItemStack item, boolean ignoreNBT, boolean ignoreDamage);
 
     /**
+     * @since 1.7.10c
      * @param item   The item to be added.
      * @param amount The number of items to add.
      * @return True if the item was given successfully, false otherwise.
-     * @since 1.7.10c
      */
     boolean giveItem(IItemStack item, int amount);
 
     /**
+     * @since 1.7.10c
      * @param id     The item's name.
      * @param damage The damage value.
      * @param amount The number of items to add.
      * @return True if the item was given successfully, false otherwise.
-     * @since 1.7.10c
      */
     boolean giveItem(String id, int damage, int amount);
 
@@ -510,22 +510,22 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
     boolean hasBukkitPermission(String permission);
 
     /**
-     * @return Returns the player's experience level.
      * @since 1.7.10c
+     * @return Returns the player's experience level.
      */
     int getExpLevel();
 
     /**
-     * @param level The new experience level to set.
      * @since 1.7.10c
+     * @param level The new experience level to set.
      */
     void setExpLevel(int level);
 
     /**
      * Requires Pixelmon to be installed.
      *
-     * @return Returns the player's Pixelmon data, or null if Pixelmon is not enabled.
      * @since 1.7.10d
+     * @return Returns the player's Pixelmon data, or null if Pixelmon is not enabled.
      */
     IPixelmonPlayerData getPixelmonData();
 

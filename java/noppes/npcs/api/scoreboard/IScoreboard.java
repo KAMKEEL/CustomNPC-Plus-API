@@ -16,7 +16,7 @@ public interface IScoreboard {
     void setPlayerScore(String player, String objective, int score, String datatag);
 
     void setPlayerScore(IPlayer player, String objective, int score, String datatag);
-
+    
     int getPlayerScore(String player, String objective, String datatag);
 
     int getPlayerScore(IPlayer player, String objective, String datatag);
