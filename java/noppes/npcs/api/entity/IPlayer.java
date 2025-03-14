@@ -657,4 +657,11 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
      * @return The magic data.
      */
     IMagicData getMagicData();
+
+    /**
+     * Returns the player's item attribute combination
+     *
+     * @return Player Attributes Data
+     */
+    IPlayerAttributes getAttributes();
 }
