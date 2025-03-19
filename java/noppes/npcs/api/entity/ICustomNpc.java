@@ -473,6 +473,7 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
      *
      * @return true if aiming while shooting is enabled, false otherwise.
      */
+    @Deprecated
     boolean canAimWhileShooting();
 
     /**
@@ -480,7 +481,22 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
      *
      * @param aimWhileShooting true to enable aiming, false to disable.
      */
+    @Deprecated
     void aimWhileShooting(boolean aimWhileShooting);
+
+    /**
+     * Sets the Aim Type for an NPC
+     *
+     * @param aimWhileShooting 0: No, 1: Yes, 2: On Shot
+     */
+    void setAimType(byte aimWhileShooting);
+
+    /**
+     * Gets the Aim Type for an NPC
+     *
+     * @return  0: No, 1: Yes, 2: On Shot
+     */
+    byte getAimType();
 
     /**
      * Sets the minimum delay (in ticks) between projectiles.
