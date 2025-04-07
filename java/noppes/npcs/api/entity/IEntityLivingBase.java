@@ -65,7 +65,7 @@ public interface IEntityLivingBase<T extends EntityLivingBase> extends IEntity<T
      *
      * @return the time in ticks.
      */
-    int setMaxHurtTime();
+    int getMaxHurtTime();
 
     /**
      * Returns the entity's maximum health.
