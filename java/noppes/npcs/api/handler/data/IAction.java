@@ -3,113 +3,120 @@ package noppes.npcs.api.handler.data;
 import java.util.function.Consumer;
 
 /**
- * Represents an action that can be executed over a period of time.
- * Provides methods to query its state, update data, and chain scheduling.
+ * Represents a single “task” that can be executed over multiple ticks,
+ * supports delayed start, limited duration, repeating intervals, data storage,
+ * and chaining to neighboring tasks.
  */
 public interface IAction {
+
     /**
-     * Gets the number of times this action has been executed.
-     *
-     * @return the execution count.
+     * @return how many times this action’s {@code action.accept(this)} callback has run
      */
     int getCount();
 
     /**
-     * Gets the elapsed duration (in ticks) since the action began.
-     *
-     * @return the duration in ticks.
+     * @return how many ticks have elapsed since this action actually began (excluding start delay)
      */
     int getDuration();
 
     /**
-     * Gets the name of this action.
-     *
-     * @return the action name.
+     * @return the name given at creation/scheduling time
      */
     String getName();
 
     /**
-     * Gets the maximum duration (in ticks) that this action is allowed to run.
-     *
-     * @return the maximum duration in ticks.
+     * @return the maximum number of ticks this action is allowed to run before auto-terminating
      */
     int getMaxDuration();
 
     /**
-     * Marks the action as completed or not.
+     * Mark this action as complete.  Once done, it will be removed on the next tick.
      */
     void markDone();
 
     /**
-     * Checks if the action has been marked as completed.
-     *
-     * @return true if the action is done, false otherwise.
+     * @return true if {@link #markDone()} was called (or maxDuration reached)
      */
     boolean isDone();
 
     /**
-     * Retrieves the data associated with the specified key.
+     * Retrieve arbitrary per-action data.
      *
-     * @param key the key of the data.
-     * @return the associated data, or null if not present.
+     * @param key a string key
+     * @return the stored value, or null if not set
      */
     Object getData(String key);
 
     /**
-     * Stores data with the specified key.
+     * Store arbitrary per-action data.
      *
-     * @param key   the key under which the data is stored.
-     * @param value the data to store.
+     * @param key   a string key
+     * @param value any object to associate with this action
      */
     void addData(String key, Object value);
 
     /**
-     * Gets the interval (in ticks) between each update of this action.
-     *
-     * @return the number of ticks between updates.
+     * @return how many ticks between each invocation of the action callback
      */
     int getUpdateEveryXTick();
 
     /**
-     * Sets the update frequency in ticks.
+     * Set how many ticks between each invocation of the action callback.
      *
-     * @param X the number of ticks between each update.
+     * @param X tick interval (e.g. 1 = every tick, 20 = once per second)
      */
     void setUpdateEveryXTick(int X);
 
     /**
-     * Gets the number of ticks to wait before starting the action.
-     *
-     * @return the delay in ticks before the action starts.
+     * @return how many ticks remain before the action begins (initial delay)
      */
     int getStartAfterTicks();
 
     /**
-     * Creates a new IAction instance with the given parameters.
+     * Factory helper so that from within one action you can create
+     * new IAction instances without referencing the manager directly.
      *
-     * @param name            the name of the action.
-     * @param maxDuration     the maximum duration (in ticks) the action can run.
-     * @param startAfterTicks the delay in ticks before the action starts.
-     * @param action          the consumer defining the action's behavior.
-     * @return a new IAction instance.
+     * @param name            a unique name for the new action
+     * @param maxDuration     its maximum lifetime
+     * @param startAfterTicks initial delay in ticks
+     * @param action          callback logic
+     * @return a new IAction
      */
     IAction create(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
 
+    /**
+     * @return the next action in the queue (or null if none or at end)
+     */
     IAction getNext();
 
+    /**
+     * @return the previous action in the queue (or null if none or at front)
+     */
     IAction getPrevious();
 
     /**
-     * Schedules another action to be executed immediately after this action.
+     * Enqueue another action immediately after this one.
      *
-     * @param after the action to schedule after this one.
+     * @param after the action to run next
      */
     void scheduleAfter(IAction after);
 
     /**
-     * Schedules an action to be executed before current action, which pauses current until before finishes.
+     * Enqueue another action immediately before this one (pausing this one until done).
      *
-     * @param before the action to schedule before this one.
+     * @param before the action to run prior
      */
     void scheduleBefore(IAction before);
+
+    /**
+     * Note: Only for Conditional Actions
+     * @return how many times this conditional action has tested its predicate
+     */
+    int getCheckCount();
+
+    /**
+     * Note: Only for Conditional Actions
+     * @return the maximum number of checks before auto‐expiring, or –1 if unlimited
+     */
+    int getMaxChecks();
 }
