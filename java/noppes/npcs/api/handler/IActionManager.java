@@ -4,6 +4,7 @@ import noppes.npcs.api.handler.data.IAction;
 import noppes.npcs.api.handler.data.IActionChain;
 import noppes.npcs.api.handler.data.actions.IConditionalAction;
 
+import java.util.List;
 import java.util.Queue;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -113,7 +114,7 @@ public interface IActionManager {
      * @ maxChecks          maximum times to test predicate before auto‐cancelling
      * @return the action scheduled
      */
-    IConditionalAction scheduleConditionalAction(String name, Supplier<Boolean> predicate, Consumer<IAction> task);
+    IConditionalAction scheduleAction(String name, Supplier<Boolean> predicate, Consumer<IAction> task);
 
     /**
      * Schedule a conditional action that gives up after at most maxChecks attempts.
@@ -126,7 +127,15 @@ public interface IActionManager {
      * @ maxChecks          maximum times to test predicate before auto‐cancelling
      * @return the action scheduled
      */
-    IConditionalAction scheduleConditionalAction(String name, Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task);
+    IConditionalAction scheduleAction(String name, Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task);
+
+    IConditionalAction scheduleAction(IConditionalAction action);
+
+    /**
+     *
+     * @return the list of all conditional actions
+     */
+    List<IConditionalAction> getConditionalActions();
 
     /**
      * Cancel (remove) the first queued action with the given name.
@@ -178,17 +187,16 @@ public interface IActionManager {
      * Convenience: create & enqueue a conditional task that re-checks forever.
      */
     default void addConditionalTask(String name, Supplier<Boolean> predicate, Consumer<IAction> task) {
-        scheduleConditionalAction(name, predicate, task);
+        scheduleAction(name, predicate, task);
     }
 
     /**
      * Convenience: create & enqueue a conditional task that gives up after maxChecks.
      */
     default void addConditionalTask(String name, Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task) {
-        scheduleConditionalAction(name, predicate, terminateWhen, task);
+        scheduleAction(name, predicate, terminateWhen, task);
     }
 
-    IConditionalAction scheduleConditionalAction(IConditionalAction action);
 
     IActionChain chain();
 }
