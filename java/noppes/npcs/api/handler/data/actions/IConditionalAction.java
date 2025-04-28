@@ -7,11 +7,13 @@ import java.util.function.Supplier;
 
 public interface IConditionalAction extends IAction {
 
+    /**
+     *
+     * @param maxChecks maximum times to test predicate before auto‐cancelling
+     * @return this action
+     */
     IConditionalAction setMaxChecks(int maxChecks);
 
-    /////////////////////////////////////////////////
-    /////////////////////////////////////////////////
-    //Before chains
     IConditionalAction after(IConditionalAction after);
 
     IConditionalAction after(Supplier<Boolean> predicate, Consumer<IAction> task);
