@@ -122,18 +122,6 @@ public interface IAction {
      */
     IAction before(IAction before);
 
-    /**
-     * Note: Only for Conditional Actions
-     * @return how many times this conditional action has tested its predicate
-     */
-    int getCheckCount();
-
-    /**
-     * Note: Only for Conditional Actions
-     * @return the maximum number of checks before auto‐expiring, or –1 if unlimited
-     */
-    int getMaxChecks();
-
     IAction before(String name, int maxDuration, int delay, Consumer<IAction> t);
 
     IAction before(String name, int delay, Consumer<IAction> t);

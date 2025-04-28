@@ -32,6 +32,19 @@ public interface IConditionalAction extends IAction {
     boolean wasTaskExecuted();
 
     /**
+     * Note: Only for Conditional Actions
+     * @return how many times this conditional action has tested its predicate
+     */
+    int getCheckCount();
+
+    /**
+     * Note: Only for Conditional Actions
+     * @return the maximum number of checks before auto‐expiring, or –1 if unlimited
+     */
+    int getMaxChecks();
+
+
+    /**
      * @param maxChecks maximum times to test predicate before auto‐cancelling
      * @return this action
      */
