@@ -251,5 +251,9 @@ public interface IActionManager {
     }
 
 
+    IAction scheduleParallelAction(IAction action);
+
     IActionChain chain();
+
+    IActionChain parallelChain();
 }
