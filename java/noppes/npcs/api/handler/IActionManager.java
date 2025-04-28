@@ -21,7 +21,7 @@ public interface IActionManager {
      * @param name            a unique name for this action
      * @param maxDuration     the maximum lifetime of the action in ticks
      * @param startAfterTicks number of ticks to wait before the first run
-     * @param action          logic to execute each time the action “fires”
+     * @param action          code to execute each time the action “fires”
      * @return a fresh {@link IAction} object
      */
     IAction create(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
@@ -34,13 +34,68 @@ public interface IActionManager {
 
     IAction create(Consumer<IAction> t);
 
+    /**
+     * Schedule a conditional action that gives up after at most maxChecks attempts.
+     *
+     * @param predicate supplier checked every tick, if it returns true, task is fired
+     * @param task      code to run once predicate first becomes true
+     * @return the action scheduled
+     */
     IConditionalAction create(Supplier<Boolean> predicate, Consumer<IAction> task);
 
+    /**
+     * Schedule a conditional action that gives up after at most maxChecks attempts.
+     *
+     * @param name      unique name
+     * @param predicate supplier checked every tick, if it returns true, task is fired
+     * @param task      code to run once predicate first becomes true
+     * @return the action scheduled
+     */
     IConditionalAction create(String name, Supplier<Boolean> predicate, Consumer<IAction> task);
 
-    IConditionalAction create(Supplier<Boolean> predicate, Supplier<Boolean> terminate, Consumer<IAction> task);
+    /**
+     * Schedule a conditional action that gives up after at most maxChecks attempts.
+     *
+     * @param predicate     supplier checked every tick, if it returns true, task is fired
+     * @param terminateWhen supplier checked every tick, if it returns true, action is terminated (gets marked done)
+     * @param task          code to run once predicate first becomes true
+     * @return the action scheduled
+     */
+    IConditionalAction create(Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task);
 
-    IConditionalAction create(String name, Supplier<Boolean> predicate, Supplier<Boolean> terminate, Consumer<IAction> task);
+    /**
+     * Schedule a conditional action that gives up after at most maxChecks attempts.
+     *
+     * @param name          unique name
+     * @param predicate     supplier checked every tick, if it returns true, task is fired
+     * @param terminateWhen supplier checked every tick, if it returns true, action is terminated (gets marked done)
+     * @param task          code to run once predicate first becomes true
+     * @return the action scheduled
+     */
+    IConditionalAction create(String name, Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task);
+
+    /**
+     * Schedule a conditional action that gives up after at most maxChecks attempts.
+     *
+     * @param predicate     supplier checked every tick, if it returns true, task is fired
+     * @param terminateWhen supplier checked every tick, if it returns true, action is terminated (gets marked done)
+     * @param onTermination code to run when the termination predicate returns true
+     * @param task          code to run once predicate first becomes true
+     * @return the action scheduled
+     */
+    IConditionalAction create(Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> onTermination, Consumer<IAction> task);
+
+    /**
+     * Schedule a conditional action that gives up after at most maxChecks attempts.
+     *
+     * @param name          unique name
+     * @param predicate     supplier checked every tick, if it returns true, task is fired
+     * @param terminateWhen supplier checked every tick, if it returns true, action is terminated (gets marked done)
+     * @param onTermination code to run when the termination predicate returns true
+     * @param task          code to run once predicate first becomes true
+     * @return the action scheduled
+     */
+    IConditionalAction create(String name, Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> onTermination, Consumer<IAction> task);
 
     /**
      * Begin processing scheduled actions.  Must be called once.
@@ -67,7 +122,7 @@ public interface IActionManager {
      * @param name            a unique name for this action
      * @param maxDuration     the maximum lifetime of the action in ticks
      * @param startAfterTicks number of ticks to wait before the first run
-     * @param action          logic to execute each time the action “fires”
+     * @param action          code to execute each time the action “fires”
      * @return the action scheduled
      */
     IAction scheduleAction(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
@@ -108,10 +163,8 @@ public interface IActionManager {
      * Schedule a conditional action that gives up after at most maxChecks attempts.
      *
      * @param name               unique name
-     *  checkIntervalTicks ticks between predicate tests
-     * @param predicate          supplier returning true when it should fire
-     * @param task               logic to run once when predicate first becomes true
-     * @ maxChecks          maximum times to test predicate before auto‐cancelling
+     * @param predicate          supplier checked every tick, if it returns true, task is fired
+     * @param task               code to run once predicate first becomes true
      * @return the action scheduled
      */
     IConditionalAction scheduleAction(String name, Supplier<Boolean> predicate, Consumer<IAction> task);
@@ -120,11 +173,9 @@ public interface IActionManager {
      * Schedule a conditional action that gives up after at most maxChecks attempts.
      *
      * @param name               unique name
-     * @ checkIntervalTicks ticks between predicate tests
-     * @param predicate          supplier returning true when it should fire
-     * @param terminateWhen      supplier returning true when it should terminate (gets marked done)
-     * @param task               logic to run once when predicate first becomes true
-     * @ maxChecks          maximum times to test predicate before auto‐cancelling
+     * @param predicate          supplier checked every tick, if it returns true, task is fired
+     * @param terminateWhen      supplier checked every tick, if it returns true, action is terminated (gets marked done)
+     * @param task               code to run once predicate first becomes true
      * @return the action scheduled
      */
     IConditionalAction scheduleAction(String name, Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task);
@@ -163,7 +214,7 @@ public interface IActionManager {
      *
      * @param name             a unique name for this action
      * @param startAfterTicks  delay before it runs (in ticks)
-     * @param task             logic to execute once
+     * @param task             code to execute once
      */
     default void addSingleTask(String name, int startAfterTicks, Consumer<IAction> task) {
         IAction action = create(name, 1, startAfterTicks, act -> {
