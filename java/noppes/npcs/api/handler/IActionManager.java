@@ -24,6 +24,14 @@ public interface IActionManager {
      */
     IAction create(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
 
+    IAction create(String name, int delay, Consumer<IAction> t);
+
+    IAction create(int delay, Consumer<IAction> t);
+
+    IAction create(String name, Consumer<IAction> t);
+
+    IAction create(Consumer<IAction> t);
+
     /**
      * Begin processing scheduled actions.  Must be called once.
      */

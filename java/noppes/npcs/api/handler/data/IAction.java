@@ -73,18 +73,6 @@ public interface IAction {
     int getStartAfterTicks();
 
     /**
-     * Factory helper so that from within one action you can create
-     * new IAction instances without referencing the manager directly.
-     *
-     * @param name            a unique name for the new action
-     * @param maxDuration     its maximum lifetime
-     * @param startAfterTicks initial delay in ticks
-     * @param action          callback logic
-     * @return a new IAction
-     */
-    IAction create(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
-
-    /**
      * @return the next action in the queue (or null if none or at end)
      */
     IAction getNext();
