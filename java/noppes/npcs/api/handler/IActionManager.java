@@ -1,6 +1,7 @@
 package noppes.npcs.api.handler;
 
 import noppes.npcs.api.handler.data.IAction;
+import noppes.npcs.api.handler.data.IActionChain;
 
 import java.util.Queue;
 import java.util.function.Consumer;
@@ -181,4 +182,6 @@ public interface IActionManager {
                                     int maxChecks) {
         scheduleConditionalAction(name, checkIntervalTicks, predicate, task, maxChecks);
     }
+
+    IActionChain chain();
 }
