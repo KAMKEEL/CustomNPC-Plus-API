@@ -101,6 +101,16 @@ public interface IAction {
      */
     IAction after(IAction after);
 
+    IAction after(String name, int maxDuration, int delay, Consumer<IAction> t);
+
+    IAction after(String name, int delay, Consumer<IAction> t);
+
+    IAction after(int delay, Consumer<IAction> t);
+
+    IAction after(String name, Consumer<IAction> t);
+
+    IAction after(Consumer<IAction> t);
+
     /**
      * Enqueue another action immediately before this one (pausing this one until done).
      *
@@ -119,4 +129,14 @@ public interface IAction {
      * @return the maximum number of checks before auto‐expiring, or –1 if unlimited
      */
     int getMaxChecks();
+
+    IAction before(String name, int maxDuration, int delay, Consumer<IAction> t);
+
+    IAction before(String name, int delay, Consumer<IAction> t);
+
+    IAction before(int delay, Consumer<IAction> t);
+
+    IAction before(String name, Consumer<IAction> t);
+
+    IAction before(Consumer<IAction> t);
 }
