@@ -99,14 +99,14 @@ public interface IAction {
      *
      * @param after the action to run next
      */
-    void scheduleAfter(IAction after);
+    IAction after(IAction after);
 
     /**
      * Enqueue another action immediately before this one (pausing this one until done).
      *
      * @param before the action to run prior
      */
-    void scheduleBefore(IAction before);
+    IAction before(IAction before);
 
     /**
      * Note: Only for Conditional Actions
