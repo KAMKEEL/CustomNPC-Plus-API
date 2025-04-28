@@ -53,7 +53,7 @@ public interface IAction {
      * @param key   a string key
      * @param value any object to associate with this action
      */
-    void addData(String key, Object value);
+    IAction addData(String key, Object value);
 
     /**
      * @return how many ticks between each invocation of the action callback
@@ -65,7 +65,7 @@ public interface IAction {
      *
      * @param X tick interval (e.g. 1 = every tick, 20 = once per second)
      */
-    void setUpdateEveryXTick(int X);
+    IAction setUpdateEveryXTick(int X);
 
     /**
      * @return how many ticks remain before the action begins (initial delay)

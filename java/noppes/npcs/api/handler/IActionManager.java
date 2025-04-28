@@ -94,42 +94,31 @@ public interface IActionManager {
      */
     Queue<IAction> getActionQueue();
 
-    /**
-     * Schedule a “conditional” action: every {@code checkIntervalTicks}, evaluate
-     * the predicate, and as soon as it returns true, fire the action and remove it.
-     *
-     * @param name               a unique name for this conditional action
-     * @param checkIntervalTicks number of ticks between each predicate check
-     * @param predicate          no-arg boolean supplier deciding when to fire
-     * @param action             logic to execute once when predicate first becomes true
-     * @return the action scheduled
-     */
-    IAction scheduleConditionalAction(String name, int checkIntervalTicks, Supplier<Boolean> predicate, Consumer<IAction> action);
 
     /**
      * Schedule a conditional action that gives up after at most maxChecks attempts.
      *
      * @param name               unique name
-     * @param checkIntervalTicks ticks between predicate tests
+     *  checkIntervalTicks ticks between predicate tests
      * @param predicate          supplier returning true when it should fire
      * @param task               logic to run once when predicate first becomes true
-     * @param maxChecks          maximum times to test predicate before auto‐cancelling
+     * @ maxChecks          maximum times to test predicate before auto‐cancelling
      * @return the action scheduled
      */
-    IAction scheduleConditionalAction(String name, int checkIntervalTicks, Supplier<Boolean> predicate, Consumer<IAction> task, int maxChecks);
+    IConditionalAction scheduleConditionalAction(String name, Supplier<Boolean> predicate, Consumer<IAction> task);
 
     /**
      * Schedule a conditional action that gives up after at most maxChecks attempts.
      *
      * @param name               unique name
-     * @param checkIntervalTicks ticks between predicate tests
+     * @ checkIntervalTicks ticks between predicate tests
      * @param predicate          supplier returning true when it should fire
      * @param terminateWhen      supplier returning true when it should terminate (gets marked done)
      * @param task               logic to run once when predicate first becomes true
-     * @param maxChecks          maximum times to test predicate before auto‐cancelling
+     * @ maxChecks          maximum times to test predicate before auto‐cancelling
      * @return the action scheduled
      */
-    IAction scheduleConditionalAction(String name, int checkIntervalTicks, Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task, int maxChecks);
+    IConditionalAction scheduleConditionalAction(String name, Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task);
 
     /**
      * Cancel (remove) the first queued action with the given name.
@@ -180,22 +169,15 @@ public interface IActionManager {
     /**
      * Convenience: create & enqueue a conditional task that re-checks forever.
      */
-    default void addConditionalTask(String name,
-                                    int checkIntervalTicks,
-                                    Supplier<Boolean> predicate,
-                                    Consumer<IAction> task) {
-        scheduleConditionalAction(name, checkIntervalTicks, predicate, task);
+    default void addConditionalTask(String name, Supplier<Boolean> predicate, Consumer<IAction> task) {
+        scheduleConditionalAction(name, predicate, task);
     }
 
     /**
      * Convenience: create & enqueue a conditional task that gives up after maxChecks.
      */
-    default void addConditionalTask(String name,
-                                    int checkIntervalTicks,
-                                    Supplier<Boolean> predicate,
-                                    Consumer<IAction> task,
-                                    int maxChecks) {
-        scheduleConditionalAction(name, checkIntervalTicks, predicate, task, maxChecks);
+    default void addConditionalTask(String name, Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task) {
+        scheduleConditionalAction(name, predicate, terminateWhen, task);
     }
 
     IConditionalAction scheduleConditionalAction(IConditionalAction action);
