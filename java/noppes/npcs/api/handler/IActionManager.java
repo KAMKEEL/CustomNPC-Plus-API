@@ -32,6 +32,8 @@ public interface IActionManager {
 
     IAction create(String name, Consumer<IAction> t);
 
+    IAction create(String name);
+
     IAction create(Consumer<IAction> t);
 
     /**

@@ -10,7 +10,13 @@ import java.util.function.Consumer;
 public interface IAction {
 
     /**
-     * @return how many times this action’s {@code action.accept(this)} callback has run
+     * @param task code to execute each time the action fires
+     * @return
+     */
+    IAction setTask(Consumer<IAction> task);
+
+    /**
+     * @return how many times this action’s {@code action.accept(this)} callback has run (or how many times task ran)
      */
     int getCount();
 
@@ -28,6 +34,8 @@ public interface IAction {
      * @return the maximum number of ticks this action is allowed to run before auto-terminating
      */
     int getMaxDuration();
+
+    IAction setMaxDuration(int x);
 
     /**
      * Mark this action as complete.  Once done, it will be removed on the next tick.
@@ -55,6 +63,8 @@ public interface IAction {
      */
     IAction addData(String key, Object value);
 
+    IAction removeData(String key);
+
     /**
      * @return how many ticks between each invocation of the action callback
      */
@@ -71,6 +81,12 @@ public interface IAction {
      * @return how many ticks remain before the action begins (initial delay)
      */
     int getStartAfterTicks();
+
+    /**
+     * @param ticks pauses action for this number of ticks (any subsequent action is paused too)
+     * @return
+     */
+    IAction pauseFor(int ticks);
 
     /**
      * @return the next action in the queue (or null if none or at end)
