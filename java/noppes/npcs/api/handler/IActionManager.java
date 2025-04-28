@@ -33,6 +33,14 @@ public interface IActionManager {
 
     IAction create(Consumer<IAction> t);
 
+    IConditionalAction create(Supplier<Boolean> predicate, Consumer<IAction> task);
+
+    IConditionalAction create(String name, Supplier<Boolean> predicate, Consumer<IAction> task);
+
+    IConditionalAction create(Supplier<Boolean> predicate, Supplier<Boolean> terminate, Consumer<IAction> task);
+
+    IConditionalAction create(String name, Supplier<Boolean> predicate, Supplier<Boolean> terminate, Consumer<IAction> task);
+
     /**
      * Begin processing scheduled actions.  Must be called once.
      */
