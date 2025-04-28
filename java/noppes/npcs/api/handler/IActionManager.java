@@ -39,8 +39,9 @@ public interface IActionManager {
      * Schedule an existing action for execution.
      *
      * @param action the action to enqueue
+     * @return the action scheduled
      */
-    void scheduleAction(IAction action);
+    IAction scheduleAction(IAction action);
 
     /**
      * Convenience for {@link #create(String, int, int, Consumer)} + enqueue.
@@ -49,16 +50,18 @@ public interface IActionManager {
      * @param maxDuration     the maximum lifetime of the action in ticks
      * @param startAfterTicks number of ticks to wait before the first run
      * @param action          logic to execute each time the action “fires”
+     * @return the action scheduled
      */
-    void scheduleAction(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
+    IAction scheduleAction(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
 
     /**
      * Insert an action at a specific position in the queue.
      *
      * @param index  zero-based queue position to insert at
      * @param action the action to insert
+     * @return the action scheduled
      */
-    void scheduleActionAt(int index, IAction action);
+    IAction scheduleActionAt(int index, IAction action);
 
     /**
      * Get the zero-based position of an action in the queue.
@@ -90,8 +93,9 @@ public interface IActionManager {
      * @param checkIntervalTicks number of ticks between each predicate check
      * @param predicate          no-arg boolean supplier deciding when to fire
      * @param action             logic to execute once when predicate first becomes true
+     * @return the action scheduled
      */
-    void scheduleConditionalAction(String name, int checkIntervalTicks, Supplier<Boolean> predicate, Consumer<IAction> action);
+    IAction scheduleConditionalAction(String name, int checkIntervalTicks, Supplier<Boolean> predicate, Consumer<IAction> action);
 
     /**
      * Schedule a conditional action that gives up after at most maxChecks attempts.
@@ -101,8 +105,9 @@ public interface IActionManager {
      * @param predicate          supplier returning true when it should fire
      * @param task               logic to run once when predicate first becomes true
      * @param maxChecks          maximum times to test predicate before auto‐cancelling
+     * @return the action scheduled
      */
-    void scheduleConditionalAction(String name, int checkIntervalTicks, Supplier<Boolean> predicate, Consumer<IAction> task, int maxChecks);
+    IAction scheduleConditionalAction(String name, int checkIntervalTicks, Supplier<Boolean> predicate, Consumer<IAction> task, int maxChecks);
 
     /**
      * Schedule a conditional action that gives up after at most maxChecks attempts.
@@ -113,8 +118,9 @@ public interface IActionManager {
      * @param terminateWhen      supplier returning true when it should terminate (gets marked done)
      * @param task               logic to run once when predicate first becomes true
      * @param maxChecks          maximum times to test predicate before auto‐cancelling
+     * @return the action scheduled
      */
-    void scheduleConditionalAction(String name, int checkIntervalTicks, Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task, int maxChecks);
+    IAction scheduleConditionalAction(String name, int checkIntervalTicks, Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task, int maxChecks);
 
     /**
      * Cancel (remove) the first queued action with the given name.
