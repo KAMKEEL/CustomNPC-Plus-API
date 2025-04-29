@@ -56,11 +56,11 @@ public interface IConditionalAction extends IAction {
 
     IConditionalAction after(String name, Supplier<Boolean> predicate, Consumer<IAction> task);
 
-    IConditionalAction after(Supplier<Boolean> predicate, Supplier<Boolean> terminate, Consumer<IAction> task);
+    IConditionalAction after(Supplier<Boolean> predicate, Consumer<IAction> task, Supplier<Boolean> terminate);
 
-    IConditionalAction after(String name, Supplier<Boolean> predicate, Supplier<Boolean> terminate, Consumer<IAction> task);
+    IConditionalAction after(String name, Supplier<Boolean> predicate, Consumer<IAction> task, Supplier<Boolean> terminate);
 
-    IConditionalAction after(Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task, Consumer<IAction> onTermination);
+    IConditionalAction after(Supplier<Boolean> predicate, Consumer<IAction> task, Supplier<Boolean> terminateWhen, Consumer<IAction> onTermination);
 
-    IConditionalAction after(String name, Supplier<Boolean> predicate, Supplier<Boolean> terminateWhen, Consumer<IAction> task, Consumer<IAction> onTermination);
+    IConditionalAction after(String name, Supplier<Boolean> predicate, Consumer<IAction> task, Supplier<Boolean> terminateWhen, Consumer<IAction> onTermination);
 }
