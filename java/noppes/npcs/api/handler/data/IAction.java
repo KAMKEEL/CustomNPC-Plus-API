@@ -1,6 +1,6 @@
 package noppes.npcs.api.handler.data;
 
-import noppes.npcs.scripted.ScriptedActionManager;
+import noppes.npcs.api.handler.IActionManager;
 
 import java.util.function.Consumer;
 
@@ -21,7 +21,7 @@ public interface IAction {
      *
      * @return action manager the action is scheduled on
      */
-    ScriptedActionManager getManager();
+    IActionManager getManager();
 
     /**
      * @return how many times this action’s {@code action.accept(this)} callback has run (or how many times task ran)
