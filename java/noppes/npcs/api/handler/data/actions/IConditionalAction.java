@@ -39,13 +39,13 @@ public interface IConditionalAction extends IAction {
 
     /**
      * Note: Only for Conditional Actions
-     * @return the maximum number of checks before auto‐expiring, or –1 if unlimited
+     * @return the maximum number of checks before auto-expiring, or -1 if unlimited
      */
     int getMaxChecks();
 
 
     /**
-     * @param maxChecks maximum times to test condition before auto‐cancelling
+     * @param maxChecks maximum times to test condition before auto-cancelling
      * @return this action
      */
     IConditionalAction setMaxChecks(int maxChecks);

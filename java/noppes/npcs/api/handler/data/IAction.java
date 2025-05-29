@@ -5,7 +5,7 @@ import noppes.npcs.api.handler.IActionManager;
 import java.util.function.Consumer;
 
 /**
- * Represents a single “task” that can be executed over multiple ticks,
+ * Represents a single "task" that can be executed over multiple ticks,
  * supports delayed start, limited duration, repeating intervals, data storage,
  * and chaining to neighboring tasks.
  */

@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 
 /**
  * Manages a queue of {@link IAction} instances, allowing scheduling of delayed,
- * repeating, or conditional “tasks” for NPC scripting.
+ * repeating, or conditional "tasks" for NPC scripting.
  */
 public interface IActionManager {
 
@@ -21,7 +21,7 @@ public interface IActionManager {
      * @param name            a unique name for this action
      * @param maxDuration     the maximum lifetime of the action in ticks
      * @param startAfterTicks number of ticks to wait before the first run
-     * @param action          code to execute each time the action “fires”
+     * @param action          code to execute each time the action "fires"
      * @return a fresh {@link IAction} object
      */
     IAction create(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
@@ -124,7 +124,7 @@ public interface IActionManager {
      * @param name            a unique name for this action
      * @param maxDuration     the maximum lifetime of the action in ticks
      * @param startAfterTicks number of ticks to wait before the first run
-     * @param action          code to execute each time the action “fires”
+     * @param action          code to execute each time the action "fires"
      * @return the action scheduled
      */
     IAction scheduleAction(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
@@ -216,7 +216,7 @@ public interface IActionManager {
     void clear();
 
     /**
-     * Convenience: create & enqueue a normal repeating task.
+     * Convenience: create and enqueue a normal repeating task.
      */
     default void addTask(String name, int maxDuration, int startAfterTicks, Consumer<IAction> task) {
         scheduleAction(name, maxDuration, startAfterTicks, task);
@@ -224,7 +224,7 @@ public interface IActionManager {
 
     /**
      * Convenience: create & enqueue a task that will fire exactly once
-     * after the given delay, and then auto‐complete.
+     * after the given delay, and then auto-complete.
      *
      * @param name             a unique name for this action
      * @param startAfterTicks  delay before it runs (in ticks)
