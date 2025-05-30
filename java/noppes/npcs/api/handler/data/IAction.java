@@ -69,9 +69,11 @@ public interface IAction {
      * @param key   a string key
      * @param value any object to associate with this action
      */
-    IAction addData(String key, Object value);
+    IAction setData(String key, Object value);
 
     IAction removeData(String key);
+
+    boolean hasData(String key);
 
     /**
      * @return how many ticks between each invocation of the action callback
