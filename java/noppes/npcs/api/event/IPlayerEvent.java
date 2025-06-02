@@ -189,6 +189,15 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
         IEntity getTarget();
     }
 
+    @Cancelable
+    interface RightClickEvent extends IPlayerEvent {
+        int getType();
+
+        Object getTarget();
+
+        IPlayer getPlayer();
+    }
+
     interface UpdateEvent extends IPlayerEvent {
     }
 
