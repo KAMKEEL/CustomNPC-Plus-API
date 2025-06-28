@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import noppes.npcs.api.*;
 import noppes.npcs.api.gui.ICustomGui;
+import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.api.handler.IOverlayHandler;
 import noppes.npcs.api.handler.IPlayerData;
 import noppes.npcs.api.handler.data.*;
@@ -664,4 +665,10 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
      * @return Player Attributes Data
      */
     IPlayerAttributes getAttributes();
+
+    /**
+     *
+     * @return player's ActionManager
+     */
+    IActionManager getActionManager();
 }
