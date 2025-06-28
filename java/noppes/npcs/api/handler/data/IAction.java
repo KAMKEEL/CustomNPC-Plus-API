@@ -3,6 +3,7 @@ package noppes.npcs.api.handler.data;
 import noppes.npcs.api.handler.IActionManager;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /**
  * Represents a single "task" that can be executed over multiple ticks,
@@ -94,19 +95,40 @@ public interface IAction {
 
     /**
      * @param ticks pauses action for this number of ticks (any subsequent action is paused too)
-     *              If action is threaded using threadify(), sleeps the thread.
+     *              If action was threaded using {@link #threadify()}, sleeps the thread.
+     *              Can be forcibly resumed using {@link #resume()}
      * @return
      */
     IAction pauseFor(int ticks);
 
     IAction pauseFor(long millis);
 
+    /**
+     * Must call {@link #threadify()} before using, else throws exception.
+     * Pauses IAction's thread until {@link #resume()} is called.
+     */
+    void pause();
+
+    /**
+     * Must call {@link #threadify()} before using, else throws exception.
+     * Pauses IAction's thread until the supplied condition is satisfied or {@link #resume()} is called.
+     */
+    void pauseUntil(Supplier<Boolean> until);
+
+    /**
+     * Resumes thread that was previously paused by {@link #pause()},  {@link #pauseUntil(Supplier)}, {@link #pauseFor(int)} or {@link #pauseFor(long)}
+     */
+    void resume();
+
+    /**
+     * @return checks if IAction's getStartAfterTicks > 0, or if IAction's thread is paused if threaded
+     */
     boolean isPaused();
 
     /**
-     * Creates a new thread for task to run into. Allows for pausing and sleeping the thread.
+     * Creates a new thread for task to run into. Allows for pausing and sleeping just this IAction's thread.
      */
-    void threadify();
+    IAction threadify();
 
     /**
      * @return the next action in the queue (or null if none or at end)
