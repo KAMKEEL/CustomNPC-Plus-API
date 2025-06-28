@@ -154,6 +154,12 @@ public interface IActionManager {
     IAction getCurrentAction();
 
     /**
+     * @param name
+     * @return fetches queued up IAction with given name from actionQueue, parallelActions and conditionalActions
+     */
+    IAction getAction(String name);
+
+    /**
      * Retrieve the entire action queue.
      *
      * @return live reference to the internal {@link Queue} of actions
