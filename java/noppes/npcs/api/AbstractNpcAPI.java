@@ -230,6 +230,12 @@ public abstract class AbstractNpcAPI {
     public abstract IWorld getIWorldLoad(int var1);
 
     /**
+     *
+     * @return The global IActionManager for the server
+     */
+    public abstract IActionManager getActionManager();
+
+    /**
      * @return The list of all LOADED IWorlds
      */
     public abstract IWorld[] getIWorlds();
