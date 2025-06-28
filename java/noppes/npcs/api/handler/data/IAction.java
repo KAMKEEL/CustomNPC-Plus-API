@@ -94,9 +94,19 @@ public interface IAction {
 
     /**
      * @param ticks pauses action for this number of ticks (any subsequent action is paused too)
+     *              If action is threaded using threadify(), sleeps the thread.
      * @return
      */
     IAction pauseFor(int ticks);
+
+    IAction pauseFor(long millis);
+
+    boolean isPaused();
+
+    /**
+     * Creates a new thread for task to run into. Allows for pausing and sleeping the thread.
+     */
+    void threadify();
 
     /**
      * @return the next action in the queue (or null if none or at end)
