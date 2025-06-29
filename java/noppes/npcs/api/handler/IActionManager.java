@@ -119,15 +119,34 @@ public interface IActionManager {
     IAction scheduleAction(IAction action);
 
     /**
+     * Convenience for {@link #create(String, Consumer)} + enqueue.
+     *
+     * @param name            a unique name for this action
+     * @param task            code to execute each time the task "fires"
+     * @return the task scheduled
+     */
+    IAction scheduleAction(String name, Consumer<IAction> task);
+
+    /**
+     * Convenience for {@link #create(String, int, Consumer)} + enqueue.
+     *
+     * @param name            a unique name for this action
+     * @param startAfterTicks number of ticks to wait before the first task run
+     * @param task            code to execute each time the task "fires"
+     * @return the task scheduled
+     */
+    IAction scheduleAction(String name, int startAfterTicks, Consumer<IAction> task);
+
+    /**
      * Convenience for {@link #create(String, int, int, Consumer)} + enqueue.
      *
      * @param name            a unique name for this action
      * @param maxDuration     the maximum lifetime of the action in ticks
-     * @param startAfterTicks number of ticks to wait before the first run
-     * @param action          code to execute each time the action "fires"
-     * @return the action scheduled
+     * @param startAfterTicks number of ticks to wait before the first task run
+     * @param task            code to execute each time the task "fires"
+     * @return the task scheduled
      */
-    IAction scheduleAction(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
+    IAction scheduleAction(String name, int maxDuration, int startAfterTicks, Consumer<IAction> task);
 
     /**
      * Insert an action at a specific position in the queue.

@@ -77,7 +77,8 @@ public interface IAction {
     boolean hasData(String key);
 
     /**
-     * @return how many ticks between each invocation of the action callback
+     * @return how many ticks between each execution of the action's task
+     * Default is 5 ticks (4 times per second)
      */
     int getUpdateEveryXTick();
 
@@ -117,11 +118,13 @@ public interface IAction {
 
     /**
      * Resumes thread that was previously paused by {@link #pause()},  {@link #pauseUntil(Supplier)}, {@link #pauseFor(int)} or {@link #pauseFor(long)}
+     * Must be called from a different thread than the IAction one, as that one is paused, so it won't reach this function if it comes after any of the pausing functions.
      */
     void resume();
 
     /**
      * @return checks if IAction's getStartAfterTicks > 0, or if IAction's thread is paused if threaded
+     * Preferably called from a different thread than the IAction one if it's paused.
      */
     boolean isPaused();
 
@@ -129,6 +132,12 @@ public interface IAction {
      * Creates a new thread for task to run into. Allows for pausing and sleeping just this IAction's thread.
      */
     IAction threadify();
+
+    /**
+     *
+     * @return starts the IActionManager
+     */
+    IAction start();
 
     /**
      * @return the next action in the queue (or null if none or at end)
