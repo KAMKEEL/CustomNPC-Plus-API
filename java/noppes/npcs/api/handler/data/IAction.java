@@ -50,7 +50,9 @@ public interface IAction {
     IAction setMaxDuration(int x);
 
     /**
-     * Mark this action as complete.  Once done, it will be removed on the next tick.
+     * Mark this action as complete and de-schedules it from its queue.
+     * Forcibly resumes action if paused or had its thread slept with the IAction pausing methods.
+     *
      */
     void markDone();
 
