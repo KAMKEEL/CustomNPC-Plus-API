@@ -305,7 +305,20 @@ public interface IActionManager {
      */
     boolean hasConditional(String name);
 
+    /**
+     * Schedules actions on the parallelQueue, where all actions are executed simultaneously
+     *
+     * @param action
+     * @return
+     */
+
     IAction scheduleParallelAction(IAction action);
+
+    IAction scheduleParallelAction(String name, Consumer<IAction> task);
+
+    IAction scheduleParallelAction(String name, int startAfterTicks, Consumer<IAction> task);
+
+    IAction scheduleParallelAction(String name, int maxDuration, int startAfterTicks, Consumer<IAction> task);
 
     IActionChain chain();
 
