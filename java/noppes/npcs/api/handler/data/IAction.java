@@ -41,6 +41,9 @@ public interface IAction {
 
     /**
      * @return the maximum number of ticks this action is allowed to run before auto-terminating
+     *
+     * P.S: If the max duration is reached and this IAction is threaded using  {@link #threadify()} and the thread is paused using any of the pausing methods,
+     *      the thread is forcibly resumed and finishes the task execution once.
      */
     int getMaxDuration();
 
@@ -148,6 +151,21 @@ public interface IAction {
      * @return the previous action in the queue (or null if none or at front)
      */
     IAction getPrevious();
+
+    /**
+     * Enqueue another IAction on the parallel chain which starts firing simultaneously as this.
+     *
+     * @param after the action to run next
+     */
+    IAction parallel(IAction after);
+
+    IAction parallel(Consumer<IAction> task);
+
+    IAction parallel(int delay, Consumer<IAction> task);
+
+    IAction parallel(String name, Consumer<IAction> task);
+
+    IAction parallel(String name, int startAfterTicks, Consumer<IAction> task);
 
     /**
      * Enqueue another action immediately after this one.
