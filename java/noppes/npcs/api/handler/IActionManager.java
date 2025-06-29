@@ -20,11 +20,11 @@ public interface IActionManager {
      *
      * @param name            a unique name for this action
      * @param maxDuration     the maximum lifetime of the action in ticks
-     * @param startAfterTicks number of ticks to wait before the first run
+     * @param delay number of ticks to wait before the first run
      * @param action          code to execute each time the action "fires"
      * @return a fresh {@link IAction} object
      */
-    IAction create(String name, int maxDuration, int startAfterTicks, Consumer<IAction> action);
+    IAction create(String name, int maxDuration, int delay, Consumer<IAction> action);
 
     IAction create(String name, int delay, Consumer<IAction> t);
 
@@ -119,6 +119,23 @@ public interface IActionManager {
     IAction scheduleAction(IAction action);
 
     /**
+     * Convenience for {@link #create(Consumer)} + enqueue.
+     *
+     * @param task            code to execute each time the task "fires"
+     * @return the task scheduled
+     */
+    IAction scheduleAction(Consumer<IAction> task);
+
+    /**
+     * Convenience for {@link #create(String, Consumer)} + enqueue.
+     *
+     * @param delay  number of ticks to wait before the first task run
+     * @param task            code to execute each time the task "fires"
+     * @return the task scheduled
+     */
+    IAction scheduleAction(int delay, Consumer<IAction> task);
+
+    /**
      * Convenience for {@link #create(String, Consumer)} + enqueue.
      *
      * @param name            a unique name for this action
@@ -131,22 +148,22 @@ public interface IActionManager {
      * Convenience for {@link #create(String, int, Consumer)} + enqueue.
      *
      * @param name            a unique name for this action
-     * @param startAfterTicks number of ticks to wait before the first task run
+     * @param delay number of ticks to wait before the first task run
      * @param task            code to execute each time the task "fires"
      * @return the task scheduled
      */
-    IAction scheduleAction(String name, int startAfterTicks, Consumer<IAction> task);
+    IAction scheduleAction(String name, int delay, Consumer<IAction> task);
 
     /**
      * Convenience for {@link #create(String, int, int, Consumer)} + enqueue.
      *
      * @param name            a unique name for this action
      * @param maxDuration     the maximum lifetime of the action in ticks
-     * @param startAfterTicks number of ticks to wait before the first task run
+     * @param delay number of ticks to wait before the first task run
      * @param task            code to execute each time the task "fires"
      * @return the task scheduled
      */
-    IAction scheduleAction(String name, int maxDuration, int startAfterTicks, Consumer<IAction> task);
+    IAction scheduleAction(String name, int maxDuration, int delay, Consumer<IAction> task);
 
     /**
      * Insert an action at a specific position in the queue.
@@ -255,8 +272,8 @@ public interface IActionManager {
     /**
      * Convenience: create and enqueue a normal repeating task.
      */
-    default IAction addTask(String name, int maxDuration, int startAfterTicks, Consumer<IAction> task) {
-        return scheduleAction(name, maxDuration, startAfterTicks, task);
+    default IAction addTask(String name, int maxDuration, int delay, Consumer<IAction> task) {
+        return scheduleAction(name, maxDuration, delay, task);
     }
 
     /**
@@ -264,11 +281,11 @@ public interface IActionManager {
      * after the given delay, and then auto-complete.
      *
      * @param name             a unique name for this action
-     * @param startAfterTicks  delay before it runs (in ticks)
+     * @param delay  delay before it runs (in ticks)
      * @param task             code to execute once
      */
-    default IAction addSingleTask(String name, int startAfterTicks, Consumer<IAction> task) {
-        IAction action = create(name, 1, startAfterTicks, act -> {
+    default IAction addSingleTask(String name, int delay, Consumer<IAction> task) {
+        IAction action = create(name, 1, delay, act -> {
             task.accept(act);
             act.markDone();
         });
@@ -316,9 +333,9 @@ public interface IActionManager {
 
     IAction scheduleParallelAction(String name, Consumer<IAction> task);
 
-    IAction scheduleParallelAction(String name, int startAfterTicks, Consumer<IAction> task);
+    IAction scheduleParallelAction(String name, int delay, Consumer<IAction> task);
 
-    IAction scheduleParallelAction(String name, int maxDuration, int startAfterTicks, Consumer<IAction> task);
+    IAction scheduleParallelAction(String name, int maxDuration, int delay, Consumer<IAction> task);
 
     IActionChain chain();
 
