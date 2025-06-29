@@ -205,6 +205,11 @@ public interface IEntity<T extends Entity> {
     void setDimension(int dimensionId);
 
     /**
+     * @return Array of entities that are colliding with this entity
+     */
+    IEntity[] getCollidingEntities();
+
+    /**
      * Returns an array of entities within the specified range.
      *
      * @param range the search range.
