@@ -223,7 +223,7 @@ public interface IActionManager {
 
     /**
      *
-     * @return the list of all conditional actions
+     * @return the list of all conditional actions scheduled
      */
     List<IConditionalAction> getConditionalActions();
 
@@ -236,6 +236,18 @@ public interface IActionManager {
     boolean cancelAction(String name);
 
     /**
+     * @param name action name to check for
+     * @return true if action is scheduled in actionQueue {@link #getActionQueue()}
+     */
+    boolean hasAction(String name);
+
+    /**
+     * @param name action name to check for
+     * @return true if action is scheduled in any of the 3 action, parallel and conditional action queues
+     */
+    boolean hasAny(String name);
+
+    /**
      * Remove every scheduled action immediately.
      */
     void clear();
@@ -243,8 +255,8 @@ public interface IActionManager {
     /**
      * Convenience: create and enqueue a normal repeating task.
      */
-    default void addTask(String name, int maxDuration, int startAfterTicks, Consumer<IAction> task) {
-        scheduleAction(name, maxDuration, startAfterTicks, task);
+    default IAction addTask(String name, int maxDuration, int startAfterTicks, Consumer<IAction> task) {
+        return scheduleAction(name, maxDuration, startAfterTicks, task);
     }
 
     /**
@@ -255,42 +267,58 @@ public interface IActionManager {
      * @param startAfterTicks  delay before it runs (in ticks)
      * @param task             code to execute once
      */
-    default void addSingleTask(String name, int startAfterTicks, Consumer<IAction> task) {
+    default IAction addSingleTask(String name, int startAfterTicks, Consumer<IAction> task) {
         IAction action = create(name, 1, startAfterTicks, act -> {
             task.accept(act);
             act.markDone();
         });
         // force it to fire on the very next tick once the delay expires
         action.setUpdateEveryXTick(1);
-        scheduleAction(action);
+        return scheduleAction(action);
     }
 
     /**
      * Same as above, but fires immediately (no delay).
      */
-    default void addSingleTask(String name, Consumer<IAction> task) {
-        addSingleTask(name, 0, task);
+    default IAction addSingleTask(String name, Consumer<IAction> task) {
+        return addSingleTask(name, 0, task);
     }
 
 
     /**
      * Convenience: create & enqueue a conditional task that re-checks forever.
      */
-    default void addConditionalTask(String name, Supplier<Boolean> condition, Consumer<IAction> task) {
-        scheduleAction(name, condition, task);
+    default IConditionalAction addConditionalTask(String name, Supplier<Boolean> condition, Consumer<IAction> task) {
+        return scheduleAction(name, condition, task);
     }
 
     /**
      * Convenience: create & enqueue a conditional task that gives up after maxChecks.
      */
-    default void addConditionalTask(String name, Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminateWhen) {
-        scheduleAction(name, condition, task, terminateWhen);
+    default IConditionalAction addConditionalTask(String name, Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminateWhen) {
+        return scheduleAction(name, condition, task, terminateWhen);
     }
 
+    /**
+     * @param name action name to check for
+     * @return true if action is scheduled in conditionalActions {@link #getConditionalActions()}
+     */
+    boolean hasConditional(String name);
 
     IAction scheduleParallelAction(IAction action);
 
     IActionChain chain();
 
     IActionChain parallelChain();
+
+    /**
+     * @return the list of all parallel actions scheduled
+     */
+    Queue<IAction> getParallelActions();
+
+    /**
+     * @param name action name to check for
+     * @return true if action is scheduled in parallelActionQueue {@link #getParallelActions()}
+     */
+    boolean hasParallel(String name);
 }
