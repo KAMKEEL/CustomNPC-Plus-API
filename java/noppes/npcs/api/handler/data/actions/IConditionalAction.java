@@ -43,6 +43,13 @@ public interface IConditionalAction extends IAction {
      */
     int getMaxChecks();
 
+    /**
+     *
+     * @return True if condition provided by {{@link #terminateWhen(Supplier)}} is satisfied
+     * Can be called directly in the IAction's task.
+     * Can only be true once, as action is marked done immediately after.
+     */
+    boolean isTerminated();
 
     /**
      * @param maxChecks maximum times to test condition before auto-cancelling
