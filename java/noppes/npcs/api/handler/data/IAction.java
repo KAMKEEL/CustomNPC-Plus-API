@@ -26,6 +26,11 @@ public interface IAction {
     IActionManager getManager();
 
     /**
+     * @return True if was scheduled in the queues using any of the schedule methods, false if was only created.
+     */
+    boolean isScheduled();
+
+    /**
      * @return how many times this action’s task has been executed
      */
     int getCount();
