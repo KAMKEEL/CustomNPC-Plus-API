@@ -26,7 +26,7 @@ public interface IAction {
     IActionManager getManager();
 
     /**
-     * @return how many times this action’s {@code action.accept(this)} callback has run (or how many times task ran)
+     * @return how many times this action’s task has been executed
      */
     int getCount();
 
@@ -41,14 +41,39 @@ public interface IAction {
     String getName();
 
     /**
-     * @return the maximum number of ticks this action is allowed to run before auto-terminating
+     * @return the maximum number of ticks this action is allowed to run before auto marking done
      *
      * P.S: If max duration is reached and this IAction's thread (created using {@link #threadify()}) is paused by any of the pausing methods,
      *      the thread is forcibly resumed and finishes the task execution.
      */
     int getMaxDuration();
 
+    /**
+     * @param x max duration
+     *          default: -1,  infinite
+     * @return
+     */
     IAction setMaxDuration(int x);
+
+    /**
+     * @return the maximum number of counts this action is allowed to run before auto marking done
+     */
+    int getMaxCount();
+
+    /**
+     * @param n max count, task auto marks done after running for n counts
+     *          default: -1, infinite
+     * @return
+     */
+    IAction times(int n);
+
+    /**
+     * Execute task only once, mark done
+     * equivalent to times(1)
+     *
+     * @return
+     */
+    IAction once();
 
     /**
      * Mark this action as complete and de-schedules it from its queue.
@@ -91,14 +116,14 @@ public interface IAction {
      * @return how many ticks between each execution of the action's task
      * Default is 5 ticks (4 times per second)
      */
-    int getUpdateEveryXTick();
+    int getUpdateEvery();
 
     /**
-     * Set how many ticks between each invocation of the action callback.
+     * Set how many ticks between each execution of the action task.
      *
-     * @param X tick interval (e.g. 1 = every tick, 20 = once per second)
+     * @param ticks tick interval (e.g. 1 = every tick, 20 = once per second)
      */
-    IAction setUpdateEveryXTick(int X);
+    IAction updateEvery(int ticks);
 
     /**
      * @return how many ticks remain before the action begins (initial delay)
