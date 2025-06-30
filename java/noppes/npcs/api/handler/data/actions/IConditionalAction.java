@@ -3,21 +3,21 @@ package noppes.npcs.api.handler.data.actions;
 import noppes.npcs.api.handler.data.IAction;
 
 import java.util.function.Consumer;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 public interface IConditionalAction extends IAction {
 
     /**
-     * @param condition supplier checked every tick, if it returns true, task is fired
+     * @param condition checked every tick, if it returns true, task is fired
      * @return
      */
-    IConditionalAction setCondition(Supplier<Boolean> condition);
+    IConditionalAction setCondition(Function<IAction, Boolean> condition);
 
     /**
-     * @param terminateWhen supplier checked every tick, if it returns true, action is terminated (gets marked done)
+     * @param terminateWhen checked every tick, if it returns true, action is terminated (gets marked done)
      * @return this action
      */
-    IConditionalAction terminateWhen(Supplier<Boolean> terminateWhen);
+    IConditionalAction terminateWhen(Function<IAction, Boolean> terminateWhen);
 
     /**
      * @param onTermination code to run when the termination condition returns true
@@ -45,7 +45,7 @@ public interface IConditionalAction extends IAction {
 
     /**
      *
-     * @return True if condition provided by {{@link #terminateWhen(Supplier)}} is satisfied
+     * @return True if condition provided by {{@link #terminateWhen(Function)}} is satisfied
      * Can be called directly in the IAction's task.
      * Can only be true once, as action is marked done immediately after.
      */

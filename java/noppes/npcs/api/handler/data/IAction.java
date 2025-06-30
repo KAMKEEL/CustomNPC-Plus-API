@@ -4,7 +4,7 @@ import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.api.handler.data.actions.IConditionalAction;
 
 import java.util.function.Consumer;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 /**
  * Represents a single "task" that can be executed over multiple ticks,
@@ -125,10 +125,10 @@ public interface IAction {
      * Must call {@link #threadify()} before using, else throws exception.
      * Pauses IAction's thread until the supplied condition is satisfied or {@link #resume()} is called.
      */
-    void pauseUntil(Supplier<Boolean> until);
+    void pauseUntil(Function<IAction,Boolean> until);
 
     /**
-     * Resumes thread that was previously paused by {@link #pause()},  {@link #pauseUntil(Supplier)}, {@link #pauseFor(int)} or {@link #pauseFor(long)}
+     * Resumes thread that was previously paused by {@link #pause()},  {@link #pauseUntil(Function)}, {@link #pauseFor(int)} or {@link #pauseFor(long)}
      * Must be called from a different thread than the IAction one, as that one is paused, so it won't reach this function if it comes after any of the pausing functions.
      */
     void resume();
@@ -201,17 +201,17 @@ public interface IAction {
      */
     IConditionalAction conditional(IConditionalAction after);
 
-    IConditionalAction conditional(Supplier<Boolean> condition, Consumer<IAction> task);
+    IConditionalAction conditional(Function<IAction,Boolean> condition, Consumer<IAction> task);
 
-    IConditionalAction conditional(String name, Supplier<Boolean> condition, Consumer<IAction> task);
+    IConditionalAction conditional(String name, Function<IAction,Boolean> condition, Consumer<IAction> task);
 
-    IConditionalAction conditional(Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminate);
+    IConditionalAction conditional(Function<IAction,Boolean> condition, Consumer<IAction> task, Function<IAction,Boolean> terminate);
 
-    IConditionalAction conditional(String name, Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminate);
+    IConditionalAction conditional(String name, Function<IAction,Boolean> condition, Consumer<IAction> task, Function<IAction,Boolean> terminate);
 
-    IConditionalAction conditional(Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminateWhen, Consumer<IAction> onTermination);
+    IConditionalAction conditional(Function<IAction,Boolean> condition, Consumer<IAction> task, Function<IAction,Boolean> terminateWhen, Consumer<IAction> onTermination);
 
-    IConditionalAction conditional(String name, Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminateWhen, Consumer<IAction> onTermination);
+    IConditionalAction conditional(String name, Function<IAction,Boolean> condition, Consumer<IAction> task, Function<IAction,Boolean> terminateWhen, Consumer<IAction> onTermination);
 
     /**
      * Enqueue another IAction on the parallel chain which starts firing simultaneously as this.
