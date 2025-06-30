@@ -1,6 +1,7 @@
 package noppes.npcs.api.handler.data;
 
 import noppes.npcs.api.handler.IActionManager;
+import noppes.npcs.api.handler.data.actions.IConditionalAction;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -155,23 +156,6 @@ public interface IAction {
     IAction getPrevious();
 
     /**
-     * Enqueue another IAction on the parallel chain which starts firing simultaneously as this.
-     *
-     * @param after the action to run next
-     */
-    IAction parallel(IAction after);
-
-    IAction parallel(Consumer<IAction> task);
-
-    IAction parallel(int delay, Consumer<IAction> task);
-
-    IAction parallel(String name, Consumer<IAction> task);
-
-    IAction parallel(String name, int startAfterTicks, Consumer<IAction> task);
-
-    IAction parallel(String name, int maxDuration, int delay, Consumer<IAction> t);
-
-    /**
      * Enqueue another action immediately after this one.
      *
      * @param after the action to run next
@@ -204,4 +188,40 @@ public interface IAction {
     IAction before(String name, Consumer<IAction> t);
 
     IAction before(Consumer<IAction> t);
+
+    /**
+     * Enqueue an IConditionalAction on the conditional chain
+     *
+     * @param after the scheduled IConditionalAction
+     */
+    IConditionalAction conditional(IConditionalAction after);
+
+    IConditionalAction conditional(Supplier<Boolean> condition, Consumer<IAction> task);
+
+    IConditionalAction conditional(String name, Supplier<Boolean> condition, Consumer<IAction> task);
+
+    IConditionalAction conditional(Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminate);
+
+    IConditionalAction conditional(String name, Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminate);
+
+    IConditionalAction conditional(Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminateWhen, Consumer<IAction> onTermination);
+
+    IConditionalAction conditional(String name, Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminateWhen, Consumer<IAction> onTermination);
+
+    /**
+     * Enqueue another IAction on the parallel chain which starts firing simultaneously as this.
+     *
+     * @param after the scheduled parallel action
+     */
+    IAction parallel(IAction after);
+
+    IAction parallel(Consumer<IAction> task);
+
+    IAction parallel(int delay, Consumer<IAction> task);
+
+    IAction parallel(String name, Consumer<IAction> task);
+
+    IAction parallel(String name, int startAfterTicks, Consumer<IAction> task);
+
+    IAction parallel(String name, int maxDuration, int delay, Consumer<IAction> t);
 }

@@ -57,17 +57,4 @@ public interface IConditionalAction extends IAction {
      */
     IConditionalAction setMaxChecks(int maxChecks);
 
-    IConditionalAction after(IConditionalAction after);
-
-    IConditionalAction after(Supplier<Boolean> condition, Consumer<IAction> task);
-
-    IConditionalAction after(String name, Supplier<Boolean> condition, Consumer<IAction> task);
-
-    IConditionalAction after(Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminate);
-
-    IConditionalAction after(String name, Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminate);
-
-    IConditionalAction after(Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminateWhen, Consumer<IAction> onTermination);
-
-    IConditionalAction after(String name, Supplier<Boolean> condition, Consumer<IAction> task, Supplier<Boolean> terminateWhen, Consumer<IAction> onTermination);
 }
