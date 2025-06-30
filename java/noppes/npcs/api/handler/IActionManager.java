@@ -308,53 +308,6 @@ public interface IActionManager {
     void clear();
 
     /**
-     * Convenience: create and enqueue a normal repeating task.
-     */
-    default IAction addTask(String name, int maxDuration, int delay, Consumer<IAction> task) {
-        return schedule(name, maxDuration, delay, task);
-    }
-
-    /**
-     * Convenience: create & enqueue a task that will fire exactly once
-     * after the given delay, and then auto-complete.
-     *
-     * @param name             a unique name for this action
-     * @param delay  delay before it runs (in ticks)
-     * @param task             code to execute once
-     */
-    default IAction addSingleTask(String name, int delay, Consumer<IAction> task) {
-        IAction action = create(name, 1, delay, act -> {
-            task.accept(act);
-            act.markDone();
-        });
-        // force it to fire on the very next tick once the delay expires
-        action.setUpdateEveryXTick(1);
-        return schedule(action);
-    }
-
-    /**
-     * Same as above, but fires immediately (no delay).
-     */
-    default IAction addSingleTask(String name, Consumer<IAction> task) {
-        return addSingleTask(name, 0, task);
-    }
-
-
-    /**
-     * Convenience: create & enqueue a conditional task that re-checks forever.
-     */
-    default IConditionalAction addConditionalTask(String name, Function<IAction, Boolean> condition, Consumer<IAction> task) {
-        return schedule(name, condition, task);
-    }
-
-    /**
-     * Convenience: create & enqueue a conditional task that gives up after maxChecks.
-     */
-    default IConditionalAction addConditionalTask(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen) {
-        return schedule(name, condition, task, terminateWhen);
-    }
-
-    /**
      * @param name action name to check for
      * @return true if action is scheduled in conditionalActions {@link #getConditionalActions()}
      */
