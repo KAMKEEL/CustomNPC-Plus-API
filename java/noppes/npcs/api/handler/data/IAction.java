@@ -63,6 +63,11 @@ public interface IAction {
     boolean isDone();
 
     /**
+     * marks done and safely dumps the action's data and thread
+     */
+    void kill();
+
+    /**
      * Retrieve arbitrary per-action data.
      *
      * @param key a string key
