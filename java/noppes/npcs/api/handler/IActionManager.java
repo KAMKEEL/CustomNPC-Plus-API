@@ -119,7 +119,7 @@ public interface IActionManager {
      * @param action the action to enqueue
      * @return the action scheduled
      */
-    IAction scheduleAction(IAction action);
+    IAction schedule(IAction action);
 
     /**
      * Convenience for {@link #create(Consumer)} + enqueue.
@@ -127,7 +127,7 @@ public interface IActionManager {
      * @param task            code to execute each time the task "fires"
      * @return the task scheduled
      */
-    IAction scheduleAction(Consumer<IAction> task);
+    IAction schedule(Consumer<IAction> task);
 
     /**
      * Convenience for {@link #create(String, Consumer)} + enqueue.
@@ -136,7 +136,7 @@ public interface IActionManager {
      * @param task            code to execute each time the task "fires"
      * @return the task scheduled
      */
-    IAction scheduleAction(int delay, Consumer<IAction> task);
+    IAction schedule(int delay, Consumer<IAction> task);
 
     /**
      * Convenience for {@link #create(String, Consumer)} + enqueue.
@@ -145,7 +145,7 @@ public interface IActionManager {
      * @param task            code to execute each time the task "fires"
      * @return the task scheduled
      */
-    IAction scheduleAction(String name, Consumer<IAction> task);
+    IAction schedule(String name, Consumer<IAction> task);
 
     /**
      * Convenience for {@link #create(String, int, Consumer)} + enqueue.
@@ -155,7 +155,7 @@ public interface IActionManager {
      * @param task            code to execute each time the task "fires"
      * @return the task scheduled
      */
-    IAction scheduleAction(String name, int delay, Consumer<IAction> task);
+    IAction schedule(String name, int delay, Consumer<IAction> task);
 
     /**
      * Convenience for {@link #create(String, int, int, Consumer)} + enqueue.
@@ -166,9 +166,9 @@ public interface IActionManager {
      * @param task            code to execute each time the task "fires"
      * @return the task scheduled
      */
-    IAction scheduleAction(String name, int maxDuration, int delay, Consumer<IAction> task);
+    IAction schedule(String name, int maxDuration, int delay, Consumer<IAction> task);
 
-    IAction scheduleAction(int maxDuration, int delay, Consumer<IAction> task);
+    IAction schedule(int maxDuration, int delay, Consumer<IAction> task);
 
     /**
      * Insert an action at a specific position in the queue.
@@ -218,7 +218,7 @@ public interface IActionManager {
      * @param task      code to run once condition first becomes true
      * @return the action scheduled
      */
-    IConditionalAction scheduleAction(Function<IAction, Boolean> condition, Consumer<IAction> task);
+    IConditionalAction schedule(Function<IAction, Boolean> condition, Consumer<IAction> task);
 
     /**
      * Schedule a conditional action that gives up after at most maxChecks attempts.
@@ -228,7 +228,7 @@ public interface IActionManager {
      * @param terminateWhen checked every tick, if it returns true, action is terminated (gets marked done)
      * @return the action scheduled
      */
-    IConditionalAction scheduleAction(Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen);
+    IConditionalAction schedule(Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen);
 
     /**
      * Schedule a conditional action that gives up after at most maxChecks attempts.
@@ -239,7 +239,7 @@ public interface IActionManager {
      * @param onTermination code to run when the termination condition returns true
      * @return the action scheduled
      */
-    IConditionalAction scheduleAction(Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
+    IConditionalAction schedule(Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
 
     /**
      * Schedule a conditional action that gives up after at most maxChecks attempts.
@@ -249,7 +249,7 @@ public interface IActionManager {
      * @param task      code to run once condition first becomes true
      * @return the action scheduled
      */
-    IConditionalAction scheduleAction(String name, Function<IAction, Boolean> condition, Consumer<IAction> task);
+    IConditionalAction schedule(String name, Function<IAction, Boolean> condition, Consumer<IAction> task);
 
     /**
      * Schedule a conditional action that gives up after at most maxChecks attempts.
@@ -260,7 +260,7 @@ public interface IActionManager {
      * @param terminateWhen checked every tick, if it returns true, action is terminated (gets marked done)
      * @return the action scheduled
      */
-    IConditionalAction scheduleAction(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen);
+    IConditionalAction schedule(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen);
 
     /**
      * Schedule a conditional action that gives up after at most maxChecks attempts.
@@ -272,9 +272,9 @@ public interface IActionManager {
      * @param onTermination code to run when the termination condition returns true
      * @return the action scheduled
      */
-    IConditionalAction scheduleAction(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
+    IConditionalAction schedule(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
 
-    IConditionalAction scheduleAction(IConditionalAction action);
+    IConditionalAction schedule(IConditionalAction action);
 
     /**
      *
@@ -311,7 +311,7 @@ public interface IActionManager {
      * Convenience: create and enqueue a normal repeating task.
      */
     default IAction addTask(String name, int maxDuration, int delay, Consumer<IAction> task) {
-        return scheduleAction(name, maxDuration, delay, task);
+        return schedule(name, maxDuration, delay, task);
     }
 
     /**
@@ -329,7 +329,7 @@ public interface IActionManager {
         });
         // force it to fire on the very next tick once the delay expires
         action.setUpdateEveryXTick(1);
-        return scheduleAction(action);
+        return schedule(action);
     }
 
     /**
@@ -344,14 +344,14 @@ public interface IActionManager {
      * Convenience: create & enqueue a conditional task that re-checks forever.
      */
     default IConditionalAction addConditionalTask(String name, Function<IAction, Boolean> condition, Consumer<IAction> task) {
-        return scheduleAction(name, condition, task);
+        return schedule(name, condition, task);
     }
 
     /**
      * Convenience: create & enqueue a conditional task that gives up after maxChecks.
      */
     default IConditionalAction addConditionalTask(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen) {
-        return scheduleAction(name, condition, task, terminateWhen);
+        return schedule(name, condition, task, terminateWhen);
     }
 
     /**
@@ -367,13 +367,13 @@ public interface IActionManager {
      * @return
      */
 
-    IAction scheduleParallelAction(IAction action);
+    IAction scheduleParallel(IAction action);
 
-    IAction scheduleParallelAction(String name, Consumer<IAction> task);
+    IAction scheduleParallel(String name, Consumer<IAction> task);
 
-    IAction scheduleParallelAction(String name, int delay, Consumer<IAction> task);
+    IAction scheduleParallel(String name, int delay, Consumer<IAction> task);
 
-    IAction scheduleParallelAction(String name, int maxDuration, int delay, Consumer<IAction> task);
+    IAction scheduleParallel(String name, int maxDuration, int delay, Consumer<IAction> task);
 
     IActionChain chain();
 
