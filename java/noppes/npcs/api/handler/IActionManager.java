@@ -322,6 +322,12 @@ public interface IActionManager {
 
     IAction scheduleParallel(IAction action);
 
+    IAction scheduleParallel(Consumer<IAction> task);
+
+    IAction scheduleParallel(int delay, Consumer<IAction> task);
+
+    IAction scheduleParallel(int maxDuration, int delay, Consumer<IAction> task);
+
     IAction scheduleParallel(String name, Consumer<IAction> task);
 
     IAction scheduleParallel(String name, int delay, Consumer<IAction> task);

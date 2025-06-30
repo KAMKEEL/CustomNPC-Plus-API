@@ -54,11 +54,11 @@ public interface IAction {
     int getMaxDuration();
 
     /**
-     * @param x max duration
+     * @param ticks max duration
      *          default: -1,  infinite
      * @return
      */
-    IAction setMaxDuration(int x);
+    IAction setMaxDuration(int ticks);
 
     /**
      * @return the maximum number of counts this action is allowed to run before auto marking done
