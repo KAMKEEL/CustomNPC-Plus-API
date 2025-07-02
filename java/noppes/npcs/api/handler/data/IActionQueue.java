@@ -18,6 +18,29 @@ public interface IActionQueue {
 
     Queue<IAction> getQueue();
 
+    IActionQueue setParallel(boolean parallel);
+
+    /**
+     * @return True to auto-remove this queue from the IActionManager when no IActions are scheduled or queue is empty
+     * Default: true
+     */
+    boolean isKilledWhenEmpty();
+
+    /**
+     * @return ticks it takes to remove this queue from IActionManager after {{@link #isKilledWhenEmpty()}} is satisfied
+     * If an IAction is scheduled after it's satisfied, the kill process is aborted.
+     * Default: 100 ticks
+     */
+    int getKillAfterTicks();
+
+    IActionQueue killWhenEmpty(boolean killWhenEmpty);
+
+    /**
+     * @param ticks to set killAfterTicks
+     * @return
+     */
+    IActionQueue killAfter(int ticks);
+
     IAction schedule(IAction action);
 
     void schedule(IAction... actions);
