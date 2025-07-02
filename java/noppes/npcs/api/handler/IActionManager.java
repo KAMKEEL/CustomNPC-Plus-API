@@ -357,8 +357,15 @@ public interface IActionManager {
      */
     void clear();
 
+    /**
+     * @return a chain that can be used to fire Actions sequentially based on sequentialQueue
+     */
     IActionChain chain();
 
+    /**
+     *
+     * @return a chain that can be used to fire Actions in parallel based on parallelQueue
+     */
     IActionChain parallelChain();
 
 

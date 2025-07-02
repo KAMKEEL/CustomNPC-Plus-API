@@ -53,4 +53,10 @@ public interface IActionQueue {
     boolean cancel(String actionName);
 
     void clear();
+
+    /**
+     * @return an IActionChain based on this queue.
+     */
+
+    IActionChain chain();
 }
