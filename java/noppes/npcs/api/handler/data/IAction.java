@@ -14,6 +14,17 @@ import java.util.function.Function;
 public interface IAction {
 
     /**
+     * @return the queue this action is scheduled on. null if not scheduled
+     */
+    IActionQueue getQueue();
+
+    /**
+     * @param queue Schedules action on this queue. If action was scheduled on different queue, transfers it over from that to this.
+     * @return
+     */
+    IAction setQueue(IActionQueue queue);
+
+    /**
      * @param task code to execute each time the action fires
      * @return
      */
