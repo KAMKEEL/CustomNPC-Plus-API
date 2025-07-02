@@ -2,9 +2,9 @@ package noppes.npcs.api.handler;
 
 import noppes.npcs.api.handler.data.IAction;
 import noppes.npcs.api.handler.data.IActionChain;
+import noppes.npcs.api.handler.data.IActionQueue;
 import noppes.npcs.api.handler.data.actions.IConditionalAction;
 
-import java.util.List;
 import java.util.Queue;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -15,6 +15,21 @@ import java.util.function.Function;
  * repeating, or conditional "tasks" for NPC scripting.
  */
 public interface IActionManager {
+
+    /**
+     * Begin processing scheduled actions.  Must be called once.
+     */
+    IActionManager start();
+
+    /**
+     * Halt processing of actions.  Queued actions remain but will not run until
+     * {@link #start()} is called again.
+     */
+    IActionManager stop();
+
+    ///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
+    // Creators
 
     /**
      * Create a new action instance without immediately scheduling it.
@@ -102,24 +117,16 @@ public interface IActionManager {
      */
     IConditionalAction create(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
 
-    /**
-     * Begin processing scheduled actions.  Must be called once.
-     */
-    IActionManager start();
+    ///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
+    // Sequential
 
     /**
-     * Halt processing of actions.  Queued actions remain but will not run until
-     * {@link #start()} is called again.
-     */
-    IActionManager stop();
-
-    /**
-     * Multiple actions chained one after another
-     * i.e schedule(act1,act2,act3,...)
+     * Retrieve the entire action queue.
      *
-     * @param actions
+     * @return live reference to the internal {@link Queue} of actions
      */
-    void schedule(IAction... actions);
+    IActionQueue getSequentialQueue();
 
     /**
      * Schedule an existing action for execution.
@@ -130,12 +137,12 @@ public interface IActionManager {
     IAction schedule(IAction action);
 
     /**
-     * Multiple tasks chained one after another
-     * i.e schedule(task1,task2,task3,...)
+     * Multiple actions chained one after another
+     * i.e schedule(act1,act2,act3,...)
      *
-     * @param tasks
+     * @param actions
      */
-    void schedule(Consumer<IAction>... tasks);
+    void schedule(IAction... actions);
 
     /**
      * Convenience for {@link #create(Consumer)} + enqueue.
@@ -144,6 +151,14 @@ public interface IActionManager {
      * @return the task scheduled
      */
     IAction schedule(Consumer<IAction> task);
+
+    /**
+     * Multiple tasks chained one after another
+     * i.e schedule(task1,task2,task3,...)
+     *
+     * @param tasks
+     */
+    void schedule(Consumer<IAction>... tasks);
 
     /**
      * Convenience for {@link #create(String, Consumer)} + enqueue.
@@ -195,37 +210,24 @@ public interface IActionManager {
      */
     IAction scheduleActionAt(int index, IAction action);
 
-    /**
-     * Get the zero-based position of an action in the queue.
-     *
-     * @param action the action to look up
-     * @return its index, or -1 if not found
-     */
-    int getIndex(IAction action);
-
-    /**
-     * Peek at the next action to run (the head of the queue).
-     *
-     * @return the current head action, or null if queue is empty
-     */
-    IAction getCurrentAction();
-
-    /**
-     * @param name
-     * @return fetches queued up IAction with given name from actionQueue, parallelActions and conditionalActions
-     */
-    IAction getAction(String name);
-
-    /**
-     * Retrieve the entire action queue.
-     *
-     * @return live reference to the internal {@link Queue} of actions
-     */
-    Queue<IAction> getActionQueue();
-
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
     // Conditionals
+
+    /**
+     * @return the list of all conditional actions scheduled
+     */
+    IActionQueue getConditionalQueue();
+
+    IConditionalAction schedule(IConditionalAction action);
+
+    /**
+     * Multiple conditionals
+     * i.e schedule(act1,act2,act3,...)
+     *
+     * @param actions
+     */
+    void schedule(IConditionalAction... actions);
 
     /**
      * Schedule a conditional action that gives up after at most maxChecks attempts.
@@ -290,60 +292,14 @@ public interface IActionManager {
      */
     IConditionalAction schedule(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
 
-    /**
-     * Multiple conditionals
-     * i.e schedule(act1,act2,act3,...)
-     *
-     * @param actions
-     */
-    void schedule(IConditionalAction... actions);
-
-    IConditionalAction schedule(IConditionalAction action);
+    ///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
+    // Parallels
 
     /**
-     *
-     * @return the list of all conditional actions scheduled
+     * @return the list of all parallel actions scheduled
      */
-    List<IConditionalAction> getConditionalActions();
-
-    /**
-     * Cancel (remove) the first queued action with the given name.
-     *
-     * @param name the name assigned when scheduling
-     * @return true if one was found and removed, false otherwise
-     */
-    boolean cancelAction(String name);
-
-    /**
-     * @param name action name to check for
-     * @return true if action is scheduled in actionQueue {@link #getActionQueue()}
-     */
-    boolean hasAction(String name);
-
-    /**
-     * @param name action name to check for
-     * @return true if action is scheduled in any of the 3 action, parallel and conditional action queues
-     */
-    boolean hasAny(String name);
-
-    /**
-     * Remove every scheduled action immediately.
-     */
-    void clear();
-
-    /**
-     * @param name action name to check for
-     * @return true if action is scheduled in conditionalActions {@link #getConditionalActions()}
-     */
-    boolean hasConditional(String name);
-
-    /**
-     * Multiple actions in parallel
-     * i.e scheduleParallel(act1,act2,act3,...)
-     *
-     * @param actions
-     */
-    void scheduleParallel(IAction... actions);
+    IActionQueue getParallelQueue();
 
     /**
      * Schedules actions on the parallelQueue, where all actions are executed simultaneously
@@ -354,9 +310,17 @@ public interface IActionManager {
 
     IAction scheduleParallel(IAction action);
 
-    void scheduleParallel(Consumer<IAction>... tasks);
+    /**
+     * Multiple actions in parallel
+     * i.e scheduleParallel(act1,act2,act3,...)
+     *
+     * @param actions
+     */
+    void scheduleParallel(IAction... actions);
 
     IAction scheduleParallel(Consumer<IAction> task);
+
+    void scheduleParallel(Consumer<IAction>... tasks);
 
     IAction scheduleParallel(int delay, Consumer<IAction> task);
 
@@ -368,18 +332,34 @@ public interface IActionManager {
 
     IAction scheduleParallel(String name, int maxDuration, int delay, Consumer<IAction> task);
 
+    /**
+     * @param name action name to check for
+     * @return true if action is scheduled in any of the 3 action, parallel and conditional action queues
+     */
+    boolean hasAny(String name);
+
+    /**
+     * @param name
+     * @return fetches queued up IAction with given name from actionQueue, parallelActions and conditionalActions
+     */
+    IAction getAny(String name);
+
+    /**
+     * Cancel (remove) the first queued action with the given name.
+     *
+     * @param name the name assigned when scheduling
+     * @return true if one was found and removed, false otherwise
+     */
+    boolean cancelAny(String name);
+
+    /**
+     * Remove every scheduled action immediately.
+     */
+    void clear();
+
     IActionChain chain();
 
     IActionChain parallelChain();
 
-    /**
-     * @return the list of all parallel actions scheduled
-     */
-    Queue<IAction> getParallelActions();
 
-    /**
-     * @param name action name to check for
-     * @return true if action is scheduled in parallelActionQueue {@link #getParallelActions()}
-     */
-    boolean hasParallel(String name);
 }
