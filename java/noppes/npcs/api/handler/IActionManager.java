@@ -114,12 +114,28 @@ public interface IActionManager {
     void stop();
 
     /**
+     * Multiple actions chained one after another
+     * i.e schedule(act1,act2,act3,...)
+     *
+     * @param actions
+     */
+    void schedule(IAction... actions);
+
+    /**
      * Schedule an existing action for execution.
      *
      * @param action the action to enqueue
      * @return the action scheduled
      */
     IAction schedule(IAction action);
+
+    /**
+     * Multiple tasks chained one after another
+     * i.e schedule(task1,task2,task3,...)
+     *
+     * @param tasks
+     */
+    void schedule(Consumer<IAction>... tasks);
 
     /**
      * Convenience for {@link #create(Consumer)} + enqueue.
@@ -274,6 +290,14 @@ public interface IActionManager {
      */
     IConditionalAction schedule(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
 
+    /**
+     * Multiple conditionals
+     * i.e schedule(act1,act2,act3,...)
+     *
+     * @param actions
+     */
+    void schedule(IConditionalAction... actions);
+
     IConditionalAction schedule(IConditionalAction action);
 
     /**
@@ -314,6 +338,14 @@ public interface IActionManager {
     boolean hasConditional(String name);
 
     /**
+     * Multiple actions in parallel
+     * i.e scheduleParallel(act1,act2,act3,...)
+     *
+     * @param actions
+     */
+    void scheduleParallel(IAction... actions);
+
+    /**
      * Schedules actions on the parallelQueue, where all actions are executed simultaneously
      *
      * @param action
@@ -321,6 +353,8 @@ public interface IActionManager {
      */
 
     IAction scheduleParallel(IAction action);
+
+    void scheduleParallel(Consumer<IAction>... tasks);
 
     IAction scheduleParallel(Consumer<IAction> task);
 

@@ -197,6 +197,22 @@ public interface IAction {
      */
     IAction after(IAction after);
 
+    /**
+     * Multiple actions chained one after another
+     * i.e after(act1,act2,act3,...)
+     *
+     * @param actions
+     */
+    void after(IAction... actions);
+
+    /**
+     * Multiple tasks chained one after another
+     * i.e after(task1,task2,task3,...)
+     *
+     * @param tasks
+     */
+    void after(Consumer<IAction>... tasks);
+
     IAction after(String name, int maxDuration, int delay, Consumer<IAction> t);
 
     IAction after(String name, int delay, Consumer<IAction> t);
@@ -231,6 +247,8 @@ public interface IAction {
      */
     IConditionalAction conditional(IConditionalAction after);
 
+    void conditional(IConditionalAction... actions);
+
     IConditionalAction conditional(Function<IAction,Boolean> condition, Consumer<IAction> task);
 
     IConditionalAction conditional(String name, Function<IAction,Boolean> condition, Consumer<IAction> task);
@@ -250,7 +268,11 @@ public interface IAction {
      */
     IAction parallel(IAction after);
 
+    void parallel(IAction... actions);
+
     IAction parallel(Consumer<IAction> task);
+
+    void parallel(Consumer<IAction>... tasks);
 
     IAction parallel(int delay, Consumer<IAction> task);
 
