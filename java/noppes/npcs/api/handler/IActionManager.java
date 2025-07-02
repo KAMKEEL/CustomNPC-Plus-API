@@ -105,13 +105,13 @@ public interface IActionManager {
     /**
      * Begin processing scheduled actions.  Must be called once.
      */
-    void start();
+    IActionManager start();
 
     /**
      * Halt processing of actions.  Queued actions remain but will not run until
      * {@link #start()} is called again.
      */
-    void stop();
+    IActionManager stop();
 
     /**
      * Multiple actions chained one after another
