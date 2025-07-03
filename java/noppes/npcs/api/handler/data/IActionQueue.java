@@ -6,18 +6,38 @@ import java.util.Queue;
 import java.util.function.Consumer;
 
 public interface IActionQueue {
+
+    /**
+     * @return starts the processing of scheduled IActions in queue.
+     * Queue is on by default
+     */
     IActionQueue start();
 
+    /**
+     * @return pauses the processing of scheduled IActions
+     */
     IActionQueue stop();
 
     IActionManager getManager();
 
     String getName();
 
+    /**
+     * @return True if parallel, else is sequential
+     */
     boolean isParallel();
 
+    /**
+     *
+     * @return actual java queue which stores all scheduled IActions
+     */
     Queue<IAction> getQueue();
 
+    /**
+     *
+     * @param parallel True to turn queue into parallel, false for sequential
+     * @return
+     */
     IActionQueue setParallel(boolean parallel);
 
     /**
@@ -36,7 +56,7 @@ public interface IActionQueue {
     IActionQueue killWhenEmpty(boolean killWhenEmpty);
 
     /**
-     * @param ticks to kill queue after when queue has no active tasks
+     * @param ticks to kill queue after when killWhenEmpty and queue has no active tasks
      *              If an IAction is scheduled during the kill process, process is aborted
      * @return
      */
@@ -69,8 +89,18 @@ public interface IActionQueue {
 
     IAction scheduleActionAt(int index, IAction action);
 
+    /**
+     *
+     * @param action
+     * @return index of action in {{@link #getQueue()}}
+     * -1 if not in queue.
+     */
     int getIndex(IAction action);
 
+    /**
+     *
+     * @return current IAction the queue is at. For sequential use.
+     */
     IAction getCurrentAction();
 
     boolean has(IAction action);
@@ -83,10 +113,14 @@ public interface IActionQueue {
 
     boolean cancel(String actionName);
 
+    /**
+     * Kills all IActions in {{@link #getQueue()}} and empties it
+     */
     void clear();
 
     /**
      * @return an IActionChain based on this queue.
+     * If {{@link #isParallel()}}, returns a parallel IActionChain
      */
 
     IActionChain chain();
