@@ -119,6 +119,26 @@ public interface IActionManager {
 
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
+    // Queues
+
+    IActionQueue createQueue(String name);
+
+    IActionQueue createQueue(String name, boolean isParallel);
+
+    IActionQueue getOrCreateQueue(String name);
+
+    IActionQueue getOrCreateQueue(String name, boolean isParallel);
+
+    IActionQueue getQueue(String name);
+
+    /**
+     * @param name
+     * @return True if queue successfully removed from IActionManager and cleared
+     */
+    boolean removeQueue(String name);
+
+    ///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
     // Sequential
 
     /**
