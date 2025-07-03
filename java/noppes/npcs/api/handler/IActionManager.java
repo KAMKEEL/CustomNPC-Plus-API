@@ -354,18 +354,18 @@ public interface IActionManager {
 
     /**
      * @param name action name to check for
-     * @return true if action is scheduled in any of the 3 action, parallel and conditional action queues
+     * @return true if action is scheduled in any of the available  queues
      */
     boolean hasAny(String name);
 
     /**
      * @param name
-     * @return fetches queued up IAction with given name from actionQueue, parallelActions and conditionalActions
+     * @return Checks through all available queues and fetches the first IAction with given name
      */
     IAction getAny(String name);
 
     /**
-     * Cancel (remove) the first queued action with the given name.
+     * Checks through all available queues and cancels (remove) the first action with the given name.
      *
      * @param name the name assigned when scheduling
      * @return true if one was found and removed, false otherwise
@@ -373,7 +373,7 @@ public interface IActionManager {
     boolean cancelAny(String name);
 
     /**
-     * Remove every scheduled action immediately.
+     * Clears all available queues and kills all of their scheduled IActions.
      */
     void clear();
 
