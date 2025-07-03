@@ -51,7 +51,7 @@ public interface IActionQueue {
      * If an IAction is scheduled after it's satisfied, the kill process is aborted.
      * Default: 100 ticks
      */
-    int getKillAfterTicks();
+    int getKillWhenEmptyAfter();
 
     IActionQueue killWhenEmpty(boolean killWhenEmpty);
 
@@ -60,7 +60,7 @@ public interface IActionQueue {
      *              If an IAction is scheduled during the kill process, process is aborted
      * @return
      */
-    IActionQueue killAfter(int ticks);
+    IActionQueue killWhenEmptyAfter(int ticks);
 
     boolean isKilled();
 
