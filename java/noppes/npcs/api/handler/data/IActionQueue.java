@@ -36,10 +36,18 @@ public interface IActionQueue {
     IActionQueue killWhenEmpty(boolean killWhenEmpty);
 
     /**
-     * @param ticks to set killAfterTicks
+     * @param ticks to kill queue after when queue has no active tasks
+     *              If an IAction is scheduled during the kill process, process is aborted
      * @return
      */
     IActionQueue killAfter(int ticks);
+
+    boolean isKilled();
+
+    /**
+     * @return kills queue and removes it from IActionManager immediately
+     */
+    IActionQueue kill();
 
     IAction schedule(IAction action);
 
