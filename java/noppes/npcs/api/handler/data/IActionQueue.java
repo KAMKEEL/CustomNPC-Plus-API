@@ -1,5 +1,6 @@
 package noppes.npcs.api.handler.data;
 
+import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.controllers.data.action.ActionManager;
 
 import java.util.Queue;
@@ -10,7 +11,7 @@ public interface IActionQueue {
 
     IActionQueue stop();
 
-    ActionManager getManager();
+    IActionManager getManager();
 
     String getName();
 
