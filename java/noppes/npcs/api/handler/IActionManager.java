@@ -131,6 +131,8 @@ public interface IActionManager {
 
     IActionQueue getQueue(String name);
 
+    boolean hasQueue(String name);
+
     /**
      * @param name
      * @return True if queue successfully removed from IActionManager and cleared

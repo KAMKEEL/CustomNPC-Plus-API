@@ -134,12 +134,25 @@ public interface IAction {
      */
     int getUpdateEvery();
 
+
     /**
      * Set how many ticks between each execution of the action task.
      *
      * @param ticks tick interval (e.g. 1 = every tick, 20 = once per second)
      */
     IAction updateEvery(int ticks);
+
+    /**
+     * Executes task every tick (Sets updateEvery to 1)
+     * @return
+     */
+    IAction everyTick();
+
+    /**
+     * Executes task every second (Sets updateEvery to 20)
+     * @return
+     */
+    IAction everySecond();
 
     /**
      * @return how many ticks remain before the action begins (initial delay)

@@ -62,7 +62,10 @@ public interface IActionQueue {
      */
     IActionQueue killWhenEmptyAfter(int ticks);
 
-    boolean isKilled();
+    /**
+     * @return True if queue was removed from IActionManager or killed
+     */
+    boolean isDead();
 
     /**
      * @return kills queue and removes it from IActionManager immediately
