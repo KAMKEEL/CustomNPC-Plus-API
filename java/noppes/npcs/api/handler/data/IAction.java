@@ -142,6 +142,13 @@ public interface IAction {
 
     /**
      *
+     * @param copyTo copies all of this IAction's data to copyTo
+     * @return
+     */
+    IAction copyDataTo(IAction copyTo);
+
+    /**
+     *
      * @return a string containing all the stored data key/values of this IAction
      */
     String printData();
