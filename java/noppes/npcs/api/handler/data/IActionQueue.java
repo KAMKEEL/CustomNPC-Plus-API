@@ -127,4 +127,10 @@ public interface IActionQueue {
      */
 
     IActionChain chain();
+
+    /**
+     *
+     * @return a string containing all the scheduled actions within this queue
+     */
+    String printQueue();
 }

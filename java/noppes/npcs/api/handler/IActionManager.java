@@ -5,6 +5,7 @@ import noppes.npcs.api.handler.data.IActionChain;
 import noppes.npcs.api.handler.data.IActionQueue;
 import noppes.npcs.api.handler.data.actions.IConditionalAction;
 
+import java.util.List;
 import java.util.Queue;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -355,6 +356,11 @@ public interface IActionManager {
     IAction scheduleParallel(String name, int maxDuration, int delay, Consumer<IAction> task);
 
     /**
+     * @return All the IActionQueues within this Manager, including main sequential, parallel and conditional
+     */
+    IActionQueue[] getAllQueues();
+
+    /**
      * @param name action name to check for
      * @return true if action is scheduled in any of the available  queues
      */
@@ -390,5 +396,9 @@ public interface IActionManager {
      */
     IActionChain parallelChain();
 
-
+    /**
+     *
+     * @return a string containing all the IActionQueues active within the manager
+     */
+    String printQueues();
 }

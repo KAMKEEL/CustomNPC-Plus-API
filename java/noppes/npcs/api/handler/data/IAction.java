@@ -126,6 +126,12 @@ public interface IAction {
 
     IAction removeData(String key);
 
+    /**
+     *
+     * @return a string containing all the stored data key/values of this IAction
+     */
+    String printData();
+
     boolean hasData(String key);
 
     /**
