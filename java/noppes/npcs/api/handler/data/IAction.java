@@ -47,6 +47,20 @@ public interface IAction {
     int getCount();
 
     /**
+     *
+     * @param task Fires right after action gets scheduled at duration 0
+     * @return
+     */
+    IAction onStart(Consumer<IAction> task);
+
+    /**
+     *
+     * @param task Fires right before a marked done action gets removed from it's IActionQueue
+     * @return
+     */
+    IAction onDone(Consumer<IAction> task);
+
+    /**
      * @return how many ticks have elapsed since this action actually began (excluding start delay)
      */
     int getDuration();
