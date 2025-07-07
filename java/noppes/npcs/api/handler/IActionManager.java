@@ -51,6 +51,10 @@ public interface IActionManager {
 
     IAction create(String name, Consumer<IAction> t);
 
+    String getName();
+
+    IActionManager setName(String name);
+
     boolean inDebugMode();
 
     /**
