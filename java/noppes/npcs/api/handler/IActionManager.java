@@ -51,6 +51,15 @@ public interface IActionManager {
 
     IAction create(String name, Consumer<IAction> t);
 
+    boolean inDebugMode();
+
+    /**
+     * Enabling prints to the console the life cycle of IActionManager, it's IActionQueues and the scheduled IActions
+     * @param debug
+     * @return
+     */
+    IActionManager setDebugMode(boolean debug);
+
     IAction create(String name);
 
     IAction create(Consumer<IAction> t);
