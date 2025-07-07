@@ -92,6 +92,8 @@ public interface IActionQueue {
 
     IAction scheduleActionAt(int index, IAction action);
 
+    boolean hasActiveTasks();
+
     /**
      *
      * @param action
