@@ -41,6 +41,19 @@ public interface IActionQueue {
     IActionQueue setParallel(boolean parallel);
 
     /**
+     *
+     * @return If true, auto-stops queue when empty/no active Actions scheduled using {{@link #stop()}}
+     */
+    boolean isStoppedWhenEmpty();
+
+    /**
+     *
+     * @param stopWhenEmpty to auto-stop queue when empty/no active Actions scheduled using {{@link #stop()}}
+     * @return
+     */
+    IActionQueue stopWhenEmpty(boolean stopWhenEmpty);
+
+    /**
      * @return True to auto-remove this queue from the IActionManager when no IActions are scheduled or queue is empty
      * Default: true
      */
