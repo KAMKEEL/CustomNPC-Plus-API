@@ -221,6 +221,12 @@ public interface IAction {
     boolean isPaused();
 
     /**
+     *
+     * @return "{Type} '{Name}'" of action i.e "Action 'one'" or "ConditionalAction 'two'"
+     */
+    String getIdentifier();
+
+    /**
      * Creates a new thread for task to run into. Allows for pausing and sleeping just this IAction's thread.
      */
     IAction threadify();
