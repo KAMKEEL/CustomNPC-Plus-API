@@ -671,4 +671,8 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
      * @return player's ActionManager
      */
     IActionManager getActionManager();
+
+
+
+    IPlayer[] getPartyMembers();
 }
