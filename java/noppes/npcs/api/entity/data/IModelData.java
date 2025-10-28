@@ -104,7 +104,7 @@ public interface IModelData {
     /**
      * Hide Body Parts
      * part: [0: Head, 1: Body, 2: Arms, 3: Legs]
-     * hide: [0: None, 1: Both, 2: Right, 3: Left], only values 0 and 1 used for head & body.
+     * hide: [0: None, 1: Both, 2: Right, 3: Left], only values 0 and 1 used for head and body.
      *
      * @param part the part index.
      * @param hide the hide configuration.

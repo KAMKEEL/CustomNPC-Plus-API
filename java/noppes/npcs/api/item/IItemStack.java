@@ -177,7 +177,7 @@ public interface IItemStack {
 
     /**
      * Sets the magic attribute value for the given key and magic identifier.
-     * The value is stored in the item's custom NBT under "RPGCore" -> "Magic".
+     * The value is stored in the item's custom NBT under "RPGCore", "Magic".
      *
      * @param key     The magic attribute key.
      * @param magicId The magic identifier.

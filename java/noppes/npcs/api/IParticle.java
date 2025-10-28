@@ -109,11 +109,11 @@ public interface IParticle {
      * Enables animation on the particle. Must set a custom width and height first using the setSize(width,height) function.
      * Every frame of animation the particle goes through should be saved on a single image file.
      *
-     * The renderer will read the frames of animation based on the given width and height of the particle, starting from the given X & Y offsets.
+     * The renderer will read the frames of animation based on the given width and height of the particle, starting from the given X and Y offsets.
      * The renderer then goes rightwards (width) pixels for every frame. Once it can't go rightwards anymore,
      * the animation goes down (height) pixels, and once again keeps going rightwards if it has to.
      *
-     * If the animation loops, once there is nowhere downward to go, the animation will start over at the X & Y offset.
+     * If the animation loops, once there is nowhere downward to go, the animation will start over at the X and Y offset.
      *
      * @param animRate The frame rate of the particle's animation, in MC ticks. (20 ticks = 1 second)
      * @param animLoop Whether the animation loops or not.
@@ -238,5 +238,5 @@ public interface IParticle {
     float getRotationZ2();
     float getRotationZRate();
     int getRotationZRateStart();
-    
+
 }
