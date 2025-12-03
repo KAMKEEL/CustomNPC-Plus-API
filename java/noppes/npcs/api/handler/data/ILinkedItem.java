@@ -55,4 +55,8 @@ public interface ILinkedItem {
     int getEnchantability();
 
     void setEnchantability(int enchantability);
+
+    public int getAttackSpeed();
+
+    public void setAttackSpeed(int time);
 }
