@@ -436,4 +436,6 @@ public interface IEntityLivingBase<T extends EntityLivingBase> extends IEntity<T
      * @return the absorption amount.
      */
     float getAbsorptionAmount();
+
+    void setHurtTime(int time);
 }
