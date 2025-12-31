@@ -55,6 +55,13 @@ public interface IItemCustomizable extends IItemStack {
     int getEnchantability();
 
     /**
+     * Gets the attack speed for the scripted item.
+     * Speed is the max hurt resistant time in ticks (20 ticks = 1 second)
+     * @return The attack speed
+     */
+    int getAttackSpeed();
+
+    /**
      * Gets the texture path for the scripted item.
      * @return The texture path
      */

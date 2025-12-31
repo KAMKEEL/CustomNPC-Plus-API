@@ -62,6 +62,13 @@ public interface IItemCustom extends IItemCustomizable {
     void setItemUseAction(int action);
 
     /**
+     * Sets the attack speed for the scripted item.
+     * Speed is the max resistantance time between two attacks in ticks.
+     * @param speed The attack speed
+     */
+    void setAttackSpeed(int speed);
+
+    /**
      * Sets the enchantability for the scripted item.
      * @param enchantability The enchantability
      */
