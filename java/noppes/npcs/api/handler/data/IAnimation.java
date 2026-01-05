@@ -1,5 +1,10 @@
 package noppes.npcs.api.handler.data;
 
+import noppes.npcs.controllers.data.Animation;
+
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
 public interface IAnimation {
 
     IAnimationData getParent();
@@ -64,4 +69,10 @@ public interface IAnimation {
     IAnimation setData(String key, Object v);
 
     IAnimation removeData(String key);
+
+    IAnimation onStart(Consumer<Animation> task);
+
+    IAnimation onFrame(BiConsumer<Integer, Animation> task);
+
+    IAnimation onEnd(Consumer<Animation> task);
 }
