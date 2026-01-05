@@ -70,9 +70,9 @@ public interface IAnimation {
 
     IAnimation removeData(String key);
 
-    IAnimation onStart(Consumer<Animation> task);
+    IAnimation onStart(Consumer<IAnimation> task);
 
-    IAnimation onFrame(BiConsumer<Integer, Animation> task);
+    IAnimation onFrame(BiConsumer<Integer, IAnimation> task);
 
-    IAnimation onEnd(Consumer<Animation> task);
+    IAnimation onEnd(Consumer<IAnimation> task);
 }
