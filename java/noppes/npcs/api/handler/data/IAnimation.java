@@ -56,4 +56,12 @@ public interface IAnimation {
     void setID(int id);
 
     long getTotalTime();
+
+    boolean hasData(String key);
+
+    Object getData(String key);
+
+    IAnimation setData(String key, Object v);
+
+    IAnimation removeData(String key);
 }
