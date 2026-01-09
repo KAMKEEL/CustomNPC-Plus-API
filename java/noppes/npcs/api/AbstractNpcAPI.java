@@ -151,6 +151,8 @@ public abstract class AbstractNpcAPI {
 
     public abstract IAnimationHandler getAnimations();
 
+    public abstract IAbilityHandler getAbilities();
+
     public abstract String[] getAllBiomeNames();
 
     public abstract ICustomNpc<?> createNPC(IWorld var1);
