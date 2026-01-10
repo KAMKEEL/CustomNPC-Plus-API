@@ -1,7 +1,5 @@
 package noppes.npcs.api.handler.data;
 
-import noppes.npcs.controllers.data.Animation;
-
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
