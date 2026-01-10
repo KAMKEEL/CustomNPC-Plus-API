@@ -2,7 +2,9 @@ package noppes.npcs.api.event;
 
 public interface ILinkedItemEvent extends IItemEvent {
 
-    // Version Change Event
+    /**
+     * @hookName versionChanged
+     */
     interface VersionChangeEvent extends IItemEvent {
 
         int getVersion();
@@ -10,6 +12,9 @@ public interface ILinkedItemEvent extends IItemEvent {
         int getPreviousVersion();
     }
 
+    /**
+     * @hookName buildingItem
+     */
     interface BuildEvent extends IItemEvent {
     }
 }

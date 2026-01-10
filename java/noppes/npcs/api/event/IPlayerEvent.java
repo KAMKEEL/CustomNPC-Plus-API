@@ -73,6 +73,9 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
     interface RespawnEvent extends IPlayerEvent {
     }
 
+    /**
+     * @hookName changedDim
+     */
     interface ChangedDimension extends IPlayerEvent {
         int getFromDim();
 
@@ -105,6 +108,9 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
     interface LightningEvent extends IPlayerEvent {
     }
 
+    /**
+     * @hookName playSound
+     */
     @Cancelable
     interface SoundEvent extends IPlayerEvent {
         String getName();
@@ -122,10 +128,16 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
     interface JumpEvent extends IPlayerEvent {
     }
 
+    /**
+     * @hookName kills
+     */
     interface KilledEntityEvent extends IPlayerEvent {
         IEntityLivingBase getEntity();
     }
 
+    /**
+     * @hookName killed
+     */
     interface DiedEvent extends IPlayerEvent {
         IDamageSource getDamageSource();
 
@@ -198,12 +210,18 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
         IPlayer getPlayer();
     }
 
+    /**
+     * @hookName tick
+     */
     interface UpdateEvent extends IPlayerEvent {
     }
 
     interface InitEvent extends IPlayerEvent {
     }
 
+    /**
+     * @hookName startItem
+     */
     interface StartUsingItem extends IPlayerEvent {
         IItemStack getItem();
 
@@ -216,18 +234,27 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
         int getDuration();
     }
 
+    /**
+     * @hookName stopItem
+     */
     interface StopUsingItem extends IPlayerEvent {
         IItemStack getItem();
 
         int getDuration();
     }
 
+    /**
+     * @hookName finishItem
+     */
     interface FinishUsingItem extends IPlayerEvent {
         IItemStack getItem();
 
         int getDuration();
     }
 
+    /**
+     * @hookName breakBlock
+     */
     @Cancelable
     interface BreakEvent extends IPlayerEvent {
         IBlock getBlock();
@@ -284,12 +311,23 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
 
         IPlayerEffect getEffect();
 
+        /**
+         * @hookName onEffectAdd
+         */
         interface Added extends EffectEvent {
 
         }
+
+        /**
+         * @hookName onEffectTick
+         */
         interface Ticked extends EffectEvent {
 
         }
+
+        /**
+         * @hookName onEffectRemove
+         */
         interface Removed extends EffectEvent {
 
             /**
@@ -323,6 +361,9 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
          */
         boolean isPost();
 
+        /**
+         * @hookName profileChange
+         */
         @Cancelable
         interface Changed extends ProfileEvent {
             /**
@@ -331,9 +372,15 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
             int getPrevSlot();
         }
 
+        /**
+         * @hookName profileCreate
+         */
         @Cancelable
         interface Create extends ProfileEvent {}
 
+        /**
+         * @hookName profileRemove
+         */
         @Cancelable
         interface Removed extends ProfileEvent {}
     }

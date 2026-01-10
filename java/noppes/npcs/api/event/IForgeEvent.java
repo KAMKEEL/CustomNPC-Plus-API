@@ -8,14 +8,23 @@ public interface IForgeEvent extends ICustomNPCsEvent {
 
     Event getEvent();
 
+    /**
+     * @hookName forgeWorld
+     */
     interface WorldEvent extends IForgeEvent {
         IWorld getWorld();
     }
 
+    /**
+     * @hookName forgeEntity
+     */
     interface EntityEvent extends IForgeEvent {
         IEntity getEntity();
     }
 
+    /**
+     * @hookName forgeInit
+     */
     interface InitEvent extends IForgeEvent {
     }
 }

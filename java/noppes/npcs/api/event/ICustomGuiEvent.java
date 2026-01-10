@@ -10,15 +10,27 @@ public interface ICustomGuiEvent extends IPlayerEvent {
 
     int getId();
 
+    /**
+     * @hookName customGuiButton
+     */
     interface ButtonEvent extends ICustomGuiEvent {
     }
 
+    /**
+     * @hookName customGuiTextfield
+     */
     interface UnfocusedEvent extends ICustomGuiEvent {
     }
 
+    /**
+     * @hookName customGuiClosed
+     */
     interface CloseEvent extends ICustomGuiEvent {
     }
 
+    /**
+     * @hookName customGuiScroll
+     */
     interface ScrollEvent extends ICustomGuiEvent {
         String[] getSelection();
 
@@ -27,10 +39,16 @@ public interface ICustomGuiEvent extends IPlayerEvent {
         int getScrollIndex();
     }
 
+    /**
+     * @hookName customGuiSlot
+     */
     interface SlotEvent extends ICustomGuiEvent {
         IItemStack getStack();
     }
 
+    /**
+     * @hookName customGuiSlotClicked
+     */
     @Cancelable
     interface SlotClickEvent extends ICustomGuiEvent {
         IItemStack getStack();

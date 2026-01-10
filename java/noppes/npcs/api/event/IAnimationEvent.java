@@ -14,11 +14,17 @@ public interface IAnimationEvent extends ICustomNPCsEvent {
 
     IAnimatable getEntity();
 
+    /**
+     * @hookName animationStart
+     */
     @Cancelable
     interface Started extends IAnimationEvent {
 
     }
 
+    /**
+     * @hookName animationEnd
+     */
     interface Ended extends IAnimationEvent {
 
     }
@@ -29,10 +35,16 @@ public interface IAnimationEvent extends ICustomNPCsEvent {
 
         IFrame getFrame();
 
+        /**
+         * @hookName frameEnter
+         */
         interface Entered extends IFrameEvent {
 
         }
 
+        /**
+         * @hookName frameExit
+         */
         interface Exited extends IFrameEvent {
 
         }

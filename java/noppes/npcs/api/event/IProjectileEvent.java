@@ -9,9 +9,15 @@ public interface IProjectileEvent extends ICustomNPCsEvent {
     public IProjectile getProjectile();
     public IEntity getSource();
 
+    /**
+     * @hookName projectileTick
+     */
     interface UpdateEvent extends IProjectileEvent {
     }
 
+    /**
+     * @hookName projectileImpact
+     */
     interface ImpactEvent extends IProjectileEvent {
         public int getType();
         public IEntity getEntity();

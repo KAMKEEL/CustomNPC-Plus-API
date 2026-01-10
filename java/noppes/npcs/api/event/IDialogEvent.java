@@ -15,6 +15,9 @@ public interface IDialogEvent extends IPlayerEvent {
     interface DialogOption extends IDialogEvent {
     }
 
+    /**
+     * @hookName dialogClose
+     */
     interface DialogClosed extends IDialogEvent {
     }
 }

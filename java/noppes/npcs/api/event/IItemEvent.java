@@ -13,6 +13,9 @@ public interface IItemEvent extends ICustomNPCsEvent {
     interface InitEvent extends IItemEvent {
     }
 
+    /**
+     * @hookName tick
+     */
     interface UpdateEvent extends IItemEvent {
         IEntity getEntity();
     }
@@ -60,6 +63,9 @@ public interface IItemEvent extends ICustomNPCsEvent {
         IEntity getSwingingEntity();
     }
 
+    /**
+     * @hookName startItem
+     */
     interface StartUsingItem extends IItemEvent {
         IPlayer getPlayer();
 
@@ -72,12 +78,18 @@ public interface IItemEvent extends ICustomNPCsEvent {
         int getDuration();
     }
 
+    /**
+     * @hookName stopItem
+     */
     interface StopUsingItem extends IItemEvent {
         IPlayer getPlayer();
 
         int getDuration();
     }
 
+    /**
+     * @hookName finishItem
+     */
     interface FinishUsingItem extends IItemEvent {
         IPlayer getPlayer();
 

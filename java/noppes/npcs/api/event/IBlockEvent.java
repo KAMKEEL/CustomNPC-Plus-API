@@ -8,6 +8,9 @@ import noppes.npcs.api.entity.IPlayer;
 
 public interface IBlockEvent extends ICustomNPCsEvent {
     IBlock getBlock();
+    /**
+     * @hookName fallenUpon
+     */
     @Cancelable
     interface EntityFallenUponEvent extends IBlockEvent{
         IEntity getEntity();
@@ -31,6 +34,9 @@ public interface IBlockEvent extends ICustomNPCsEvent {
         int getPrevPower();
         int getPower();
     }
+    /**
+     * @hookName broken
+     */
     interface BreakEvent extends IBlockEvent{
 
     }
@@ -38,6 +44,9 @@ public interface IBlockEvent extends ICustomNPCsEvent {
     interface ExplodedEvent extends IBlockEvent{
 
     }
+    /**
+     * @hookName rainFilled
+     */
     interface RainFillEvent extends IBlockEvent{
 
     }
@@ -49,6 +58,9 @@ public interface IBlockEvent extends ICustomNPCsEvent {
     interface InitEvent extends IBlockEvent{
 
     }
+    /**
+     * @hookName tick
+     */
     interface UpdateEvent extends IBlockEvent{
 
     }

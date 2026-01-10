@@ -9,6 +9,9 @@ public interface ICustomNPCsEvent {
 
     String getHookName();
 
+    /**
+     * @hookName onCNPCNaturalSpawn
+     */
     @Cancelable
     interface CNPCNaturalSpawnEvent extends ICustomNPCsEvent {
         INaturalSpawn getNaturalSpawn();

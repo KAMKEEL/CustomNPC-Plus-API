@@ -57,6 +57,9 @@ public interface INpcEvent extends ICustomNPCsEvent {
         float getDamage();
     }
 
+    /**
+     * @hookName meleeSwing
+     */
     interface SwingEvent extends INpcEvent {
 
         /**
@@ -66,10 +69,16 @@ public interface INpcEvent extends ICustomNPCsEvent {
         IItemStack getItemStack();
     }
 
+    /**
+     * @hookName kills
+     */
     interface KilledEntityEvent {
         IEntityLivingBase getEntity();
     }
 
+    /**
+     * @hookName killed
+     */
     @Cancelable
     interface DiedEvent extends INpcEvent {
         IEntity getSource();
@@ -127,6 +136,9 @@ public interface INpcEvent extends ICustomNPCsEvent {
         IEntityLivingBase getTarget();
     }
 
+    /**
+     * @hookName tick
+     */
     interface UpdateEvent extends INpcEvent {
     }
 

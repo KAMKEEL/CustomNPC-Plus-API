@@ -15,6 +15,9 @@ public interface IQuestEvent extends IPlayerEvent {
     interface QuestStartEvent extends IQuestEvent {
     }
 
+    /**
+     * @hookName questTurnIn
+     */
     @Cancelable
     interface QuestTurnedInEvent extends IQuestEvent {
         void setExpReward(int expReward);
