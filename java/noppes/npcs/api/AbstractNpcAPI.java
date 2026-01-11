@@ -16,7 +16,21 @@ import noppes.npcs.api.entity.ICustomNpc;
 import noppes.npcs.api.entity.IEntity;
 import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.gui.ICustomGui;
-import noppes.npcs.api.handler.*;
+import noppes.npcs.api.handler.IActionManager;
+import noppes.npcs.api.handler.IAnimationHandler;
+import noppes.npcs.api.handler.IAttributeHandler;
+import noppes.npcs.api.handler.ICloneHandler;
+import noppes.npcs.api.handler.ICustomEffectHandler;
+import noppes.npcs.api.handler.IDialogHandler;
+import noppes.npcs.api.handler.IFactionHandler;
+import noppes.npcs.api.handler.IMagicHandler;
+import noppes.npcs.api.handler.INaturalSpawnsHandler;
+import noppes.npcs.api.handler.IPartyHandler;
+import noppes.npcs.api.handler.IProfileHandler;
+import noppes.npcs.api.handler.IQuestHandler;
+import noppes.npcs.api.handler.IRecipeHandler;
+import noppes.npcs.api.handler.IScriptHookHandler;
+import noppes.npcs.api.handler.ITransportHandler;
 import noppes.npcs.api.handler.data.IAnimation;
 import noppes.npcs.api.handler.data.IFrame;
 import noppes.npcs.api.handler.data.IFramePart;
@@ -150,6 +164,14 @@ public abstract class AbstractNpcAPI {
     public abstract ITransportHandler getLocations();
 
     public abstract IAnimationHandler getAnimations();
+
+    /**
+     * Get the script hook handler for registering custom hooks.
+     * Addon mods can use this to register hooks that will appear in script editor GUIs.
+     *
+     * @return The script hook handler
+     */
+    public abstract IScriptHookHandler getScriptHooks();
 
     public abstract String[] getAllBiomeNames();
 
