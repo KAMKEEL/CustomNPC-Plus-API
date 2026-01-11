@@ -125,16 +125,6 @@ public interface IAbility {
     void setInterruptible(boolean interruptible);
 
     /**
-     * Get the damage threshold for interruption.
-     */
-    float getInterruptThreshold();
-
-    /**
-     * Set the damage threshold for interruption.
-     */
-    void setInterruptThreshold(float threshold);
-
-    /**
      * Check if this ability is currently being executed.
      */
     boolean isExecuting();
