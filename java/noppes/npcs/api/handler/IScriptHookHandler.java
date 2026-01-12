@@ -26,7 +26,6 @@ public interface IScriptHookHandler {
     String CONTEXT_ITEM = "item";
     String CONTEXT_LINKED_ITEM = "linked_item";
     String CONTEXT_FORGE = "forge";
-    String CONTEXT_GLOBAL_NPC = "global_npc";
     String CONTEXT_RECIPE = "recipe";
     String CONTEXT_EFFECT = "effect";
 
