@@ -675,4 +675,71 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
 
 
     IPlayer[] getPartyMembers();
+
+    // =========================================
+    // Currency Methods
+    // =========================================
+
+    /**
+     * Gets the player's current currency balance.
+     * If Vault is configured and available, returns Vault balance.
+     * Otherwise returns CNPC+ built-in currency balance.
+     *
+     * @return The player's currency balance
+     */
+    long getCurrencyBalance();
+
+    /**
+     * Sets the player's currency balance.
+     * If Vault is configured and available, sets Vault balance.
+     * Otherwise sets CNPC+ built-in currency balance.
+     *
+     * @param amount The new balance
+     */
+    void setCurrencyBalance(long amount);
+
+    /**
+     * Deposits (adds) currency to the player's balance.
+     * If Vault is configured and available, deposits to Vault.
+     * Otherwise deposits to CNPC+ built-in currency.
+     *
+     * @param amount The amount to deposit
+     * @return true if successful, false if would exceed max balance
+     */
+    boolean depositCurrency(long amount);
+
+    /**
+     * Withdraws (removes) currency from the player's balance.
+     * If Vault is configured and available, withdraws from Vault.
+     * Otherwise withdraws from CNPC+ built-in currency.
+     *
+     * @param amount The amount to withdraw
+     * @return true if successful, false if insufficient funds
+     */
+    boolean withdrawCurrency(long amount);
+
+    /**
+     * Checks if the player can afford the specified amount.
+     * If Vault is configured and available, checks Vault balance.
+     * Otherwise checks CNPC+ built-in currency balance.
+     *
+     * @param amount The amount to check
+     * @return true if the player has enough currency
+     */
+    boolean canAffordCurrency(long amount);
+
+    /**
+     * Checks if Vault is being used for currency operations.
+     *
+     * @return true if Vault is configured AND available, false if using CNPC+ built-in currency
+     */
+    boolean isUsingVaultCurrency();
+
+    /**
+     * Gets the player's formatted currency balance for display.
+     * Uses Vault formatting if Vault is active, otherwise uses CNPC+ formatting.
+     *
+     * @return The formatted balance string
+     */
+    String getFormattedCurrencyBalance();
 }
