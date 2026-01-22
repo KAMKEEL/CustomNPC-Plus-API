@@ -6,21 +6,72 @@ import java.util.List;
  * Handler for registering and retrieving script hooks.
  * Addon mods can register custom hooks that will appear in the script editor GUIs.
  *
- * Available contexts:
- * - "npc" - NPC script editor
- * - "player" - Player scripts editor
- * - "block" - Scripted block editor
- * - "item" - Scripted item editor
- * - "linked_item" - Linked item editor
- * - "forge" - Forge scripts editor
- * - "global_npc" - Global NPC scripts editor
- * - "recipe" - Recipe scripts editor
- * - "effect" - Custom effect scripts editor
+ * <h3>Available contexts:</h3>
+ * <ul>
+ *   <li>"npc" - NPC script editor</li>
+ *   <li>"player" - Player scripts editor</li>
+ *   <li>"block" - Scripted block editor</li>
+ *   <li>"item" - Scripted item editor</li>
+ *   <li>"linked_item" - Linked item editor</li>
+ *   <li>"forge" - Forge scripts editor</li>
+ *   <li>"global_npc" - Global NPC scripts editor</li>
+ *   <li>"recipe" - Recipe scripts editor</li>
+ *   <li>"effect" - Custom effect scripts editor</li>
+ * </ul>
+ *
+ * <h3>Rich Hook Registration (Recommended)</h3>
+ * Use {@link #registerHookDefinition(String, IHookDefinition)} for full metadata support:
+ * <pre>{@code
+ * hooks.registerHookDefinition("player", HookDefinition.builder("onDBCTransform")
+ *     .eventClass(IDBCEvent.TransformEvent.class)
+ *     .requiredImports("com.dbc.api.event.IDBCEvent")
+ *     .cancelable(true)
+ *     .build());
+ * }</pre>
  */
 public interface IScriptHookHandler {
 
+    // ==================== RICH HOOK REGISTRATION (NEW) ====================
+
     /**
-     * Register a hook for a single context.
+     * Register a hook with full metadata including event type, imports, and cancelability.
+     * This is the recommended way to register addon hooks.
+     *
+     * @param context The context identifier (e.g., "npc", "player", "block")
+     * @param definition The hook definition containing all metadata
+     */
+    void registerHookDefinition(String context, IHookDefinition definition);
+
+    /**
+     * Get the hook definition for a specific hook.
+     *
+     * @param context The context identifier
+     * @param hookName The hook function name
+     * @return The hook definition, or null if not found or no metadata available
+     */
+    IHookDefinition getHookDefinition(String context, String hookName);
+
+    /**
+     * Get all hook definitions for a context.
+     *
+     * @param context The context identifier
+     * @return List of all hook definitions (may be empty, never null)
+     */
+    List<IHookDefinition> getAllHookDefinitions(String context);
+
+    /**
+     * Get the current hook revision number.
+     * This increments each time a hook is registered, allowing caches to invalidate.
+     *
+     * @return The current revision number
+     */
+    int getHookRevision();
+
+    // ==================== LEGACY HOOK REGISTRATION ====================
+
+    /**
+     * Register a hook for a single context (legacy method).
+     * Creates a minimal definition without event type metadata.
      *
      * @param context The context identifier (e.g., "npc", "player", "block")
      * @param functionName The script function name (e.g., "onMyCustomEvent")
