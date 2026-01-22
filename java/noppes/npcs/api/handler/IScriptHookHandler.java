@@ -1,7 +1,5 @@
 package noppes.npcs.api.handler;
 
-import noppes.npcs.constants.ScriptContext;
-
 import java.util.List;
 
 /**
@@ -18,14 +16,8 @@ import java.util.List;
  * - "global_npc" - Global NPC scripts editor
  * - "recipe" - Recipe scripts editor
  * - "effect" - Custom effect scripts editor
- *
- * Note: Context constants are deprecated. Use ScriptContext.XXX.hookContext instead.
  */
 public interface IScriptHookHandler {
-
-    void registerHook(ScriptContext context, String functionName);
-
-    void registerHooks(ScriptContext context, String... functionNames);
 
     /**
      * Register a hook for a single context.
