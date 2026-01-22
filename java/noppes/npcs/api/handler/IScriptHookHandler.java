@@ -1,5 +1,7 @@
 package noppes.npcs.api.handler;
 
+import noppes.npcs.constants.ScriptContext;
+
 import java.util.List;
 
 /**
@@ -20,6 +22,10 @@ import java.util.List;
  * Note: Context constants are deprecated. Use ScriptContext.XXX.hookContext instead.
  */
 public interface IScriptHookHandler {
+
+    void registerHooks(ScriptContext context, String functionName);
+
+    void registerHooks(ScriptContext context, String... functionNames);
 
     /**
      * Register a hook for a single context.
