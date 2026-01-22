@@ -16,18 +16,10 @@ import java.util.List;
  * - "global_npc" - Global NPC scripts editor
  * - "recipe" - Recipe scripts editor
  * - "effect" - Custom effect scripts editor
+ *
+ * Note: Context constants are deprecated. Use ScriptContext.XXX.hookContext instead.
  */
 public interface IScriptHookHandler {
-
-    // Context constants
-    String CONTEXT_NPC = "npc";
-    String CONTEXT_PLAYER = "player";
-    String CONTEXT_BLOCK = "block";
-    String CONTEXT_ITEM = "item";
-    String CONTEXT_LINKED_ITEM = "linked_item";
-    String CONTEXT_FORGE = "forge";
-    String CONTEXT_RECIPE = "recipe";
-    String CONTEXT_EFFECT = "effect";
 
     /**
      * Register a hook for a single context.
