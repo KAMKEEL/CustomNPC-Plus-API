@@ -23,7 +23,7 @@ import java.util.List;
  */
 public interface IScriptHookHandler {
 
-    void registerHooks(ScriptContext context, String functionName);
+    void registerHook(ScriptContext context, String functionName);
 
     void registerHooks(ScriptContext context, String... functionNames);
 
