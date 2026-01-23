@@ -541,19 +541,20 @@ public interface IEntity<T extends Entity> {
     IEntity<?>[] getCapturedDrops();
 
     /**
-     * @since 1.7.10c
      * @return Whether the entity is sneaking.
+     * @since 1.7.10c
      */
     boolean isSneaking();
 
     /**
-     * @since 1.7.10c
      * @return Whether the entity is sprinting.
+     * @since 1.7.10c
      */
     boolean isSprinting();
 
     /**
      * Expert users only.
+     *
      * @return The underlying Minecraft entity.
      */
     T getMCEntity();

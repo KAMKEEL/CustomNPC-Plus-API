@@ -19,7 +19,7 @@ public interface IAttributeHandler {
      *
      * @param player the player whose attributes are requested
      * @return an {@link IPlayerAttributes} instance containing all custom attributes for the player,
-     *         or null if the player is invalid
+     * or null if the player is invalid
      */
     IPlayerAttributes getPlayerAttributes(IPlayer player);
 

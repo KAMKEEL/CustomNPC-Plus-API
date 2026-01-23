@@ -8,8 +8,8 @@ public interface ITimers {
      * Adds a timer to the NPC or player with the given attributes. If this function is used and there is already a
      * timer with the given ID, an exception will be thrown.
      *
-     * @param id The id of the timer.
-     * @param ticks The amount of ticks before the timer ends.
+     * @param id     The id of the timer.
+     * @param ticks  The amount of ticks before the timer ends.
      * @param repeat Whether this timer repeats when it reaches its maximum amount of ticks.
      */
     void start(int id, int ticks, boolean repeat);
@@ -18,8 +18,8 @@ public interface ITimers {
      * Adds a timer to the NPC or player with the given attributes. No exception will be thrown if there is already a
      * timer with the given ID when using this function.
      *
-     * @param id The id of the timer.
-     * @param ticks The amount of ticks before the timer ends.
+     * @param id     The id of the timer.
+     * @param ticks  The amount of ticks before the timer ends.
      * @param repeat Whether this timer repeats when it reaches its maximum amount of ticks.
      */
     void forceStart(int id, int ticks, boolean repeat);

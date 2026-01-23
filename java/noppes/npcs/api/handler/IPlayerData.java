@@ -1,4 +1,5 @@
 package noppes.npcs.api.handler;
+
 import noppes.npcs.api.entity.ICustomNpc;
 
 public interface IPlayerData {

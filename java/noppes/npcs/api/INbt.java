@@ -6,13 +6,13 @@ import net.minecraft.nbt.NBTTagCompound;
  * A scripted data representation of an MC NBTTagCompound object. Using these functions modifies the compound tag
  * associated with this object. Any changes made to the compound tag are made directly to its "tagMap" attribute,
  * minimizing the impact of setting/getting NBT data with this object on performance.
- *
+ * <p>
  * Compound tags, unlike list tags, can contain multiple types of NBT tag types. Compound tags can even
  * contain compound tags inside them, and if that compound tag is accessed, an object like this one will also be returned!
- *
+ * <p>
  * Every tag inside a compound tag has a -unique- "key". If you try to put another tag of the same key inside the
  * compound tag, it will replace the previous tag.
- *
+ * <p>
  * The types and their type as an integer are as follows:
  * 1: Byte
  * 2: Short
@@ -94,7 +94,7 @@ public interface INbt {
     /**
      * Adds a new tag list to the compound tag with the given key.
      *
-     * @param key The key for the list tag
+     * @param key   The key for the list tag
      * @param value The list of objects to be in the list. The type of the first element in this list becomes the tag
      *              list's type, and if later objects are not of this type, they will not be added.
      */

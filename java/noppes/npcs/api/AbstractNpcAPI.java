@@ -19,7 +19,6 @@ import noppes.npcs.api.gui.ICustomGui;
 import noppes.npcs.api.handler.IAbilityHandler;
 import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.api.handler.IAnimationHandler;
-import noppes.npcs.api.handler.IAttributeHandler;
 import noppes.npcs.api.handler.ICloneHandler;
 import noppes.npcs.api.handler.ICustomEffectHandler;
 import noppes.npcs.api.handler.IDialogHandler;
@@ -60,7 +59,8 @@ public abstract class AbstractNpcAPI {
 
     /**
      * Tempdata gets cleared when the server restarts. All worlds share the same temp data.
-     * @param key The key for the data stored
+     *
+     * @param key   The key for the data stored
      * @param value The data stored
      */
     public abstract void setTempData(String key, Object value);
@@ -91,7 +91,8 @@ public abstract class AbstractNpcAPI {
 
     /**
      * Stored data persists through world restart. Unlike tempdata only Strings and Numbers can be saved
-     * @param key The key for the data stored
+     *
+     * @param key   The key for the data stored
      * @param value The data stored. This data can be either a Number or a String. Other data is not stored
      */
     public abstract void setStoredData(String key, Object value);
@@ -124,7 +125,7 @@ public abstract class AbstractNpcAPI {
 
     public abstract boolean hasGlobalObject(String key);
 
-    public abstract HashMap<String,Object> getEngineObjects();
+    public abstract HashMap<String, Object> getEngineObjects();
 
     public abstract long sizeOfObject(Object obj);
 
@@ -220,8 +221,8 @@ public abstract class AbstractNpcAPI {
      * Forms a box with corners as the input IPos parameters, and returns all
      * points inside the box as a list of IPos vectors.
      *
-     * @param from The starting IPos vector, first corner of the box.
-     * @param to The ending IPos vector, opposite corner of the box.
+     * @param from           The starting IPos vector, first corner of the box.
+     * @param to             The ending IPos vector, opposite corner of the box.
      * @param sortByDistance Sorts the list by distance from the "from" IPos parameter.
      * @return The list of all IPos vectors inside the box.
      */
@@ -312,7 +313,7 @@ public abstract class AbstractNpcAPI {
      *                   7: Aztec
      *                   8: CustomNPCs Classic
      *                   9: Spanish
-     * @param gender The gender of the name:
+     * @param gender     The gender of the name:
      *                   0: Random
      *                   1: Male
      *                   2: Female
@@ -389,9 +390,9 @@ public abstract class AbstractNpcAPI {
 
     /**
      *
-     * @param id The id of the custom GUI.
-     * @param width The width of the GUI in pixels.
-     * @param height The height of the GUI in pixels.
+     * @param id        The id of the custom GUI.
+     * @param width     The width of the GUI in pixels.
+     * @param height    The height of the GUI in pixels.
      * @param pauseGame Whether the GUI pauses the game or not.
      * @return A new ICustomGui object with the given attributes.
      */
@@ -399,7 +400,7 @@ public abstract class AbstractNpcAPI {
 
     /**
      *
-     * @return  A new ICustomOverlay overlay object with the given ID.
+     * @return A new ICustomOverlay overlay object with the given ID.
      */
     public abstract ICustomOverlay createCustomOverlay(int id);
 

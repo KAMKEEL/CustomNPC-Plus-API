@@ -14,12 +14,14 @@ public interface IPlayerCurrencyData {
 
     /**
      * Set the balance directly
+     *
      * @param balance The new balance
      */
     void setBalance(long balance);
 
     /**
      * Add currency to balance (deposit)
+     *
      * @param amount Amount to add
      * @return true if successful, false if would exceed max balance
      */
@@ -27,6 +29,7 @@ public interface IPlayerCurrencyData {
 
     /**
      * Remove currency from balance (withdraw)
+     *
      * @param amount Amount to remove
      * @return true if successful, false if insufficient funds
      */
@@ -34,6 +37,7 @@ public interface IPlayerCurrencyData {
 
     /**
      * Check if player can afford an amount
+     *
      * @param amount Amount to check
      * @return true if player has enough balance
      */
@@ -56,6 +60,7 @@ public interface IPlayerCurrencyData {
 
     /**
      * Check if Vault is being used for currency operations
+     *
      * @return true if Vault is handling currency, false if using CNPC+ built-in
      */
     boolean isUsingVault();

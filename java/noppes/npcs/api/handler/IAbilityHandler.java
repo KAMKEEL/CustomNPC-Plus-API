@@ -3,7 +3,7 @@ package noppes.npcs.api.handler;
 /**
  * Handler for ability presets. Allows scripts to save, load, and manage
  * reusable ability templates.
- *
+ * <p>
  * Access via API.getAbilities()
  */
 public interface IAbilityHandler {

@@ -31,7 +31,7 @@ public interface IScriptHookHandler {
     /**
      * Register a hook with full metadata including event type and imports.
      *
-     * @param context The context identifier (e.g., "npc", "player", "block")
+     * @param context    The context identifier (e.g., "npc", "player", "block")
      * @param definition The hook definition containing all metadata
      */
     void registerHookDefinition(String context, IHookDefinition definition);
@@ -39,7 +39,7 @@ public interface IScriptHookHandler {
     /**
      * Get the hook definition for a specific hook.
      *
-     * @param context The context identifier
+     * @param context  The context identifier
      * @param hookName The hook function name
      * @return The hook definition, or null if not found
      */
@@ -64,7 +64,7 @@ public interface IScriptHookHandler {
     /**
      * Check if a hook is registered in a specific context.
      *
-     * @param context The context to check
+     * @param context  The context to check
      * @param hookName The function name to look for
      * @return true if the hook is registered
      */

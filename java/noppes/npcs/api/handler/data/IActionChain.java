@@ -21,8 +21,8 @@ public interface IActionChain {
     /**
      *
      * @param delay ticks between an IAction and another
-     * @param name name of IAction
-     * @param task task of IAction
+     * @param name  name of IAction
+     * @param task  task of IAction
      * @return
      */
     IActionChain after(int delay, String name, Consumer<IAction> task);
@@ -31,6 +31,7 @@ public interface IActionChain {
 
     /**
      * Start IActionManager
+     *
      * @return
      */
     IActionChain start();

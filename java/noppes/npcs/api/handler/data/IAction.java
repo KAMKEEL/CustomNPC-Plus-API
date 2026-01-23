@@ -72,15 +72,15 @@ public interface IAction {
 
     /**
      * @return the maximum number of ticks this action is allowed to run before auto marking done
-     *
+     * <p>
      * P.S: If max duration is reached and this IAction's thread (created using {@link #threadify()}) is paused by any of the pausing methods,
-     *      the thread is forcibly resumed and finishes the task execution.
+     * the thread is forcibly resumed and finishes the task execution.
      */
     int getMaxDuration();
 
     /**
      * @param ticks max duration
-     *          default: -1,  infinite
+     *              default: -1,  infinite
      * @return
      */
     IAction setMaxDuration(int ticks);
@@ -171,12 +171,14 @@ public interface IAction {
 
     /**
      * Executes task every tick (Sets updateEvery to 1)
+     *
      * @return
      */
     IAction everyTick();
 
     /**
      * Executes task every second (Sets updateEvery to 20)
+     *
      * @return
      */
     IAction everySecond();
@@ -206,7 +208,7 @@ public interface IAction {
      * Must call {@link #threadify()} before using, else throws exception.
      * Pauses IAction's thread until the supplied condition is satisfied or {@link #resume()} is called.
      */
-    void pauseUntil(Function<IAction,Boolean> until);
+    void pauseUntil(Function<IAction, Boolean> until);
 
     /**
      * Resumes thread that was previously paused by {@link #pause()},  {@link #pauseUntil(Function)}, {@link #pauseFor(int)} or {@link #pauseFor(long)}
@@ -306,17 +308,17 @@ public interface IAction {
 
     void conditional(IConditionalAction... actions);
 
-    IConditionalAction conditional(Function<IAction,Boolean> condition, Consumer<IAction> task);
+    IConditionalAction conditional(Function<IAction, Boolean> condition, Consumer<IAction> task);
 
-    IConditionalAction conditional(String name, Function<IAction,Boolean> condition, Consumer<IAction> task);
+    IConditionalAction conditional(String name, Function<IAction, Boolean> condition, Consumer<IAction> task);
 
-    IConditionalAction conditional(Function<IAction,Boolean> condition, Consumer<IAction> task, Function<IAction,Boolean> terminate);
+    IConditionalAction conditional(Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminate);
 
-    IConditionalAction conditional(String name, Function<IAction,Boolean> condition, Consumer<IAction> task, Function<IAction,Boolean> terminate);
+    IConditionalAction conditional(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminate);
 
-    IConditionalAction conditional(Function<IAction,Boolean> condition, Consumer<IAction> task, Function<IAction,Boolean> terminateWhen, Consumer<IAction> onTermination);
+    IConditionalAction conditional(Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
 
-    IConditionalAction conditional(String name, Function<IAction,Boolean> condition, Consumer<IAction> task, Function<IAction,Boolean> terminateWhen, Consumer<IAction> onTermination);
+    IConditionalAction conditional(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
 
     /**
      * Enqueue another IAction on the parallel chain which starts firing simultaneously as this.

@@ -24,5 +24,5 @@ public interface IPlayerQuestData {
 
     long getLastCompletedTime(int id);
 
-    void setLastCompletedTime(int id,long time);
+    void setLastCompletedTime(int id, long time);
 }

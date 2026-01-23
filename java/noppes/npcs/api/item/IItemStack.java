@@ -375,9 +375,9 @@ public interface IItemStack {
     /**
      * Compares this item with another item, with options to ignore damage and/or NBT data.
      *
-     * @param item        The item to compare.
+     * @param item         The item to compare.
      * @param ignoreDamage true to ignore damage values.
-     * @param ignoreNBT   true to ignore NBT data.
+     * @param ignoreNBT    true to ignore NBT data.
      * @return true if the items are considered equal, false otherwise.
      */
     boolean compare(IItemStack item, boolean ignoreDamage, boolean ignoreNBT);

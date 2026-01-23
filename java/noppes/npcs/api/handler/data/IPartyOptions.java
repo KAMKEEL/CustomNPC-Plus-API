@@ -12,7 +12,7 @@ public interface IPartyOptions {
     public void setOnlyParty(boolean onlyParty);
 
     /**
-     * @return  0:Leader, 1:All, 2:Valid
+     * @return 0:Leader, 1:All, 2:Valid
      */
     public int getPartyRequirements();
 
@@ -22,7 +22,7 @@ public interface IPartyOptions {
     public void setPartyRequirements(int partyRequirements);
 
     /**
-     * @return  0:Leader, 1:All, 2:Enrolled, 3:Valid
+     * @return 0:Leader, 1:All, 2:Enrolled, 3:Valid
      */
     public int getRewardControl();
 
@@ -32,7 +32,7 @@ public interface IPartyOptions {
     public void setRewardControl(int rewardControl);
 
     /**
-     * @return  0:Leader, 1:All, 2:Enrolled, 3:Valid
+     * @return 0:Leader, 1:All, 2:Enrolled, 3:Valid
      */
     public int getCompleteFor();
 
@@ -42,7 +42,7 @@ public interface IPartyOptions {
     public void setCompleteFor(int completeFor);
 
     /**
-     * @return  0:Leader, 1:All, 2:Enrolled, 3:Valid
+     * @return 0:Leader, 1:All, 2:Enrolled, 3:Valid
      */
     int getExecuteCommandFor();
 

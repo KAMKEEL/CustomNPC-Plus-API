@@ -10,7 +10,7 @@ public interface IAbilityHandler {
      * Register a custom ability type.
      * Call during FMLInitializationEvent.
      *
-     * @param typeId The unique type ID (e.g., "mymod:custom_ability")
+     * @param typeId       The unique type ID (e.g., "mymod:custom_ability")
      * @param abilityClass The class that implements the ability
      */
     void registerType(String typeId, Class<? extends IAbility> abilityClass);

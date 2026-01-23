@@ -137,7 +137,6 @@ public interface IPos {
     /**
      * Returns a normalized vector of this block's position, calculated by:
      *
-     *
      * @return The normalized vector of this block position.
      */
     IPos normalize();

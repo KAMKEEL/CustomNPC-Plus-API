@@ -3,7 +3,6 @@ package noppes.npcs.api.event;
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import noppes.npcs.api.IDamageSource;
 import noppes.npcs.api.ability.IAbility;
-import noppes.npcs.api.entity.ICustomNpc;
 import noppes.npcs.api.entity.IEntityLivingBase;
 
 /**

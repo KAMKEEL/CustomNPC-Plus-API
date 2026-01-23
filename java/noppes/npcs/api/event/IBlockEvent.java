@@ -8,12 +8,14 @@ import noppes.npcs.api.entity.IPlayer;
 
 public interface IBlockEvent extends ICustomNPCsEvent {
     IBlock getBlock();
+
     /**
      * @hookName fallenUpon
      */
     @Cancelable
-    interface EntityFallenUponEvent extends IBlockEvent{
+    interface EntityFallenUponEvent extends IBlockEvent {
         IEntity getEntity();
+
         float getDistanceFallen();
     }
 
@@ -30,24 +32,28 @@ public interface IBlockEvent extends ICustomNPCsEvent {
         int getSide();
     }
 
-    interface RedstoneEvent extends IBlockEvent{
+    interface RedstoneEvent extends IBlockEvent {
         int getPrevPower();
+
         int getPower();
     }
+
     /**
      * @hookName broken
      */
-    interface BreakEvent extends IBlockEvent{
+    interface BreakEvent extends IBlockEvent {
 
     }
+
     @Cancelable
-    interface ExplodedEvent extends IBlockEvent{
+    interface ExplodedEvent extends IBlockEvent {
 
     }
+
     /**
      * @hookName rainFilled
      */
-    interface RainFillEvent extends IBlockEvent{
+    interface RainFillEvent extends IBlockEvent {
 
     }
 
@@ -55,13 +61,14 @@ public interface IBlockEvent extends ICustomNPCsEvent {
         IPos getChangedPos();
     }
 
-    interface InitEvent extends IBlockEvent{
+    interface InitEvent extends IBlockEvent {
 
     }
+
     /**
      * @hookName tick
      */
-    interface UpdateEvent extends IBlockEvent{
+    interface UpdateEvent extends IBlockEvent {
 
     }
 

@@ -36,6 +36,7 @@ public interface ITileEntity {
      * @return The distance of this tile entity from the point given by the x, y, and z parameters.
      */
     double getDistanceFrom(double x, double y, double z);
+
     double getDistanceFrom(IPos pos);
 
     /**

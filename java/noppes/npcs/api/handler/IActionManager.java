@@ -5,7 +5,6 @@ import noppes.npcs.api.handler.data.IActionChain;
 import noppes.npcs.api.handler.data.IActionQueue;
 import noppes.npcs.api.handler.data.actions.IConditionalAction;
 
-import java.util.List;
 import java.util.Queue;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -35,10 +34,10 @@ public interface IActionManager {
     /**
      * Create a new action instance without immediately scheduling it.
      *
-     * @param name            a unique name for this action
-     * @param maxDuration     the maximum lifetime of the action in ticks
-     * @param delay number of ticks to wait before the first run
-     * @param action          code to execute each time the action "fires"
+     * @param name        a unique name for this action
+     * @param maxDuration the maximum lifetime of the action in ticks
+     * @param delay       number of ticks to wait before the first run
+     * @param action      code to execute each time the action "fires"
      * @return a fresh {@link IAction} object
      */
     IAction create(String name, int maxDuration, int delay, Consumer<IAction> action);
@@ -59,6 +58,7 @@ public interface IActionManager {
 
     /**
      * Enabling prints to the console the life cycle of IActionManager, it's IActionQueues and the scheduled IActions
+     *
      * @param debug
      * @return
      */
@@ -131,8 +131,8 @@ public interface IActionManager {
      */
     IConditionalAction create(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
 
-    ///////////////////////////////////////////////////
-    ///////////////////////////////////////////////////
+    /// ////////////////////////////////////////////////
+    /// ////////////////////////////////////////////////
     // Queues
 
     IActionQueue createQueue(String name);
@@ -183,7 +183,7 @@ public interface IActionManager {
     /**
      * Convenience for {@link #create(Consumer)} + enqueue.
      *
-     * @param task            code to execute each time the task "fires"
+     * @param task code to execute each time the task "fires"
      * @return the task scheduled
      */
     IAction schedule(Consumer<IAction> task);
@@ -199,8 +199,8 @@ public interface IActionManager {
     /**
      * Convenience for {@link #create(String, Consumer)} + enqueue.
      *
-     * @param delay  number of ticks to wait before the first task run
-     * @param task            code to execute each time the task "fires"
+     * @param delay number of ticks to wait before the first task run
+     * @param task  code to execute each time the task "fires"
      * @return the task scheduled
      */
     IAction schedule(int delay, Consumer<IAction> task);
@@ -208,8 +208,8 @@ public interface IActionManager {
     /**
      * Convenience for {@link #create(String, Consumer)} + enqueue.
      *
-     * @param name            a unique name for this action
-     * @param task            code to execute each time the task "fires"
+     * @param name a unique name for this action
+     * @param task code to execute each time the task "fires"
      * @return the task scheduled
      */
     IAction schedule(String name, Consumer<IAction> task);
@@ -217,9 +217,9 @@ public interface IActionManager {
     /**
      * Convenience for {@link #create(String, int, Consumer)} + enqueue.
      *
-     * @param name            a unique name for this action
+     * @param name  a unique name for this action
      * @param delay number of ticks to wait before the first task run
-     * @param task            code to execute each time the task "fires"
+     * @param task  code to execute each time the task "fires"
      * @return the task scheduled
      */
     IAction schedule(String name, int delay, Consumer<IAction> task);
@@ -227,10 +227,10 @@ public interface IActionManager {
     /**
      * Convenience for {@link #create(String, int, int, Consumer)} + enqueue.
      *
-     * @param name            a unique name for this action
-     * @param maxDuration     the maximum lifetime of the action in ticks
-     * @param delay number of ticks to wait before the first task run
-     * @param task            code to execute each time the task "fires"
+     * @param name        a unique name for this action
+     * @param maxDuration the maximum lifetime of the action in ticks
+     * @param delay       number of ticks to wait before the first task run
+     * @param task        code to execute each time the task "fires"
      * @return the task scheduled
      */
     IAction schedule(String name, int maxDuration, int delay, Consumer<IAction> task);

@@ -19,7 +19,7 @@ public interface IBlock {
     /**
      * Moves the block to a new position in the given world. The old position is replaced with air.
      *
-     * @param pos The new position of the block
+     * @param pos   The new position of the block
      * @param world The destination world of the block
      * @return Whether the block was successfully placed
      */

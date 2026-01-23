@@ -289,7 +289,7 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
     }
 
     interface FillBucketEvent extends IPlayerEvent {
-        IItemStack getCurrent() ;
+        IItemStack getCurrent();
 
         IItemStack getFilled();
     }
@@ -376,12 +376,14 @@ public interface IPlayerEvent extends ICustomNPCsEvent {
          * @hookName profileCreate
          */
         @Cancelable
-        interface Create extends ProfileEvent {}
+        interface Create extends ProfileEvent {
+        }
 
         /**
          * @hookName profileRemove
          */
         @Cancelable
-        interface Removed extends ProfileEvent {}
+        interface Removed extends ProfileEvent {
+        }
     }
 }

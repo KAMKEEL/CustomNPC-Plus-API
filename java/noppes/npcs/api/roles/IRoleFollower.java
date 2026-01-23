@@ -5,20 +5,20 @@ import noppes.npcs.api.entity.IPlayer;
 public interface IRoleFollower extends IRole {
 
     /**
-     * @since 1.7.10c
      * @param player Player who is set as the owner. If null given everything resets
+     * @since 1.7.10c
      */
     void setOwner(IPlayer player);
 
     /**
-     * @since 1.7.10c
      * @return Returns the followers owner. Returns null if he has no owner or the owner is offline
+     * @since 1.7.10c
      */
     IPlayer getOwner();
 
     /**
-     * @since 1.7.10c
      * @return Returns whether or not the follower has an owner
+     * @since 1.7.10c
      */
     boolean hasOwner();
 
@@ -27,44 +27,44 @@ public interface IRoleFollower extends IRole {
     void setIsFollowing(boolean following);
 
     /**
-     * @since 1.7.10c
      * @return Returns days left
+     * @since 1.7.10c
      */
     int getDaysLeft();
 
     /**
-     * @since 1.7.10c
      * @param days The days you want to add to the days remaining
+     * @since 1.7.10c
      */
     void addDaysLeft(int days);
 
     /**
-     * @since 1.7.10c
      * @return Returns whether or not the follower is set to infinite days
+     * @since 1.7.10c
      */
     boolean getInfiniteDays();
 
     /**
-     * @since 1.7.10c
      * @param infinite Sets whether the days hired are infinite
+     * @since 1.7.10c
      */
     void setInfiniteDays(boolean infinite);
 
     /**
-     * @since 1.7.10c
      * @return Return whether the gui is disabled
+     * @since 1.7.10c
      */
     boolean getGuiDisabled();
 
     /**
-     * @since 1.7.10c
      * @param disabled Set the gui to be disabled or not
+     * @since 1.7.10c
      */
     void setGuiDisabled(boolean disabled);
 
 
     /**
-     * @param index Index of Rate [0 - 2]
+     * @param index  Index of Rate [0 - 2]
      * @param amount Amount hired for
      */
     public void setRate(int index, int amount);

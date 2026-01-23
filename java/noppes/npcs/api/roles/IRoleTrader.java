@@ -6,17 +6,17 @@ import noppes.npcs.api.item.IItemStack;
 public interface IRoleTrader extends IRole {
 
     /**
-     * @param slot Slot number 0-17
-     * @param currency Currency item
+     * @param slot      Slot number 0-17
+     * @param currency  Currency item
      * @param currency2 Currency item number two
-     * @param sold Item to be sold by this npc
+     * @param sold      Item to be sold by this npc
      */
     void setSellOption(int slot, IItemStack currency, IItemStack currency2, IItemStack sold);
 
     /**
-     * @param slot Slot number 0-17
+     * @param slot     Slot number 0-17
      * @param currency Currency item
-     * @param sold Item to be sold by this npc
+     * @param sold     Item to be sold by this npc
      */
     void setSellOption(int slot, IItemStack currency, IItemStack sold);
 
@@ -67,12 +67,14 @@ public interface IRoleTrader extends IRole {
 
     /**
      * sets the purchase num for that slot to 0
+     *
      * @param slot
      */
     void resetPurchaseNum(int slot);
 
     /**
      * sets the purchase num for that slot and player to 0
+     *
      * @param slot
      * @param player
      */
@@ -93,12 +95,14 @@ public interface IRoleTrader extends IRole {
 
     /**
      * prevent an item from being sold on that slot
+     *
      * @param slot
      */
     void disableSlot(int slot);
 
     /**
      * disables the slot for this player
+     *
      * @param slot
      * @param player
      */
@@ -106,12 +110,14 @@ public interface IRoleTrader extends IRole {
 
     /**
      * allow an item to be sold on that slot
+     *
      * @param slot
      */
     void enableSlot(int slot);
 
     /**
      * enables the slot for this player
+     *
      * @param slot
      * @param player
      */
@@ -141,30 +147,35 @@ public interface IRoleTrader extends IRole {
 
     /**
      * Get the stock reset type
+     *
      * @return 0=NONE, 1=MCDAILY, 2=MCWEEKLY, 3=MCCUSTOM, 4=RLDAILY, 5=RLWEEKLY, 6=RLCUSTOM
      */
     int getStockResetType();
 
     /**
      * Set stock reset type
+     *
      * @param type 0=NONE, 1=MCDAILY, 2=MCWEEKLY, 3=MCCUSTOM, 4=RLDAILY, 5=RLWEEKLY, 6=RLCUSTOM
      */
     void setStockResetType(int type);
 
     /**
      * Get custom reset time (only used for MCCUSTOM/RLCUSTOM)
+     *
      * @return Custom time in ticks (MC) or milliseconds (RL)
      */
     long getCustomResetTime();
 
     /**
      * Set custom reset time
+     *
      * @param time Time in ticks (MC) or milliseconds (RL)
      */
     void setCustomResetTime(long time);
 
     /**
      * Get max stock for a slot
+     *
      * @param slot Slot number 0-17
      * @return Max stock, -1 = unlimited
      */
@@ -172,13 +183,15 @@ public interface IRoleTrader extends IRole {
 
     /**
      * Set max stock for a slot
-     * @param slot Slot number 0-17
+     *
+     * @param slot   Slot number 0-17
      * @param amount Max stock, -1 = unlimited
      */
     void setMaxStock(int slot, int amount);
 
     /**
      * Get available stock for a slot (global mode)
+     *
      * @param slot Slot number 0-17
      * @return Available stock, Integer.MAX_VALUE if unlimited
      */
@@ -186,7 +199,8 @@ public interface IRoleTrader extends IRole {
 
     /**
      * Get available stock for a slot for a specific player (per-player mode)
-     * @param slot Slot number 0-17
+     *
+     * @param slot   Slot number 0-17
      * @param player The player
      * @return Available stock, Integer.MAX_VALUE if unlimited
      */
@@ -205,6 +219,7 @@ public interface IRoleTrader extends IRole {
 
     /**
      * Get current stock for a slot (global mode)
+     *
      * @param slot Slot number 0-17
      * @return Current stock, -1 if not initialized
      */
@@ -212,14 +227,16 @@ public interface IRoleTrader extends IRole {
 
     /**
      * Set current stock for a slot (global mode only)
-     * @param slot Slot number 0-17
+     *
+     * @param slot   Slot number 0-17
      * @param amount Current stock amount
      */
     void setCurrentStock(int slot, int amount);
 
     /**
      * Get purchased amount for a player in a slot (per-player mode)
-     * @param slot Slot number 0-17
+     *
+     * @param slot   Slot number 0-17
      * @param player The player
      * @return Purchased amount (stock available = maxStock - purchasedAmount)
      */
@@ -227,7 +244,8 @@ public interface IRoleTrader extends IRole {
 
     /**
      * Set purchased amount for a player in a slot (per-player mode)
-     * @param slot Slot number 0-17
+     *
+     * @param slot   Slot number 0-17
      * @param player The player
      * @param amount Purchased amount
      */
@@ -235,12 +253,14 @@ public interface IRoleTrader extends IRole {
 
     /**
      * Get the timestamp of the last stock reset
+     *
      * @return Time in ticks (MC) or milliseconds (RL), depending on reset type
      */
     long getLastResetTime();
 
     /**
      * Get time remaining until next stock reset
+     *
      * @return Time remaining in ticks (MC) or milliseconds (RL), -1 if no reset scheduled
      */
     long getTimeUntilReset();
@@ -249,6 +269,7 @@ public interface IRoleTrader extends IRole {
 
     /**
      * Get the currency cost for a slot (additive to item costs)
+     *
      * @param slot Slot number 0-17
      * @return Currency cost, 0 = no cost
      */
@@ -256,6 +277,7 @@ public interface IRoleTrader extends IRole {
 
     /**
      * Set the currency cost for a slot (additive to item costs)
+     *
      * @param slot Slot number 0-17
      * @param cost Currency cost, 0 = no cost
      */
