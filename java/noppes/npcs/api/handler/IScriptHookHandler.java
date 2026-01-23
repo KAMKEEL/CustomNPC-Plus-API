@@ -19,23 +19,17 @@ import java.util.List;
  *   <li>"effect" - Custom effect scripts editor</li>
  * </ul>
  *
- * <h3>Rich Hook Registration (Recommended)</h3>
- * Use {@link #registerHookDefinition(String, IHookDefinition)} for full metadata support:
+ * <h3>Hook Registration</h3>
+ * Use {@link #registerHookDefinition(String, IHookDefinition)} to register hooks:
  * <pre>{@code
- * hooks.registerHookDefinition("player", HookDefinition.builder("onDBCTransform")
- *     .eventClass(IDBCEvent.TransformEvent.class)
- *     .requiredImports("com.dbc.api.event.IDBCEvent")
- *     .cancelable(true)
- *     .build());
+ * hooks.registerHookDefinition("player",
+ *     HookDefinition.of("onDBCTransform", IDBCEvent.TransformEvent.class));
  * }</pre>
  */
 public interface IScriptHookHandler {
 
-    // ==================== RICH HOOK REGISTRATION (NEW) ====================
-
     /**
-     * Register a hook with full metadata including event type, imports, and cancelability.
-     * This is the recommended way to register addon hooks.
+     * Register a hook with full metadata including event type and imports.
      *
      * @param context The context identifier (e.g., "npc", "player", "block")
      * @param definition The hook definition containing all metadata
@@ -47,7 +41,7 @@ public interface IScriptHookHandler {
      *
      * @param context The context identifier
      * @param hookName The hook function name
-     * @return The hook definition, or null if not found or no metadata available
+     * @return The hook definition, or null if not found
      */
     IHookDefinition getHookDefinition(String context, String hookName);
 
@@ -60,61 +54,10 @@ public interface IScriptHookHandler {
     List<IHookDefinition> getAllHookDefinitions(String context);
 
     /**
-     * Get the current hook revision number.
-     * This increments each time a hook is registered, allowing caches to invalidate.
-     *
-     * @return The current revision number
-     */
-    int getHookRevision();
-
-    // ==================== LEGACY HOOK REGISTRATION ====================
-
-    /**
-     * Register a hook for a single context (legacy method).
-     * Creates a minimal definition without event type metadata.
-     *
-     * @param context The context identifier (e.g., "npc", "player", "block")
-     * @param functionName The script function name (e.g., "onMyCustomEvent")
-     */
-    void registerHook(String context, String functionName);
-
-    /**
-     * Register a hook for multiple contexts at once.
-     *
-     * @param functionName The script function name
-     * @param contexts The contexts where this hook should appear
-     */
-    void registerHooks(String functionName, String... contexts);
-
-    /**
-     * Unregister a hook from a specific context.
-     *
-     * @param context The context to remove the hook from
-     * @param functionName The function name to remove
-     */
-    void unregisterHook(String context, String functionName);
-
-    /**
-     * Unregister a hook from all contexts.
-     *
-     * @param functionName The function name to remove
-     */
-    void unregisterHookFromAll(String functionName);
-
-    /**
-     * Get all registered addon hooks for a context.
-     * This does not include built-in hooks.
+     * Get all hook names for a context.
      *
      * @param context The context identifier
-     * @return List of hook function names for that context
-     */
-    List<String> getAddonHooks(String context);
-
-    /**
-     * Get all hooks (built-in + addon) for a context.
-     *
-     * @param context The context identifier
-     * @return List of all hook function names for that context
+     * @return List of all hook function names
      */
     List<String> getAllHooks(String context);
 
@@ -122,10 +65,18 @@ public interface IScriptHookHandler {
      * Check if a hook is registered in a specific context.
      *
      * @param context The context to check
-     * @param functionName The function name to look for
+     * @param hookName The function name to look for
      * @return true if the hook is registered
      */
-    boolean hasHook(String context, String functionName);
+    boolean hasHook(String context, String hookName);
+
+    /**
+     * Get the current hook revision number.
+     * This increments each time a hook is registered, allowing caches to invalidate.
+     *
+     * @return The current revision number
+     */
+    int getHookRevision();
 
     /**
      * Get all available context identifiers.
