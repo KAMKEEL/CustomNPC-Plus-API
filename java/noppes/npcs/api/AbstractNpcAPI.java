@@ -19,6 +19,7 @@ import noppes.npcs.api.gui.ICustomGui;
 import noppes.npcs.api.handler.IAbilityHandler;
 import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.api.handler.IAnimationHandler;
+import noppes.npcs.api.handler.IAuctionHandler;
 import noppes.npcs.api.handler.ICloneHandler;
 import noppes.npcs.api.handler.ICustomEffectHandler;
 import noppes.npcs.api.handler.IDialogHandler;
@@ -179,6 +180,12 @@ public abstract class AbstractNpcAPI {
     public abstract IAbilityHandler getAbilities();
 
     public abstract ITelegraphHandler getTelegraphs();
+
+    /**
+     * Get the auction handler for managing auctions via scripts.
+     * @return The auction handler, or null if auctions are disabled
+     */
+    public abstract IAuctionHandler getAuctions();
 
     /**
      * Create a telegraph directly.

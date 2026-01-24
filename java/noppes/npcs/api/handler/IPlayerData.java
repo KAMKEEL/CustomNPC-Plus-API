@@ -26,7 +26,7 @@ public interface IPlayerData {
 
     IPlayerMailData getMailData();
 
-    IPlayerCurrencyData getCurrencyData();
+    IPlayerTradeData getTradeData();
 
     void save();
 }
