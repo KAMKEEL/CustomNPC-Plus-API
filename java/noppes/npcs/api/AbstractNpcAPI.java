@@ -30,6 +30,7 @@ import noppes.npcs.api.handler.IProfileHandler;
 import noppes.npcs.api.handler.IQuestHandler;
 import noppes.npcs.api.handler.IRecipeHandler;
 import noppes.npcs.api.handler.IScriptHookHandler;
+import noppes.npcs.api.handler.ITelegraphHandler;
 import noppes.npcs.api.handler.ITransportHandler;
 import noppes.npcs.api.handler.data.IAnimation;
 import noppes.npcs.api.handler.data.IFrame;
@@ -176,6 +177,17 @@ public abstract class AbstractNpcAPI {
     public abstract IScriptHookHandler getScriptHooks();
 
     public abstract IAbilityHandler getAbilities();
+
+    public abstract ITelegraphHandler getTelegraphs();
+
+    /**
+     * Create a telegraph directly.
+     * Convenience method equivalent to getTelegraphs().create(type).
+     *
+     * @param type Type name: "circle", "ring", "line", "cone", "point"
+     * @return A new telegraph configuration
+     */
+    public abstract ITelegraph createTelegraph(String type);
 
     public abstract String[] getAllBiomeNames();
 
