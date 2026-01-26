@@ -130,11 +130,6 @@ public interface IAbility {
     boolean isExecuting();
 
     /**
-     * Check if this ability is on cooldown.
-     */
-    boolean isOnCooldown();
-
-    /**
      * Get the current execution phase (0=IDLE, 1=WINDUP, 2=ACTIVE, 3=RECOVERY).
      */
     int getPhaseInt();
