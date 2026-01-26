@@ -7,6 +7,10 @@ public interface IDialogEvent extends IPlayerEvent {
 
     IDialog getDialog();
 
+    int getDialogId();
+
+    int getOptionId();
+
     @Cancelable
     interface DialogOpen extends IDialogEvent {
     }
