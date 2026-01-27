@@ -95,24 +95,14 @@ public interface IAbility {
     void setWindUpTicks(int ticks);
 
     /**
-     * Get the active duration in ticks.
+     * Get the dazed time in ticks (stun after interrupt during WINDUP).
      */
-    int getActiveTicks();
+    int getDazedTicks();
 
     /**
-     * Set the active duration in ticks.
+     * Set the dazed time in ticks.
      */
-    void setActiveTicks(int ticks);
-
-    /**
-     * Get the recovery time in ticks.
-     */
-    int getRecoveryTicks();
-
-    /**
-     * Set the recovery time in ticks.
-     */
-    void setRecoveryTicks(int ticks);
+    void setDazedTicks(int ticks);
 
     /**
      * Check if this ability can be interrupted by damage.
@@ -130,7 +120,7 @@ public interface IAbility {
     boolean isExecuting();
 
     /**
-     * Get the current execution phase (0=IDLE, 1=WINDUP, 2=ACTIVE, 3=RECOVERY).
+     * Get the current execution phase (0=IDLE, 1=WINDUP, 2=ACTIVE, 3=DAZED).
      */
     int getPhaseInt();
 
