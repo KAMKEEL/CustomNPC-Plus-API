@@ -75,4 +75,53 @@ public interface IDataAbilities {
      * Reset all ability cooldowns.
      */
     void resetCooldowns();
+
+    /**
+     * Force start an ability on this NPC.
+     * If an ability is currently executing, it will be cancelled.
+     *
+     * @param abilityId The ID of the ability to start
+     * @return true if the ability was started successfully
+     */
+    boolean forceStartAbility(String abilityId);
+
+    /**
+     * Force start an ability on this NPC with a specific target.
+     * If an ability is currently executing, it will be cancelled.
+     *
+     * @param abilityId The ID of the ability to start
+     * @param target The target entity (can be null for self-targeted abilities)
+     * @return true if the ability was started successfully
+     */
+    boolean forceStartAbility(String abilityId, Object target);
+
+    /**
+     * Execute a preset ability on this NPC by preset name.
+     * The NPC does NOT need to have this ability assigned.
+     * If an ability is currently executing, it will be cancelled.
+     *
+     * @param presetName The name of the saved ability preset
+     * @return true if the ability was started successfully
+     */
+    boolean executePresetAbility(String presetName);
+
+    /**
+     * Execute a preset ability on this NPC with a specific target.
+     * The NPC does NOT need to have this ability assigned.
+     * If an ability is currently executing, it will be cancelled.
+     *
+     * @param presetName The name of the saved ability preset
+     * @param target The target entity (can be null for self-targeted abilities)
+     * @return true if the ability was started successfully
+     */
+    boolean executePresetAbility(String presetName, Object target);
+
+    /**
+     * Create a new ability instance by type ID.
+     * The ability is not assigned to this NPC - use addAbility() to assign it.
+     *
+     * @param typeId The type ID (e.g., "cnpc:slam", "cnpc:projectile")
+     * @return The new ability, or null if the type is unknown
+     */
+    IAbility createAbility(String typeId);
 }

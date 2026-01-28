@@ -1505,4 +1505,13 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
      * @return Magic data
      */
     IMagicData getMagicData();
+
+    /**
+     * Returns the Ability Data of an NPC.
+     * Allows access to the NPC's abilities system including
+     * force-starting abilities and executing preset abilities.
+     *
+     * @return Ability data
+     */
+    noppes.npcs.api.ability.IDataAbilities getAbilityData();
 }
