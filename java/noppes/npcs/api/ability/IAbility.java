@@ -115,6 +115,28 @@ public interface IAbility {
     void setInterruptible(boolean interruptible);
 
     /**
+     * Get the lock movement type for this ability.
+     * @return 0=NO, 1=WINDUP, 2=ACTIVE, 3=WINDUP_AND_ACTIVE
+     */
+    int getLockMovementType();
+
+    /**
+     * Set the lock movement type for this ability.
+     * @param type 0=NO, 1=WINDUP, 2=ACTIVE, 3=WINDUP_AND_ACTIVE
+     */
+    void setLockMovementType(int type);
+
+    /**
+     * Check if movement is locked during the WINDUP phase.
+     */
+    boolean isMovementLockedDuringWindup();
+
+    /**
+     * Check if movement is locked during the ACTIVE phase.
+     */
+    boolean isMovementLockedDuringActive();
+
+    /**
      * Check if this ability is currently being executed.
      */
     boolean isExecuting();
