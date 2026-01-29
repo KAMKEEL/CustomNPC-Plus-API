@@ -44,15 +44,6 @@ public interface IAbilityOrb extends IAbility {
     float getExplosionRadius();
     void setExplosionRadius(float radius);
 
-    int getStunDuration();
-    void setStunDuration(int duration);
-
-    int getSlowDuration();
-    void setSlowDuration(int duration);
-
-    int getSlowLevel();
-    void setSlowLevel(int level);
-
     int getInnerColor();
     void setInnerColor(int color);
 
