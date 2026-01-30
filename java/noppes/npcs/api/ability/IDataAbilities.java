@@ -17,14 +17,19 @@ public interface IDataAbilities {
     void setEnabled(boolean enabled);
 
     /**
-     * Get all abilities assigned to this NPC.
+     * Get all abilities assigned to this NPC (resolved from slots).
      */
     IAbility[] getAbilities();
 
     /**
-     * Add an ability to this NPC.
+     * Add an inline ability to this NPC.
      */
     void addAbility(IAbility ability);
+
+    /**
+     * Add a reference ability by key (built-in name or custom UUID).
+     */
+    void addAbilityReference(String key);
 
     /**
      * Remove an ability by ID.
@@ -40,6 +45,17 @@ public interface IDataAbilities {
      * Check if the NPC has an ability with the given ID.
      */
     boolean hasAbility(String abilityId);
+
+    /**
+     * Check if a slot is a reference (by ability ID).
+     */
+    boolean isAbilityReference(String abilityId);
+
+    /**
+     * Convert a reference slot to inline (by ability ID).
+     * Returns false if the reference cannot be resolved.
+     */
+    boolean convertToInline(String abilityId);
 
     /**
      * Clear all abilities from this NPC.
@@ -96,25 +112,25 @@ public interface IDataAbilities {
     boolean forceStartAbility(String abilityId, Object target);
 
     /**
-     * Execute a preset ability on this NPC by preset name.
+     * Execute an ability on this NPC by key (built-in name or custom UUID).
      * The NPC does NOT need to have this ability assigned.
      * If an ability is currently executing, it will be cancelled.
      *
-     * @param presetName The name of the saved ability preset
+     * @param key The ability key (built-in name or custom UUID)
      * @return true if the ability was started successfully
      */
-    boolean executePresetAbility(String presetName);
+    boolean executeAbility(String key);
 
     /**
-     * Execute a preset ability on this NPC with a specific target.
+     * Execute an ability on this NPC with a specific target.
      * The NPC does NOT need to have this ability assigned.
      * If an ability is currently executing, it will be cancelled.
      *
-     * @param presetName The name of the saved ability preset
+     * @param key The ability key (built-in name or custom UUID)
      * @param target The target entity (can be null for self-targeted abilities)
      * @return true if the ability was started successfully
      */
-    boolean executePresetAbility(String presetName, Object target);
+    boolean executeAbility(String key, Object target);
 
     /**
      * Create a new ability instance by type ID.

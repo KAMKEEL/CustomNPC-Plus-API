@@ -30,4 +30,22 @@ public interface IAbilityHandler {
      * Returns null if the type is not registered.
      */
     IAbility create(String typeId);
+
+    /**
+     * Register a pre-configured ability by name.
+     * These abilities are resolved by name and can be referenced by NPCs and players.
+     * Call during FMLInitializationEvent.
+     *
+     * @param name    The unique name for the ability
+     * @param ability The ability instance
+     */
+    void registerAbility(String name, IAbility ability);
+
+    /**
+     * Check if a registered ability exists by name.
+     *
+     * @param name The ability name
+     * @return true if the ability exists
+     */
+    boolean hasAbility(String name);
 }

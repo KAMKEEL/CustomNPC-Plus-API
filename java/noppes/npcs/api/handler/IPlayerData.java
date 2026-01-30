@@ -1,5 +1,6 @@
 package noppes.npcs.api.handler;
 
+import noppes.npcs.api.ability.IPlayerAbilityData;
 import noppes.npcs.api.entity.ICustomNpc;
 
 public interface IPlayerData {
@@ -27,6 +28,8 @@ public interface IPlayerData {
     IPlayerMailData getMailData();
 
     IPlayerTradeData getTradeData();
+
+    IPlayerAbilityData getAbilityData();
 
     void save();
 }

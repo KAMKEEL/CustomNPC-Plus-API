@@ -152,6 +152,28 @@ public interface IAbility {
     int getCurrentTick();
 
     /**
+     * Get the allowed user type for this ability.
+     * @return 0=NPC_ONLY, 1=PLAYER_ONLY, 2=BOTH
+     */
+    int getAllowedByType();
+
+    /**
+     * Set the allowed user type for this ability.
+     * @param type 0=NPC_ONLY, 1=PLAYER_ONLY, 2=BOTH
+     */
+    void setAllowedByType(int type);
+
+    /**
+     * Check if this ability ignores cooldowns.
+     */
+    boolean isIgnoreCooldown();
+
+    /**
+     * Set whether this ability ignores cooldowns.
+     */
+    void setIgnoreCooldown(boolean ignore);
+
+    /**
      * Get this ability's data as NBT.
      */
     INbt getNbt();
