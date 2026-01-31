@@ -3,6 +3,7 @@ package noppes.npcs.api.entity;
 import net.minecraft.entity.EntityCreature;
 import noppes.npcs.api.IPos;
 import noppes.npcs.api.ITimers;
+import noppes.npcs.api.ability.IDataAbilities;
 import noppes.npcs.api.entity.data.IModelData;
 import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.api.handler.IOverlayHandler;
@@ -1513,5 +1514,5 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
      *
      * @return Ability data
      */
-    noppes.npcs.api.ability.IDataAbilities getAbilityData();
+    IDataAbilities getAbilityData();
 }
