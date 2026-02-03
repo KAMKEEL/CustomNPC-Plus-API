@@ -1,11 +1,9 @@
 package noppes.npcs.api.ability.data;
 
-import kamkeel.npcs.controllers.data.ability.AnchorPoint;
-
 public interface IEnergyAnchorData {
-    AnchorPoint getAnchorPoint();
+    int getAnchor();
 
-    void setAnchorPoint(AnchorPoint anchorPoint);
+    void setAnchor(int anchor);
 
     float getAnchorOffsetX();
 
