@@ -1,7 +1,8 @@
 package noppes.npcs.api.ability.data;
 
-import kamkeel.npcs.controllers.data.ability.data.EnergyTrajectoryData;
 import noppes.npcs.api.IPos;
+
+import java.util.function.BiConsumer;
 
 public interface IEnergyTrajectoryData {
     int getCurrentPath();
@@ -44,7 +45,28 @@ public interface IEnergyTrajectoryData {
 
     IPath createPath(double x, double y, double z, int delay);
 
+    void forEach(BiConsumer<Integer, IPath> lambda);
+
     interface IPath {
 
+        IPos getPos();
+
+        void setPos(IPos pos);
+
+        int getDelay();
+
+        void setDelay(int delayTicks);
+
+        double getX();
+
+        void setX(double x);
+
+        double getY();
+
+        void setY(double y);
+
+        double getZ();
+
+        void setZ(double z);
     }
 }
