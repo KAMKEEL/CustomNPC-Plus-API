@@ -4,7 +4,7 @@ import noppes.npcs.api.ability.IAbility;
 
 /**
  * API interface for Heavy Hit abilities.
- * Single-target high damage melee attack.
+ * AOE rectangle melee attack in front of the caster.
  */
 public interface IAbilityHeavyHit extends IAbility {
 
@@ -13,4 +13,10 @@ public interface IAbilityHeavyHit extends IAbility {
 
     float getKnockback();
     void setKnockback(float knockback);
+
+    float getHitLength();
+    void setHitLength(float hitLength);
+
+    float getHitWidth();
+    void setHitWidth(float hitWidth);
 }
