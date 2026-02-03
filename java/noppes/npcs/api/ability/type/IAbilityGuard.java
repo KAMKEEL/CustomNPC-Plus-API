@@ -11,6 +11,9 @@ public interface IAbilityGuard extends IAbility {
     int getDurationTicks();
     void setDurationTicks(int ticks);
 
+    int getCounterWindow();
+    void setCounterWindow(int ticks);
+
     float getDamageReduction();
     void setDamageReduction(float reduction);
 
@@ -22,9 +25,6 @@ public interface IAbilityGuard extends IAbility {
 
     float getCounterValue();
     void setCounterValue(float value);
-
-    float getCounterChance();
-    void setCounterChance(float chance);
 
     String getCounterSound();
     void setCounterSound(String sound);
