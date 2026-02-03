@@ -16,8 +16,4 @@ public interface IEnergyHomingData {
     float getHomingRange();
 
     void setHomingRange(float homingRange);
-
-    interface Trajectory {
-
-    }
 }
