@@ -1,7 +1,5 @@
 package noppes.npcs.api.ability.data;
 
-import noppes.npcs.api.IPos;
-
 import java.util.function.BiConsumer;
 
 public interface IEnergyTrajectoryData {
@@ -13,9 +11,9 @@ public interface IEnergyTrajectoryData {
 
     void setDelay(int path, int ticks);
 
-    IPos getPos(int path);
+    boolean isConcluded(int path);
 
-    void setPos(int path, IPos coords);
+    void setConcluded(int path, boolean concluded);
 
     double getX(int path);
 
@@ -29,17 +27,9 @@ public interface IEnergyTrajectoryData {
 
     void setZ(int path, double z);
 
-    void setPath(int path, IPos pos);
-
-    void setPath(int path, IPos pos, int delay);
-
     void setPath(int path, double x, double y, double z);
 
     void setPath(int path, double x, double y, double z, int delay);
-
-    IPath createPath(IPos coords);
-
-    IPath createPath(IPos coords, int delay);
 
     IPath createPath(double x, double y, double z);
 
@@ -49,13 +39,13 @@ public interface IEnergyTrajectoryData {
 
     interface IPath {
 
-        IPos getPos();
-
-        void setPos(IPos pos);
-
         int getDelay();
 
         void setDelay(int delayTicks);
+
+        boolean isConcluded();
+
+        void setConcluded(boolean concluded);
 
         double getX();
 
