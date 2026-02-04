@@ -23,4 +23,28 @@ public interface ICloneHandler {
     void set(int tab, String name, IEntity entity);
 
     void remove(int tab, String name);
+
+    // --- Custom Folder Methods ---
+
+    String[] getFolders();
+
+    boolean hasFolder(String folderName);
+
+    IEntity spawn(double x, double y, double z, String folderName, String name, IWorld world, boolean ignoreProtection);
+
+    IEntity spawn(IPos pos, String folderName, String name, IWorld world, boolean ignoreProtection);
+
+    IEntity spawn(double x, double y, double z, String folderName, String name, IWorld world);
+
+    IEntity spawn(IPos pos, String folderName, String name, IWorld world);
+
+    IEntity[] getFolder(String folderName, IWorld world);
+
+    IEntity get(String folderName, String name, IWorld world);
+
+    boolean has(String folderName, String name);
+
+    void set(String folderName, String name, IEntity entity);
+
+    void remove(String folderName, String name);
 }
