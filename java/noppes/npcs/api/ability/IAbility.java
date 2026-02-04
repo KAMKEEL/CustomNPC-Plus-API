@@ -127,14 +127,36 @@ public interface IAbility {
     void setLockMovementType(int type);
 
     /**
-     * Check if movement is locked during the WINDUP phase.
+     * Get the lock type for this ability.
+     * @return 0=MOVEMENT, 1=ROTATION, 2=BOTH
+     */
+    int getLockTypeOrdinal();
+
+    /**
+     * Set the lock type for this ability.
+     * @param type 0=MOVEMENT, 1=ROTATION, 2=BOTH
+     */
+    void setLockTypeOrdinal(int type);
+
+    /**
+     * Check if movement (pathfinding/motion) is locked during the WINDUP phase.
      */
     boolean isMovementLockedDuringWindup();
 
     /**
-     * Check if movement is locked during the ACTIVE phase.
+     * Check if movement (pathfinding/motion) is locked during the ACTIVE phase.
      */
     boolean isMovementLockedDuringActive();
+
+    /**
+     * Check if rotation (yaw/pitch) is locked during the WINDUP phase.
+     */
+    boolean isRotationLockedDuringWindup();
+
+    /**
+     * Check if rotation (yaw/pitch) is locked during the ACTIVE phase.
+     */
+    boolean isRotationLockedDuringActive();
 
     /**
      * Check if this ability is currently being executed.
