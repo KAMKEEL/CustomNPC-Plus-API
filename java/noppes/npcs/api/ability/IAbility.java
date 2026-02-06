@@ -127,16 +127,28 @@ public interface IAbility {
     void setLockMovementType(int type);
 
     /**
-     * Get the lock type for this ability.
-     * @return 0=MOVEMENT, 1=ROTATION, 2=BOTH
+     * Get the rotation mode for this ability.
+     * @return 0=FREE, 1=LOCKED, 2=TRACK
      */
-    int getLockTypeOrdinal();
+    int getRotationModeType();
 
     /**
-     * Set the lock type for this ability.
-     * @param type 0=MOVEMENT, 1=ROTATION, 2=BOTH
+     * Set the rotation mode for this ability.
+     * @param type 0=FREE, 1=LOCKED, 2=TRACK
      */
-    void setLockTypeOrdinal(int type);
+    void setRotationModeType(int type);
+
+    /**
+     * Get the rotation phase for this ability (when rotation mode applies).
+     * @return 0=NO, 1=WINDUP, 2=ACTIVE, 3=WINDUP_AND_ACTIVE
+     */
+    int getRotationPhaseType();
+
+    /**
+     * Set the rotation phase for this ability.
+     * @param type 0=NO, 1=WINDUP, 2=ACTIVE, 3=WINDUP_AND_ACTIVE
+     */
+    void setRotationPhaseType(int type);
 
     /**
      * Check if movement (pathfinding/motion) is locked during the WINDUP phase.
