@@ -68,9 +68,6 @@ public interface IAbilityDisc extends IAbility {
     boolean hasLightningEffect();
     void setLightningEffect(boolean enabled);
 
-    /**
-     * Get the anchor point for charging (0-7, see AnchorPoint enum).
-     */
     int getAnchorPoint();
     void setAnchorPoint(int point);
 
