@@ -73,4 +73,22 @@ public interface IAbilityDisc extends IAbility {
      */
     int getAnchorPoint();
     void setAnchorPoint(int point);
+
+    // Dual/Projectile count
+
+    int getProjectileCount();
+    void setProjectileCount(int count);
+
+    int getDualFireDelay();
+    void setDualFireDelay(int delay);
+
+    // Indexed accessors (for dual mode)
+    int getInnerColor(int projectileIndex);
+    void setInnerColor(int projectileIndex, int color);
+
+    int getOuterColor(int projectileIndex);
+    void setOuterColor(int projectileIndex, int color);
+
+    int getAnchorPoint(int projectileIndex);
+    void setAnchorPoint(int projectileIndex, int point);
 }

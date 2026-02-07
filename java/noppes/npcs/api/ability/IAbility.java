@@ -216,4 +216,21 @@ public interface IAbility {
      * Set this ability's data from NBT.
      */
     void setNbt(INbt nbt);
+
+    // Burst system
+
+    boolean isBurstEnabled();
+    void setBurstEnabled(boolean enabled);
+
+    int getBurstAmount();
+    void setBurstAmount(int amount);
+
+    int getBurstDelay();
+    void setBurstDelay(int delay);
+
+    boolean isBurstReplayAnimations();
+    void setBurstReplayAnimations(boolean replay);
+
+    boolean isBurstOverlap();
+    void setBurstOverlap(boolean overlap);
 }
