@@ -20,9 +20,6 @@ public interface IAbilityZone extends IAbility {
     float getSpawnRadius();
     void setSpawnRadius(float radius);
 
-    float getTelegraphSize();
-    void setTelegraphSize(float size);
-
     int getZoneCount();
     void setZoneCount(int count);
 
