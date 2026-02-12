@@ -1,24 +1,10 @@
 package noppes.npcs.api.ability.type;
 
-import noppes.npcs.api.ability.IAbility;
-
 /**
  * API interface for Trap abilities.
- * Proximity-triggered traps.
+ * Proximity-triggered traps placed around the caster.
  */
-public interface IAbilityTrap extends IAbility {
-
-    int getDurationTicks();
-    void setDurationTicks(int ticks);
-
-    /**
-     * Get the placement mode (0 = AT_CASTER, 1 = AT_TARGET, 2 = AHEAD_OF_CASTER).
-     */
-    int getPlacement();
-    void setPlacement(int placement);
-
-    float getPlacementDistance();
-    void setPlacementDistance(float distance);
+public interface IAbilityTrap extends IAbilityZone {
 
     float getTriggerRadius();
     void setTriggerRadius(float radius);
