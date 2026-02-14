@@ -1,12 +1,10 @@
 package noppes.npcs.api.ability.type;
 
-import noppes.npcs.api.ability.IAbility;
-
 /**
  * API interface for Disc abilities.
  * Flat spinning disc projectile with optional boomerang.
  */
-public interface IAbilityDisc extends IAbility {
+public interface IAbilityDisc extends IAbilityEnergyProjectile {
 
     float getSpeed();
     void setSpeed(float speed);
@@ -17,20 +15,14 @@ public interface IAbilityDisc extends IAbility {
     float getDiscThickness();
     void setDiscThickness(float thickness);
 
-    float getMaxDistance();
-    void setMaxDistance(float distance);
+    boolean isVertical();
+    void setVertical(boolean vertical);
 
-    int getMaxLifetime();
-    void setMaxLifetime(int ticks);
+    boolean isBoomerang();
+    void setBoomerang(boolean boomerang);
 
-    float getDamage();
-    void setDamage(float damage);
-
-    float getKnockback();
-    void setKnockback(float knockback);
-
-    float getKnockbackUp();
-    void setKnockbackUp(float knockback);
+    int getBoomerangDelay();
+    void setBoomerangDelay(int ticks);
 
     boolean isHoming();
     void setHoming(boolean homing);
@@ -41,45 +33,21 @@ public interface IAbilityDisc extends IAbility {
     float getHomingRange();
     void setHomingRange(float range);
 
-    boolean isBoomerang();
-    void setBoomerang(boolean boomerang);
-
-    int getBoomerangDelay();
-    void setBoomerangDelay(int ticks);
-
-    boolean isExplosive();
-    void setExplosive(boolean explosive);
-
-    float getExplosionRadius();
-    void setExplosionRadius(float radius);
-
-    int getInnerColor();
-    void setInnerColor(int color);
-
-    int getOuterColor();
-    void setOuterColor(int color);
-
-    boolean isOuterColorEnabled();
-    void setOuterColorEnabled(boolean enabled);
-
     float getRotationSpeed();
     void setRotationSpeed(float speed);
-
-    boolean hasLightningEffect();
-    void setLightningEffect(boolean enabled);
-
-    int getAnchorPoint();
-    void setAnchorPoint(int point);
-
-    // Dual/Projectile count
 
     int getProjectileCount();
     void setProjectileCount(int count);
 
+    int getFireDelay();
+    void setFireDelay(int delay);
+
+    /** @deprecated Use {@link #getFireDelay()} */
     int getDualFireDelay();
+    /** @deprecated Use {@link #setFireDelay(int)} */
     void setDualFireDelay(int delay);
 
-    // Indexed accessors (for dual mode)
+    // Indexed accessors
     int getInnerColor(int projectileIndex);
     void setInnerColor(int projectileIndex, int color);
 

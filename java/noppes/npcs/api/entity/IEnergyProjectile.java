@@ -10,12 +10,6 @@ public interface IEnergyProjectile {
 
     IEntity getTarget();
 
-    int getSiblingEntityId();
-
-    void setSiblingEntityId(int siblingEntityId);
-
-    IEnergyProjectile getSibling();
-
     float getSize();
 
     double getMotionX();
