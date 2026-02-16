@@ -438,4 +438,48 @@ public interface IEntityLivingBase<T extends EntityLivingBase> extends IEntity<T
     float getAbsorptionAmount();
 
     void setHurtTime(int time);
+
+    /**
+     * Applies knockback to the entity, pushing it away from the source entity.
+     * Uses Minecraft's knockback mechanics which respects the entity's knockback resistance.
+     * A strength of 1.0 is equivalent to a standard melee hit.
+     *
+     * @param strength the knockback strength multiplier.
+     * @param source   the source entity to knock back away from.
+     */
+    void applyKnockback(float strength, IEntity source);
+
+    /**
+     * Applies knockback to the entity in the specified direction.
+     * Uses Minecraft's knockback mechanics which respects the entity's knockback resistance.
+     * The direction vector does not need to be normalized.
+     * A strength of 1.0 is equivalent to a standard melee hit.
+     *
+     * @param strength the knockback strength multiplier.
+     * @param dirX     the x component of the knockback direction.
+     * @param dirZ     the z component of the knockback direction.
+     */
+    void applyKnockback(float strength, double dirX, double dirZ);
+
+    /**
+     * Forcefully applies knockback to the entity, pushing it away from the source entity.
+     * This ignores the entity's knockback resistance attribute.
+     * A strength of 1.0 is equivalent to a standard melee hit.
+     *
+     * @param strength the knockback strength multiplier.
+     * @param source   the source entity to knock back away from.
+     */
+    void forceKnockback(float strength, IEntity source);
+
+    /**
+     * Forcefully applies knockback to the entity in the specified direction.
+     * This ignores the entity's knockback resistance attribute.
+     * The direction vector does not need to be normalized.
+     * A strength of 1.0 is equivalent to a standard melee hit.
+     *
+     * @param strength the knockback strength multiplier.
+     * @param dirX     the x component of the knockback direction.
+     * @param dirZ     the z component of the knockback direction.
+     */
+    void forceKnockback(float strength, double dirX, double dirZ);
 }
