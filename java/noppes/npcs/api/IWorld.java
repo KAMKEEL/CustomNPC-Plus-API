@@ -1,6 +1,10 @@
 package noppes.npcs.api;
 
 import net.minecraft.world.WorldServer;
+import noppes.npcs.api.entity.IEnergyBeam;
+import noppes.npcs.api.entity.IEnergyDisc;
+import noppes.npcs.api.entity.IEnergyLaser;
+import noppes.npcs.api.entity.IEnergyOrb;
 import noppes.npcs.api.entity.IEntity;
 import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.handler.data.ISound;
@@ -444,6 +448,48 @@ public interface IWorld {
      * @return The ID of this world's dimension. 0 for overworld, 1 for End, -1 for Nether, etc.
      */
     int getDimensionID();
+
+    /**
+     * Creates an energy orb projectile. Not spawned until fire() is called.
+     * @param owner The entity that owns this projectile
+     * @param x Spawn X position
+     * @param y Spawn Y position
+     * @param z Spawn Z position
+     * @param size Orb size
+     */
+    IEnergyOrb createEnergyOrb(IEntity owner, double x, double y, double z, float size);
+
+    /**
+     * Creates an energy beam projectile. Not spawned until fire() is called.
+     * @param owner The entity that owns this projectile
+     * @param x Spawn X position
+     * @param y Spawn Y position
+     * @param z Spawn Z position
+     * @param beamWidth Width of the beam
+     * @param headSize Size of the beam head
+     */
+    IEnergyBeam createEnergyBeam(IEntity owner, double x, double y, double z, float beamWidth, float headSize);
+
+    /**
+     * Creates an energy disc projectile. Not spawned until fire() is called.
+     * @param owner The entity that owns this projectile
+     * @param x Spawn X position
+     * @param y Spawn Y position
+     * @param z Spawn Z position
+     * @param radius Disc radius
+     * @param thickness Disc thickness
+     */
+    IEnergyDisc createEnergyDisc(IEntity owner, double x, double y, double z, float radius, float thickness);
+
+    /**
+     * Creates an energy laser projectile. Not spawned until fire() is called.
+     * @param owner The entity that owns this projectile
+     * @param x Spawn X position
+     * @param y Spawn Y position
+     * @param z Spawn Z position
+     * @param laserWidth Width of the laser
+     */
+    IEnergyLaser createEnergyLaser(IEntity owner, double x, double y, double z, float laserWidth);
 
     void broadcast(String message);
 }
