@@ -4,15 +4,11 @@ import net.minecraft.entity.Entity;
 
 /**
  * Represents an energy projectile entity (Orb, Beam, Disc, Laser).
- * Extends IEntity so scripts have full access to both entity and energy-specific methods.
+ * Extends IEnergyAbility for shared display/lightning/owner/charging methods.
  */
-public interface IEnergyProjectile<T extends Entity> extends IEntity<T> {
+public interface IEnergyProjectile<T extends Entity> extends IEnergyAbility<T> {
 
     // ==================== OWNER & TARGET ====================
-
-    int getOwnerEntityId();
-
-    IEntity getOwner();
 
     void setOwner(IEntity owner);
 
@@ -28,27 +24,7 @@ public interface IEnergyProjectile<T extends Entity> extends IEntity<T> {
 
     void setSize(float size);
 
-    // ==================== DISPLAY ====================
-
-    int getInnerColor();
-
-    void setInnerColor(int color);
-
-    int getOuterColor();
-
-    void setOuterColor(int color);
-
-    boolean isOuterColorEnabled();
-
-    void setOuterColorEnabled(boolean enabled);
-
-    float getOuterColorWidth();
-
-    void setOuterColorWidth(float width);
-
-    float getOuterColorAlpha();
-
-    void setOuterColorAlpha(float alpha);
+    // ==================== DISPLAY (PROJECTILE-SPECIFIC) ====================
 
     float getRotationSpeed();
 
@@ -63,24 +39,6 @@ public interface IEnergyProjectile<T extends Entity> extends IEntity<T> {
     float getInterpolatedRotationZ(float partialTicks);
 
     float getInterpolatedSize(float partialTicks);
-
-    // ==================== LIGHTNING ====================
-
-    boolean hasLightningEffect();
-
-    void setLightningEffect(boolean enabled);
-
-    float getLightningDensity();
-
-    void setLightningDensity(float density);
-
-    float getLightningRadius();
-
-    void setLightningRadius(float radius);
-
-    int getLightningFadeTime();
-
-    void setLightningFadeTime(int ticks);
 
     // ==================== LIFESPAN ====================
 
@@ -157,10 +115,6 @@ public interface IEnergyProjectile<T extends Entity> extends IEntity<T> {
     // ==================== STATE ====================
 
     boolean hasHit();
-
-    boolean isCharging();
-
-    float getChargeProgress();
 
     /**
      * Returns the energy projectile sub-type.

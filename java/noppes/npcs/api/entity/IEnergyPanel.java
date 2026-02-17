@@ -1,0 +1,26 @@
+package noppes.npcs.api.entity;
+
+import net.minecraft.entity.Entity;
+
+/**
+ * Represents an energy panel barrier - a flat rectangular shield (Wall or Shield mode).
+ */
+public interface IEnergyPanel<T extends Entity> extends IEnergyBarrier<T> {
+
+    float getPanelWidth();
+
+    void setPanelWidth(float width);
+
+    float getPanelHeight();
+
+    void setPanelHeight(float height);
+
+    float getPanelYaw();
+
+    /**
+     * Panel mode: 0=PLACED, 1=HELD, 2=LAUNCHED
+     */
+    int getPanelMode();
+
+    boolean isLaunched();
+}
