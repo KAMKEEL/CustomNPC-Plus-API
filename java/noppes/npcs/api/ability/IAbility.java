@@ -9,7 +9,8 @@ import noppes.npcs.api.INbt;
 public interface IAbility {
 
     /**
-     * Get the unique ID of this ability instance.
+     * Get the unique ID (UUID for custom abilities, registry key for built-in).
+     * This is the stable reference that never changes after creation.
      */
     String getId();
 
@@ -19,14 +20,24 @@ public interface IAbility {
     void setId(String id);
 
     /**
-     * Get the display name of this ability.
+     * Get the unique identifier/name of this ability (used for file naming, commands, search).
      */
     String getName();
 
     /**
-     * Set the display name of this ability.
+     * Set the unique identifier/name of this ability.
      */
     void setName(String name);
+
+    /**
+     * Get the display name (cosmetic). Falls back to getName() if not set.
+     */
+    String getDisplayName();
+
+    /**
+     * Set the display name (cosmetic). Pass empty string to use getName() as display.
+     */
+    void setDisplayName(String displayName);
 
     /**
      * Get the type ID of this ability (e.g., "cnpc:slam", "cnpc:beam").
