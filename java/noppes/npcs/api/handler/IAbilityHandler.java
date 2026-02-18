@@ -29,19 +29,19 @@ public interface IAbilityHandler {
     boolean hasAbilityName(String name);
 
     /**
-     * Get all custom ability preset UUIDs.
+     * Get all custom ability preset names.
      */
-    String[] getCustomAbilityIdArray();
+    String[] getCustomAbilityNameArray();
 
     /**
-     * Check if a custom ability preset exists by UUID.
+     * Check if a custom ability preset exists by name.
      */
-    boolean hasCustomAbilityId(String uuid);
+    boolean hasCustomAbilityName(String name);
 
     /**
-     * Delete a custom ability preset by UUID.
+     * Delete a custom ability preset by name.
      *
      * @return true if deleted successfully
      */
-    boolean deleteCustomAbilityById(String uuid);
+    boolean deleteCustomAbilityByName(String name);
 }
