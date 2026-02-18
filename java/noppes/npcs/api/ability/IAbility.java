@@ -6,7 +6,7 @@ import noppes.npcs.api.INbt;
  * Interface for NPC abilities.
  * Abilities are special attacks or actions that NPCs can perform during combat.
  */
-public interface IAbility {
+public interface IAbility extends IAbilityAction {
 
     /**
      * Get the unique ID (UUID for custom abilities, registry key for built-in).
