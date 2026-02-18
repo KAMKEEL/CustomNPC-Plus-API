@@ -94,6 +94,7 @@ public interface IAuctionListing {
 
     /**
      * Get the auction status.
+     *
      * @return 0 = Active, 1 = Ended, 2 = Cancelled, 3 = Claimed
      */
     int getStatus();

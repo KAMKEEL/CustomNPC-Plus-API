@@ -9,14 +9,18 @@ import noppes.npcs.api.ability.IAbility;
 public interface IAbilityCharge extends IAbility {
 
     float getChargeSpeed();
+
     void setChargeSpeed(float speed);
 
     float getDamage();
+
     void setDamage(float damage);
 
     float getKnockback();
+
     void setKnockback(float knockback);
 
     float getHitWidth();
+
     void setHitWidth(float width);
 }

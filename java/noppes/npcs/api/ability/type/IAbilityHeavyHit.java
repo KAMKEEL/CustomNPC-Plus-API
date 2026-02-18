@@ -9,14 +9,18 @@ import noppes.npcs.api.ability.IAbility;
 public interface IAbilityHeavyHit extends IAbility {
 
     float getDamage();
+
     void setDamage(float damage);
 
     float getKnockback();
+
     void setKnockback(float knockback);
 
     float getHitLength();
+
     void setHitLength(float hitLength);
 
     float getHitWidth();
+
     void setHitWidth(float hitWidth);
 }

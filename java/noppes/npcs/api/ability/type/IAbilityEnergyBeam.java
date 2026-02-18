@@ -7,44 +7,61 @@ package noppes.npcs.api.ability.type;
 public interface IAbilityEnergyBeam extends IAbilityEnergyProjectile {
 
     float getSpeed();
+
     void setSpeed(float speed);
 
     float getBeamWidth();
+
     void setBeamWidth(float width);
 
     float getHeadSize();
+
     void setHeadSize(float size);
 
     boolean isHoming();
+
     void setHoming(boolean homing);
 
     float getHomingStrength();
+
     void setHomingStrength(float strength);
 
     float getHomingRange();
+
     void setHomingRange(float range);
 
     float getRotationSpeed();
+
     void setRotationSpeed(float speed);
 
     int getProjectileCount();
+
     void setProjectileCount(int count);
 
     int getFireDelay();
+
     void setFireDelay(int delay);
 
-    /** @deprecated Use {@link #getFireDelay()} */
+    /**
+     * @deprecated Use {@link #getFireDelay()}
+     */
     int getDualFireDelay();
-    /** @deprecated Use {@link #setFireDelay(int)} */
+
+    /**
+     * @deprecated Use {@link #setFireDelay(int)}
+     */
     void setDualFireDelay(int delay);
 
     // Indexed accessors
     int getInnerColor(int projectileIndex);
+
     void setInnerColor(int projectileIndex, int color);
 
     int getOuterColor(int projectileIndex);
+
     void setOuterColor(int projectileIndex, int color);
 
     int getAnchorPoint(int projectileIndex);
+
     void setAnchorPoint(int projectileIndex, int point);
 }

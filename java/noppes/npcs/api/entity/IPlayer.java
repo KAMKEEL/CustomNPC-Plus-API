@@ -9,7 +9,6 @@ import noppes.npcs.api.IPos;
 import noppes.npcs.api.IScreenSize;
 import noppes.npcs.api.ITimers;
 import noppes.npcs.api.IWorld;
-import noppes.npcs.api.entity.IEnergyProjectile;
 import noppes.npcs.api.gui.ICustomGui;
 import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.api.handler.IOverlayHandler;
@@ -756,6 +755,7 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
 
     /**
      * Returns all active energy projectiles fired by this player.
+     *
      * @return Array of active energy projectiles, empty array if none
      */
     IEnergyProjectile[] getActiveEnergyProjectiles();

@@ -22,6 +22,7 @@ public interface IAuctionHandler {
 
     /**
      * Get a specific listing by ID.
+     *
      * @param listingId The listing ID
      * @return The listing, or null if not found
      */
@@ -29,12 +30,14 @@ public interface IAuctionHandler {
 
     /**
      * Get all active listings by a specific seller.
+     *
      * @param sellerUUID The seller's UUID as a string
      */
     IAuctionListing[] getListingsBySeller(String sellerUUID);
 
     /**
      * Get all listings where a player is the current high bidder.
+     *
      * @param bidderUUID The bidder's UUID as a string
      */
     IAuctionListing[] getListingsByBidder(String bidderUUID);
@@ -46,36 +49,40 @@ public interface IAuctionHandler {
 
     /**
      * Create a new listing.
-     * @param player The seller
-     * @param item The item to sell
+     *
+     * @param player        The seller
+     * @param item          The item to sell
      * @param startingPrice The starting bid price
-     * @param buyoutPrice The buyout price (0 for no buyout)
+     * @param buyoutPrice   The buyout price (0 for no buyout)
      * @return The created listing, or null if failed
      */
     IAuctionListing createListing(IPlayer<?> player, IItemStack item, long startingPrice, long buyoutPrice);
 
     /**
      * Place a bid on a listing.
+     *
      * @param listingId The listing ID
-     * @param player The bidder
-     * @param amount The bid amount
+     * @param player    The bidder
+     * @param amount    The bid amount
      * @return null on success, error message on failure
      */
     String placeBid(String listingId, IPlayer<?> player, long amount);
 
     /**
      * Buyout a listing instantly.
+     *
      * @param listingId The listing ID
-     * @param player The buyer
+     * @param player    The buyer
      * @return null on success, error message on failure
      */
     String buyout(String listingId, IPlayer<?> player);
 
     /**
      * Cancel a listing (seller only, unless admin).
+     *
      * @param listingId The listing ID
-     * @param player The player cancelling
-     * @param isAdmin Whether to bypass ownership check
+     * @param player    The player cancelling
+     * @param isAdmin   Whether to bypass ownership check
      * @return null on success, error message on failure
      */
     String cancelListing(String listingId, IPlayer<?> player, boolean isAdmin);
@@ -117,6 +124,7 @@ public interface IAuctionHandler {
 
     /**
      * Search listings by item name or seller name.
+     *
      * @param searchText The search text
      * @return Matching active listings
      */

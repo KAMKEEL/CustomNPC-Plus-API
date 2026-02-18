@@ -84,6 +84,7 @@ public interface IPlayerTradeData {
 
     /**
      * Get a specific claim by ID.
+     *
      * @param claimId The claim ID
      * @return The claim, or null if not found
      */

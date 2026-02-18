@@ -29,6 +29,7 @@ public interface IAuctionClaim {
 
     /**
      * Get the claim type.
+     *
      * @return 0 = Item, 1 = Currency (sale proceeds), 2 = Refund (outbid)
      */
     int getType();
@@ -50,6 +51,7 @@ public interface IAuctionClaim {
 
     /**
      * Get the item to claim (for item claims only).
+     *
      * @return The item, or null for currency claims
      */
     IItemStack getItem();

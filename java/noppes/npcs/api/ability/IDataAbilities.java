@@ -106,7 +106,7 @@ public interface IDataAbilities {
      * If an ability is currently executing, it will be cancelled.
      *
      * @param abilityId The ID of the ability to start
-     * @param target The target entity (can be null for self-targeted abilities)
+     * @param target    The target entity (can be null for self-targeted abilities)
      * @return true if the ability was started successfully
      */
     boolean forceStartAbility(String abilityId, Object target);
@@ -126,7 +126,7 @@ public interface IDataAbilities {
      * The NPC does NOT need to have this ability assigned.
      * If an ability is currently executing, it will be cancelled.
      *
-     * @param key The ability key (built-in name or custom UUID)
+     * @param key    The ability key (built-in name or custom UUID)
      * @param target The target entity (can be null for self-targeted abilities)
      * @return true if the ability was started successfully
      */

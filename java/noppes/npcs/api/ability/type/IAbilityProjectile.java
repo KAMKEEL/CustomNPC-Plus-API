@@ -9,26 +9,34 @@ import noppes.npcs.api.ability.IAbility;
 public interface IAbilityProjectile extends IAbility {
 
     float getDamage();
+
     void setDamage(float damage);
 
     float getSpeed();
+
     void setSpeed(float speed);
 
     float getKnockback();
+
     void setKnockback(float knockback);
 
     String getProjectileType();
+
     void setProjectileType(String type);
 
     boolean isExplosive();
+
     void setExplosive(boolean explosive);
 
     float getExplosionRadius();
+
     void setExplosionRadius(float radius);
 
     boolean isHoming();
+
     void setHoming(boolean homing);
 
     float getHomingStrength();
+
     void setHomingStrength(float strength);
 }

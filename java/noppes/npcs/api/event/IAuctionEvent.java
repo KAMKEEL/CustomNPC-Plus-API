@@ -21,7 +21,9 @@ public interface IAuctionEvent extends IPlayerEvent {
     @Cancelable
     interface CreateEvent extends IAuctionEvent {
         IItemStack getItem();
+
         long getStartingPrice();
+
         long getBuyoutPrice();
     }
 
@@ -35,6 +37,7 @@ public interface IAuctionEvent extends IPlayerEvent {
     @Cancelable
     interface BidEvent extends IAuctionEvent {
         IAuctionListing getListing();
+
         long getBidAmount();
     }
 
@@ -59,6 +62,7 @@ public interface IAuctionEvent extends IPlayerEvent {
     @Cancelable
     interface CancelEvent extends IAuctionEvent {
         IAuctionListing getListing();
+
         boolean isAdmin();
     }
 

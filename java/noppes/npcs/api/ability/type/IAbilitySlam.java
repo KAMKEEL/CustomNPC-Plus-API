@@ -9,17 +9,22 @@ import noppes.npcs.api.ability.IAbility;
 public interface IAbilitySlam extends IAbility {
 
     float getDamage();
+
     void setDamage(float damage);
 
     float getRadius();
+
     void setRadius(float radius);
 
     float getKnockbackStrength();
+
     void setKnockbackStrength(float knockback);
 
     float getLeapSpeed();
+
     void setLeapSpeed(float speed);
 
     float getLeapHeight();
+
     void setLeapHeight(float height);
 }

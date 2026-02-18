@@ -9,26 +9,34 @@ import noppes.npcs.api.ability.IAbility;
 public interface IAbilityVortex extends IAbility {
 
     float getPullRadius();
+
     void setPullRadius(float radius);
 
     float getPullStrength();
+
     void setPullStrength(float strength);
 
     float getDamage();
+
     void setDamage(float damage);
 
     float getKnockback();
+
     void setKnockback(float knockback);
 
     boolean isAoe();
+
     void setAoe(boolean aoe);
 
     int getMaxTargets();
+
     void setMaxTargets(int max);
 
     boolean isDamageOnPull();
+
     void setDamageOnPull(boolean damage);
 
     float getPullDamage();
+
     void setPullDamage(float damage);
 }

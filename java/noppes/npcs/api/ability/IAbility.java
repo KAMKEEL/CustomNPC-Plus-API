@@ -127,36 +127,42 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Get the lock movement type for this ability.
+     *
      * @return 0=NO, 1=WINDUP, 2=ACTIVE, 3=WINDUP_AND_ACTIVE
      */
     int getLockMovementType();
 
     /**
      * Set the lock movement type for this ability.
+     *
      * @param type 0=NO, 1=WINDUP, 2=ACTIVE, 3=WINDUP_AND_ACTIVE
      */
     void setLockMovementType(int type);
 
     /**
      * Get the rotation mode for this ability.
+     *
      * @return 0=FREE, 1=LOCKED, 2=TRACK
      */
     int getRotationModeType();
 
     /**
      * Set the rotation mode for this ability.
+     *
      * @param type 0=FREE, 1=LOCKED, 2=TRACK
      */
     void setRotationModeType(int type);
 
     /**
      * Get the rotation phase for this ability (when rotation mode applies).
+     *
      * @return 0=NO, 1=WINDUP, 2=ACTIVE, 3=WINDUP_AND_ACTIVE
      */
     int getRotationPhaseType();
 
     /**
      * Set the rotation phase for this ability.
+     *
      * @param type 0=NO, 1=WINDUP, 2=ACTIVE, 3=WINDUP_AND_ACTIVE
      */
     void setRotationPhaseType(int type);
@@ -198,12 +204,14 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Get the allowed user type for this ability.
+     *
      * @return 0=NPC_ONLY, 1=PLAYER_ONLY, 2=BOTH
      */
     int getAllowedByType();
 
     /**
      * Set the allowed user type for this ability.
+     *
      * @param type 0=NPC_ONLY, 1=PLAYER_ONLY, 2=BOTH
      */
     void setAllowedByType(int type);
@@ -231,17 +239,22 @@ public interface IAbility extends IAbilityAction {
     // Burst system
 
     boolean isBurstEnabled();
+
     void setBurstEnabled(boolean enabled);
 
     int getBurstAmount();
+
     void setBurstAmount(int amount);
 
     int getBurstDelay();
+
     void setBurstDelay(int delay);
 
     boolean isBurstReplayAnimations();
+
     void setBurstReplayAnimations(boolean replay);
 
     boolean isBurstOverlap();
+
     void setBurstOverlap(boolean overlap);
 }

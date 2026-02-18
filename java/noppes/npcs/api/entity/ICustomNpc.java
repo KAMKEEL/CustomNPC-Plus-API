@@ -4,7 +4,6 @@ import net.minecraft.entity.EntityCreature;
 import noppes.npcs.api.IPos;
 import noppes.npcs.api.ITimers;
 import noppes.npcs.api.ability.IDataAbilities;
-import noppes.npcs.api.entity.IEnergyProjectile;
 import noppes.npcs.api.entity.data.IModelData;
 import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.api.handler.IOverlayHandler;
@@ -1519,6 +1518,7 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
 
     /**
      * Returns all active energy projectiles fired by this NPC.
+     *
      * @return Array of active energy projectiles, empty array if none
      */
     IEnergyProjectile[] getActiveEnergyProjectiles();

@@ -183,6 +183,7 @@ public abstract class AbstractNpcAPI {
 
     /**
      * Get the auction handler for managing auctions via scripts.
+     *
      * @return The auction handler, or null if auctions are disabled
      */
     public abstract IAuctionHandler getAuctions();

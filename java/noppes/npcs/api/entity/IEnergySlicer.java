@@ -8,11 +8,14 @@ import net.minecraft.entity.Entity;
 public interface IEnergySlicer<T extends Entity> extends IEnergyProjectile<T> {
 
     float getSliceWidth();
+
     void setSliceWidth(float width);
 
     float getSliceThickness();
+
     void setSliceThickness(float thickness);
 
     boolean isPiercing();
+
     void setPiercing(boolean piercing);
 }

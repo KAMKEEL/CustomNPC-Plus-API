@@ -9,14 +9,18 @@ import noppes.npcs.api.ability.IAbility;
 public interface IAbilityShockwave extends IAbility {
 
     float getPushRadius();
+
     void setPushRadius(float radius);
 
     float getPushStrength();
+
     void setPushStrength(float strength);
 
     float getDamage();
+
     void setDamage(float damage);
 
     int getMaxTargets();
+
     void setMaxTargets(int max);
 }
