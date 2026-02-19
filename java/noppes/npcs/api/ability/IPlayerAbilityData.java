@@ -109,4 +109,29 @@ public interface IPlayerAbilityData {
      * Activate a specific ability by key.
      */
     boolean activateAbility(String key);
+
+    // Toggle system
+
+    /**
+     * Cycle a toggle ability to its next state.
+     * Off -> State 1 -> State 2 -> ... -> State N -> Off
+     * @return The new state (0 = off, 1+ = active state number)
+     */
+    int toggleAbility(String key);
+
+    /**
+     * Get the current toggle state for an ability.
+     * @return 0 if not active, 1+ for active state
+     */
+    int getToggleState(String key);
+
+    /**
+     * Set a toggle to a specific state. 0 = deactivate, 1+ = specific state.
+     */
+    void setToggleState(String key, int state);
+
+    /**
+     * Check if a toggle ability is currently active (any state > 0).
+     */
+    boolean isAbilityToggled(String key);
 }

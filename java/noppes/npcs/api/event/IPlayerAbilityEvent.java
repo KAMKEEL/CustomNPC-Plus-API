@@ -86,6 +86,58 @@ public interface IPlayerAbilityEvent extends IPlayerEvent {
     }
 
     /**
+     * Fired when a toggle ability is switched ON or OFF.
+     * Canceling prevents the toggle from changing state.
+     *
+     * @hookName abilityToggle
+     */
+    @Cancelable
+    interface ToggleEvent extends IPlayerAbilityEvent {
+        /**
+         * @return true if the toggle is being turned ON (any state), false if being turned OFF
+         */
+        boolean isTogglingOn();
+
+        /**
+         * @return the previous state (0 = was off, 1+ = previous active state)
+         */
+        int getOldState();
+
+        /**
+         * @return the new state (0 = turning off, 1+ = new active state)
+         */
+        int getNewState();
+    }
+
+    /**
+     * Fired every 10 ticks for each active toggle ability.
+     * Scripts can call {@link #setEnabled(boolean)} with false to force-deactivate the toggle.
+     *
+     * @hookName abilityToggleUpdate
+     */
+    interface ToggleUpdateEvent extends IPlayerAbilityEvent {
+        /**
+         * @return the tick count since the toggle was activated
+         */
+        int getTick();
+
+        /**
+         * @return the current toggle state (1+)
+         */
+        int getState();
+
+        /**
+         * @return whether the toggle should remain active
+         */
+        boolean isEnabled();
+
+        /**
+         * Set to false to force-deactivate the toggle after this event completes.
+         */
+        void setEnabled(boolean enabled);
+    }
+
+    /**
      * Fired when a player's ability hits an entity with damage.
      * Canceling this event prevents the damage from being applied.
      *

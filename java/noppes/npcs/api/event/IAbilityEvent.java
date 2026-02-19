@@ -59,6 +59,28 @@ public interface IAbilityEvent extends INpcEvent {
     }
 
     /**
+     * Fired when a toggle ability is switched ON or OFF.
+     * Canceling prevents the toggle from changing state.
+     */
+    @Cancelable
+    interface ToggleEvent extends IAbilityEvent {
+        boolean isTogglingOn();
+        int getOldState();
+        int getNewState();
+    }
+
+    /**
+     * Fired every 10 ticks for each active toggle ability.
+     * Scripts can call setEnabled(false) to force-deactivate.
+     */
+    interface ToggleUpdateEvent extends IAbilityEvent {
+        int getTick();
+        int getState();
+        boolean isEnabled();
+        void setEnabled(boolean enabled);
+    }
+
+    /**
      * Fired when an ability hits an entity with damage.
      * Canceling this event prevents the damage from being applied.
      */

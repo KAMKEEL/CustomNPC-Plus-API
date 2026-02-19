@@ -257,4 +257,29 @@ public interface IAbility extends IAbilityAction {
     boolean isBurstOverlap();
 
     void setBurstOverlap(boolean overlap);
+
+    // Toggle system
+
+    /**
+     * Check if this ability is toggleable (has at least 1 toggle state).
+     */
+    boolean isToggleable();
+
+    /**
+     * Get the number of toggle states.
+     * 0 = not toggleable, 1 = binary on/off, 2+ = multi-state cycling.
+     */
+    int getToggleStates();
+
+    /**
+     * Set the number of toggle states.
+     * 0 = not toggleable, 1 = binary on/off, 2+ = multi-state cycling.
+     */
+    void setToggleStates(int states);
+
+    /**
+     * Get the display label for a specific toggle state (1-indexed).
+     * @return the label, or null if none set
+     */
+    String getToggleStateLabel(int state);
 }
