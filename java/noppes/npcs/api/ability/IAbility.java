@@ -227,6 +227,17 @@ public interface IAbility extends IAbilityAction {
     void setIgnoreCooldown(boolean ignore);
 
     /**
+     * Check if this ability uses per-ability cooldown instead of global cooldown.
+     * When true, using this ability only puts THIS ability on cooldown, not all abilities.
+     */
+    boolean isPerAbilityCooldown();
+
+    /**
+     * Set whether this ability uses per-ability cooldown.
+     */
+    void setPerAbilityCooldown(boolean perAbility);
+
+    /**
      * Get this ability's data as NBT.
      */
     INbt getNbt();
