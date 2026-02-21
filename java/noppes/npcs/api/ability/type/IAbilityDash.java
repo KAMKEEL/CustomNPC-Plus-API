@@ -9,7 +9,7 @@ import noppes.npcs.api.ability.IAbility;
 public interface IAbilityDash extends IAbility {
 
     /**
-     * Get the dash mode (0 = AGGRESSIVE, 1 = DEFENSIVE).
+     * Get the dash mode (0 = AGGRESSIVE, 1 = DEFENSIVE, 2 = DIRECTIONAL).
      */
     int getDashMode();
 
