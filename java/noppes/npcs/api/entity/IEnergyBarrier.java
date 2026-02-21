@@ -45,6 +45,10 @@ public interface IEnergyBarrier<T extends Entity> extends IEnergyAbility<T> {
 
     void setDefaultMultiplier(float multiplier);
 
+    boolean isSolid();
+
+    void setSolid(boolean solid);
+
     boolean isKnockbackEnabled();
 
     void setKnockbackEnabled(boolean enabled);
@@ -53,9 +57,9 @@ public interface IEnergyBarrier<T extends Entity> extends IEnergyAbility<T> {
 
     void setKnockbackStrength(float strength);
 
-    int getKnockbackTarget();
+    boolean isAbsorbing();
 
-    void setKnockbackTarget(int target);
+    void setAbsorbing(boolean absorbing);
 
     /**
      * Returns the barrier type: 0=Dome, 1=Panel
