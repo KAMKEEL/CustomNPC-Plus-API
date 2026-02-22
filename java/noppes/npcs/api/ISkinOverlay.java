@@ -43,6 +43,10 @@ public interface ISkinOverlay {
 
     float getSize();
 
+    void setColor(int color);
+
+    int getColor();
+
     /**
      * Sets the texture scale of the overlay. Higher values will "zoom in" to the texture more.
      */
