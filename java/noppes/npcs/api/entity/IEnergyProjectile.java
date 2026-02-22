@@ -76,6 +76,14 @@ public interface IEnergyProjectile<T extends Entity> extends IEnergyAbility<T> {
 
     void setExplosionDamageFalloff(float falloff);
 
+    int getHitType();
+
+    void setHitType(int hitType);
+
+    int getMultiHitDelayTicks();
+
+    void setMultiHitDelayTicks(int delayTicks);
+
     // ==================== MOVEMENT ====================
 
     float getSpeed();

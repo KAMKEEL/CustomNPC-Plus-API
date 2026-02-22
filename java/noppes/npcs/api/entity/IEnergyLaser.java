@@ -3,7 +3,7 @@ package noppes.npcs.api.entity;
 import net.minecraft.entity.Entity;
 
 /**
- * Represents an energy laser projectile - a fast expanding piercing line.
+ * Represents an energy laser projectile - a fast expanding line.
  */
 public interface IEnergyLaser<T extends Entity> extends IEnergyProjectile<T> {
 

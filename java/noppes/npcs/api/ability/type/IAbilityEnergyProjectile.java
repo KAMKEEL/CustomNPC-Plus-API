@@ -33,6 +33,14 @@ public interface IAbilityEnergyProjectile extends IAbility {
 
     void setExplosionDamageFalloff(float falloff);
 
+    int getHitType();
+
+    void setHitType(int hitType);
+
+    int getMultiHitDelayTicks();
+
+    void setMultiHitDelayTicks(int delayTicks);
+
     // Lifespan
     float getMaxDistance();
 

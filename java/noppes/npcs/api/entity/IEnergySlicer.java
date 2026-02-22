@@ -14,8 +14,4 @@ public interface IEnergySlicer<T extends Entity> extends IEnergyProjectile<T> {
     float getSliceThickness();
 
     void setSliceThickness(float thickness);
-
-    boolean isPiercing();
-
-    void setPiercing(boolean piercing);
 }
