@@ -84,6 +84,10 @@ public interface IEnergyProjectile<T extends Entity> extends IEnergyAbility<T> {
 
     void setMultiHitDelayTicks(int delayTicks);
 
+    int getMaxHits();
+
+    void setMaxHits(int maxHits);
+
     // ==================== MOVEMENT ====================
 
     float getSpeed();

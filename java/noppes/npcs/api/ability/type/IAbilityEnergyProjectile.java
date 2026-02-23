@@ -41,6 +41,10 @@ public interface IAbilityEnergyProjectile extends IAbility {
 
     void setMultiHitDelayTicks(int delayTicks);
 
+    int getMaxHits();
+
+    void setMaxHits(int maxHits);
+
     // Lifespan
     float getMaxDistance();
 
