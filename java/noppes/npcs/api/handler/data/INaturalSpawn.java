@@ -4,6 +4,9 @@ import noppes.npcs.api.IWorld;
 import noppes.npcs.api.entity.IEntity;
 
 public interface INaturalSpawn {
+    int DESPAWN_FORCE_NATURAL = 0;
+    int DESPAWN_PRESERVE_TEMPLATE = 1;
+    int DESPAWN_FORCE_PERSISTENT = 2;
 
     void setName(String name);
 
@@ -46,4 +49,24 @@ public interface INaturalSpawn {
     String[] getBiomes();
 
     void setBiomes(String[] biomes);
+
+    void setMaxAlive(int maxAlive);
+
+    int getMaxAlive();
+
+    void setCooldownTicks(int ticks);
+
+    int getCooldownTicks();
+
+    void setAttemptsPerCycle(int attempts);
+
+    int getAttemptsPerCycle();
+
+    void setPlayerMinDistance(int distance);
+
+    int getPlayerMinDistance();
+
+    void setDespawnMode(int mode);
+
+    int getDespawnMode();
 }
