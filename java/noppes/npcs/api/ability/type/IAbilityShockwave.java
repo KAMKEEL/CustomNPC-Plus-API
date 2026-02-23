@@ -20,7 +20,7 @@ public interface IAbilityShockwave extends IAbility {
 
     void setDamage(float damage);
 
-    int getMaxTargets();
+    boolean isAoe();
 
-    void setMaxTargets(int max);
+    void setAoe(boolean aoe);
 }

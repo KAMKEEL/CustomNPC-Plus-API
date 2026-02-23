@@ -28,10 +28,6 @@ public interface IAbilityVortex extends IAbility {
 
     void setAoe(boolean aoe);
 
-    int getMaxTargets();
-
-    void setMaxTargets(int max);
-
     boolean isDamageOnPull();
 
     void setDamageOnPull(boolean damage);
