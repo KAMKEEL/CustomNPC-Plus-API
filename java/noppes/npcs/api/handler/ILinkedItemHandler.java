@@ -2,7 +2,6 @@ package noppes.npcs.api.handler;
 
 import noppes.npcs.api.handler.data.ILinkedItem;
 import noppes.npcs.api.item.IItemStack;
-import noppes.npcs.controllers.data.LinkedItem;
 
 public interface ILinkedItemHandler {
     ILinkedItem createItem(String name);
