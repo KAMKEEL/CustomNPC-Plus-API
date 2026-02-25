@@ -18,6 +18,7 @@ public interface IDataAbilities {
 
     /**
      * Get all abilities assigned to this NPC (resolved from slots).
+     * Returns safe deep copies. Use {@link #getSourceAbility(String)} for live references.
      */
     IAbility[] getAbilities();
 
@@ -38,6 +39,7 @@ public interface IDataAbilities {
 
     /**
      * Get an ability by ID.
+     * Returns a safe deep copy. Use {@link #getSourceAbility(String)} for the live reference.
      */
     IAbility getAbility(String abilityId);
 
@@ -64,6 +66,7 @@ public interface IDataAbilities {
 
     /**
      * Get the currently executing ability, or null if none.
+     * Returns a safe deep copy. Use {@link #getSourceCurrentAbility()} for the live reference.
      */
     IAbility getCurrentAbility();
 
@@ -140,4 +143,25 @@ public interface IDataAbilities {
      * @return The new ability, or null if the type is unknown
      */
     IAbility createAbility(String typeId);
+
+    /**
+     * Get the live source reference of an ability by ID.
+     * Unlike {@link #getAbility(String)} which returns a safe copy,
+     * this returns the actual ability object. Modifications will permanently
+     * affect the NPC's ability configuration.
+     *
+     * @param abilityId The ID of the ability
+     * @return The live ability reference, or null if not found
+     */
+    IAbility getSourceAbility(String abilityId);
+
+    /**
+     * Get the live source reference of the currently executing ability.
+     * Unlike {@link #getCurrentAbility()} which returns a safe copy,
+     * this returns the actual ability object. Modifications will permanently
+     * affect the NPC's ability configuration.
+     *
+     * @return The live ability reference, or null if no ability is executing
+     */
+    IAbility getSourceCurrentAbility();
 }
