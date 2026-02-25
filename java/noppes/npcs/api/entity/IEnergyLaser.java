@@ -3,7 +3,7 @@ package noppes.npcs.api.entity;
 import net.minecraft.entity.Entity;
 
 /**
- * Represents an energy laser projectile - a fast expanding line.
+ * Represents an energy laser entity - a sweeping beam that follows the caster's look vector.
  */
 public interface IEnergyLaser<T extends Entity> extends IEnergyProjectile<T> {
 
@@ -15,9 +15,9 @@ public interface IEnergyLaser<T extends Entity> extends IEnergyProjectile<T> {
 
     void setExpansionSpeed(float speed);
 
-    int getLingerTicks();
+    float getMaxLength();
 
-    void setLingerTicks(int ticks);
+    void setMaxLength(float maxLength);
 
     float getCurrentLength();
 
@@ -36,10 +36,4 @@ public interface IEnergyLaser<T extends Entity> extends IEnergyProjectile<T> {
     double getEndY();
 
     double getEndZ();
-
-    float getLingerAlpha();
-
-    boolean isLockVerticalDirection();
-
-    void setLockVerticalDirection(boolean lock);
 }
