@@ -22,4 +22,12 @@ public interface IAbilityDash extends IAbility {
     float getDashSpeed();
 
     void setDashSpeed(float speed);
+
+    float getDashAngle();
+
+    void setDashAngle(float dashAngle);
+
+    int getDashDirection();
+
+    void setDashDirection(int mode);
 }
