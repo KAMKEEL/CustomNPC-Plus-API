@@ -81,6 +81,11 @@ public interface IDataAbilities {
     void interruptCurrentAbility();
 
     /**
+     * Signal the current ability to complete immediately.
+     */
+    void completeCurrentAbility();
+
+    /**
      * Get the global cooldown timer in ticks.
      */
     int getGlobalCooldown();

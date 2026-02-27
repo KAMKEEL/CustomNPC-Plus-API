@@ -71,6 +71,11 @@ public interface IPlayerAbilityData {
     void interruptCurrentAbility();
 
     /**
+     * Signal the current ability to complete immediately.
+     */
+    void completeCurrentAbility();
+
+    /**
      * Check if the player is on universal cooldown.
      */
     boolean isOnCooldown();

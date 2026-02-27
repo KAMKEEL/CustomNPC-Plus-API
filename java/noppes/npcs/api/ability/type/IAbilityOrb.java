@@ -38,16 +38,6 @@ public interface IAbilityOrb extends IAbilityEnergyProjectile {
 
     void setFireDelay(int delay);
 
-    /**
-     * @deprecated Use {@link #getFireDelay()}
-     */
-    int getDualFireDelay();
-
-    /**
-     * @deprecated Use {@link #setFireDelay(int)}
-     */
-    void setDualFireDelay(int delay);
-
     // Indexed accessors
     int getInnerColor(int projectileIndex);
 

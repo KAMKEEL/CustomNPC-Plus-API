@@ -3,13 +3,30 @@ package noppes.npcs.api.event;
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import noppes.npcs.api.IDamageSource;
 import noppes.npcs.api.ability.IAbility;
+import noppes.npcs.api.entity.ICustomNpc;
 import noppes.npcs.api.entity.IEntityLivingBase;
+import noppes.npcs.api.entity.IPlayer;
 
 /**
  * Events related to NPC ability execution.
  * These events are fired during the ability lifecycle.
  */
 public interface IAbilityEvent extends INpcEvent {
+
+    /**
+     * Get the entity executing the ability (NPC or Player).
+     */
+    IEntityLivingBase getEntity();
+
+    /**
+     * Get the player executing the ability, or null if the caster is an NPC.
+     */
+    IPlayer getPlayer();
+
+    /**
+     * Whether the entity executing the ability is an NPC.
+     */
+    boolean isNPC();
 
     /**
      * Get the ability involved in this event.
