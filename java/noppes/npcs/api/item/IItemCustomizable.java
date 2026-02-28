@@ -245,4 +245,46 @@ public interface IItemCustomizable extends IItemStack {
      * @return The Z-axis translation
      */
     Float getTranslateZ();
+
+    /**
+     * Returns whether the item texture has animation enabled.
+     *
+     * @return True if the texture is animated, false otherwise
+     */
+    Boolean isTextureAnimated();
+
+    /**
+     * Sets whether the item texture should be animated.
+     *
+     * @param animated True to enable animation
+     */
+    void setTextureAnimated(Boolean animated);
+
+    /**
+     * Gets the number of animation frames in the texture strip.
+     *
+     * @return The frame count
+     */
+    Integer getFrameCount();
+
+    /**
+     * Sets the number of animation frames.
+     *
+     * @param frameCount The frame count
+     */
+    void setFrameCount(Integer frameCount);
+
+    /**
+     * Gets the ticks per animation frame.
+     *
+     * @return The frame time in ticks
+     */
+    Integer getFrameTime();
+
+    /**
+     * Sets the ticks per animation frame.
+     *
+     * @param frametime The frame time in ticks
+     */
+    void setFrameTime(Integer frametime);
 }

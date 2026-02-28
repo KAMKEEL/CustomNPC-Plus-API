@@ -81,4 +81,35 @@ public interface ITexturedRect extends ICustomGuiComponent {
      * @return this textured rectangle instance.
      */
     ITexturedRect setTextureOffset(int textureX, int textureY);
+
+    /**
+     * Returns whether this textured rect has animation enabled.
+     *
+     * @return true if animated.
+     */
+    boolean isAnimated();
+
+    /**
+     * Returns the number of animation frames.
+     *
+     * @return the frame count.
+     */
+    int getFrameCount();
+
+    /**
+     * Returns the ticks per animation frame.
+     *
+     * @return the frame time in ticks.
+     */
+    int getFrameTime();
+
+    /**
+     * Enables animation on this textured rect using a vertical sprite strip.
+     * The texture PNG should contain frames stacked vertically.
+     *
+     * @param frameCount number of frames in the strip.
+     * @param frametime  ticks per frame (1 tick = 50ms).
+     * @return this textured rectangle instance.
+     */
+    ITexturedRect setAnimation(int frameCount, int frametime);
 }

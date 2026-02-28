@@ -51,6 +51,18 @@ public interface ICustomEffect {
      * Index: 1 - DBC Addon
      */
     int getIndex();
+
+    boolean isAnimated();
+
+    void setAnimated(boolean animated);
+
+    int getFrameCount();
+
+    void setFrameCount(int frameCount);
+
+    int getFrameTime();
+
+    void setFrameTime(int frametime);
 }
 
 
