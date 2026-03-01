@@ -137,4 +137,10 @@ public interface IAbilityEnergyProjectile extends IAbility {
 
     /** @param point Anchor point ordinal (0=FEET, 1=CENTER, 2=RIGHT_HAND, 3=LEFT_HAND, 4=HEAD, 5=FRONT, 6=ABOVE_HEAD). */
     void setAnchorPoint(int point);
+
+    /** @return Whether the projectile launches from its anchor position instead of the default eye/look-vector position. */
+    boolean getLaunchFromAnchor();
+
+    /** @param launchFromAnchor When true, the projectile launches from its configured anchor position. */
+    void setLaunchFromAnchor(boolean launchFromAnchor);
 }

@@ -28,4 +28,10 @@ public interface IEnergyAnchorData {
 
     /** @param anchorOffsetZ Z offset from anchor (positive = forward). */
     void setAnchorOffsetZ(float anchorOffsetZ);
+
+    /** @return Whether the projectile launches from the anchor position instead of the default eye/look-vector position. */
+    boolean getLaunchFromAnchor();
+
+    /** @param launchFromAnchor When true, the projectile launches from its anchor position; when false, it snaps to the default eye/look-vector position. */
+    void setLaunchFromAnchor(boolean launchFromAnchor);
 }
