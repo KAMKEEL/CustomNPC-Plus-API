@@ -10,57 +10,81 @@ public interface IEnergyAbility<T extends Entity> extends IEntity<T> {
 
     // ==================== OWNER ====================
 
+    /** @return Entity ID of the caster who spawned this energy ability. */
     int getOwnerEntityId();
 
+    /** @return The caster entity who spawned this energy ability, or null if not found. */
     IEntity getOwner();
 
     // ==================== DISPLAY ====================
 
+    /** @return Inner (core) color as a packed RGB integer. */
     int getInnerColor();
 
+    /** @param color Inner color as a packed RGB integer. */
     void setInnerColor(int color);
 
+    /** @return Alpha (opacity) of the inner color layer (0.0-1.0). */
     float getInnerAlpha();
 
+    /** @param alpha Inner color opacity (0.0-1.0). */
     void setInnerAlpha(float alpha);
 
+    /** @return Outer (glow) color as a packed RGB integer. */
     int getOuterColor();
 
+    /** @param color Outer color as a packed RGB integer. */
     void setOuterColor(int color);
 
+    /** @return Whether the outer color layer is rendered. */
     boolean isOuterColorEnabled();
 
+    /** @param enabled Whether to render the outer color layer. */
     void setOuterColorEnabled(boolean enabled);
 
+    /** @return Width of the outer color layer relative to the entity size. */
     float getOuterColorWidth();
 
+    /** @param width Outer color layer width. */
     void setOuterColorWidth(float width);
 
+    /** @return Alpha (opacity) of the outer color layer (0.0-1.0). */
     float getOuterColorAlpha();
 
+    /** @param alpha Outer color opacity (0.0-1.0). */
     void setOuterColorAlpha(float alpha);
 
     // ==================== LIGHTNING ====================
 
+    /** @return Whether the lightning visual effect is enabled. */
     boolean hasLightningEffect();
 
+    /** @param enabled Whether to render the lightning effect. */
     void setLightningEffect(boolean enabled);
 
+    /** @return Density of lightning arcs (higher = more arcs). */
     float getLightningDensity();
 
+    /** @param density Lightning arc density. */
     void setLightningDensity(float density);
 
+    /** @return Radius of the lightning effect around the entity, in blocks. */
     float getLightningRadius();
 
+    /** @param radius Lightning effect radius in blocks. */
     void setLightningRadius(float radius);
 
+    /** @return Fade-out time for lightning arcs in ticks. */
     int getLightningFadeTime();
 
+    /** @param ticks Lightning fade-out time in ticks. */
     void setLightningFadeTime(int ticks);
 
     // ==================== STATE ====================
 
+    /** @return Whether this energy ability is currently in its charging phase. */
     boolean isCharging();
 
+    /** @return Charge progress as a fraction (0.0-1.0). */
     float getChargeProgress();
 }

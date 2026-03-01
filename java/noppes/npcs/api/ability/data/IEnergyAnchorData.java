@@ -1,19 +1,31 @@
 package noppes.npcs.api.ability.data;
 
+/**
+ * Configuration for the anchor point of an energy ability projectile.
+ * Controls where the projectile spawns relative to the caster.
+ */
 public interface IEnergyAnchorData {
+    /** @return Anchor point ordinal (0=FEET, 1=CENTER, 2=RIGHT_HAND, 3=LEFT_HAND, 4=HEAD, 5=FRONT, 6=ABOVE_HEAD). */
     int getAnchor();
 
+    /** Set the anchor point. @param anchor Anchor ordinal (0=FEET, 1=CENTER, 2=RIGHT_HAND, 3=LEFT_HAND, 4=HEAD, 5=FRONT, 6=ABOVE_HEAD). */
     void setAnchor(int anchor);
 
+    /** @return X offset from the anchor point (positive = right). */
     float getAnchorOffsetX();
 
+    /** @param anchorOffsetX X offset from anchor (positive = right). */
     void setAnchorOffsetX(float anchorOffsetX);
 
+    /** @return Y offset from the anchor point (positive = up). */
     float getAnchorOffsetY();
 
+    /** @param anchorOffsetY Y offset from anchor (positive = up). */
     void setAnchorOffsetY(float anchorOffsetY);
 
+    /** @return Z offset from the anchor point (positive = forward). */
     float getAnchorOffsetZ();
 
+    /** @param anchorOffsetZ Z offset from anchor (positive = forward). */
     void setAnchorOffsetZ(float anchorOffsetZ);
 }

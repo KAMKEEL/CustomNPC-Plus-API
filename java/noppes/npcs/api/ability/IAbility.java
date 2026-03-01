@@ -16,6 +16,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set the unique ID of this ability instance.
+     * @param id Unique ability ID.
      */
     void setId(String id);
 
@@ -26,6 +27,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set the unique identifier/name of this ability.
+     * @param name Unique identifier.
      */
     void setName(String name);
 
@@ -36,6 +38,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set the display name (cosmetic). Pass empty string to use getName() as display.
+     * @param displayName Display name, or empty string for default.
      */
     void setDisplayName(String displayName);
 
@@ -51,6 +54,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Enable or disable this ability.
+     * @param enabled Whether the ability is enabled.
      */
     void setEnabled(boolean enabled);
 
@@ -62,6 +66,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set the selection weight.
+     * @param weight Selection weight (higher = more likely).
      */
     void setWeight(int weight);
 
@@ -72,6 +77,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set the minimum range.
+     * @param range Minimum range in blocks.
      */
     void setMinRange(float range);
 
@@ -82,6 +88,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set the maximum range.
+     * @param range Maximum range in blocks.
      */
     void setMaxRange(float range);
 
@@ -92,6 +99,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set the cooldown time in ticks.
+     * @param ticks Cooldown duration in ticks.
      */
     void setCooldownTicks(int ticks);
 
@@ -102,6 +110,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set the wind-up time in ticks.
+     * @param ticks Wind-up duration in ticks.
      */
     void setWindUpTicks(int ticks);
 
@@ -112,6 +121,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set the dazed time in ticks.
+     * @param ticks Dazed duration in ticks.
      */
     void setDazedTicks(int ticks);
 
@@ -122,6 +132,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set whether this ability can be interrupted.
+     * @param interruptible Whether the ability is interruptible.
      */
     void setInterruptible(boolean interruptible);
 
@@ -223,6 +234,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set whether this ability ignores cooldowns.
+     * @param ignore Whether to ignore cooldowns.
      */
     void setIgnoreCooldown(boolean ignore);
 
@@ -234,6 +246,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set whether this ability uses per-ability cooldown.
+     * @param perAbility Whether to use per-ability cooldown.
      */
     void setPerAbilityCooldown(boolean perAbility);
 
@@ -244,29 +257,40 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Set this ability's data from NBT.
+     * @param nbt NBT data to load.
      */
     void setNbt(INbt nbt);
 
     // Burst system
 
+    /** @return Whether burst firing is enabled (fires multiple instances in rapid succession). */
     boolean isBurstEnabled();
 
+    /** @param enabled Whether burst firing is enabled. */
     void setBurstEnabled(boolean enabled);
 
+    /** @return Number of times the ability fires per burst. */
     int getBurstAmount();
 
+    /** @param amount Number of shots per burst. */
     void setBurstAmount(int amount);
 
+    /** @return Delay in ticks between each burst shot. */
     int getBurstDelay();
 
+    /** @param delay Delay in ticks between burst shots. */
     void setBurstDelay(int delay);
 
+    /** @return Whether animations replay for each burst shot. */
     boolean isBurstReplayAnimations();
 
+    /** @param replay Whether to replay animations per burst shot. */
     void setBurstReplayAnimations(boolean replay);
 
+    /** @return Whether burst shots can overlap (fire before previous shot ends). */
     boolean isBurstOverlap();
 
+    /** @param overlap Whether burst shots can overlap. */
     void setBurstOverlap(boolean overlap);
 
     // Toggle system
@@ -285,12 +309,14 @@ public interface IAbility extends IAbilityAction {
     /**
      * Set the number of toggle states.
      * 0 = not toggleable, 1 = binary on/off, 2+ = multi-state cycling.
+     * @param states Number of toggle states.
      */
     void setToggleStates(int states);
 
     /**
      * Get the display label for a specific toggle state (1-indexed).
-     * @return the label, or null if none set
+     * @param state Toggle state number (1-indexed).
+     * @return the label, or null if none set.
      */
     String getToggleStateLabel(int state);
 }
