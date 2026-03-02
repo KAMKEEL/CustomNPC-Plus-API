@@ -137,6 +137,17 @@ public interface IAbility extends IAbilityAction {
     void setInterruptible(boolean interruptible);
 
     /**
+     * Check if this ability ignores target invulnerability frames (hurt resistance).
+     */
+    boolean isIgnoreIFrames();
+
+    /**
+     * Set whether this ability ignores target invulnerability frames (hurt resistance).
+     * @param ignore Whether to ignore invulnerability frames.
+     */
+    void setIgnoreIFrames(boolean ignore);
+
+    /**
      * Get the lock movement type for this ability.
      *
      * @return 0=NO, 1=WINDUP, 2=ACTIVE, 3=WINDUP_AND_ACTIVE

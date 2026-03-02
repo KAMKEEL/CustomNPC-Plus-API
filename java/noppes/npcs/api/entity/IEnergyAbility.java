@@ -87,4 +87,10 @@ public interface IEnergyAbility<T extends Entity> extends IEntity<T> {
 
     /** @return Charge progress as a fraction (0.0-1.0). */
     float getChargeProgress();
+
+    /** @return Whether this entity ignores target invulnerability frames when dealing damage. */
+    boolean isIgnoreIFrames();
+
+    /** @param ignore Whether this entity should ignore target invulnerability frames when dealing damage. */
+    void setIgnoreIFrames(boolean ignore);
 }

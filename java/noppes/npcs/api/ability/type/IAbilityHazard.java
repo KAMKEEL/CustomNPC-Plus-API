@@ -24,12 +24,6 @@ public interface IAbilityHazard extends IAbilityZone {
     /** @param interval Damage interval in ticks. */
     void setDamageInterval(int interval);
 
-    /** @return Whether damage ignores entity invulnerability frames. */
-    boolean isIgnoreInvulnFrames();
-
-    /** @param ignore Whether to ignore invulnerability frames. */
-    void setIgnoreInvulnFrames(boolean ignore);
-
     /** @return Whether the hazard also damages the caster. */
     boolean isAffectsCaster();
 
