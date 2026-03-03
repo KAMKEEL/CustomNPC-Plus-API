@@ -139,27 +139,27 @@ public interface IEnergyProjectile<T extends Entity> extends IEnergyAbility<T> {
     /**
      * Spawns the projectile in the world (if not yet spawned) and starts it moving toward the target entity.
      */
-    void fire(IEntity target);
+    void fireAt(IEntity target);
 
     /**
      * Spawns the projectile in the world (if not yet spawned) and starts it moving toward the specified coordinates.
      */
-    void fire(double x, double y, double z);
+    void fireAt(double x, double y, double z);
 
     /**
      * Spawns the projectile in the world (if not yet spawned) and starts it moving in the specified direction.
      */
-    void fire(float yaw, float pitch);
+    void fireDirection(float yaw, float pitch);
 
     /**
      * Sets the owner, positions the projectile at the caster's eye level, and fires in the caster's look direction.
      * Convenience method similar to how fireKiAttack works.
      */
-    void fire(IEntityLivingBase caster);
+    void fireFrom(IEntityLivingBase caster);
 
     /**
      * Sets the owner, positions the projectile at the caster's eye level, and fires toward the target entity.
      */
-    void fire(IEntityLivingBase caster, IEntity target);
+    void fireFrom(IEntityLivingBase caster, IEntity target);
 
 }

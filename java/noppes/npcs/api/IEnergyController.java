@@ -1,6 +1,7 @@
 package noppes.npcs.api;
 
 import noppes.npcs.api.entity.*;
+import noppes.npcs.api.entity.IEnergyExplosion;
 
 /**
  * Central controller for creating energy entities and routing energy damage.
@@ -63,4 +64,12 @@ public interface IEnergyController {
      * Panels are flat energy barriers that can deal damage on contact.
      */
     IEnergyPanel createPanel(IWorld world, IEntity owner, double x, double y, double z);
+
+    // ==================== EXPLOSION CREATION ====================
+
+    /**
+     * Create an energy explosion entity. Not spawned until spawn() is called.
+     * Visual-only by default. Set damage > 0 to enable area damage with falloff.
+     */
+    IEnergyExplosion createExplosion(IWorld world, IEntity owner, double x, double y, double z, float radius);
 }
