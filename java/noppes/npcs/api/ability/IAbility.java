@@ -190,6 +190,19 @@ public interface IAbility extends IAbilityAction {
     void setRotationPhaseType(int type);
 
     /**
+     * Get track delay for TRACK rotation mode.
+     * 0 = instant tracking (legacy). Higher values = slower lerp toward target.
+     */
+    float getTrackDelayValue();
+
+    /**
+     * Set track delay for TRACK rotation mode.
+     *
+     * @param delay 0 = instant tracking. Higher values = slower lerp toward target.
+     */
+    void setTrackDelayValue(float delay);
+
+    /**
      * Check if movement (pathfinding/motion) is locked during the WINDUP phase.
      */
     boolean isMovementLockedDuringWindup();
