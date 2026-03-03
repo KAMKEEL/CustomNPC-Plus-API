@@ -2,6 +2,7 @@ package noppes.npcs.api.entity;
 
 import net.minecraft.entity.Entity;
 import noppes.npcs.api.INbt;
+import noppes.npcs.api.handler.data.IMagicData;
 
 /**
  * Base interface for all energy ability entities (Projectiles, Barriers).
@@ -110,4 +111,17 @@ public interface IEnergyAbility<T extends Entity> extends IEntity<T> {
      * @param data Custom damage data as INbt. Pass null to clear.
      */
     void setDamageData(INbt data);
+
+    /**
+     * Get this entity's magic data. Defines magic types for outgoing damage splits
+     * or barrier defense interactions. Inherited from the source ability on spawn.
+     * @return the entity's magic data
+     */
+    IMagicData getMagicData();
+
+    /**
+     * Set magic data on this energy entity. Overrides any inherited ability magic.
+     * @param data Magic data to set.
+     */
+    void setMagicData(IMagicData data);
 }

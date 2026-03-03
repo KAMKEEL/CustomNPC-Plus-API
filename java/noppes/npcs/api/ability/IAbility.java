@@ -1,6 +1,7 @@
 package noppes.npcs.api.ability;
 
 import noppes.npcs.api.INbt;
+import noppes.npcs.api.handler.data.IMagicData;
 
 /**
  * Interface for NPC abilities.
@@ -343,4 +344,11 @@ public interface IAbility extends IAbilityAction {
      * @return the label, or null if none set.
      */
     String getToggleStateLabel(int state);
+
+    /**
+     * Get this ability's magic data. Defines magic types, damage splits,
+     * and flat magic damage for this ability. Inherited by spawned energy entities.
+     * @return the ability's magic data
+     */
+    IMagicData getMagicData();
 }
