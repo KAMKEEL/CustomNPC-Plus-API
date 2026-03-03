@@ -17,10 +17,17 @@ public interface IEnergyPanel<T extends Entity> extends IEnergyBarrier<T> {
 
     float getPanelYaw();
 
+    void setPanelYaw(float yaw);
+
     /**
      * Panel mode: 0=PLACED, 1=HELD, 2=LAUNCHED
      */
     int getPanelMode();
 
+    void setPanelMode(int mode);
+
     boolean isLaunched();
+
+    /** Spawn this panel entity into the world. */
+    void spawn();
 }

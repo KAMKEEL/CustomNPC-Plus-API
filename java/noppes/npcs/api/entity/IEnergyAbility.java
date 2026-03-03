@@ -1,6 +1,7 @@
 package noppes.npcs.api.entity;
 
 import net.minecraft.entity.Entity;
+import noppes.npcs.api.INbt;
 
 /**
  * Base interface for all energy ability entities (Projectiles, Barriers).
@@ -93,4 +94,20 @@ public interface IEnergyAbility<T extends Entity> extends IEntity<T> {
 
     /** @param ignore Whether this entity should ignore target invulnerability frames when dealing damage. */
     void setIgnoreIFrames(boolean ignore);
+
+    // ==================== CUSTOM DAMAGE DATA ====================
+
+    /**
+     * Get the custom damage data attached to this energy entity.
+     * Used by addon handlers (e.g. DBC Addon) to carry damage configuration
+     * directly on the entity, enabling DBC damage scaling without a sourceAbility.
+     * @return Custom damage data as INbt, or null if none set.
+     */
+    INbt getDamageData();
+
+    /**
+     * Set custom damage data on this energy entity.
+     * @param data Custom damage data as INbt. Pass null to clear.
+     */
+    void setDamageData(INbt data);
 }
