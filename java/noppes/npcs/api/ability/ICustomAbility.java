@@ -39,4 +39,76 @@ public interface ICustomAbility extends IAbility {
      * @param type ordinal of TargetingMode
      */
     void setTargetingModeType(int type);
+
+    /**
+     * Get how many ticks the telegraph persists during the active phase.
+     * When syncTelegraphWithDuration is true, this returns the duration ticks.
+     */
+    int getTelegraphActiveTicks();
+
+    /**
+     * Set how many ticks the telegraph persists during the active phase.
+     * Only used when syncTelegraphWithDuration is false.
+     */
+    void setTelegraphActiveTicks(int ticks);
+
+    /**
+     * Whether telegraph active ticks are synced to the ability duration.
+     */
+    boolean isSyncTelegraphWithDuration();
+
+    /**
+     * Set whether telegraph active ticks should sync to the ability duration.
+     */
+    void setSyncTelegraphWithDuration(boolean sync);
+
+    /**
+     * Get the telegraph radius (used by CIRCLE, RING, SQUARE shapes).
+     */
+    float getTelegraphRadius();
+
+    /**
+     * Set the telegraph radius.
+     */
+    void setTelegraphRadius(float radius);
+
+    /**
+     * Get the telegraph inner radius (used by RING, CONE shapes).
+     */
+    float getTelegraphInnerRadius();
+
+    /**
+     * Set the telegraph inner radius.
+     */
+    void setTelegraphInnerRadius(float innerRadius);
+
+    /**
+     * Get the telegraph length (used by LINE, CONE shapes).
+     */
+    float getTelegraphLength();
+
+    /**
+     * Set the telegraph length.
+     */
+    void setTelegraphLength(float length);
+
+    /**
+     * Get the telegraph width (used by LINE shape).
+     */
+    float getTelegraphWidth();
+
+    /**
+     * Set the telegraph width.
+     */
+    void setTelegraphWidth(float width);
+
+    /**
+     * Get the telegraph angle in degrees (used by CONE shape).
+     */
+    float getTelegraphAngle();
+
+    /**
+     * Set the telegraph angle in degrees.
+     */
+    void setTelegraphAngle(float angle);
 }
