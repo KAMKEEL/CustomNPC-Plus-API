@@ -3,10 +3,14 @@ package noppes.npcs.api.entity;
 import net.minecraft.entity.Entity;
 
 /**
- * Represents an energy disc projectile - a flat spinning disc with optional boomerang behavior.
+ * A flat spinning disc projectile with optional boomerang behavior.
+ * <p>
+ * Discs can be oriented vertically or horizontally, and can return to their owner
+ * like a boomerang after a configurable delay.
  */
 public interface IEnergyDisc<T extends Entity> extends IEnergyProjectile<T> {
 
+    /** Radius of the disc. */
     float getDiscRadius();
 
     void setDiscRadius(float radius);

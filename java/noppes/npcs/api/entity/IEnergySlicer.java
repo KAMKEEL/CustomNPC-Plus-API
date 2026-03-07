@@ -3,10 +3,13 @@ package noppes.npcs.api.entity;
 import net.minecraft.entity.Entity;
 
 /**
- * Represents an energy slicer projectile - a thin, wide blade that slices through targets.
+ * A thin, wide blade projectile that slices through targets.
+ * <p>
+ * Slicers travel in a straight line, cutting through entities in their path.
  */
 public interface IEnergySlicer<T extends Entity> extends IEnergyProjectile<T> {
 
+    /** Width of the slicer blade. */
     float getSliceWidth();
 
     void setSliceWidth(float width);
