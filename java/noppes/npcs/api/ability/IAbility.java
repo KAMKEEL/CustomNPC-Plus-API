@@ -191,17 +191,17 @@ public interface IAbility extends IAbilityAction {
     void setRotationPhaseType(int type);
 
     /**
-     * Get track delay for TRACK rotation mode.
-     * 0 = instant tracking (legacy). Higher values = slower lerp toward target.
+     * Get track speed for TRACK rotation mode (blocks/second).
+     * 0 = instant tracking. Comparable to player sprint speed (~5.6 blocks/sec).
      */
-    float getTrackDelayValue();
+    float getTrackSpeedValue();
 
     /**
-     * Set track delay for TRACK rotation mode.
+     * Set track speed for TRACK rotation mode (blocks/second).
      *
-     * @param delay 0 = instant tracking. Higher values = slower lerp toward target.
+     * @param speed 0 = instant tracking. ~4 = dodgeable while sprinting. ~6 = barely undodgeable.
      */
-    void setTrackDelayValue(float delay);
+    void setTrackSpeedValue(float speed);
 
     /**
      * Check if movement (pathfinding/motion) is locked during the WINDUP phase.
