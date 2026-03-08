@@ -146,7 +146,7 @@ public interface IAbilityEvent extends INpcEvent {
     interface TickEvent extends IAbilityEvent {
         /**
          * Get the current phase of the ability.
-         * 0 = IDLE, 1 = WINDUP, 2 = ACTIVE, 3 = RECOVERY
+         * 0 = IDLE, 1 = WINDUP, 2 = ACTIVE, 3 = DAZED, 4 = BURST_DELAY
          */
         int getAbilityPhase();
 

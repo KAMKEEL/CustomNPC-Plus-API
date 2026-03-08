@@ -229,7 +229,7 @@ public interface IAbility extends IAbilityAction {
     boolean isExecuting();
 
     /**
-     * Get the current execution phase (0=IDLE, 1=WINDUP, 2=ACTIVE, 3=DAZED).
+     * Get the current execution phase (0=IDLE, 1=WINDUP, 2=ACTIVE, 3=DAZED, 4=BURST_DELAY).
      */
     int getPhaseInt();
 
