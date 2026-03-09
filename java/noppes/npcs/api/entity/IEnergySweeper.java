@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 
 /**
  * Entity-level interface for sweeper beam entities.
- * Created via IEnergyController.createSweeper().
+ * Created via IEnergyHandler.createSweeper().
  * Configure properties, then call spawn() to place in the world.
  */
 public interface IEnergySweeper<T extends Entity> extends IEnergyAbility<T> {

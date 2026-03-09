@@ -11,7 +11,7 @@ import noppes.npcs.api.entity.IEnergyExplosion;
  * Configure the entity, then call fire() (projectiles) or spawn() (zones/sweepers/panels)
  * to place it in the world.
  */
-public interface IEnergyController {
+public interface IEnergyHandler {
 
     // ==================== PROJECTILE CREATION ====================
 

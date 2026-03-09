@@ -285,7 +285,7 @@ public abstract class AbstractNpcAPI {
 
     public abstract IDamageSource getIDamageSource(IEntity<?> entity);
 
-    public abstract IEnergyController getEnergyController();
+    public abstract IEnergyHandler getEnergyHandler();
 
     public abstract EventBus events();
 
