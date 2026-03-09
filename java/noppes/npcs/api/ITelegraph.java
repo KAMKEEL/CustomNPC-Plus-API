@@ -33,14 +33,14 @@ public interface ITelegraph {
     /**
      * Get the telegraph type.
      *
-     * @return Type name: "CIRCLE", "RING", "LINE", "CONE", or "POINT"
+     * @return Type name: "CIRCLE", "RING", "LINE", "CONE", "SQUARE", or "POINT"
      */
     String getType();
 
     /**
      * Set the telegraph type.
      *
-     * @param type Type name: "circle", "ring", "line", "cone", or "point" (case insensitive)
+     * @param type Type name: "circle", "ring", "line", "cone", "square", or "point" (case insensitive)
      */
     void setType(String type);
 

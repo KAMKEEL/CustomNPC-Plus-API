@@ -68,6 +68,13 @@ public interface ITelegraphHandler {
      */
     ITelegraph createCone(float length, float angle);
 
+    /**
+     * Create a square telegraph.
+     * The square is axis-aligned by default and can be rotated with yaw when spawned.
+     *
+     * @param radius The half-size of the square (distance from center to edge)
+     * @return A new telegraph configuration
+     */
     ITelegraph createSquare(float radius);
 
     /**
@@ -80,7 +87,7 @@ public interface ITelegraphHandler {
     /**
      * Create a telegraph by type name.
      *
-     * @param type Type name: "circle", "ring", "line", "cone", "point" (case insensitive)
+     * @param type Type name: "circle", "ring", "line", "cone", "square", "point" (case insensitive)
      * @return A new telegraph configuration, or null if type is invalid
      */
     ITelegraph create(String type);
