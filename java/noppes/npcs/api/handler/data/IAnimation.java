@@ -55,6 +55,8 @@ public interface IAnimation {
 
     /**
      * Do not use this unless you know what you are changing. Dangerous to change.
+     *
+     * @param id the animation ID
      */
     void setID(int id);
 

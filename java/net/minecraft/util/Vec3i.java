@@ -67,6 +67,7 @@ public class Vec3i implements Comparable<Vec3i> {
 
     /**
      * Get the X coordinate
+     * @return the X component
      */
     public int getX() {
         return this.x;
@@ -74,6 +75,7 @@ public class Vec3i implements Comparable<Vec3i> {
 
     /**
      * Get the Y coordinate
+     * @return the Y component
      */
     public int getY() {
         return this.y;
@@ -81,6 +83,7 @@ public class Vec3i implements Comparable<Vec3i> {
 
     /**
      * Get the Z coordinate
+     * @return the Z component
      */
     public int getZ() {
         return this.z;
@@ -89,6 +92,7 @@ public class Vec3i implements Comparable<Vec3i> {
 
     /**
      * Get the X coordinate as a double
+     * @return the X component as a double
      */
     public double getXD() {
         return this.xd;
@@ -96,6 +100,7 @@ public class Vec3i implements Comparable<Vec3i> {
 
     /**
      * Get the Y coordinate as a double
+     * @return the Y component as a double
      */
     public double getYD() {
         return this.yd;
@@ -103,6 +108,7 @@ public class Vec3i implements Comparable<Vec3i> {
 
     /**
      * Get the Z coordinate as a double
+     * @return the Z component as a double
      */
     public double getZD() {
         return this.zd;
@@ -110,6 +116,8 @@ public class Vec3i implements Comparable<Vec3i> {
 
     /**
      * Calculate the cross product of this and the given Vector
+     * @param vec the other vector
+     * @return the cross product of this vector and the given vector
      */
     public Vec3i crossProduct(Vec3i vec) {
         return new Vec3i(this.getYD() * vec.getZD() - this.getZD() * vec.getYD(), this.getZD() * vec.getXD() - this.getXD() * vec.getZD(), this.getXD() * vec.getYD() - this.getYD() * vec.getXD());

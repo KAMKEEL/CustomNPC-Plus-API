@@ -22,8 +22,10 @@ public interface IRoleFollower extends IRole {
      */
     boolean hasOwner();
 
+    /** @return true if the follower is currently following the owner. */
     boolean isFollowing();
 
+    /** @param following true to make the follower follow the owner. */
     void setIsFollowing(boolean following);
 
     /**

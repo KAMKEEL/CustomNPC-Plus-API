@@ -190,6 +190,12 @@ public abstract class AbstractNpcAPI {
     /**
      *
      * Spawns a new NPC in the world at the given coordinates and returns an ICustomNpc object of it.
+     *
+     * @param var1 the world
+     * @param var2 X position
+     * @param var3 Y position
+     * @param var4 Z position
+     * @return the spawned NPC
      */
     public abstract ICustomNpc<?> spawnNPC(IWorld var1, int var2, int var3, int var4);
 
@@ -243,11 +249,13 @@ public abstract class AbstractNpcAPI {
     public abstract IItemStack getIItemStack(ItemStack var1);
 
     /**
+     * @param var1 the Minecraft world
      * @return A single IWorld from Loaded IWorlds
      */
     public abstract IWorld getIWorld(World var1);
 
     /**
+     * @param var1 the dimension ID
      * @return A single IWorld from Loaded IWorlds
      */
     public abstract IWorld getIWorld(int var1);
@@ -257,6 +265,7 @@ public abstract class AbstractNpcAPI {
      * Forge sometimes automatically, unloads the End when all players
      * are no longer present.
      *
+     * @param var1 the dimension ID
      * @return A single IWorld from Loaded/Unloaded IWorlds
      */
     public abstract IWorld getIWorldLoad(int var1);
@@ -325,6 +334,7 @@ public abstract class AbstractNpcAPI {
      *                   0: Random
      *                   1: Male
      *                   2: Female
+     * @return a random name
      */
     public abstract String getRandomName(int dictionary, int gender);
 
@@ -357,6 +367,7 @@ public abstract class AbstractNpcAPI {
 
     /**
      *
+     * @param directory the particle texture directory
      * @return A new IParticle object initialized with the given texture.
      */
     public abstract IParticle createParticle(String directory);
@@ -408,12 +419,14 @@ public abstract class AbstractNpcAPI {
 
     /**
      *
+     * @param id the overlay ID
      * @return A new ICustomOverlay overlay object with the given ID.
      */
     public abstract ICustomOverlay createCustomOverlay(int id);
 
     /**
      *
+     * @param texture the texture path
      * @return A new ISkinOverlay object initialized with the given texture.
      */
     public abstract ISkinOverlay createSkinOverlay(String texture);

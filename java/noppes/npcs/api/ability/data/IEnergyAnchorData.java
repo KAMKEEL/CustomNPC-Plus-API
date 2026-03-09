@@ -5,10 +5,13 @@ package noppes.npcs.api.ability.data;
  * Controls where the projectile spawns relative to the caster.
  */
 public interface IEnergyAnchorData {
-    /** @return Anchor point ordinal (0=FEET, 1=CENTER, 2=RIGHT_HAND, 3=LEFT_HAND, 4=HEAD, 5=FRONT, 6=ABOVE_HEAD). */
+    /** @return Anchor point ordinal (0=FRONT, 1=CENTER, 2=RIGHT_HAND, 3=LEFT_HAND, 4=ABOVE_HEAD, 5=CHEST, 6=EYE). */
     int getAnchor();
 
-    /** Set the anchor point. @param anchor Anchor ordinal (0=FEET, 1=CENTER, 2=RIGHT_HAND, 3=LEFT_HAND, 4=HEAD, 5=FRONT, 6=ABOVE_HEAD). */
+    /**
+     * Set the anchor point.
+     * @param anchor Anchor ordinal (0=FRONT, 1=CENTER, 2=RIGHT_HAND, 3=LEFT_HAND, 4=ABOVE_HEAD, 5=CHEST, 6=EYE)
+     */
     void setAnchor(int anchor);
 
     /** @return X offset from the anchor point (positive = right). */

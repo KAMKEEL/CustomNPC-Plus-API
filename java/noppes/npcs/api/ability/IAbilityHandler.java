@@ -17,17 +17,25 @@ public interface IAbilityHandler {
 
     /**
      * Check if an ability type is registered.
+     *
+     * @param typeId the type ID to check
+     * @return true if registered
      */
     boolean hasType(String typeId);
 
     /**
      * Get all registered ability type IDs.
+     *
+     * @return array of registered type IDs
      */
     String[] getTypes();
 
     /**
      * Create a new ability of the given type.
      * Returns null if the type is not registered.
+     *
+     * @param typeId the type ID
+     * @return the new ability, or null
      */
     IAbility create(String typeId);
 

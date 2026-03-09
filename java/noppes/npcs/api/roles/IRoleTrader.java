@@ -285,7 +285,7 @@ public interface IRoleTrader extends IRole {
 
     /**
      * @param slot Slot number 0-17
-     * @return Whether this slot has a currency cost > 0
+     * @return Whether this slot has a currency cost &gt; 0
      */
     boolean hasCurrencyCost(int slot);
 }

@@ -50,6 +50,11 @@ public class BlockPos extends Vec3i {
 
     /**
      * Add the given coordinates to the coordinates of this BlockPos
+     *
+     * @param x X offset
+     * @param y Y offset
+     * @param z Z offset
+     * @return a new BlockPos offset by the given values
      */
     public BlockPos add(double x, double y, double z) {
         return x == 0.0D && y == 0.0D && z == 0.0D ? this : new BlockPos(this.getXD() + x, this.getYD() + y, this.getZD() + z);
@@ -57,6 +62,11 @@ public class BlockPos extends Vec3i {
 
     /**
      * Add the given coordinates to the coordinates of this BlockPos
+     *
+     * @param x X offset
+     * @param y Y offset
+     * @param z Z offset
+     * @return a new BlockPos offset by the given values
      */
     public BlockPos add(int x, int y, int z) {
         return x == 0 && y == 0 && z == 0 ? this : new BlockPos(this.getXD() + x, this.getYD() + y, this.getZD() + z);
@@ -64,6 +74,9 @@ public class BlockPos extends Vec3i {
 
     /**
      * Add the given Vector to this BlockPos
+     *
+     * @param vec the vector to add
+     * @return a new BlockPos offset by the vector
      */
     public BlockPos add(Vec3i vec) {
         return vec.getXD() == 0 && vec.getYD() == 0 && vec.getZD() == 0 ? this : new BlockPos(this.getXD() + vec.getXD(), this.getYD() + vec.getYD(), this.getZD() + vec.getZD());
@@ -71,6 +84,8 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos 1 block up
+     *
+     * @return the BlockPos one block above
      */
     public BlockPos up() {
         return this.up(1);
@@ -78,6 +93,9 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos n blocks up
+     *
+     * @param n the distance upward
+     * @return the BlockPos n blocks above
      */
     public BlockPos up(double n) {
         return this.offset(EnumFacing.UP, n);
@@ -85,6 +103,8 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos 1 block down
+     *
+     * @return the BlockPos one block below
      */
     public BlockPos down() {
         return this.down(1);
@@ -92,6 +112,9 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos n blocks down
+     *
+     * @param n the distance downward
+     * @return the BlockPos n blocks below
      */
     public BlockPos down(double n) {
         return this.offset(EnumFacing.DOWN, n);
@@ -99,6 +122,8 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos 1 block in northern direction
+     *
+     * @return the BlockPos one block to the north
      */
     public BlockPos north() {
         return this.north(1);
@@ -106,6 +131,9 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos n blocks in northern direction
+     *
+     * @param n the distance northward
+     * @return the BlockPos n blocks to the north
      */
     public BlockPos north(double n) {
         return this.offset(EnumFacing.NORTH, n);
@@ -113,6 +141,8 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos 1 block in southern direction
+     *
+     * @return the BlockPos one block to the south
      */
     public BlockPos south() {
         return this.south(1);
@@ -120,6 +150,9 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos n blocks in southern direction
+     *
+     * @param n the distance southward
+     * @return the BlockPos n blocks to the south
      */
     public BlockPos south(double n) {
         return this.offset(EnumFacing.SOUTH, n);
@@ -127,6 +160,8 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos 1 block in western direction
+     *
+     * @return the BlockPos one block to the west
      */
     public BlockPos west() {
         return this.west(1);
@@ -134,6 +169,9 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos n blocks in western direction
+     *
+     * @param n the distance westward
+     * @return the BlockPos n blocks to the west
      */
     public BlockPos west(double n) {
         return this.offset(EnumFacing.WEST, n);
@@ -141,6 +179,8 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos 1 block in eastern direction
+     *
+     * @return the BlockPos one block to the east
      */
     public BlockPos east() {
         return this.east(1);
@@ -148,6 +188,9 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos n blocks in eastern direction
+     *
+     * @param n the distance eastward
+     * @return the BlockPos n blocks to the east
      */
     public BlockPos east(double n) {
         return this.offset(EnumFacing.EAST, n);
@@ -155,6 +198,9 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offset this BlockPos 1 block in the given direction
+     *
+     * @param facing the direction to offset
+     * @return the BlockPos one block in the given direction
      */
     public BlockPos offset(EnumFacing facing) {
         return this.offset(facing, 1);
@@ -162,6 +208,10 @@ public class BlockPos extends Vec3i {
 
     /**
      * Offsets this BlockPos n blocks in the given direction
+     *
+     * @param facing the direction to offset
+     * @param n the distance
+     * @return the BlockPos n blocks in the given direction
      */
     public BlockPos offset(EnumFacing facing, double n) {
         return n == 0 ? this : new BlockPos(this.getXD() + facing.getFrontOffsetX() * n, this.getYD() + facing.getFrontOffsetY() * n, this.getZD() + facing.getFrontOffsetZ() * n);
@@ -176,6 +226,8 @@ public class BlockPos extends Vec3i {
 
     /**
      * Serialize this BlockPos into a long value
+     *
+     * @return this position serialized as a long
      */
     public long toLong() {
         return ((long) this.getX() & X_MASK) << X_SHIFT | ((long) this.getY() & Y_MASK) << Y_SHIFT | ((long) this.getZ() & Z_MASK) << 0;
@@ -183,6 +235,9 @@ public class BlockPos extends Vec3i {
 
     /**
      * Create a BlockPos from a serialized long value (created by toLong)
+     *
+     * @param serialized the serialized position
+     * @return a BlockPos decoded from the long
      */
     public static BlockPos fromLong(long serialized) {
         int i = (int) (serialized << 64 - X_SHIFT - NUM_X_BITS >> 64 - NUM_X_BITS);
@@ -193,6 +248,10 @@ public class BlockPos extends Vec3i {
 
     /**
      * Create an Iterable that returns all positions in the box specified by the given corners
+     *
+     * @param from the starting corner
+     * @param to the ending corner
+     * @return an iterable of all BlockPos within the bounding box
      */
     public static Iterable<BlockPos> getAllInBox(BlockPos from, BlockPos to) {
         final BlockPos blockpos = new BlockPos(Math.min(from.getX(), to.getX()), Math.min(from.getY(), to.getY()), Math.min(from.getZ(), to.getZ()));
@@ -285,11 +344,16 @@ public class BlockPos extends Vec3i {
 
         /**
          * Sets the position, MUST not be name 'set' as that causes obfusication conflicts with func_185343_d
+         *
+         * @param x the X coordinate
+         * @param y the Y coordinate
+         * @param z the Z coordinate
+         * @return this mutable position
          */
-        public BlockPos.MutableBlockPos setPos(int xIn, int yIn, int zIn) {
-            this.x = xIn;
-            this.y = yIn;
-            this.z = zIn;
+        public BlockPos.MutableBlockPos setPos(int x, int y, int z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
             return this;
         }
 
@@ -318,6 +382,8 @@ public class BlockPos extends Vec3i {
          *
          * <p>When storing a BlockPos given to you for an extended period of time, make sure you
          * use this in case the value is changed internally.</p>
+         *
+         * @return an immutable copy of this position
          */
         public BlockPos toImmutable() {
             return new BlockPos(this);

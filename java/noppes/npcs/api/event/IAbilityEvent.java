@@ -15,26 +15,31 @@ public interface IAbilityEvent extends INpcEvent {
 
     /**
      * Get the entity executing the ability (NPC or Player).
+     * @return the entity executing the ability
      */
     IEntityLivingBase getEntity();
 
     /**
      * Get the player executing the ability, or null if the caster is an NPC.
+     * @return the player executing the ability, or null if NPC
      */
     IPlayer getPlayer();
 
     /**
      * Whether the entity executing the ability is an NPC.
+     * @return true if the executor is an NPC
      */
     boolean isNPC();
 
     /**
      * Get the ability involved in this event.
+     * @return the ability being executed
      */
     IAbility getAbility();
 
     /**
      * Get the target of the ability, or null if no target.
+     * @return the current target entity
      */
     IEntityLivingBase getTarget();
 
@@ -60,11 +65,13 @@ public interface IAbilityEvent extends INpcEvent {
     interface InterruptEvent extends IAbilityEvent {
         /**
          * Get the damage source that caused the interruption.
+         * @return the damage source
          */
         IDamageSource getDamageSource();
 
         /**
          * Get the amount of damage that caused the interruption.
+         * @return the final damage dealt
          */
         float getDamage();
     }
@@ -105,36 +112,43 @@ public interface IAbilityEvent extends INpcEvent {
     interface HitEvent extends IAbilityEvent {
         /**
          * Get the entity that was hit by the ability.
+         * @return the entity that was hit
          */
         IEntityLivingBase getHitEntity();
 
         /**
          * Get the damage amount.
+         * @return the damage amount
          */
         float getDamage();
 
         /**
          * Set the damage amount. Allows scripts to modify damage.
+         * @param damage the new damage amount
          */
         void setDamage(float damage);
 
         /**
          * Get the horizontal knockback amount.
+         * @return the knockback strength
          */
         float getKnockback();
 
         /**
          * Set the horizontal knockback amount.
+         * @param knockback the new knockback strength
          */
         void setKnockback(float knockback);
 
         /**
          * Get the vertical knockback (upward force) amount.
+         * @return the upward knockback component
          */
         float getKnockbackUp();
 
         /**
          * Set the vertical knockback (upward force) amount.
+         * @param knockbackUp the new upward knockback component
          */
         void setKnockbackUp(float knockbackUp);
     }
@@ -147,11 +161,13 @@ public interface IAbilityEvent extends INpcEvent {
         /**
          * Get the current phase of the ability.
          * 0 = IDLE, 1 = WINDUP, 2 = ACTIVE, 3 = DAZED, 4 = BURST_DELAY
+         * @return the current ability phase (0=IDLE, 1=WINDUP, 2=ACTIVE, 3=DAZED, 4=BURST_DELAY)
          */
         int getAbilityPhase();
 
         /**
          * Get the current tick count within the phase.
+         * @return the current tick within the phase
          */
         int getTick();
     }

@@ -21,6 +21,7 @@ public interface IEnergyPanel<T extends Entity> extends IEnergyBarrier<T> {
 
     /**
      * Panel mode: 0=PLACED, 1=HELD, 2=LAUNCHED
+     * @return the panel mode ordinal
      */
     int getPanelMode();
 

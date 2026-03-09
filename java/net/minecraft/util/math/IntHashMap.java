@@ -32,12 +32,15 @@ public class IntHashMap<V> {
 
     /**
      * Returns the object associated to a key
+     *
+     * @param key the integer key to look up
+     * @return the value associated with the key, or null if not found
      */
-    public V lookup(int p_76041_1_) {
-        int i = computeHash(p_76041_1_);
+    public V lookup(int key) {
+        int i = computeHash(key);
 
         for (IntHashMap.Entry<V> entry = this.slots[getSlotIndex(i, this.slots.length)]; entry != null; entry = entry.nextEntry) {
-            if (entry.hashEntry == p_76041_1_) {
+            if (entry.hashEntry == key) {
                 return entry.valueEntry;
             }
         }
@@ -47,9 +50,12 @@ public class IntHashMap<V> {
 
     /**
      * Returns true if this hash table contains the specified item.
+     *
+     * @param key the integer key to check
+     * @return true if the map contains this key
      */
-    public boolean containsItem(int p_76037_1_) {
-        return this.lookupEntry(p_76037_1_) != null;
+    public boolean containsItem(int key) {
+        return this.lookupEntry(key) != null;
     }
 
     final IntHashMap.Entry<V> lookupEntry(int p_76045_1_) {
@@ -66,19 +72,22 @@ public class IntHashMap<V> {
 
     /**
      * Adds a key and associated value to this map
+     *
+     * @param key the integer key
+     * @param value the value to associate with the key
      */
-    public void addKey(int p_76038_1_, V p_76038_2_) {
-        int i = computeHash(p_76038_1_);
+    public void addKey(int key, V value) {
+        int i = computeHash(key);
         int j = getSlotIndex(i, this.slots.length);
 
         for (IntHashMap.Entry<V> entry = this.slots[j]; entry != null; entry = entry.nextEntry) {
-            if (entry.hashEntry == p_76038_1_) {
-                entry.valueEntry = p_76038_2_;
+            if (entry.hashEntry == key) {
+                entry.valueEntry = value;
                 return;
             }
         }
 
-        this.insert(i, p_76038_1_, p_76038_2_, j);
+        this.insert(i, key, value, j);
     }
 
     /**
@@ -128,9 +137,11 @@ public class IntHashMap<V> {
 
     /**
      * Removes the specified object from the map and returns it
+     *
+     * @param key the integer key to remove
      */
-    public V removeObject(int p_76049_1_) {
-        IntHashMap.Entry<V> entry = this.removeEntry(p_76049_1_);
+    public V removeObject(int key) {
+        IntHashMap.Entry<V> entry = this.removeEntry(key);
         return (V) (entry == null ? null : entry.valueEntry);
     }
 

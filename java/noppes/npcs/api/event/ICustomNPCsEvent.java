@@ -5,8 +5,12 @@ import noppes.npcs.api.IPos;
 import noppes.npcs.api.IWorld;
 import noppes.npcs.api.handler.data.INaturalSpawn;
 
+/**
+ * Base interface for all CustomNPC+ script events.
+ */
 public interface ICustomNPCsEvent {
 
+    /** @return the script hook name that triggered this event. */
     String getHookName();
 
     /**

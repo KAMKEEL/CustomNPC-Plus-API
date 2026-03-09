@@ -9,6 +9,7 @@ package noppes.npcs.api;
 public interface ISkinOverlay {
     /**
      * Sets the directory texture of the overlay. Does not support URLs.
+     * @param texture the texture path
      */
     void setTexture(String texture);
 
@@ -16,6 +17,7 @@ public interface ISkinOverlay {
 
     /**
      * Sets whether this overlay glows in the dark or not.
+     * @param glow whether to glow
      */
     void setGlow(boolean glow);
 
@@ -23,6 +25,7 @@ public interface ISkinOverlay {
 
     /**
      * Sets whether this overlay blends on top of bottom textures at any alpha value.
+     * @param blend whether to blend
      */
     void setBlend(boolean blend);
 
@@ -30,6 +33,7 @@ public interface ISkinOverlay {
 
     /**
      * Sets the transparency of the overlay, from 0 to 1.
+     * @param alpha the alpha value
      */
     void setAlpha(float alpha);
 
@@ -38,6 +42,7 @@ public interface ISkinOverlay {
     /**
      * Sets the size of the entire overlay when rendered on the entity. By default, overlays render slightly on top of
      * the entity's model.
+     * @param size the overlay size
      */
     void setSize(float size);
 
@@ -49,6 +54,8 @@ public interface ISkinOverlay {
 
     /**
      * Sets the texture scale of the overlay. Higher values will "zoom in" to the texture more.
+     * @param scaleX horizontal scale
+     * @param scaleY vertical scale
      */
     void setTextureScale(float scaleX, float scaleY);
 
@@ -59,6 +66,8 @@ public interface ISkinOverlay {
     /**
      * Sets the "texture speed" by which the texture shifts on each render tick. Used to create a powered creeper effect!
      * This does not move the entire overlay, it just moves the position at which the texture begins rendering.
+     * @param speedX horizontal speed
+     * @param speedY vertical speed
      */
     void setSpeed(float speedX, float speedY);
 
@@ -68,6 +77,9 @@ public interface ISkinOverlay {
 
     /**
      * Sets the amount in each direction by which the overlay will be offset from the entity.
+     * @param offsetX horizontal render offset
+     * @param offsetY vertical render offset
+     * @param offsetZ depth render offset
      */
     void setOffset(float offsetX, float offsetY, float offsetZ);
 

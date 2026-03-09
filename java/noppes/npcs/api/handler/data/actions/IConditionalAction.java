@@ -9,7 +9,7 @@ public interface IConditionalAction extends IAction {
 
     /**
      * @param condition checked every tick, if it returns true, task is fired
-     * @return
+     * @return this action
      */
     IConditionalAction setCondition(Function<IAction, Boolean> condition);
 

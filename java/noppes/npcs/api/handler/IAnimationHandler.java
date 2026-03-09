@@ -20,11 +20,15 @@ public interface IAnimationHandler {
     /**
      * Get all built-in animations.
      * Built-in animations are read-only and cannot be modified or deleted.
+     *
+     * @return array of all built-in animations
      */
     IAnimation[] getBuiltInAnimations();
 
     /**
      * Get all animations (both built-in and user-created).
+     *
+     * @return array of all animations (built-in and custom)
      */
     IAnimation[] getAllAnimations();
 
@@ -38,6 +42,8 @@ public interface IAnimationHandler {
 
     /**
      * Get names of all built-in animations.
+     *
+     * @return array of all built-in animation names
      */
     String[] getBuiltInAnimationNames();
 }

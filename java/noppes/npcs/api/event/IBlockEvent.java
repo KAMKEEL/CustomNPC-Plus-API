@@ -6,7 +6,11 @@ import noppes.npcs.api.IPos;
 import noppes.npcs.api.entity.IEntity;
 import noppes.npcs.api.entity.IPlayer;
 
+/**
+ * Events fired for scripted blocks, including interactions, redstone, and entity collisions.
+ */
 public interface IBlockEvent extends ICustomNPCsEvent {
+    /** @return the scripted block associated with this event. */
     IBlock getBlock();
 
     /**

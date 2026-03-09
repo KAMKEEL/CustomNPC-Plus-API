@@ -73,6 +73,7 @@ public interface IParty {
     /**
      * Check if Player is in Party with IPlayer
      *
+     * @param player the player to check
      * @return true/false if player is in party
      */
     boolean hasPlayer(IPlayer player);
@@ -80,6 +81,7 @@ public interface IParty {
     /**
      * Check if Player is in Party with Player Name
      *
+     * @param playerName the player name to check
      * @return true/false if player is in party
      */
     boolean hasPlayer(String playerName);

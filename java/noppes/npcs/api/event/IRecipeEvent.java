@@ -3,6 +3,9 @@ package noppes.npcs.api.event;
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import noppes.npcs.api.item.IItemStack;
 
+/**
+ * Events fired before and after recipe crafting, for both crafting table and anvil recipes.
+ */
 public interface IRecipeEvent extends IPlayerEvent {
 
     /**
@@ -13,14 +16,22 @@ public interface IRecipeEvent extends IPlayerEvent {
      */
     Object getRecipe();
 
+    /** @return the input item stacks used in the recipe. */
     IItemStack[] getItems();
 
+    /** @return true if this is an anvil recipe, false for crafting table. */
     boolean isAnvil();
 
+    /**
+     * Fired before a recipe is crafted. Cancelable.
+     * @hookName recipeCraftPre
+     */
     @Cancelable
     interface Pre extends IRecipeEvent {
+        /** @param message the denial message shown when canceled. */
         void setMessage(String message);
 
+        /** @return the denial message. */
         String getMessage();
 
         /**
@@ -52,9 +63,15 @@ public interface IRecipeEvent extends IPlayerEvent {
         void setMaterialUsage(int materialUsage);
     }
 
+    /**
+     * Fired after a recipe is crafted.
+     * @hookName recipeCraftPost
+     */
     interface Post extends IRecipeEvent {
+        /** @return the crafted item. */
         IItemStack getCraft();
 
+        /** @param stack the item to set as the crafting result. */
         void setResult(IItemStack stack);
     }
 }

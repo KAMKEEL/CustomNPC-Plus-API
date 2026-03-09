@@ -1,15 +1,22 @@
 package noppes.npcs.api.handler.data;
 
+/**
+ * Configures party-related options for quests, controlling membership requirements,
+ * reward distribution, completion rules, and party size limits.
+ */
 public interface IPartyOptions {
 
+    /** @return true if party participation is allowed. */
+    boolean isAllowParty();
 
-    public boolean isAllowParty();
+    /** @param allowParty true to allow party participation. */
+    void setAllowParty(boolean allowParty);
 
-    public void setAllowParty(boolean allowParty);
+    /** @return true if only party members can participate. */
+    boolean isOnlyParty();
 
-    public boolean isOnlyParty();
-
-    public void setOnlyParty(boolean onlyParty);
+    /** @param onlyParty true to require party membership. */
+    void setOnlyParty(boolean onlyParty);
 
     /**
      * @return 0:Leader, 1:All, 2:Valid
@@ -61,12 +68,15 @@ public interface IPartyOptions {
      */
     public void setObjectiveRequirement(int requirement);
 
-    public int getMinPartySize();
+    /** @return the minimum party size required. */
+    int getMinPartySize();
 
-    public void setMinPartySize(int newSize);
+    /** @param newSize the minimum party size. */
+    void setMinPartySize(int newSize);
 
+    /** @return the maximum party size allowed. */
+    int getMaxPartySize();
 
-    public int getMaxPartySize();
-
-    public void setMaxPartySize(int newSize);
+    /** @param newSize the maximum party size. */
+    void setMaxPartySize(int newSize);
 }

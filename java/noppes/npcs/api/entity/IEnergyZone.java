@@ -90,10 +90,16 @@ public interface IEnergyZone<T extends Entity> extends IEntity<T> {
 
     // ==================== CUSTOM DAMAGE DATA ====================
 
-    /** Get custom damage data for addon handler routing (e.g. DBC damage stats). */
+    /**
+     * Get custom damage data for addon handler routing (e.g. DBC damage stats).
+     * @return the zone's damage configuration as NBT
+     */
     noppes.npcs.api.INbt getDamageData();
 
-    /** Set custom damage data for addon handler routing. */
+    /**
+     * Set custom damage data for addon handler routing.
+     * @param data the damage configuration NBT
+     */
     void setDamageData(noppes.npcs.api.INbt data);
 
     // ==================== SPAWNING ====================

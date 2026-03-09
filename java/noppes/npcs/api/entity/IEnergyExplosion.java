@@ -8,7 +8,7 @@ import noppes.npcs.api.INbt;
  * Created via {@link noppes.npcs.api.IEnergyController#createExplosion}.
  * Configure visual/damage properties, then call {@link #spawn()} to place in the world.
  *
- * When damage is set (> 0), the explosion will deal area damage on the first tick
+ * When damage is set (&gt; 0), the explosion will deal area damage on the first tick
  * with distance-based falloff, routing through energy damage handlers for addon integration.
  */
 public interface IEnergyExplosion<T extends Entity> extends IEnergyAbility<T> {
@@ -29,7 +29,7 @@ public interface IEnergyExplosion<T extends Entity> extends IEnergyAbility<T> {
     /** @return Base damage dealt at the center. 0 means visual-only. */
     float getDamage();
 
-    /** @param damage Base damage at the center. Setting > 0 enables damage. */
+    /** @param damage Base damage at the center. Setting &gt; 0 enables damage. */
     void setDamage(float damage);
 
     /** @return Base knockback strength. */
@@ -54,7 +54,7 @@ public interface IEnergyExplosion<T extends Entity> extends IEnergyAbility<T> {
 
     /**
      * Spawn this explosion entity into the world.
-     * Sends the visual to nearby clients and, if damage > 0, applies area damage on the first tick.
+     * Sends the visual to nearby clients and, if damage &gt; 0, applies area damage on the first tick.
      */
     void spawn();
 }

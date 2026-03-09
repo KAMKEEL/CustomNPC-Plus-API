@@ -12,11 +12,13 @@ public interface IAuctionHandler {
 
     /**
      * Check if the auction system is enabled.
+     * @return true if the auction system is enabled
      */
     boolean isEnabled();
 
     /**
      * Get all active listings.
+     * @return array of all currently active auction listings
      */
     IAuctionListing[] getActiveListings();
 
@@ -32,6 +34,7 @@ public interface IAuctionHandler {
      * Get all active listings by a specific seller.
      *
      * @param sellerUUID The seller's UUID as a string
+     * @return array of listings created by this seller
      */
     IAuctionListing[] getListingsBySeller(String sellerUUID);
 
@@ -39,11 +42,13 @@ public interface IAuctionHandler {
      * Get all listings where a player is the current high bidder.
      *
      * @param bidderUUID The bidder's UUID as a string
+     * @return array of listings this player has bid on
      */
     IAuctionListing[] getListingsByBidder(String bidderUUID);
 
     /**
      * Get total count of active listings.
+     * @return the number of currently active listings
      */
     int getActiveListingCount();
 
@@ -89,36 +94,43 @@ public interface IAuctionHandler {
 
     /**
      * Get the listing fee amount.
+     * @return the currency fee charged when creating a listing
      */
     long getListingFee();
 
     /**
      * Get the sales tax percentage (0.0 to 1.0).
+     * @return the sales tax percentage applied to completed sales
      */
     double getSalesTaxPercent();
 
     /**
      * Get the minimum bid increment percentage (0.0 to 1.0).
+     * @return the minimum bid increment as a percentage of current bid
      */
     double getMinBidIncrementPercent();
 
     /**
      * Get the auction duration in hours.
+     * @return the default auction duration in hours
      */
     int getAuctionDurationHours();
 
     /**
      * Get the snipe protection time in minutes.
+     * @return the snipe protection window in minutes
      */
     int getSnipeProtectionMinutes();
 
     /**
      * Get the currency name used by the auction system.
+     * @return the display name of the auction currency
      */
     String getCurrencyName();
 
     /**
      * Get the minimum listing price.
+     * @return the minimum starting price for new listings
      */
     long getMinimumListingPrice();
 

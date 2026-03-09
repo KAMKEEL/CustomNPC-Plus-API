@@ -18,12 +18,16 @@ public interface IActionManager {
 
     /**
      * Begin processing scheduled actions.  Must be called once.
+     *
+     * @return this action manager
      */
     IActionManager start();
 
     /**
      * Halt processing of actions.  Queued actions remain but will not run until
      * {@link #start()} is called again.
+     *
+     * @return this action manager
      */
     IActionManager stop();
 
@@ -59,8 +63,8 @@ public interface IActionManager {
     /**
      * Enabling prints to the console the life cycle of IActionManager, it's IActionQueues and the scheduled IActions
      *
-     * @param debug
-     * @return
+     * @param debug whether to enable debug logging
+     * @return this action manager
      */
     IActionManager setDebugMode(boolean debug);
 
@@ -148,7 +152,7 @@ public interface IActionManager {
     boolean hasQueue(String name);
 
     /**
-     * @param name
+     * @param name the name for the new action
      * @return True if queue successfully removed from IActionManager and cleared
      */
     boolean removeQueue(String name);
@@ -176,7 +180,7 @@ public interface IActionManager {
      * Multiple actions chained one after another
      * i.e schedule(act1,act2,act3,...)
      *
-     * @param actions
+     * @param actions the actions to schedule
      */
     void schedule(IAction... actions);
 
@@ -192,7 +196,7 @@ public interface IActionManager {
      * Multiple tasks chained one after another
      * i.e schedule(task1,task2,task3,...)
      *
-     * @param tasks
+     * @param tasks the task consumers to schedule
      */
     void schedule(Consumer<IAction>... tasks);
 
@@ -261,7 +265,7 @@ public interface IActionManager {
      * Multiple conditionals
      * i.e schedule(act1,act2,act3,...)
      *
-     * @param actions
+     * @param actions the conditional actions to schedule
      */
     void schedule(IConditionalAction... actions);
 
@@ -340,8 +344,8 @@ public interface IActionManager {
     /**
      * Schedules actions on the parallelQueue, where all actions are executed simultaneously
      *
-     * @param action
-     * @return
+     * @param action the action to add to the parallel chain
+     * @return the parallel action
      */
 
     IAction scheduleParallel(IAction action);
@@ -350,7 +354,7 @@ public interface IActionManager {
      * Multiple actions in parallel
      * i.e scheduleParallel(act1,act2,act3,...)
      *
-     * @param actions
+     * @param actions the actions to run in parallel
      */
     void scheduleParallel(IAction... actions);
 
@@ -380,7 +384,7 @@ public interface IActionManager {
     boolean hasAny(String name);
 
     /**
-     * @param name
+     * @param name the name for the new parallel action
      * @return Checks through all available queues and fetches the first IAction with given name
      */
     IAction getAny(String name);

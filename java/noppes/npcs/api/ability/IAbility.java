@@ -12,6 +12,7 @@ public interface IAbility extends IAbilityAction {
     /**
      * Get the unique ID (UUID for custom abilities, registry key for built-in).
      * This is the stable reference that never changes after creation.
+     * @return the unique ability ID
      */
     String getId();
 
@@ -34,6 +35,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Get the display name (cosmetic). Falls back to getName() if not set.
+     * @return the display name
      */
     String getDisplayName();
 
@@ -45,6 +47,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Get the type ID of this ability (e.g., "cnpc:slam", "cnpc:beam").
+     * @return the type ID
      */
     String getTypeId();
 
@@ -106,6 +109,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Get the wind-up time in ticks (telegraph phase).
+     * @return wind-up time in ticks
      */
     int getWindUpTicks();
 
@@ -117,6 +121,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Get the dazed time in ticks (stun after interrupt during WINDUP).
+     * @return dazed time in ticks
      */
     int getDazedTicks();
 
@@ -128,6 +133,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Check if this ability can be interrupted by damage.
+     * @return true if interruptible
      */
     boolean isInterruptible();
 
@@ -139,6 +145,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Check if this ability ignores target invulnerability frames (hurt resistance).
+     * @return true if ignoring invulnerability frames
      */
     boolean isIgnoreIFrames();
 
@@ -193,6 +200,7 @@ public interface IAbility extends IAbilityAction {
     /**
      * Get track speed for TRACK rotation mode (blocks/second).
      * 0 = instant tracking. Comparable to player sprint speed (~5.6 blocks/sec).
+     * @return track speed in blocks/second
      */
     float getTrackSpeedValue();
 
@@ -205,36 +213,43 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Check if movement (pathfinding/motion) is locked during the WINDUP phase.
+     * @return true if movement is locked during windup
      */
     boolean isMovementLockedDuringWindup();
 
     /**
      * Check if movement (pathfinding/motion) is locked during the ACTIVE phase.
+     * @return true if movement is locked during active phase
      */
     boolean isMovementLockedDuringActive();
 
     /**
      * Check if rotation (yaw/pitch) is locked during the WINDUP phase.
+     * @return true if rotation is locked during windup
      */
     boolean isRotationLockedDuringWindup();
 
     /**
      * Check if rotation (yaw/pitch) is locked during the ACTIVE phase.
+     * @return true if rotation is locked during active phase
      */
     boolean isRotationLockedDuringActive();
 
     /**
      * Check if this ability is currently being executed.
+     * @return true if currently executing
      */
     boolean isExecuting();
 
     /**
      * Get the current execution phase (0=IDLE, 1=WINDUP, 2=ACTIVE, 3=DAZED, 4=BURST_DELAY).
+     * @return the current phase ordinal
      */
     int getPhaseInt();
 
     /**
      * Get the current tick within the current phase.
+     * @return the current tick within the phase
      */
     int getCurrentTick();
 
@@ -254,6 +269,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Check if this ability ignores cooldowns.
+     * @return true if ignoring cooldowns
      */
     boolean isIgnoreCooldown();
 
@@ -266,6 +282,7 @@ public interface IAbility extends IAbilityAction {
     /**
      * Check if this ability uses per-ability cooldown instead of global cooldown.
      * When true, using this ability only puts THIS ability on cooldown, not all abilities.
+     * @return true if using per-ability cooldown
      */
     boolean isPerAbilityCooldown();
 
@@ -277,6 +294,7 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Get this ability's data as NBT.
+     * @return the ability's NBT data
      */
     INbt getNbt();
 
@@ -322,12 +340,14 @@ public interface IAbility extends IAbilityAction {
 
     /**
      * Check if this ability is toggleable (has at least 1 toggle state).
+     * @return true if toggleable
      */
     boolean isToggleable();
 
     /**
      * Get the number of toggle states.
      * 0 = not toggleable, 1 = binary on/off, 2+ = multi-state cycling.
+     * @return number of toggle states
      */
     int getToggleStates();
 

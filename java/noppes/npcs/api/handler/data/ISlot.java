@@ -46,6 +46,12 @@ public interface ISlot {
      */
     Map<String, NBTTagCompound> getComponents();
 
+    /**
+     * Sets the NBT data for a specific component key.
+     *
+     * @param key  the component key (e.g. "CNPC+", "DBC").
+     * @param data the NBT data to store.
+     */
     void setComponentData(String key, NBTTagCompound data);
 
     /**

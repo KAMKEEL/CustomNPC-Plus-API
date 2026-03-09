@@ -9,7 +9,15 @@ import net.minecraft.entity.projectile.EntityThrowable;
  */
 public interface IThrowable<T extends EntityThrowable> extends IEntity<T> {
 
+    /**
+     * Returns the entity that threw this throwable.
+     *
+     * @return the thrower, or null if unknown.
+     */
     IEntityLivingBase getThrower();
 
+    /**
+     * Removes this throwable entity from the world.
+     */
     void kill();
 }

@@ -684,6 +684,11 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
     IActionManager getActionManager();
 
 
+    /**
+     * Returns the members of the player's current party, excluding the player.
+     *
+     * @return an array of party members, or an empty array if the player is not in a party.
+     */
     IPlayer[] getPartyMembers();
 
     // =========================================

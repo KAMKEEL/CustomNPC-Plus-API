@@ -13,7 +13,10 @@ import net.minecraft.entity.Entity;
  */
 public interface IEnergyBeam<T extends Entity> extends IEnergyProjectile<T> {
 
-    /** Width of the beam trail. */
+    /**
+     * Width of the beam trail.
+     * @return the beam width in blocks
+     */
     float getBeamWidth();
 
     void setBeamWidth(float width);

@@ -10,6 +10,8 @@ public interface IPlayerAbilityData {
 
     /**
      * Get all unlocked ability keys.
+     *
+     * @return array of ability keys
      */
     String[] getUnlockedAbilities();
 
@@ -22,26 +24,37 @@ public interface IPlayerAbilityData {
 
     /**
      * Lock (remove) an ability from this player.
+     *
+     * @param key the ability key
      */
     void lockAbility(String key);
 
     /**
      * Check if the player has unlocked a specific ability.
+     *
+     * @param key the ability key
+     * @return true if unlocked
      */
     boolean hasUnlockedAbility(String key);
 
     /**
      * Get the currently selected ability index.
+     *
+     * @return the selected index
      */
     int getSelectedIndex();
 
     /**
      * Set the selected ability index.
+     *
+     * @param index the ability index
      */
     void setSelectedIndex(int index);
 
     /**
      * Get the key of the currently selected ability.
+     *
+     * @return the selected ability key
      */
     String getSelectedAbilityKey();
 
@@ -57,11 +70,15 @@ public interface IPlayerAbilityData {
 
     /**
      * Check if the player is currently executing an ability.
+     *
+     * @return true if executing
      */
     boolean isExecutingAbility();
 
     /**
      * Get the currently executing ability.
+     *
+     * @return the current ability, or null
      */
     IAbility getCurrentAbility();
 
@@ -77,6 +94,8 @@ public interface IPlayerAbilityData {
 
     /**
      * Check if the player is on universal cooldown.
+     *
+     * @return true if on cooldown
      */
     boolean isOnCooldown();
 
@@ -107,11 +126,16 @@ public interface IPlayerAbilityData {
 
     /**
      * Activate the currently selected ability.
+     *
+     * @return true if activated
      */
     boolean activateAbility();
 
     /**
      * Activate a specific ability by key.
+     *
+     * @param key the ability key
+     * @return true if activated
      */
     boolean activateAbility(String key);
 
@@ -119,24 +143,33 @@ public interface IPlayerAbilityData {
 
     /**
      * Cycle a toggle ability to its next state.
-     * Off -> State 1 -> State 2 -> ... -> State N -> Off
+     * Off -&gt; State 1 -&gt; State 2 -&gt; ... -&gt; State N -&gt; Off
+     * @param key the ability key
      * @return The new state (0 = off, 1+ = active state number)
      */
     int toggleAbility(String key);
 
     /**
      * Get the current toggle state for an ability.
+     *
+     * @param key the ability key
      * @return 0 if not active, 1+ for active state
      */
     int getToggleState(String key);
 
     /**
      * Set a toggle to a specific state. 0 = deactivate, 1+ = specific state.
+     *
+     * @param key the ability key
+     * @param state the toggle state
      */
     void setToggleState(String key, int state);
 
     /**
-     * Check if a toggle ability is currently active (any state > 0).
+     * Check if a toggle ability is currently active (any state &gt; 0).
+     *
+     * @param key the ability key
+     * @return true if toggled on
      */
     boolean isAbilityToggled(String key);
 }

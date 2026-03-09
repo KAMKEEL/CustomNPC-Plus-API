@@ -11,6 +11,8 @@ public interface IPlayerTradeData {
 
     /**
      * Get the current balance
+     *
+     * @return the player's current currency balance
      */
     long getBalance();
 
@@ -47,16 +49,22 @@ public interface IPlayerTradeData {
 
     /**
      * Get lifetime earned currency
+     *
+     * @return the total currency earned over the player's lifetime
      */
     long getLifetimeEarned();
 
     /**
      * Get lifetime spent currency
+     *
+     * @return the total currency spent over the player's lifetime
      */
     long getLifetimeSpent();
 
     /**
      * Format the balance for display
+     *
+     * @return the balance formatted as a human-readable string
      */
     String formatBalance();
 
@@ -69,16 +77,22 @@ public interface IPlayerTradeData {
 
     /**
      * Get the number of pending auction claims
+     *
+     * @return the number of pending auction claims
      */
     int getClaimCount();
 
     /**
      * Check if player has any pending auction claims
+     *
+     * @return true if the player has pending auction claims
      */
     boolean hasClaims();
 
     /**
      * Get all pending auction claims for this player.
+     *
+     * @return array of the player's pending auction claims
      */
     IAuctionClaim[] getClaims();
 

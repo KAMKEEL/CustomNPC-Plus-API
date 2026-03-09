@@ -79,11 +79,13 @@ public interface IBlockScripted extends IBlock {
 
     /**
      * TYPO VERSION
+     * @return true if entities can pass through this block
      */
     boolean getIsPassible();
 
     /**
      * TYPO VERSION
+     * @param bo whether entities can pass through this block
      */
     void setIsPassible(boolean bo);
 

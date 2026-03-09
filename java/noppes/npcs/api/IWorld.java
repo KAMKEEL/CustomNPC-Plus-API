@@ -33,13 +33,14 @@ public interface IWorld {
     public IBlock getBlock(int x, int y, int z);
 
     /**
-     * @param pos
+     * @param pos the block position
      * @return The block at the given position. Returns null if there isn't a block
      */
     public IBlock getBlock(IPos pos);
 
     /**
-     *
+     * @param x X coordinate
+     * @param z Z coordinate
      * @return The top-most block in the world as an IBlock object.
      */
     IBlock getTopBlock(int x, int z);
@@ -71,20 +72,27 @@ public interface IWorld {
     boolean canSnowAtBody(int x, int y, int z, boolean checkLight);
 
     /**
-     * @return The Y-value of the world at this x & z value based on the height map of the world.
+     * @param x X coordinate
+     * @param z Z coordinate
+     * @return The Y-value of the world at this x &amp; z value based on the height map of the world.
      */
     int getHeightValue(int x, int z);
 
     int getHeightValue(IPos pos);
 
     /**
-     * @return The minimum Y-value of the world at this x & z value based on the height map of the world.
+     * @param x X coordinate
+     * @param z Z coordinate
+     * @return The minimum Y-value of the world at this x &amp; z value based on the height map of the world.
      */
     int getChunkHeightMapMinimum(int x, int z);
 
     int getChunkHeightMapMinimum(IPos pos);
 
     /**
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @param z Z coordinate
      * @return The metadata of the block at this position.
      */
     int getBlockMetadata(int x, int y, int z);
@@ -96,15 +104,15 @@ public interface IWorld {
     boolean setBlockMetadataWithNotify(IPos pos, int metadata, int flag);
 
     /**
-     * @param x
-     * @param y
-     * @param z
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @param z Z coordinate
      * @return can the block at this position see the sky or are there no blocks above this one
      */
     boolean canSeeSky(int x, int y, int z);
 
     /**
-     * @param pos
+     * @param pos the block position
      * @return can the block at this position see the sky or are there no blocks above this one
      */
     boolean canSeeSky(IPos pos);
@@ -162,6 +170,11 @@ public interface IWorld {
 
     /**
      * Sets the block's tile entity at the given position.
+     *
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @param z Z coordinate
+     * @param tileEntity the tile entity to place
      */
     void setTileEntity(int x, int y, int z, ITileEntity tileEntity);
 
@@ -169,13 +182,19 @@ public interface IWorld {
 
     /**
      * Removes the block's tile entity at the given position.
+     *
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @param z Z coordinate
      */
     void removeTileEntity(int x, int y, int z);
 
     void removeTileEntity(IPos pos);
 
     /**
-     *
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @param z Z coordinate
      * @return True if the block at this position is of cubic shape. (Not a stair, slab, etc.)
      */
     boolean isBlockFullCube(int x, int y, int z);
@@ -212,6 +231,7 @@ public interface IWorld {
      * @param y    World position y
      * @param z    World position z
      * @param item The block to be set
+     * @return true if the block was successfully placed
      */
     boolean setBlock(int x, int y, int z, IItemStack item);
 
@@ -222,6 +242,7 @@ public interface IWorld {
      * @param y     World position y
      * @param z     World position z
      * @param block The block to be set
+     * @return true if the block was successfully placed
      */
     boolean setBlock(int x, int y, int z, IBlock block);
 
@@ -255,9 +276,12 @@ public interface IWorld {
     /**
      * starting at the start position, draw a line in the lookVector direction until a block is detected
      *
-     * @param startPos
+     * @param startPos the ray origin as [x, y, z]
      * @param lookVector  should be a normalized direction vector
-     * @param maxDistance
+     * @param maxDistance maximum ray distance in blocks
+     * @param stopOnBlock whether to stop on solid blocks
+     * @param stopOnLiquid whether to stop on liquid blocks
+     * @param stopOnCollision whether to stop on collision boundaries
      * @return the first detected block but null if maxDistance is reached
      */
     IBlock rayCastBlock(double[] startPos, double[] lookVector, int maxDistance, boolean stopOnBlock, boolean stopOnLiquid, boolean stopOnCollision);
@@ -269,8 +293,8 @@ public interface IWorld {
     IBlock rayCastBlock(IPos startPos, IPos lookVector, int maxDistance);
 
     /**
-     * @param startPos
-     * @param maxHeight
+     * @param startPos the start position as [x, y, z]
+     * @param maxHeight maximum search height
      * @return the position of the closest block of air to startPos
      */
     public IPos getNearestAir(IPos startPos, int maxHeight);
@@ -457,6 +481,7 @@ public interface IWorld {
      * @param y     Spawn Y position
      * @param z     Spawn Z position
      * @param size  Orb size
+     * @return the energy orb entity
      */
     IEnergyOrb createEnergyOrb(IEntity owner, double x, double y, double z, float size);
 
@@ -469,6 +494,7 @@ public interface IWorld {
      * @param z         Spawn Z position
      * @param beamWidth Width of the beam
      * @param headSize  Size of the beam head
+     * @return the energy beam entity
      */
     IEnergyBeam createEnergyBeam(IEntity owner, double x, double y, double z, float beamWidth, float headSize);
 
@@ -481,6 +507,7 @@ public interface IWorld {
      * @param z         Spawn Z position
      * @param radius    Disc radius
      * @param thickness Disc thickness
+     * @return the energy disc entity
      */
     IEnergyDisc createEnergyDisc(IEntity owner, double x, double y, double z, float radius, float thickness);
 
@@ -492,6 +519,7 @@ public interface IWorld {
      * @param y          Spawn Y position
      * @param z          Spawn Z position
      * @param laserWidth Width of the laser
+     * @return the energy laser entity
      */
     IEnergyLaser createEnergyLaser(IEntity owner, double x, double y, double z, float laserWidth);
 

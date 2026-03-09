@@ -15,36 +15,43 @@ public interface IChainEvent extends ICustomNPCsEvent {
 
     /**
      * Get the entity executing the chain (NPC or Player).
+     * @return the entity executing the chain
      */
     IEntityLivingBase getEntity();
 
     /**
      * Get the player executing the chain, or null if the caster is an NPC.
+     * @return the player executing the chain, or null if NPC
      */
     IPlayer getPlayer();
 
     /**
      * Get the NPC executing the chain, or null if the caster is a player.
+     * @return the NPC executing the chain, or null if player
      */
     ICustomNpc<?> getNpc();
 
     /**
      * Whether the entity executing the chain is an NPC.
+     * @return true if the executor is an NPC
      */
     boolean isNPC();
 
     /**
      * Get the chained ability being executed.
+     * @return the chained ability being executed
      */
     IChainedAbility getChain();
 
     /**
      * Get the target of the chain, or null if no target.
+     * @return the current target entity
      */
     IEntityLivingBase getTarget();
 
     /**
      * Get the current entry index within the chain (0-based).
+     * @return the current entry index in the chain
      */
     int getEntryIndex();
 
@@ -69,11 +76,13 @@ public interface IChainEvent extends ICustomNPCsEvent {
     interface InterruptEvent extends IChainEvent {
         /**
          * Get the damage source that caused the interruption.
+         * @return the damage source used for this hit
          */
         IDamageSource getDamageSource();
 
         /**
          * Get the amount of damage that caused the interruption.
+         * @return the damage amount
          */
         float getDamage();
     }

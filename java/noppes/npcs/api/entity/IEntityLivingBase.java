@@ -437,6 +437,11 @@ public interface IEntityLivingBase<T extends EntityLivingBase> extends IEntity<T
      */
     float getAbsorptionAmount();
 
+    /**
+     * Sets the current hurt time (red flash duration) of the entity.
+     *
+     * @param time the hurt time in ticks.
+     */
     void setHurtTime(int time);
 
     /**

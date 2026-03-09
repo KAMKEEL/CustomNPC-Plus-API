@@ -13,6 +13,8 @@ public interface IPlayerAttributes {
 
     /**
      * Recalulates Item Attributes on a Player
+     *
+     * @param player the player whose attributes to recalculate
      */
     void recalculate(IPlayer player);
 

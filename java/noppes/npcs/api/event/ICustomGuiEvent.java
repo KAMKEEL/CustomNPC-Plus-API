@@ -4,10 +4,15 @@ import cpw.mods.fml.common.eventhandler.Cancelable;
 import noppes.npcs.api.gui.ICustomGui;
 import noppes.npcs.api.item.IItemStack;
 
+/**
+ * Events fired when a player interacts with a custom GUI.
+ */
 public interface ICustomGuiEvent extends IPlayerEvent {
 
+    /** @return the custom GUI associated with this event. */
     ICustomGui getGui();
 
+    /** @return the component ID that triggered this event. */
     int getId();
 
     /**

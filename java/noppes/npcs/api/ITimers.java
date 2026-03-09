@@ -26,6 +26,7 @@ public interface ITimers {
 
     /**
      *
+     * @param id the timer ID
      * @return True if the set of timers contains a timer with the given id, false otherwise.
      */
     boolean has(int id);
@@ -33,12 +34,14 @@ public interface ITimers {
     /**
      * Stops the timer with the given id
      *
+     * @param id the timer ID
      * @return True if there was a timer with the given id.
      */
     boolean stop(int id);
 
     /**
      * Resets the ticks elapsed in the timer with the given id to 0.
+     * @param id the timer ID
      */
     void reset(int id);
 
@@ -48,6 +51,7 @@ public interface ITimers {
     void clear();
 
     /**
+     * @param id the timer ID
      * @return The amount of ticks elapsed in the timer.
      */
     int ticks(int id);
@@ -55,27 +59,34 @@ public interface ITimers {
     /**
      * Sets the amount of ticks elapsed in the timer with the given id to a different value.
      *
+     * @param id the timer ID
      * @param ticks The new ticks elapsed by the timer.
      */
     void setTicks(int id, int ticks);
 
     /**
+     * @param id the timer ID
      * @return The maximum amount of ticks the timer with the given id runs for before it stops.
      */
     int maxTicks(int id);
 
     /**
      * Sets the maximum amount of ticks the timer with the given id can run for before it stops.
+     * @param id the timer ID
+     * @param maxTicks the maximum tick count
      */
     void setMaxTicks(int id, int maxTicks);
 
     /**
+     * @param id the timer ID
      * @return True if the timer with the given id repeats, false otherwise.
      */
     boolean repeats(int id);
 
     /**
      * Sets whether the timer with the given id repeats or not.
+     * @param id the timer ID
+     * @param repeat whether the timer repeats
      */
     void setRepeats(int id, boolean repeat);
 

@@ -63,6 +63,7 @@ public interface IEnergyBarrier<T extends Entity> extends IEnergyAbility<T> {
 
     /**
      * Returns the barrier type: 0=Dome, 1=Panel
+     * @return the barrier type ordinal
      */
     int getBarrierType();
 

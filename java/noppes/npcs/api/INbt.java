@@ -30,10 +30,12 @@ import net.minecraft.nbt.NBTTagCompound;
 public interface INbt {
     /**
      * Returns the tag with the given key from the compound tag.
+     * @param key the NBT key
      */
     void remove(String key);
 
     /**
+     * @param key the NBT key
      * @return True if the compound tag has a tag with the given key.
      */
     boolean has(String key);
@@ -82,12 +84,16 @@ public interface INbt {
      * Returns a tag list of objects with this key in the compound tag. All the objects in the list
      * will always be of the same type.
      *
+     * @param key the NBT key
+     * @param value the list type
      * @return The tag list of objects, depending on the tag type.
      */
     Object[] getList(String key, int value);
 
     /**
      * Returns the type of the tag list with this key, as an integer.
+     * @param key the NBT key
+     * @return the list element type
      */
     int getListType(String key);
 
@@ -112,6 +118,7 @@ public interface INbt {
 
     /**
      *
+     * @param key the NBT key
      * @return The type of the tag with the input key as an integer.
      */
     int getType(String key);

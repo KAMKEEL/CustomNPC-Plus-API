@@ -19,6 +19,7 @@ public interface IPos {
     /**
      * Shifts the IPos up by 1 block and returns the new object.
      *
+     * @return the position above
      */
     IPos up();
 
@@ -32,6 +33,7 @@ public interface IPos {
     /**
      * Shifts the IPos down by 1 block and returns the new object.
      *
+     * @return the position below
      */
     IPos down();
 
@@ -45,6 +47,7 @@ public interface IPos {
     /**
      * Shifts the IPos north by 1 block and returns the new object.
      *
+     * @return the position to the north
      */
     IPos north();
 
@@ -58,6 +61,7 @@ public interface IPos {
     /**
      * Shifts the IPos east by 1 block and returns the new object.
      *
+     * @return the position to the east
      */
     IPos east();
 
@@ -71,6 +75,7 @@ public interface IPos {
     /**
      * Shifts the IPos south by 1 block and returns the new object.
      *
+     * @return the position to the south
      */
     IPos south();
 
@@ -84,6 +89,7 @@ public interface IPos {
     /**
      * Shifts the IPos west by 1 block and returns the new object.
      *
+     * @return the position to the west
      */
     IPos west();
 
@@ -146,12 +152,17 @@ public interface IPos {
     /**
      * Offsets the block by 1 block in the given direction and returns the resulting IPos object
      *
+     * @param direction the direction ordinal
+     * @return the offset position
      */
     IPos offset(int direction);
 
     /**
      * Offsets the block by n blocks in the given direction and returns the resulting IPos object
      *
+     * @param direction the direction ordinal
+     * @param n the distance
+     * @return the offset position
      */
     IPos offset(int direction, double n);
 

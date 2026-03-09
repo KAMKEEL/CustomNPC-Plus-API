@@ -10,7 +10,10 @@ import net.minecraft.entity.Entity;
  */
 public interface IEnergyDisc<T extends Entity> extends IEnergyProjectile<T> {
 
-    /** Radius of the disc. */
+    /**
+     * Radius of the disc.
+     * @return the disc radius in blocks
+     */
     float getDiscRadius();
 
     void setDiscRadius(float radius);

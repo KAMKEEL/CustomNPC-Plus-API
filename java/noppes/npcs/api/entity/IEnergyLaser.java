@@ -14,7 +14,10 @@ import net.minecraft.entity.Entity;
  */
 public interface IEnergyLaser<T extends Entity> extends IEnergyProjectile<T> {
 
-    /** Width of the laser beam. */
+    /**
+     * Width of the laser beam.
+     * @return the laser width in blocks
+     */
     float getLaserWidth();
 
     void setLaserWidth(float width);

@@ -23,7 +23,10 @@ public interface IEnergyProjectile<T extends Entity> extends IEnergyAbility<T> {
 
     // ==================== OWNER & TARGET ====================
 
-    /** Sets the owner entity (used for homing return, damage attribution, etc.). */
+    /**
+     * Sets the owner entity (used for homing return, damage attribution, etc.).
+     * @param owner the entity that owns this projectile
+     */
     void setOwner(IEntity owner);
 
     /** @return the entity ID of the current homing/tracking target, or -1 if none */
@@ -32,7 +35,10 @@ public interface IEnergyProjectile<T extends Entity> extends IEnergyAbility<T> {
     /** @return the current homing/tracking target entity, or null if none */
     IEntity getTarget();
 
-    /** Sets the homing/tracking target entity. Pass null to clear. */
+    /**
+     * Sets the homing/tracking target entity. Pass null to clear.
+     * @param target the entity to home towards
+     */
     void setTarget(IEntity target);
 
     // ==================== SIZE ====================
@@ -40,7 +46,10 @@ public interface IEnergyProjectile<T extends Entity> extends IEnergyAbility<T> {
     /** @return the projectile's visual and collision size */
     float getSize();
 
-    /** Sets the projectile's visual and collision size. */
+    /**
+     * Sets the projectile's visual and collision size.
+     * @param size the projectile size
+     */
     void setSize(float size);
 
     // ==================== DISPLAY (PROJECTILE-SPECIFIC) ====================

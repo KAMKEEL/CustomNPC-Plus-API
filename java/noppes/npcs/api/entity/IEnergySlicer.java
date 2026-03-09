@@ -9,7 +9,10 @@ import net.minecraft.entity.Entity;
  */
 public interface IEnergySlicer<T extends Entity> extends IEnergyProjectile<T> {
 
-    /** Width of the slicer blade. */
+    /**
+     * Width of the slicer blade.
+     * @return the width of each slice in blocks
+     */
     float getSliceWidth();
 
     void setSliceWidth(float width);

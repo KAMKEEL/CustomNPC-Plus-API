@@ -231,12 +231,19 @@ public interface ICustomGui {
     IItemSlot addItemSlot(int id, int x, int y, IItemStack itemStack);
 
     /**
+     * @param x the X position in the GUI
+     * @param y the Y position in the GUI
+     * @return the created item slot
      * @deprecated Use addItemSlot(int, int, IItemStack) with an ID instead.
      */
     @Deprecated
     IItemSlot addItemSlot(int x, int y);
 
     /**
+     * @param x the X position in the GUI
+     * @param y the Y position in the GUI
+     * @param itemStack the item to display in the slot
+     * @return the created item slot
      * @deprecated Use addItemSlot(int, int, IItemStack) with an ID instead.
      */
     @Deprecated

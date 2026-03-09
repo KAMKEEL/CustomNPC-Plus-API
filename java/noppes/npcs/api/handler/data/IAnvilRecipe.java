@@ -5,16 +5,22 @@ import net.minecraft.item.ItemStack;
 public interface IAnvilRecipe {
     /**
      * Returns the unique name of this anvil recipe.
+     *
+     * @return the recipe name
      */
     String getName();
 
     /**
      * The XP cost per repair tick (e.g., 10 levels per tick).
+     *
+     * @return the experience level cost
      */
     int getXpCost();
 
     /**
      * The repair percentage (e.g., 0.1f repairs 10% of max damage per tick).
+     *
+     * @return the repair percentage (0.0 to 1.0)
      */
     float getRepairPercentage();
 
