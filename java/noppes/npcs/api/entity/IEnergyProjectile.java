@@ -174,6 +174,31 @@ public interface IEnergyProjectile<T extends Entity> extends IEnergyAbility<T> {
      */
     int getEnergyType();
 
+    // ==================== SYNC ====================
+
+    /**
+     * Sends all current visual, movement, and position data to tracking clients.
+     * <p>
+     * Call this <b>after</b> making batch changes to properties like size, speed,
+     * homing, colors, or type-specific fields (beam width, disc radius, etc.).
+     * This avoids sending a separate packet for every setter call.
+     * <p>
+     * <b>Note:</b> {@code fireAt()}, {@code fireDirection()}, and {@code fireFrom()}
+     * automatically sync motion when called on an already-spawned projectile,
+     * so you do not need to call {@code syncClient()} after firing.
+     * Use this method when changing properties that affect rendering or movement
+     * behavior without re-firing.
+     * <p>
+     * Example:
+     * <pre>
+     * orb.setSize(2.0);
+     * orb.setSpeed(0.5);
+     * orb.setInnerColor(0xFF0000);
+     * orb.syncClient(); // one packet for all changes
+     * </pre>
+     */
+    void syncClient();
+
     // ==================== FIRE / LAUNCH ====================
 
     /**

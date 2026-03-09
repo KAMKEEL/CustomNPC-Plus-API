@@ -65,4 +65,22 @@ public interface IEnergyBarrier<T extends Entity> extends IEnergyAbility<T> {
      * Returns the barrier type: 0=Dome, 1=Panel
      */
     int getBarrierType();
+
+    // ==================== SYNC ====================
+
+    /**
+     * Sends all current visual and barrier-specific data to tracking clients.
+     * <p>
+     * Call this <b>after</b> making batch changes to properties like colors, alpha,
+     * lightning, dome radius, panel dimensions, etc. This sends a single packet
+     * instead of one per setter call.
+     * <p>
+     * Example:
+     * <pre>
+     * dome.setInnerColor(0xFF0000);
+     * dome.setDomeRadius(5.0);
+     * dome.syncClient(); // one packet for all changes
+     * </pre>
+     */
+    void syncClient();
 }
