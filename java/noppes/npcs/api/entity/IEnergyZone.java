@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 
 /**
  * Entity-level interface for zone entities (Hazard and Trap).
- * Created via IEnergyController.createHazard() or createTrap().
+ * Created via IEnergyHandler.createHazard() or createTrap().
  * Configure properties, then call spawn() to place in the world.
  */
 public interface IEnergyZone<T extends Entity> extends IEntity<T> {

@@ -1,11 +1,11 @@
 package noppes.npcs.api.entity;
 
 import net.minecraft.entity.Entity;
-import noppes.npcs.api.INbt;
+import noppes.npcs.api.IEnergyHandler;
 
 /**
  * Represents a standalone energy explosion entity.
- * Created via {@link noppes.npcs.api.IEnergyController#createExplosion}.
+ * Created via {@link IEnergyHandler#createExplosion}.
  * Configure visual/damage properties, then call {@link #spawn()} to place in the world.
  *
  * When damage is set (&gt; 0), the explosion will deal area damage on the first tick
