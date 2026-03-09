@@ -68,6 +68,8 @@ public interface ITelegraphHandler {
      */
     ITelegraph createCone(float length, float angle);
 
+    ITelegraph createSquare(float radius);
+
     /**
      * Create a point telegraph.
      *

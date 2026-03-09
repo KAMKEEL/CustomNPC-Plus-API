@@ -20,6 +20,7 @@ import noppes.npcs.api.entity.IEntity;
  *     <li>RING - A ring with inner and outer radius</li>
  *     <li>LINE - A rectangular line in a direction</li>
  *     <li>CONE - A cone/arc shape</li>
+ *     <li>SQUARE - A square shape</li>
  *     <li>POINT - A small point marker</li>
  * </ul>
  */
@@ -48,13 +49,13 @@ public interface ITelegraph {
     // ==========================================================================
 
     /**
-     * Get the radius (for CIRCLE and RING types).
+     * Get the radius (for CIRCLE, SQUARE and RING types).
      * @return the circle/ring radius in blocks
      */
     float getRadius();
 
     /**
-     * Set the radius (for CIRCLE and RING types).
+     * Set the radius (for CIRCLE, SQUARE and RING types).
      * @param radius circle/ring radius in blocks
      */
     void setRadius(float radius);
