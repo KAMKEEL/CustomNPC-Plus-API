@@ -5,7 +5,6 @@ import noppes.npcs.api.handler.data.IActionChain;
 import noppes.npcs.api.handler.data.IActionQueue;
 import noppes.npcs.api.handler.data.actions.IConditionalAction;
 
-import java.util.List;
 import java.util.Queue;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -19,12 +18,16 @@ public interface IActionManager {
 
     /**
      * Begin processing scheduled actions.  Must be called once.
+     *
+     * @return this action manager
      */
     IActionManager start();
 
     /**
      * Halt processing of actions.  Queued actions remain but will not run until
      * {@link #start()} is called again.
+     *
+     * @return this action manager
      */
     IActionManager stop();
 
@@ -35,10 +38,10 @@ public interface IActionManager {
     /**
      * Create a new action instance without immediately scheduling it.
      *
-     * @param name            a unique name for this action
-     * @param maxDuration     the maximum lifetime of the action in ticks
-     * @param delay number of ticks to wait before the first run
-     * @param action          code to execute each time the action "fires"
+     * @param name        a unique name for this action
+     * @param maxDuration the maximum lifetime of the action in ticks
+     * @param delay       number of ticks to wait before the first run
+     * @param action      code to execute each time the action "fires"
      * @return a fresh {@link IAction} object
      */
     IAction create(String name, int maxDuration, int delay, Consumer<IAction> action);
@@ -59,8 +62,9 @@ public interface IActionManager {
 
     /**
      * Enabling prints to the console the life cycle of IActionManager, it's IActionQueues and the scheduled IActions
-     * @param debug
-     * @return
+     *
+     * @param debug whether to enable debug logging
+     * @return this action manager
      */
     IActionManager setDebugMode(boolean debug);
 
@@ -131,8 +135,8 @@ public interface IActionManager {
      */
     IConditionalAction create(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
 
-    ///////////////////////////////////////////////////
-    ///////////////////////////////////////////////////
+    /// ////////////////////////////////////////////////
+    /// ////////////////////////////////////////////////
     // Queues
 
     IActionQueue createQueue(String name);
@@ -148,7 +152,7 @@ public interface IActionManager {
     boolean hasQueue(String name);
 
     /**
-     * @param name
+     * @param name the name for the new action
      * @return True if queue successfully removed from IActionManager and cleared
      */
     boolean removeQueue(String name);
@@ -176,14 +180,14 @@ public interface IActionManager {
      * Multiple actions chained one after another
      * i.e schedule(act1,act2,act3,...)
      *
-     * @param actions
+     * @param actions the actions to schedule
      */
     void schedule(IAction... actions);
 
     /**
      * Convenience for {@link #create(Consumer)} + enqueue.
      *
-     * @param task            code to execute each time the task "fires"
+     * @param task code to execute each time the task "fires"
      * @return the task scheduled
      */
     IAction schedule(Consumer<IAction> task);
@@ -192,15 +196,15 @@ public interface IActionManager {
      * Multiple tasks chained one after another
      * i.e schedule(task1,task2,task3,...)
      *
-     * @param tasks
+     * @param tasks the task consumers to schedule
      */
     void schedule(Consumer<IAction>... tasks);
 
     /**
      * Convenience for {@link #create(String, Consumer)} + enqueue.
      *
-     * @param delay  number of ticks to wait before the first task run
-     * @param task            code to execute each time the task "fires"
+     * @param delay number of ticks to wait before the first task run
+     * @param task  code to execute each time the task "fires"
      * @return the task scheduled
      */
     IAction schedule(int delay, Consumer<IAction> task);
@@ -208,8 +212,8 @@ public interface IActionManager {
     /**
      * Convenience for {@link #create(String, Consumer)} + enqueue.
      *
-     * @param name            a unique name for this action
-     * @param task            code to execute each time the task "fires"
+     * @param name a unique name for this action
+     * @param task code to execute each time the task "fires"
      * @return the task scheduled
      */
     IAction schedule(String name, Consumer<IAction> task);
@@ -217,9 +221,9 @@ public interface IActionManager {
     /**
      * Convenience for {@link #create(String, int, Consumer)} + enqueue.
      *
-     * @param name            a unique name for this action
+     * @param name  a unique name for this action
      * @param delay number of ticks to wait before the first task run
-     * @param task            code to execute each time the task "fires"
+     * @param task  code to execute each time the task "fires"
      * @return the task scheduled
      */
     IAction schedule(String name, int delay, Consumer<IAction> task);
@@ -227,10 +231,10 @@ public interface IActionManager {
     /**
      * Convenience for {@link #create(String, int, int, Consumer)} + enqueue.
      *
-     * @param name            a unique name for this action
-     * @param maxDuration     the maximum lifetime of the action in ticks
-     * @param delay number of ticks to wait before the first task run
-     * @param task            code to execute each time the task "fires"
+     * @param name        a unique name for this action
+     * @param maxDuration the maximum lifetime of the action in ticks
+     * @param delay       number of ticks to wait before the first task run
+     * @param task        code to execute each time the task "fires"
      * @return the task scheduled
      */
     IAction schedule(String name, int maxDuration, int delay, Consumer<IAction> task);
@@ -261,7 +265,7 @@ public interface IActionManager {
      * Multiple conditionals
      * i.e schedule(act1,act2,act3,...)
      *
-     * @param actions
+     * @param actions the conditional actions to schedule
      */
     void schedule(IConditionalAction... actions);
 
@@ -340,8 +344,8 @@ public interface IActionManager {
     /**
      * Schedules actions on the parallelQueue, where all actions are executed simultaneously
      *
-     * @param action
-     * @return
+     * @param action the action to add to the parallel chain
+     * @return the parallel action
      */
 
     IAction scheduleParallel(IAction action);
@@ -350,7 +354,7 @@ public interface IActionManager {
      * Multiple actions in parallel
      * i.e scheduleParallel(act1,act2,act3,...)
      *
-     * @param actions
+     * @param actions the actions to run in parallel
      */
     void scheduleParallel(IAction... actions);
 
@@ -380,7 +384,7 @@ public interface IActionManager {
     boolean hasAny(String name);
 
     /**
-     * @param name
+     * @param name the name for the new parallel action
      * @return Checks through all available queues and fetches the first IAction with given name
      */
     IAction getAny(String name);

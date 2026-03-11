@@ -1,7 +1,6 @@
 package noppes.npcs.api.entity;
 
 import net.minecraft.entity.passive.EntityTameable;
-import noppes.npcs.api.item.IItemStack;
 
 /**
  * Represents a Pixelmon (a tameable creature) with additional attributes
@@ -37,6 +36,7 @@ public interface IPixelmon<T extends EntityTameable> extends IAnimal<T> {
 
     /**
      * Gets the Individual Value (IV) for the specified stat.
+     *
      * @param type 0: HP, 1: Attack, 2: Defense, 3: SpAttack, 4: SpDefense, 5: Speed
      * @return the IV value, or -1 if invalid.
      */
@@ -84,7 +84,7 @@ public interface IPixelmon<T extends EntityTameable> extends IAnimal<T> {
 
     /**
      * @return The Pixelmon's size type (0: Pygmy, 1: Runt, 2: Small, 3: Normal, 4: Huge, 5: Giant,
-     *         6: Enormous, 7: Ginormous, 8: Microscopic).
+     * 6: Enormous, 7: Ginormous, 8: Microscopic).
      */
     int getSize();
 
@@ -121,7 +121,7 @@ public interface IPixelmon<T extends EntityTameable> extends IAnimal<T> {
 
     /**
      * @return The type of Poké Ball in which the Pixelmon is contained
-     *         (-1: Uncaught, 0: Pokéball, 1: Great Ball, etc.).
+     * (-1: Uncaught, 0: Pokéball, 1: Great Ball, etc.).
      */
     int getPokeball();
 

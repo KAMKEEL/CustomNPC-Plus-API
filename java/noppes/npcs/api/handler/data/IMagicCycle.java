@@ -45,7 +45,7 @@ public interface IMagicCycle {
     /**
      * Gets the layout type for the cycle.
      * This is typically an integer representation of the layout enum.
-     *
+     * <p>
      * 0: CIRCULAR
      * 1: SQUARE
      * 2: TREE
@@ -62,7 +62,7 @@ public interface IMagicCycle {
     /**
      * Sets the layout type for the cycle.
      * The provided integer should correspond to a valid layout type.
-     *
+     * <p>
      * 0: CIRCULAR
      * 1: SQUARE
      * 2: TREE

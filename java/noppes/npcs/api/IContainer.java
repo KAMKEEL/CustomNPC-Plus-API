@@ -31,9 +31,9 @@ public interface IContainer {
 
     /**
      *
-     * @param itemStack The item stack to be searched in the container
+     * @param itemStack    The item stack to be searched in the container
      * @param ignoreDamage Whether damage should be ignored when searching
-     * @param ignoreNBT Whether NBT values should be ignored when searching
+     * @param ignoreNBT    Whether NBT values should be ignored when searching
      * @return The amount of the item stack found, based on the flags given above.
      */
     int count(IItemStack itemStack, boolean ignoreDamage, boolean ignoreNBT);

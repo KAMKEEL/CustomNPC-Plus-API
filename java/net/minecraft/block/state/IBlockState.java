@@ -6,10 +6,11 @@ import net.minecraft.block.properties.IProperty;
 
 import java.util.Collection;
 
-/** This code is owned by Minecraft */
+/**
+ * This code is owned by Minecraft
+ */
 
-public interface IBlockState
-{
+public interface IBlockState {
     Collection<IProperty> getPropertyNames();
 
     <T extends Comparable<T>> T getValue(IProperty<T> property);

@@ -2,12 +2,23 @@ package noppes.npcs.api.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
-import noppes.npcs.api.*;
+import noppes.npcs.api.IBlock;
+import noppes.npcs.api.IContainer;
+import noppes.npcs.api.IPixelmonPlayerData;
+import noppes.npcs.api.IPos;
+import noppes.npcs.api.IScreenSize;
+import noppes.npcs.api.ITimers;
+import noppes.npcs.api.IWorld;
 import noppes.npcs.api.gui.ICustomGui;
 import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.api.handler.IOverlayHandler;
 import noppes.npcs.api.handler.IPlayerData;
-import noppes.npcs.api.handler.data.*;
+import noppes.npcs.api.handler.data.IAnimationData;
+import noppes.npcs.api.handler.data.IDialog;
+import noppes.npcs.api.handler.data.IMagicData;
+import noppes.npcs.api.handler.data.IPlayerAttributes;
+import noppes.npcs.api.handler.data.IQuest;
+import noppes.npcs.api.handler.data.ISound;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.overlay.ICustomOverlay;
 
@@ -313,8 +324,8 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
     void setMode(int type);
 
     /**
-     * @since 1.7.10d
      * @return Returns an IItemStack array of size 36 representing the player's inventory.
+     * @since 1.7.10d
      */
     IItemStack[] getInventory();
 
@@ -327,11 +338,11 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
     int inventoryItemCount(IItemStack item, boolean ignoreNBT, boolean ignoreDamage);
 
     /**
-     * @since 1.7.10c
      * @param id     The item's name.
      * @param damage The damage value.
      * @param amount How many items will be removed.
      * @return True if the items were removed successfully, false if the amount exceeds what the player has or the item doesn't exist.
+     * @since 1.7.10c
      */
     boolean removeItem(String id, int damage, int amount);
 
@@ -353,19 +364,19 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
     int removeAllItems(IItemStack item, boolean ignoreNBT, boolean ignoreDamage);
 
     /**
-     * @since 1.7.10c
      * @param item   The item to be added.
      * @param amount The number of items to add.
      * @return True if the item was given successfully, false otherwise.
+     * @since 1.7.10c
      */
     boolean giveItem(IItemStack item, int amount);
 
     /**
-     * @since 1.7.10c
      * @param id     The item's name.
      * @param damage The damage value.
      * @param amount The number of items to add.
      * @return True if the item was given successfully, false otherwise.
+     * @since 1.7.10c
      */
     boolean giveItem(String id, int damage, int amount);
 
@@ -511,22 +522,22 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
     boolean hasBukkitPermission(String permission);
 
     /**
-     * @since 1.7.10c
      * @return Returns the player's experience level.
+     * @since 1.7.10c
      */
     int getExpLevel();
 
     /**
-     * @since 1.7.10c
      * @param level The new experience level to set.
+     * @since 1.7.10c
      */
     void setExpLevel(int level);
 
     /**
      * Requires Pixelmon to be installed.
      *
-     * @since 1.7.10d
      * @return Returns the player's Pixelmon data, or null if Pixelmon is not enabled.
+     * @since 1.7.10d
      */
     IPixelmonPlayerData getPixelmonData();
 
@@ -673,6 +684,84 @@ public interface IPlayer<T extends EntityPlayerMP> extends IEntityLivingBase<T>,
     IActionManager getActionManager();
 
 
-
+    /**
+     * Returns the members of the player's current party, excluding the player.
+     *
+     * @return an array of party members, or an empty array if the player is not in a party.
+     */
     IPlayer[] getPartyMembers();
+
+    // =========================================
+    // Currency Methods
+    // =========================================
+
+    /**
+     * Gets the player's current currency balance.
+     * If Vault is configured and available, returns Vault balance.
+     * Otherwise returns CNPC+ built-in currency balance.
+     *
+     * @return The player's currency balance
+     */
+    long getCurrencyBalance();
+
+    /**
+     * Sets the player's currency balance.
+     * If Vault is configured and available, sets Vault balance.
+     * Otherwise sets CNPC+ built-in currency balance.
+     *
+     * @param amount The new balance
+     */
+    void setCurrencyBalance(long amount);
+
+    /**
+     * Deposits (adds) currency to the player's balance.
+     * If Vault is configured and available, deposits to Vault.
+     * Otherwise deposits to CNPC+ built-in currency.
+     *
+     * @param amount The amount to deposit
+     * @return true if successful, false if would exceed max balance
+     */
+    boolean depositCurrency(long amount);
+
+    /**
+     * Withdraws (removes) currency from the player's balance.
+     * If Vault is configured and available, withdraws from Vault.
+     * Otherwise withdraws from CNPC+ built-in currency.
+     *
+     * @param amount The amount to withdraw
+     * @return true if successful, false if insufficient funds
+     */
+    boolean withdrawCurrency(long amount);
+
+    /**
+     * Checks if the player can afford the specified amount.
+     * If Vault is configured and available, checks Vault balance.
+     * Otherwise checks CNPC+ built-in currency balance.
+     *
+     * @param amount The amount to check
+     * @return true if the player has enough currency
+     */
+    boolean canAffordCurrency(long amount);
+
+    /**
+     * Checks if Vault is being used for currency operations.
+     *
+     * @return true if Vault is configured AND available, false if using CNPC+ built-in currency
+     */
+    boolean isUsingVaultCurrency();
+
+    /**
+     * Gets the player's formatted currency balance for display.
+     * Uses Vault formatting if Vault is active, otherwise uses CNPC+ formatting.
+     *
+     * @return The formatted balance string
+     */
+    String getFormattedCurrencyBalance();
+
+    /**
+     * Returns all active energy projectiles fired by this player.
+     *
+     * @return Array of active energy projectiles, empty array if none
+     */
+    IEnergyProjectile[] getActiveEnergyProjectiles();
 }

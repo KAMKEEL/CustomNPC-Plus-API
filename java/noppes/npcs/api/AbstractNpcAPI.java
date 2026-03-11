@@ -45,7 +45,8 @@ public abstract class AbstractNpcAPI {
 
     /**
      * Tempdata gets cleared when the server restarts. All worlds share the same temp data.
-     * @param key The key for the data stored
+     *
+     * @param key   The key for the data stored
      * @param value The data stored
      */
     public abstract void setTempData(String key, Object value);
@@ -76,7 +77,8 @@ public abstract class AbstractNpcAPI {
 
     /**
      * Stored data persists through world restart. Unlike tempdata only Strings and Numbers can be saved
-     * @param key The key for the data stored
+     *
+     * @param key   The key for the data stored
      * @param value The data stored. This data can be either a Number or a String. Other data is not stored
      */
     public abstract void setStoredData(String key, Object value);
@@ -109,7 +111,7 @@ public abstract class AbstractNpcAPI {
 
     public abstract boolean hasGlobalObject(String key);
 
-    public abstract HashMap<String,Object> getEngineObjects();
+    public abstract HashMap<String, Object> getEngineObjects();
 
     public abstract long sizeOfObject(Object obj);
 
@@ -151,6 +153,36 @@ public abstract class AbstractNpcAPI {
 
     public abstract IAnimationHandler getAnimations();
 
+    public abstract ILinkedItemHandler getLinkedItems();
+
+    /**
+     * Get the script hook handler for registering custom hooks.
+     * Addon mods can use this to register hooks that will appear in script editor GUIs.
+     *
+     * @return The script hook handler
+     */
+    public abstract IScriptHookHandler getScriptHooks();
+
+    public abstract IAbilityHandler getAbilities();
+
+    public abstract ITelegraphHandler getTelegraphs();
+
+    /**
+     * Get the auction handler for managing auctions via scripts.
+     *
+     * @return The auction handler, or null if auctions are disabled
+     */
+    public abstract IAuctionHandler getAuctions();
+
+    /**
+     * Create a telegraph directly.
+     * Convenience method equivalent to getTelegraphs().create(type).
+     *
+     * @param type Type name: "circle", "ring", "line", "cone", "point"
+     * @return A new telegraph configuration
+     */
+    public abstract ITelegraph createTelegraph(String type);
+
     public abstract String[] getAllBiomeNames();
 
     public abstract ICustomNpc<?> createNPC(IWorld var1);
@@ -158,6 +190,12 @@ public abstract class AbstractNpcAPI {
     /**
      *
      * Spawns a new NPC in the world at the given coordinates and returns an ICustomNpc object of it.
+     *
+     * @param var1 the world
+     * @param var2 X position
+     * @param var3 Y position
+     * @param var4 Z position
+     * @return the spawned NPC
      */
     public abstract ICustomNpc<?> spawnNPC(IWorld var1, int var2, int var3, int var4);
 
@@ -195,8 +233,8 @@ public abstract class AbstractNpcAPI {
      * Forms a box with corners as the input IPos parameters, and returns all
      * points inside the box as a list of IPos vectors.
      *
-     * @param from The starting IPos vector, first corner of the box.
-     * @param to The ending IPos vector, opposite corner of the box.
+     * @param from           The starting IPos vector, first corner of the box.
+     * @param to             The ending IPos vector, opposite corner of the box.
      * @param sortByDistance Sorts the list by distance from the "from" IPos parameter.
      * @return The list of all IPos vectors inside the box.
      */
@@ -211,11 +249,13 @@ public abstract class AbstractNpcAPI {
     public abstract IItemStack getIItemStack(ItemStack var1);
 
     /**
+     * @param var1 the Minecraft world
      * @return A single IWorld from Loaded IWorlds
      */
     public abstract IWorld getIWorld(World var1);
 
     /**
+     * @param var1 the dimension ID
      * @return A single IWorld from Loaded IWorlds
      */
     public abstract IWorld getIWorld(int var1);
@@ -225,6 +265,7 @@ public abstract class AbstractNpcAPI {
      * Forge sometimes automatically, unloads the End when all players
      * are no longer present.
      *
+     * @param var1 the dimension ID
      * @return A single IWorld from Loaded/Unloaded IWorlds
      */
     public abstract IWorld getIWorldLoad(int var1);
@@ -243,6 +284,8 @@ public abstract class AbstractNpcAPI {
     public abstract IDamageSource getIDamageSource(DamageSource var1);
 
     public abstract IDamageSource getIDamageSource(IEntity<?> entity);
+
+    public abstract IEnergyHandler getEnergyHandler();
 
     public abstract EventBus events();
 
@@ -287,10 +330,11 @@ public abstract class AbstractNpcAPI {
      *                   7: Aztec
      *                   8: CustomNPCs Classic
      *                   9: Spanish
-     * @param gender The gender of the name:
+     * @param gender     The gender of the name:
      *                   0: Random
      *                   1: Male
      *                   2: Female
+     * @return a random name
      */
     public abstract String getRandomName(int dictionary, int gender);
 
@@ -323,6 +367,7 @@ public abstract class AbstractNpcAPI {
 
     /**
      *
+     * @param directory the particle texture directory
      * @return A new IParticle object initialized with the given texture.
      */
     public abstract IParticle createParticle(String directory);
@@ -364,9 +409,9 @@ public abstract class AbstractNpcAPI {
 
     /**
      *
-     * @param id The id of the custom GUI.
-     * @param width The width of the GUI in pixels.
-     * @param height The height of the GUI in pixels.
+     * @param id        The id of the custom GUI.
+     * @param width     The width of the GUI in pixels.
+     * @param height    The height of the GUI in pixels.
      * @param pauseGame Whether the GUI pauses the game or not.
      * @return A new ICustomGui object with the given attributes.
      */
@@ -374,12 +419,14 @@ public abstract class AbstractNpcAPI {
 
     /**
      *
-     * @return  A new ICustomOverlay overlay object with the given ID.
+     * @param id the overlay ID
+     * @return A new ICustomOverlay overlay object with the given ID.
      */
     public abstract ICustomOverlay createCustomOverlay(int id);
 
     /**
      *
+     * @param texture the texture path
      * @return A new ISkinOverlay object initialized with the given texture.
      */
     public abstract ISkinOverlay createSkinOverlay(String texture);

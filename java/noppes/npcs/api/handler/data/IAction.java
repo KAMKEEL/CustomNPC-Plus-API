@@ -20,13 +20,13 @@ public interface IAction {
 
     /**
      * @param queue Schedules action on this queue. If action was scheduled on different queue, transfers it over from that to this.
-     * @return
+     * @return this action
      */
     IAction setQueue(IActionQueue queue);
 
     /**
      * @param task code to execute each time the action fires
-     * @return
+     * @return this action
      */
     IAction setTask(Consumer<IAction> task);
 
@@ -49,14 +49,14 @@ public interface IAction {
     /**
      *
      * @param task Fires right after action gets scheduled at duration 0
-     * @return
+     * @return this action
      */
     IAction onStart(Consumer<IAction> task);
 
     /**
      *
      * @param task Fires right before a marked done action gets removed from it's IActionQueue
-     * @return
+     * @return this action
      */
     IAction onDone(Consumer<IAction> task);
 
@@ -72,16 +72,16 @@ public interface IAction {
 
     /**
      * @return the maximum number of ticks this action is allowed to run before auto marking done
-     *
+     * <p>
      * P.S: If max duration is reached and this IAction's thread (created using {@link #threadify()}) is paused by any of the pausing methods,
-     *      the thread is forcibly resumed and finishes the task execution.
+     * the thread is forcibly resumed and finishes the task execution.
      */
     int getMaxDuration();
 
     /**
      * @param ticks max duration
-     *          default: -1,  infinite
-     * @return
+     *              default: -1,  infinite
+     * @return this action
      */
     IAction setMaxDuration(int ticks);
 
@@ -93,7 +93,7 @@ public interface IAction {
     /**
      * @param n max count, task auto marks done after running for n counts
      *          default: -1, infinite
-     * @return
+     * @return this action
      */
     IAction times(int n);
 
@@ -101,7 +101,7 @@ public interface IAction {
      * Execute task only once, mark done
      * equivalent to times(1)
      *
-     * @return
+     * @return this action
      */
     IAction once();
 
@@ -135,6 +135,7 @@ public interface IAction {
      *
      * @param key   a string key
      * @param value any object to associate with this action
+     * @return this action
      */
     IAction setData(String key, Object value);
 
@@ -143,7 +144,7 @@ public interface IAction {
     /**
      *
      * @param copyTo copies all of this IAction's data to copyTo
-     * @return
+     * @return this action
      */
     IAction copyDataTo(IAction copyTo);
 
@@ -166,18 +167,21 @@ public interface IAction {
      * Set how many ticks between each execution of the action task.
      *
      * @param ticks tick interval (e.g. 1 = every tick, 20 = once per second)
+     * @return this action
      */
     IAction updateEvery(int ticks);
 
     /**
      * Executes task every tick (Sets updateEvery to 1)
-     * @return
+     *
+     * @return this action
      */
     IAction everyTick();
 
     /**
      * Executes task every second (Sets updateEvery to 20)
-     * @return
+     *
+     * @return this action
      */
     IAction everySecond();
 
@@ -190,7 +194,7 @@ public interface IAction {
      * @param ticks pauses action for this number of ticks (any subsequent action is paused too)
      *              If action was threaded using {@link #threadify()}, sleeps the thread.
      *              Can be forcibly resumed using {@link #resume()}
-     * @return
+     * @return this action
      */
     IAction pauseFor(int ticks);
 
@@ -205,8 +209,10 @@ public interface IAction {
     /**
      * Must call {@link #threadify()} before using, else throws exception.
      * Pauses IAction's thread until the supplied condition is satisfied or {@link #resume()} is called.
+     *
+     * @param until condition to check each tick
      */
-    void pauseUntil(Function<IAction,Boolean> until);
+    void pauseUntil(Function<IAction, Boolean> until);
 
     /**
      * Resumes thread that was previously paused by {@link #pause()},  {@link #pauseUntil(Function)}, {@link #pauseFor(int)} or {@link #pauseFor(long)}
@@ -215,7 +221,7 @@ public interface IAction {
     void resume();
 
     /**
-     * @return checks if IAction's getStartAfterTicks > 0, or if IAction's thread is paused if threaded
+     * @return checks if IAction's getStartAfterTicks &gt; 0, or if IAction's thread is paused if threaded
      * Preferably called from a different thread than the IAction one if it's paused.
      */
     boolean isPaused();
@@ -228,6 +234,8 @@ public interface IAction {
 
     /**
      * Creates a new thread for task to run into. Allows for pausing and sleeping just this IAction's thread.
+     *
+     * @return this action
      */
     IAction threadify();
 
@@ -251,6 +259,7 @@ public interface IAction {
      * Enqueue another action immediately after this one.
      *
      * @param after the action to run next
+     * @return the chained action
      */
     IAction after(IAction after);
 
@@ -258,7 +267,7 @@ public interface IAction {
      * Multiple actions chained one after another
      * i.e after(act1,act2,act3,...)
      *
-     * @param actions
+     * @param actions the actions to chain
      */
     void after(IAction... actions);
 
@@ -266,7 +275,7 @@ public interface IAction {
      * Multiple tasks chained one after another
      * i.e after(task1,task2,task3,...)
      *
-     * @param tasks
+     * @param tasks the tasks to chain
      */
     void after(Consumer<IAction>... tasks);
 
@@ -284,6 +293,7 @@ public interface IAction {
      * Enqueue another action immediately before this one (pausing this one until done).
      *
      * @param before the action to run prior
+     * @return the chained action
      */
     IAction before(IAction before);
 
@@ -301,27 +311,29 @@ public interface IAction {
      * Enqueue an IConditionalAction on the conditional chain
      *
      * @param after the scheduled IConditionalAction
+     * @return the conditional action
      */
     IConditionalAction conditional(IConditionalAction after);
 
     void conditional(IConditionalAction... actions);
 
-    IConditionalAction conditional(Function<IAction,Boolean> condition, Consumer<IAction> task);
+    IConditionalAction conditional(Function<IAction, Boolean> condition, Consumer<IAction> task);
 
-    IConditionalAction conditional(String name, Function<IAction,Boolean> condition, Consumer<IAction> task);
+    IConditionalAction conditional(String name, Function<IAction, Boolean> condition, Consumer<IAction> task);
 
-    IConditionalAction conditional(Function<IAction,Boolean> condition, Consumer<IAction> task, Function<IAction,Boolean> terminate);
+    IConditionalAction conditional(Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminate);
 
-    IConditionalAction conditional(String name, Function<IAction,Boolean> condition, Consumer<IAction> task, Function<IAction,Boolean> terminate);
+    IConditionalAction conditional(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminate);
 
-    IConditionalAction conditional(Function<IAction,Boolean> condition, Consumer<IAction> task, Function<IAction,Boolean> terminateWhen, Consumer<IAction> onTermination);
+    IConditionalAction conditional(Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
 
-    IConditionalAction conditional(String name, Function<IAction,Boolean> condition, Consumer<IAction> task, Function<IAction,Boolean> terminateWhen, Consumer<IAction> onTermination);
+    IConditionalAction conditional(String name, Function<IAction, Boolean> condition, Consumer<IAction> task, Function<IAction, Boolean> terminateWhen, Consumer<IAction> onTermination);
 
     /**
      * Enqueue another IAction on the parallel chain which starts firing simultaneously as this.
      *
      * @param after the scheduled parallel action
+     * @return the parallel action
      */
     IAction parallel(IAction after);
 

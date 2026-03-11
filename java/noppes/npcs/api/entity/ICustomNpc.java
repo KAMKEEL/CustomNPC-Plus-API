@@ -3,10 +3,17 @@ package noppes.npcs.api.entity;
 import net.minecraft.entity.EntityCreature;
 import noppes.npcs.api.IPos;
 import noppes.npcs.api.ITimers;
+import noppes.npcs.api.ability.IDataAbilities;
+import noppes.npcs.api.entity.data.IHitboxData;
 import noppes.npcs.api.entity.data.IModelData;
+import noppes.npcs.api.entity.data.ITintData;
 import noppes.npcs.api.handler.IActionManager;
 import noppes.npcs.api.handler.IOverlayHandler;
-import noppes.npcs.api.handler.data.*;
+import noppes.npcs.api.handler.data.IAnimationData;
+import noppes.npcs.api.handler.data.IDialog;
+import noppes.npcs.api.handler.data.IFaction;
+import noppes.npcs.api.handler.data.ILines;
+import noppes.npcs.api.handler.data.IMagicData;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.jobs.IJob;
 import noppes.npcs.api.roles.IRole;
@@ -292,6 +299,20 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
     boolean getProjectilesKeepTerrain();
 
     /**
+     * Sets whether the NPC has projectile invincibility frames.
+     *
+     * @param invincible true to enable projectile invincibility, false to disable.
+     */
+    void setProjectileInvincibility(boolean invincible);
+
+    /**
+     * Returns whether the NPC has projectile invincibility frames.
+     *
+     * @return true if projectile invincibility is enabled, false otherwise.
+     */
+    boolean getProjectileInvincibility();
+
+    /**
      * Makes the NPC broadcast a message.
      *
      * @param message the message to say.
@@ -372,6 +393,104 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
      * @return the kill lines.
      */
     ILines getKillLines();
+
+    /**
+     * Returns whether NPC dialog lines are played in order.
+     *
+     * @return true if lines are ordered, false if random.
+     */
+    boolean getOrderedLines();
+
+    /**
+     * Sets whether NPC dialog lines are played in order.
+     *
+     * @param ordered true for ordered, false for random.
+     */
+    void setOrderedLines(boolean ordered);
+
+    /**
+     * Returns the NPC's idle sound resource path.
+     *
+     * @return the idle sound path, or empty string if none.
+     */
+    String getIdleSound();
+
+    /**
+     * Sets the NPC's idle sound resource path.
+     *
+     * @param sound the idle sound path.
+     */
+    void setIdleSound(String sound);
+
+    /**
+     * Returns the NPC's angry/aggro sound resource path.
+     *
+     * @return the angry sound path, or empty string if none.
+     */
+    String getAngrySound();
+
+    /**
+     * Sets the NPC's angry/aggro sound resource path.
+     *
+     * @param sound the angry sound path.
+     */
+    void setAngrySound(String sound);
+
+    /**
+     * Returns the NPC's hurt sound resource path.
+     *
+     * @return the hurt sound path.
+     */
+    String getHurtSound();
+
+    /**
+     * Sets the NPC's hurt sound resource path.
+     *
+     * @param sound the hurt sound path.
+     */
+    void setHurtSound(String sound);
+
+    /**
+     * Returns the NPC's death sound resource path.
+     *
+     * @return the death sound path.
+     */
+    String getDeathSound();
+
+    /**
+     * Sets the NPC's death sound resource path.
+     *
+     * @param sound the death sound path.
+     */
+    void setDeathSound(String sound);
+
+    /**
+     * Returns the NPC's step/footstep sound resource path.
+     *
+     * @return the step sound path, or empty string if none.
+     */
+    String getStepSound();
+
+    /**
+     * Sets the NPC's step/footstep sound resource path.
+     *
+     * @param sound the step sound path.
+     */
+    void setStepSound(String sound);
+
+    /**
+     * Returns whether pitch variation is disabled for NPC sounds.
+     *
+     * @return true if pitch is disabled (fixed pitch), false otherwise.
+     */
+    boolean getDisablePitch();
+
+    /**
+     * Sets whether pitch variation is disabled for NPC sounds.
+     *
+     * @param disablePitch true to disable pitch variation, false to allow.
+     */
+    void setDisablePitch(boolean disablePitch);
 
     /**
      * Kills the NPC without despawning it.
@@ -494,7 +613,7 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
     /**
      * Gets the Aim Type for an NPC
      *
-     * @return  0: No, 1: Yes, 2: On Shot
+     * @return 0: No, 1: Yes, 2: On Shot
      */
     byte getAimType();
 
@@ -708,6 +827,14 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
     boolean getCanDrown();
 
     /**
+     * Sets whether the NPC can drown.
+     * Shorthand: sets drowning type to 1 (drowns in water) if true, 0 (never drowns) if false.
+     *
+     * @param canDrown true to allow drowning, false to prevent.
+     */
+    void setCanDrown(boolean canDrown);
+
+    /**
      * Sets the drowning behavior of the NPC.
      *
      * @param type 0: Never drowns, 1: Drowns in water, 2: Drowns in air (without water).
@@ -797,6 +924,286 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
      * @return the tactical radius.
      */
     int getTacticalRadius();
+
+    /**
+     * Returns the tactical behavior chance (1 in N).
+     *
+     * @return the tactical chance.
+     */
+    int getTacticalChance();
+
+    /**
+     * Sets the tactical behavior chance (1 in N).
+     *
+     * @param chance the tactical chance.
+     */
+    void setTacticalChance(int chance);
+
+    /**
+     * Returns whether the NPC can swim.
+     *
+     * @return true if the NPC can swim, false otherwise.
+     */
+    boolean getCanSwim();
+
+    /**
+     * Sets whether the NPC can swim.
+     *
+     * @param canSwim true to enable swimming, false to disable.
+     */
+    void setCanSwim(boolean canSwim);
+
+    /**
+     * Returns whether the NPC reacts to fire.
+     *
+     * @return true if the NPC reacts to fire, false otherwise.
+     */
+    boolean getReactsToFire();
+
+    /**
+     * Sets whether the NPC reacts to fire.
+     *
+     * @param reactsToFire true to react, false otherwise.
+     */
+    void setReactsToFire(boolean reactsToFire);
+
+    /**
+     * Returns whether the NPC avoids water.
+     *
+     * @return true if the NPC avoids water, false otherwise.
+     */
+    boolean getAvoidsWater();
+
+    /**
+     * Sets whether the NPC avoids water.
+     *
+     * @param avoidsWater true to avoid water, false otherwise.
+     */
+    void setAvoidsWater(boolean avoidsWater);
+
+    /**
+     * Returns whether the NPC avoids sunlight.
+     *
+     * @return true if the NPC avoids the sun, false otherwise.
+     */
+    boolean getAvoidsSun();
+
+    /**
+     * Sets whether the NPC avoids sunlight.
+     *
+     * @param avoidsSun true to avoid sunlight, false otherwise.
+     */
+    void setAvoidsSun(boolean avoidsSun);
+
+    /**
+     * Returns whether the NPC requires direct line-of-sight to attack.
+     *
+     * @return true if direct LOS is required, false otherwise.
+     */
+    boolean getDirectLOS();
+
+    /**
+     * Sets whether the NPC requires direct line-of-sight to attack.
+     *
+     * @param directLOS true to require LOS, false otherwise.
+     */
+    void setDirectLOS(boolean directLOS);
+
+    /**
+     * Returns the NPC's leap attack type.
+     *
+     * @return the leap type.
+     */
+    int getLeapType();
+
+    /**
+     * Sets the NPC's leap attack type.
+     *
+     * @param leapType the leap type.
+     */
+    void setLeapType(int leapType);
+
+    /**
+     * Returns whether the NPC can sprint.
+     *
+     * @return true if sprinting is enabled, false otherwise.
+     */
+    boolean getCanSprint();
+
+    /**
+     * Sets whether the NPC can sprint.
+     *
+     * @param canSprint true to enable sprinting, false to disable.
+     */
+    void setCanSprint(boolean canSprint);
+
+    /**
+     * Returns whether the NPC stops moving to interact with players.
+     *
+     * @return true if the NPC stops to interact, false otherwise.
+     */
+    boolean getStopAndInteract();
+
+    /**
+     * Sets whether the NPC stops moving to interact with players.
+     *
+     * @param stopAndInteract true to stop and interact, false otherwise.
+     */
+    void setStopAndInteract(boolean stopAndInteract);
+
+    /**
+     * Returns the NPC's door interaction behavior.
+     *
+     * @return the door interaction mode (0: Break, 1: Open, 2: Disabled).
+     */
+    int getDoorInteract();
+
+    /**
+     * Sets the NPC's door interaction behavior.
+     *
+     * @param doorInteract the door interaction mode (0: Break, 1: Open, 2: Disabled).
+     */
+    void setDoorInteract(int doorInteract);
+
+    /**
+     * Returns the NPC's walking range (wander radius).
+     *
+     * @return the walking range.
+     */
+    int getWalkingRange();
+
+    /**
+     * Sets the NPC's walking range (wander radius).
+     *
+     * @param range the walking range.
+     */
+    void setWalkingRange(int range);
+
+    /**
+     * Returns whether the NPC interacts with other NPCs.
+     *
+     * @return true if NPC interaction is enabled, false otherwise.
+     */
+    boolean getNpcInteracting();
+
+    /**
+     * Sets whether the NPC interacts with other NPCs.
+     *
+     * @param npcInteracting true to enable, false to disable.
+     */
+    void setNpcInteracting(boolean npcInteracting);
+
+    /**
+     * Returns whether the NPC pauses at path points.
+     *
+     * @return true if the NPC pauses at path points, false otherwise.
+     */
+    boolean getMovingPause();
+
+    /**
+     * Sets whether the NPC pauses at path points.
+     *
+     * @param movingPause true to pause, false otherwise.
+     */
+    void setMovingPause(boolean movingPause);
+
+    /**
+     * Returns the NPC's path movement pattern.
+     *
+     * @return the moving pattern (0: Looping, 1: Backtracking).
+     */
+    int getMovingPattern();
+
+    /**
+     * Sets the NPC's path movement pattern.
+     *
+     * @param pattern the moving pattern (0: Looping, 1: Backtracking).
+     */
+    void setMovingPattern(int pattern);
+
+    /**
+     * Returns whether the NPC fires indirect (arcing) projectiles.
+     *
+     * @return the indirect fire mode.
+     */
+    int getCanFireIndirect();
+
+    /**
+     * Sets whether the NPC fires indirect (arcing) projectiles.
+     *
+     * @param canFireIndirect the indirect fire mode.
+     */
+    void setCanFireIndirect(int canFireIndirect);
+
+    /**
+     * Returns the NPC's use-range-melee mode.
+     *
+     * @return the use-range-melee mode.
+     */
+    int getUseRangeMelee();
+
+    /**
+     * Sets the NPC's use-range-melee mode.
+     *
+     * @param useRangeMelee the use-range-melee mode.
+     */
+    void setUseRangeMelee(int useRangeMelee);
+
+    /**
+     * Returns the distance at which the NPC switches from ranged to melee.
+     *
+     * @return the distance to melee.
+     */
+    int getDistanceToMelee();
+
+    /**
+     * Sets the distance at which the NPC switches from ranged to melee.
+     *
+     * @param distance the distance to melee.
+     */
+    void setDistanceToMelee(int distance);
+
+    /**
+     * Returns the NPC's body X offset.
+     *
+     * @return the body X offset.
+     */
+    float getBodyOffsetX();
+
+    /**
+     * Sets the NPC's body X offset.
+     *
+     * @param offsetX the body X offset.
+     */
+    void setBodyOffsetX(float offsetX);
+
+    /**
+     * Returns the NPC's body Y offset.
+     *
+     * @return the body Y offset.
+     */
+    float getBodyOffsetY();
+
+    /**
+     * Sets the NPC's body Y offset.
+     *
+     * @param offsetY the body Y offset.
+     */
+    void setBodyOffsetY(float offsetY);
+
+    /**
+     * Returns the NPC's body Z offset.
+     *
+     * @return the body Z offset.
+     */
+    float getBodyOffsetZ();
+
+    /**
+     * Sets the NPC's body Z offset.
+     *
+     * @param offsetZ the body Z offset.
+     */
+    void setBodyOffsetZ(float offsetZ);
 
     /**
      * Sets whether the NPC ignores cobwebs.
@@ -1169,6 +1576,20 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
     IModelData getModelData();
 
     /**
+     * Returns the hitbox data associated with the NPC.
+     *
+     * @return the hitbox data.
+     */
+    IHitboxData getHitboxData();
+
+    /**
+     * Returns the tint data associated with the NPC.
+     *
+     * @return the tint data.
+     */
+    ITintData getTintData();
+
+    /**
      * (Deprecated) Sets the head scale of the NPC.
      *
      * @param x scale factor along the X-axis.
@@ -1263,6 +1684,104 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
      * @return the knockback resistance.
      */
     double getKnockbackResistance();
+
+    /**
+     * Returns whether all damage to this NPC is disabled.
+     *
+     * @return true if damage is disabled, false otherwise.
+     */
+    boolean getDamageDisabled();
+
+    /**
+     * Sets whether all damage to this NPC is disabled.
+     *
+     * @param disabled true to disable all damage, false otherwise.
+     */
+    void setDamageDisabled(boolean disabled);
+
+    /**
+     * Returns whether the NPC takes no fall damage.
+     *
+     * @return true if fall damage is disabled, false otherwise.
+     */
+    boolean getNoFallDamage();
+
+    /**
+     * Sets whether the NPC takes no fall damage.
+     *
+     * @param noFallDamage true to disable fall damage, false to enable.
+     */
+    void setNoFallDamage(boolean noFallDamage);
+
+    /**
+     * Returns whether the NPC is immune to fire.
+     *
+     * @return true if immune to fire, false otherwise.
+     */
+    boolean getImmuneToFire();
+
+    /**
+     * Sets whether the NPC is immune to fire.
+     *
+     * @param immuneToFire true to make immune, false otherwise.
+     */
+    void setImmuneToFire(boolean immuneToFire);
+
+    /**
+     * Returns whether the NPC is immune to potion effects.
+     *
+     * @return true if potion immune, false otherwise.
+     */
+    boolean getPotionImmune();
+
+    /**
+     * Sets whether the NPC is immune to potion effects.
+     *
+     * @param potionImmune true to make immune, false otherwise.
+     */
+    void setPotionImmune(boolean potionImmune);
+
+    /**
+     * Returns whether the NPC burns in sunlight.
+     *
+     * @return true if the NPC burns in the sun, false otherwise.
+     */
+    boolean getBurnInSun();
+
+    /**
+     * Sets whether the NPC burns in sunlight.
+     *
+     * @param burnInSun true to burn in sunlight, false otherwise.
+     */
+    void setBurnInSun(boolean burnInSun);
+
+    /**
+     * Returns whether the NPC can attack invisible targets.
+     *
+     * @return true if the NPC attacks invisible entities, false otherwise.
+     */
+    boolean getAttackInvisible();
+
+    /**
+     * Sets whether the NPC can attack invisible targets.
+     *
+     * @param attackInvisible true to allow attacking invisible entities, false otherwise.
+     */
+    void setAttackInvisible(boolean attackInvisible);
+
+    /**
+     * Returns the NPC's creature type.
+     *
+     * @return the creature type ordinal (0: Undefined, 1: Undead, 2: Arthropod).
+     */
+    int getCreatureType();
+
+    /**
+     * Sets the NPC's creature type.
+     *
+     * @param type the creature type ordinal (0: Undefined, 1: Undead, 2: Arthropod).
+     */
+    void setCreatureType(int type);
 
     /**
      * Sets the NPC's retaliation type.
@@ -1458,6 +1977,20 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
     String getOverlayTexture();
 
     /**
+     * Returns the NPC's glow texture path.
+     *
+     * @return the glow texture path, or empty string if none.
+     */
+    String getGlowTexture();
+
+    /**
+     * Sets the NPC's glow texture path.
+     *
+     * @param texture the glow texture path.
+     */
+    void setGlowTexture(String texture);
+
+    /**
      * Returns the NPC's overlay handler.
      *
      * @return the overlay handler.
@@ -1501,4 +2034,20 @@ public interface ICustomNpc<T extends EntityCreature> extends IEntityLiving<T>, 
      * @return Magic data
      */
     IMagicData getMagicData();
+
+    /**
+     * Returns the Ability Data of an NPC.
+     * Allows access to the NPC's abilities system including
+     * force-starting abilities and executing preset abilities.
+     *
+     * @return Ability data
+     */
+    IDataAbilities getAbilityData();
+
+    /**
+     * Returns all active energy projectiles fired by this NPC.
+     *
+     * @return Array of active energy projectiles, empty array if none
+     */
+    IEnergyProjectile[] getActiveEnergyProjectiles();
 }

@@ -9,7 +9,7 @@ public interface IConditionalAction extends IAction {
 
     /**
      * @param condition checked every tick, if it returns true, task is fired
-     * @return
+     * @return this action
      */
     IConditionalAction setCondition(Function<IAction, Boolean> condition);
 
@@ -33,12 +33,14 @@ public interface IConditionalAction extends IAction {
 
     /**
      * Note: Only for Conditional Actions
+     *
      * @return how many times this conditional action has tested its condition
      */
     int getCheckCount();
 
     /**
      * Note: Only for Conditional Actions
+     *
      * @return the maximum number of checks before auto-expiring, or -1 if unlimited
      */
     int getMaxChecks();

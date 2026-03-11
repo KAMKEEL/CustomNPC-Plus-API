@@ -36,7 +36,7 @@ public interface IActionQueue {
     /**
      *
      * @param parallel True to turn queue into parallel, false for sequential
-     * @return
+     * @return this IActionQueue for method chaining
      */
     IActionQueue setParallel(boolean parallel);
 
@@ -49,7 +49,7 @@ public interface IActionQueue {
     /**
      *
      * @param stopWhenEmpty to auto-stop queue when empty/no active Actions scheduled using {{@link #stop()}}
-     * @return
+     * @return this IActionQueue for method chaining
      */
     IActionQueue stopWhenEmpty(boolean stopWhenEmpty);
 
@@ -71,7 +71,7 @@ public interface IActionQueue {
     /**
      * @param ticks to kill queue after when killWhenEmpty and queue has no active tasks
      *              If an IAction is scheduled during the kill process, process is aborted
-     * @return
+     * @return this IActionQueue for method chaining
      */
     IActionQueue killWhenEmptyAfter(int ticks);
 
@@ -109,7 +109,7 @@ public interface IActionQueue {
 
     /**
      *
-     * @param action
+     * @param action the action to find in the queue
      * @return index of action in {{@link #getQueue()}}
      * -1 if not in queue.
      */

@@ -1,7 +1,6 @@
 package noppes.npcs.api.entity;
 
 import net.minecraft.entity.EntityLiving;
-import noppes.npcs.api.entity.IEntityLivingBase;
 
 /**
  * Represents a living entity (mob, NPC, etc.) that extends the base living functionality.

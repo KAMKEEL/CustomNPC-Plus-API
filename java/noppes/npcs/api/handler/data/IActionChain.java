@@ -8,7 +8,7 @@ public interface IActionChain {
 
     /**
      * @param name of chain
-     * @return
+     * @return this IActionChain for method chaining
      */
     IActionChain setName(String name);
 
@@ -21,9 +21,9 @@ public interface IActionChain {
     /**
      *
      * @param delay ticks between an IAction and another
-     * @param name name of IAction
-     * @param task task of IAction
-     * @return
+     * @param name  name of IAction
+     * @param task  task of IAction
+     * @return this IActionChain for method chaining
      */
     IActionChain after(int delay, String name, Consumer<IAction> task);
 
@@ -31,7 +31,8 @@ public interface IActionChain {
 
     /**
      * Start IActionManager
-     * @return
+     *
+     * @return this IActionChain for method chaining
      */
     IActionChain start();
 }

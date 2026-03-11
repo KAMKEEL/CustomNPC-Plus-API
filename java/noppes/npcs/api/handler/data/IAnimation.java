@@ -1,5 +1,8 @@
 package noppes.npcs.api.handler.data;
 
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
 public interface IAnimation {
 
     IAnimationData getParent();
@@ -52,8 +55,24 @@ public interface IAnimation {
 
     /**
      * Do not use this unless you know what you are changing. Dangerous to change.
+     *
+     * @param id the animation ID
      */
     void setID(int id);
 
     long getTotalTime();
+
+    boolean hasData(String key);
+
+    Object getData(String key);
+
+    IAnimation setData(String key, Object v);
+
+    IAnimation removeData(String key);
+
+    IAnimation onStart(Consumer<IAnimation> task);
+
+    IAnimation onFrame(BiConsumer<Integer, IAnimation> task);
+
+    IAnimation onEnd(Consumer<IAnimation> task);
 }

@@ -3,6 +3,7 @@ package noppes.npcs.api.gui;
 import net.minecraft.nbt.NBTTagCompound;
 import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.item.IItemStack;
+
 import java.util.List;
 
 /**
@@ -90,10 +91,10 @@ public interface ICustomGui {
     /**
      * Adds a button to the GUI.
      *
-     * @param id    the component ID.
-     * @param text  the button label.
-     * @param x     the x position.
-     * @param y     the y position.
+     * @param id   the component ID.
+     * @param text the button label.
+     * @param x    the x position.
+     * @param y    the y position.
      * @return the created button.
      */
     IButton addButton(int id, String text, int x, int y);
@@ -230,12 +231,19 @@ public interface ICustomGui {
     IItemSlot addItemSlot(int id, int x, int y, IItemStack itemStack);
 
     /**
+     * @param x the X position in the GUI
+     * @param y the Y position in the GUI
+     * @return the created item slot
      * @deprecated Use addItemSlot(int, int, IItemStack) with an ID instead.
      */
     @Deprecated
     IItemSlot addItemSlot(int x, int y);
 
     /**
+     * @param x the X position in the GUI
+     * @param y the Y position in the GUI
+     * @param itemStack the item to display in the slot
+     * @return the created item slot
      * @deprecated Use addItemSlot(int, int, IItemStack) with an ID instead.
      */
     @Deprecated

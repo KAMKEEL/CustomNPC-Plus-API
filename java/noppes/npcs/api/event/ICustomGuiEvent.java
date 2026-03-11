@@ -4,21 +4,38 @@ import cpw.mods.fml.common.eventhandler.Cancelable;
 import noppes.npcs.api.gui.ICustomGui;
 import noppes.npcs.api.item.IItemStack;
 
+/**
+ * Events fired when a player interacts with a custom GUI.
+ */
 public interface ICustomGuiEvent extends IPlayerEvent {
 
+    /** @return the custom GUI associated with this event. */
     ICustomGui getGui();
 
+    /** @return the component ID that triggered this event. */
     int getId();
 
+    /**
+     * @hookName customGuiButton
+     */
     interface ButtonEvent extends ICustomGuiEvent {
     }
 
+    /**
+     * @hookName customGuiTextfield
+     */
     interface UnfocusedEvent extends ICustomGuiEvent {
     }
 
+    /**
+     * @hookName customGuiClosed
+     */
     interface CloseEvent extends ICustomGuiEvent {
     }
 
+    /**
+     * @hookName customGuiScroll
+     */
     interface ScrollEvent extends ICustomGuiEvent {
         String[] getSelection();
 
@@ -27,10 +44,16 @@ public interface ICustomGuiEvent extends IPlayerEvent {
         int getScrollIndex();
     }
 
+    /**
+     * @hookName customGuiSlot
+     */
     interface SlotEvent extends ICustomGuiEvent {
         IItemStack getStack();
     }
 
+    /**
+     * @hookName customGuiSlotClicked
+     */
     @Cancelable
     interface SlotClickEvent extends ICustomGuiEvent {
         IItemStack getStack();

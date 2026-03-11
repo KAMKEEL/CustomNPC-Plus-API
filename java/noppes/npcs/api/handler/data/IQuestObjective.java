@@ -28,15 +28,19 @@ public interface IQuestObjective {
      * have a party
      *
      * @param playerName Name of Player
-     * @param progress Progress Amount
+     * @param progress   Progress Amount
      */
     void setPlayerProgress(String playerName, int progress);
 
+    /** @return the target progress value needed to complete this objective. */
     int getMaxProgress();
 
+    /** @return true if this objective has been completed. */
     boolean isCompleted();
 
+    /** @return the objective description text. */
     String getText();
 
+    /** @return additional display text for this objective, or null. */
     String getAdditionalText();
 }
