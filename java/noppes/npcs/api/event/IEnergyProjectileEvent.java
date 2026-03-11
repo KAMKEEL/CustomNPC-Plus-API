@@ -27,6 +27,7 @@ public interface IEnergyProjectileEvent extends ICustomNPCsEvent {
      * @hookName energyProjectileTick
      */
     interface UpdateEvent extends IEnergyProjectileEvent {
+        int getTick();
     }
 
     /**
