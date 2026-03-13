@@ -171,4 +171,26 @@ public interface IAbilityEvent extends INpcEvent {
          */
         int getTick();
     }
+
+    interface DefendEvent extends IAbilityEvent {
+        /**
+         * Get the entity that attacked during defend.
+         * @return the entity that was hit
+         */
+        IEntityLivingBase getAttacker();
+
+        IEntityLivingBase getLastAttacker();
+
+        /**
+         * Get the damage amount.
+         * @return the damage amount
+         */
+        float getDamage();
+
+        /**
+         * Set the damage amount. Allows scripts to modify damage.
+         * @param damage the new damage amount
+         */
+        void setDamage(float damage);
+    }
 }
