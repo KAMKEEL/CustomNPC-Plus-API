@@ -2,143 +2,159 @@ package noppes.npcs.api;
 
 import net.minecraft.nbt.NBTTagCompound;
 
+import java.util.Set;
+
 /**
- * A scripted data representation of an MC NBTTagCompound object. Using these functions modifies the compound tag
- * associated with this object. Any changes made to the compound tag are made directly to its "tagMap" attribute,
- * minimizing the impact of setting/getting NBT data with this object on performance.
- * <p>
- * Compound tags, unlike list tags, can contain multiple types of NBT tag types. Compound tags can even
- * contain compound tags inside them, and if that compound tag is accessed, an object like this one will also be returned!
- * <p>
- * Every tag inside a compound tag has a -unique- "key". If you try to put another tag of the same key inside the
- * compound tag, it will replace the previous tag.
- * <p>
- * The types and their type as an integer are as follows:
- * 1: Byte
- * 2: Short
- * 3: Int
- * 4: Long
- * 5: Float
- * 6: Double
- * 7: Byte array
- * 8: String
- * 9: Tag list
- * 10: Compound
- * 11: Integer array
+ * MC shadow of the unified INbt interface.
+ * This version shadows the platform-api INbt at compile time for mc1710,
+ * adding the typed {@code getMCNBT()} method and scripting convenience methods.
  *
+ * <p>Compound tags contain uniquely-keyed tags of various types:
+ * <pre>
+ * 1: Byte    2: Short   3: Int      4: Long
+ * 5: Float   6: Double  7: Byte[]   8: String
+ * 9: List   10: Compound 11: Int[]
+ * </pre>
  */
 public interface INbt {
-    /**
-     * Returns the tag with the given key from the compound tag.
-     * @param key the NBT key
-     */
-    void remove(String key);
 
-    /**
-     * @param key the NBT key
-     * @return True if the compound tag has a tag with the given key.
-     */
-    boolean has(String key);
-
-    boolean getBoolean(String key);
-
-    void setBoolean(String key, boolean value);
-
-    short getShort(String key);
-
-    void setShort(String key, short value);
-
-    int getInteger(String key);
-
-    void setInteger(String key, int value);
-
-    byte getByte(String key);
-
-    void setByte(String key, byte value);
-
-    long getLong(String key);
-
-    void setLong(String key, long value);
-
-    double getDouble(String key);
-
-    void setDouble(String key, double value);
-
-    float getFloat(String key);
-
-    void setFloat(String key, float value);
-
-    String getString(String key);
+    // ======================== Setters ========================
 
     void setString(String key, String value);
 
-    byte[] getByteArray(String key);
+    void setInteger(String key, int value);
+
+    void setBoolean(String key, boolean value);
+
+    void setDouble(String key, double value);
+
+    void setFloat(String key, float value);
+
+    void setLong(String key, long value);
+
+    void setShort(String key, short value);
+
+    void setByte(String key, byte value);
 
     void setByteArray(String key, byte[] value);
 
-    int[] getIntegerArray(String key);
+    void setIntArray(String key, int[] value);
 
-    void setIntegerArray(String key, int[] value);
+    default void setIntegerArray(String key, int[] value) {
+        setIntArray(key, value);
+    }
 
-    /**
-     * Returns a tag list of objects with this key in the compound tag. All the objects in the list
-     * will always be of the same type.
-     *
-     * @param key the NBT key
-     * @param value the list type
-     * @return The tag list of objects, depending on the tag type.
-     */
-    Object[] getList(String key, int value);
+    void setCompound(String key, INbt compound);
+
+    default void setTag(String key, INbt compound) {
+        setCompound(key, compound);
+    }
 
     /**
-     * Returns the type of the tag list with this key, as an integer.
-     * @param key the NBT key
-     * @return the list element type
-     */
-    int getListType(String key);
-
-    /**
-     * Adds a new tag list to the compound tag with the given key.
-     *
-     * @param key   The key for the list tag
-     * @param value The list of objects to be in the list. The type of the first element in this list becomes the tag
-     *              list's type, and if later objects are not of this type, they will not be added.
+     * Sets a list from an Object array. Elements can be: INbt, String, Double, Float, Integer, int[].
      */
     void setList(String key, Object[] value);
 
+    /**
+     * Sets a typed tag list on this compound.
+     */
+    void setTagList(String key, INbtList list);
+
+    // ======================== Getters ========================
+
+    String getString(String key);
+
+    int getInteger(String key);
+
+    boolean getBoolean(String key);
+
+    double getDouble(String key);
+
+    float getFloat(String key);
+
+    long getLong(String key);
+
+    short getShort(String key);
+
+    byte getByte(String key);
+
+    byte[] getByteArray(String key);
+
+    int[] getIntArray(String key);
+
+    default int[] getIntegerArray(String key) {
+        return getIntArray(key);
+    }
+
     INbt getCompound(String key);
 
-    void setCompound(String key, INbt value);
-
     /**
-     *
-     * @return A list of all the compound tag's keys.
+     * Returns a tag list as an Object array. Elements are typed based on list type:
+     * INbt (compounds), String, Double, Float, Integer, int[].
      */
-    String[] getKeys();
+    Object[] getList(String key, int type);
 
     /**
+     * Gets a typed tag list from this compound.
      *
-     * @param key the NBT key
-     * @return The type of the tag with the input key as an integer.
+     * @param key  the key
+     * @param type the element type ID (e.g. 10 for compounds, 8 for strings)
+     * @return the list, or an empty list if the key doesn't exist
      */
-    int getType(String key);
+    INbtList getTagList(String key, int type);
 
     /**
-     *
-     * @return An obfuscated MC NBTTagCompound object.
+     * Returns the type of the tag list with this key.
+     */
+    int getListType(String key);
+
+    // ======================== Query ========================
+
+    boolean hasKey(String key);
+
+    default boolean has(String key) {
+        return hasKey(key);
+    }
+
+    boolean hasKey(String key, int type);
+
+    Set<String> getKeySet();
+
+    default String[] getKeys() {
+        return getKeySet().toArray(new String[0]);
+    }
+
+    void removeTag(String key);
+
+    default void remove(String key) {
+        removeTag(key);
+    }
+
+    int getTagType(String key);
+
+    default int getType(String key) {
+        return getTagType(key);
+    }
+
+    boolean isEmpty();
+
+    // ======================== Interop ========================
+
+    void merge(INbt other);
+
+    INbt copy();
+
+    /**
+     * Returns the underlying MC NBTTagCompound.
+     * Expert use only.
      */
     NBTTagCompound getMCNBT();
 
-    /**
-     *
-     * @return A curly-bracket formatted JSON string of all the compound tag.
-     */
+    // ======================== Convenience ========================
+
     String toJsonString();
 
     boolean isEqual(INbt nbt);
 
-    /**
-     * Completely clears the compound tag of all tags inside it.
-     */
     void clear();
 }
